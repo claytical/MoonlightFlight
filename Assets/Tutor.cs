@@ -6,7 +6,9 @@ public class Tutor : MonoBehaviour {
 	public GameObject[] steps;
 	public GameObject finger;
 	public PlayerControl player;
-	private int currentStep;
+	public Button ballDrop;
+	private int stepIndex;
+//	private int currentStep;
 	// Use this for initialization
 
 	//#1 - Drag
@@ -18,36 +20,48 @@ public class Tutor : MonoBehaviour {
 		if(PlayerPrefs.HasKey("tutored")) {
 			gameObject.SetActive(false);
 		}
-		currentStep = 0;
-	
+		ballDrop.enabled = false;
+		stepIndex = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+		
 
-	public void Drop() {
-		if(currentStep == 1) {
-			Continue();
-			player.setReadyForStep3();
-		}
-	}
-
-
-	public void Continue() {
-		steps[currentStep].SetActive(false);
-		if (currentStep == 0) {
-			finger.SetActive(false);
-		}
-		currentStep++;
-		if (currentStep >= steps.Length) {
-			PlayerPrefs.SetString("tutored", "very true");
-			Debug.Log("Tutorial Over");
-			gameObject.SetActive(false);
-		}
-		else {
-			steps[currentStep].SetActive(true);
+	public void Continue(int currentStep) {
+		if(stepIndex == currentStep) {
+			switch(currentStep) {
+				case 0:
+					//LEARNED TO DRAW
+					finger.SetActive(false);
+					steps[0].SetActive(false);
+					steps[1].SetActive(true);	
+					ballDrop.enabled = true;
+					break;
+				case 1:
+					//LEARNED TO DROP BALL
+					steps[1].SetActive(false);
+					steps[2].SetActive(true);
+					break;
+				case 2:
+					//LEARNED HOW TO CONTROL BALL MOVEMENT
+					steps[2].SetActive(false);
+					steps[3].SetActive(true);
+					//ADD BUMPER
+					player.level.tutorialBumper();
+					break;
+				case 3:
+					//LEARNED HOW TO DESTROY BUMPER
+					steps[3].SetActive(false);
+					steps[4].SetActive(true);					
+					PlayerPrefs.SetString("tutored", "very true");
+					Debug.Log("Tutorial Over");
+					Destroy(gameObject,3);
+					break;
+			}
+			stepIndex++;
 		}
 	}
 }

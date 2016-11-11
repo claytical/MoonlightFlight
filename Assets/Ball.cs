@@ -45,17 +45,15 @@ public class Ball : MonoBehaviour {
 			GetComponentInChildren<ParticleSystem>().Play();
 		}
 		if (coll.gameObject.tag == "Disappearing") {
-			
-			coll.gameObject.GetComponent<AudioSource>().Play();
 
 			if(!isDead) {
 				GetComponentInChildren<ParticleSystemRenderer>().material = bump;
 				GetComponentInChildren<ParticleSystem>().Emit(timeSinceLastBump/10);
 			}
-//			coll.gameObject.SendMessage("LightUp");
+
 			if(coll.gameObject.GetComponent<Bumper>().LightUp()) {
-				if(GetComponentInParent<BallHolder>().player.tutor.gameObject.activeSelf) {
-					GetComponentInParent<BallHolder>().player.tutor.Continue();
+				if(GetComponentInParent<BallHolder>().player.tutor) {
+					GetComponentInParent<BallHolder>().player.tutor.Continue(3);
 				}
 			}
 
@@ -63,12 +61,17 @@ public class Ball : MonoBehaviour {
 
 		}
 		if(coll.gameObject.tag == "Tone") {
-			float p = coll.gameObject.transform.position.y + 4;
-			float v = Mathf.Clamp(coll.relativeVelocity.magnitude, 0, 1);
+			coll.gameObject.GetComponent<Point>().Hit(coll.relativeVelocity.magnitude);
+/*			float p = coll.gameObject.transform.position.y + 4;
+			float v = Mathf.Clamp(coll.relativeVelocity.magnitude, 0, .75f);
 			coll.gameObject.GetComponent<AudioSource>().pitch = Mathf.Clamp(p, -1, 3);
 			coll.gameObject.GetComponent<AudioSource>().volume = v;
 			coll.gameObject.GetComponent<AudioSource>().Play();
-			Debug.Log("Velocity: " + coll.relativeVelocity.magnitude);
+*/
+		if(gameObject.GetComponentInParent<BallHolder>().player.tutor) {
+				Debug.Log("Bumped against line move tutorial forward");
+				gameObject.GetComponentInParent<BallHolder>().player.tutor.Continue(2);
+			}
 		}
 		if (coll.gameObject.tag == "Bumpable") {
 

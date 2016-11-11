@@ -19,11 +19,18 @@ public class BallHolder : MonoBehaviour {
 	}
 
 	public void Drop() {
-		if(player.balls > 0) {
+		if(player.tutor) {
 			GameObject b = (GameObject) Instantiate(ball, transform.position, transform.rotation);
 			b.transform.parent = transform;
-			player.balls--;
-		}	
+
+		}
+		else {
+			if(player.balls > 0) {
+				GameObject b = (GameObject) Instantiate(ball, transform.position, transform.rotation);
+				b.transform.parent = transform;
+				player.balls--;
+			}	
+		}
 	}
 
 	public void addPoints(int points) {

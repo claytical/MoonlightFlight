@@ -6,18 +6,24 @@ public class LevelGenerator : MonoBehaviour {
 	public GameObject[] staticBumpers;
 	public GameObject[] movingBumpers;
 	public GameObject[] deathTraps;
+	public PlayerControl player;
 	public int maxMovingBumpers;
 	public int maxStaticBumpers;
 	public int maxTraps;
 	private int currentBumpers;
 	public GameObject levelCounter;
 	public int currentLevel;
+	private bool tutoring = false;
 	// Use this for initialization
 	void Start () {
+	}
+
+
+	void Play() {
 		Generate();
 		currentLevel = 1;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	}
@@ -27,26 +33,46 @@ public class LevelGenerator : MonoBehaviour {
 		if(currentBumpers <= 0) {
 			//Level Up
 			ClearGrid();
-			currentLevel++;
-			//procedural logic for level creation
-			if(currentLevel%3 == 2) {
-				//starting at level 2, then 5, then 8, etc.
-				maxTraps++;
+			if (!tutoring) {
+				currentLevel++;
+				player.balls++;
+				//procedural logic for level creation
+				if(currentLevel%3 == 2) {
+					//starting at level 2, then 5, then 8, etc.
+					maxTraps++;
+				}
+				if(currentLevel%3 == 0) {
+					//starting at level 3, then 6, then 9, etc.
+					maxMovingBumpers++;
+				}
+				if(currentLevel%3 == 1) {
+					//starting at level 1, then 4, then 7, etc.
+					maxStaticBumpers++;
+				}
+
+				levelCounter.SetActive(true);
 			}
-			if(currentLevel%3 == 0) {
-				//starting at level 3, then 6, then 9, etc.
-				maxMovingBumpers++;
+			else {
+				tutoring = false;
+				Play();
 			}
-			if(currentLevel%3 == 1) {
-				//starting at level 1, then 4, then 7, etc.
-				maxStaticBumpers++;
-			}
-			levelCounter.SetActive(true);
-		}	
+
+		}
 
 	}
 
 	public void ClearGrid() {
+		foreach(Transform child in player.lineContainer.GetComponentInChildren<Transform>()) {
+			Destroy(child.gameObject);
+		}
+
+		player.Lines.Clear();
+		Ball[] balls = player.ballHolder.gameObject.GetComponentsInChildren<Ball>();
+		for(int i = 0; i < balls.Length; i++) {
+			Debug.Log("Destroying ball " + i);
+			Destroy(balls[i].gameObject);
+		}
+
 		for(int i = 0; i < rows.Length; i++) {
 			for(int j = 0; j < rows[i].columns.Length; j++) {
 				foreach (Transform child in rows[i].columns[j].GetComponentInChildren<Transform>()) {
@@ -92,8 +118,9 @@ public class LevelGenerator : MonoBehaviour {
 						staticBumperCount++;
 						if(staticBumperCount <= maxStaticBumpers) {
 							int bType = Random.Range(0, staticBumpers.Length);
+							Debug.Log("CHOOSING " + bType);
 							currentBumpers++;
-							placeObstacle(staticBumpers[0], rows[i].columns[j].transform.position, rows[i].columns[j], false);
+							placeObstacle(staticBumpers[bType], rows[i].columns[j].transform.position, rows[i].columns[j], false);
 						}					
 					}
 					else {
@@ -111,6 +138,11 @@ public class LevelGenerator : MonoBehaviour {
 		if(staticBumperCount == 0 && movingBumperCount == 0) {
 			Generate();
 		}
+	}
+	public void tutorialBumper() {
+		GameObject o = (GameObject) Instantiate(staticBumpers[0], rows[0].columns[2].transform.position, transform.rotation);
+		o.transform.parent = rows[0].columns[2].transform;
+		currentBumpers = 1;
 	}
 
 	private void placeObstacle(GameObject go, Vector3 place, GameObject parent, bool moving) {

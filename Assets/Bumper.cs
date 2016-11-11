@@ -35,6 +35,10 @@ public class Bumper : MonoBehaviour {
 	}
 
 	public bool LightUp() {
+		if(!GetComponent<AudioSource>().isPlaying) {
+			GetComponent<AudioSource>().Play();
+		}
+
 		gameObject.GetComponent<SpriteRenderer>().sprite = litUpSprite;
 		timesHit++;
 //		GetComponent<Animator>().SetInteger("bumps", timesHit);
