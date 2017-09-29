@@ -15,15 +15,16 @@ public class Line : MonoBehaviour {
 	void Awake () {
 		// Create line renderer component and set its property
 		line = gameObject.AddComponent<LineRenderer> ();
-		line.material = new Material (Shader.Find ("Particles/Additive"));
+		line.material = new Material (Shader.Find ("Toon/Basic"));
+		line.material.color = Color.red;
 		line.SetVertexCount (0);
-		line.SetWidth (0.1f, 0.1f);
-		line.SetColors (Color.green, Color.green);
+		line.SetWidth (0.1f, 0.15f);
+		line.SetColors (Color.white, Color.white);
 		line.useWorldSpace = true;    
 		pointsList = new List<Vector3> ();
 		line.SetVertexCount (0);
 		pointsList.RemoveRange (0, pointsList.Count);
-		line.SetColors (Color.green, Color.green);
+		line.SetColors (Color.white, Color.white);
 	}
 
 	public bool Shorten() {
@@ -56,6 +57,7 @@ public class Line : MonoBehaviour {
 			List<Vector2> verticies = new List<Vector2>();
 			verticies.Add(pointsList[pointsList.Count - 2]);
 			verticies.Add(mousePos);
+			p.GetComponent<EdgeCollider2D> ().edgeRadius = .05f;
 			p.GetComponent<EdgeCollider2D>().points = verticies.ToArray();
 		}
 	}

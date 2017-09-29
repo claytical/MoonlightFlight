@@ -6,6 +6,7 @@ public class BallHolder : MonoBehaviour {
 	public GameObject ball;
 	public GameObject holder;
 	public PlayerControl player;
+	public Animator chute;
 	public Text scoreUI;
 	private int score;
 
@@ -19,6 +20,8 @@ public class BallHolder : MonoBehaviour {
 	}
 
 	public void Drop() {
+		chute.SetTrigger ("fire");
+
 		if(player.tutor) {
 			GameObject b = (GameObject) Instantiate(ball, transform.position, transform.rotation);
 			b.transform.parent = transform;
@@ -33,6 +36,10 @@ public class BallHolder : MonoBehaviour {
 		}
 	}
 
+	public void removePoints() {
+		score = 0;
+		scoreUI.text = score.ToString ();
+	}
 	public void addPoints(int points) {
 		score += points;
 		scoreUI.text = score.ToString();
@@ -42,4 +49,6 @@ public class BallHolder : MonoBehaviour {
 		score = 0;
 		scoreUI.text = score.ToString();
 	}
+
+
 }

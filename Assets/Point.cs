@@ -15,10 +15,10 @@ public class Point : MonoBehaviour {
 
 	public void Hit(float vel) {
 		if(!GetComponent<AudioSource>().isPlaying) {
-			float p = transform.position.y + 4;
-			float v = Mathf.Clamp(vel, 0, .75f);
+//			float p = transform.position.y + 4;
+//			float v = Mathf.Clamp(vel, 0, .75f);
 //			GetComponent<AudioSource>().pitch = Mathf.Clamp(p, -1, 3);
-			GetComponent<AudioSource>().volume = v;
+//			GetComponent<AudioSource>().volume = v;
 			GetComponent<AudioSource>().Play();
 		}
 	}

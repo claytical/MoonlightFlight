@@ -41,6 +41,7 @@ public class PlayerControl : MonoBehaviour {
 		finished = false;
 		tutored = false;
 		readyForStep3 = false;
+		Input.simulateMouseWithTouches = true;
 	}
 
 	public void setReadyForStep3() {
@@ -62,6 +63,7 @@ public class PlayerControl : MonoBehaviour {
 			GameOver();
 		}
 		if(!finished) {
+			if (SystemInfo.deviceType == DeviceType.Desktop) {
 			Vector3 mouseDelta = Input.mousePosition - lastMouseCoordinate;
 			if(Input.GetMouseButtonDown(0)) {
 				//start sound
@@ -77,28 +79,16 @@ public class PlayerControl : MonoBehaviour {
 				isMousePressed = false;
 				dragCount = 0;
 			}
-			if(Input.GetMouseButton(0)) {
-				if(mouseDelta.magnitude > 0) {
-					//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-					if(tutor && !tutored) {
-						tutor.Continue(0);
-						tutored = true;
+				if(Input.GetMouseButton(0)) {
+					if(mouseDelta.magnitude > 0) {
+						//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+						if(tutor && !tutored) {
+							tutor.Continue(0);
+							tutored = true;
+						}
 					}
 				}
-			}
-
 			lastMouseCoordinate = Input.mousePosition;
-			int linesLength = 0;
-			for(int i = 0; i < Lines.Count; i++) {
-				linesLength += Lines[i].pointsList.Count;
-			}
-
-			if(linesLength > numberOfPegs) {
-				if(Lines[0].Shorten()) {
-					Lines.RemoveAt(0);
-				}
-			}
-
 			if (isMousePressed) {
 				mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 				mousePos.z = 0;
@@ -110,6 +100,46 @@ public class PlayerControl : MonoBehaviour {
 						}
 						Lines[Lines.Count - 1].addPoint(mousePos);
 					}
+				}
+			}
+								
+			} else {
+				if (Input.touchCount > 0) {
+					if (Input.GetTouch (0).phase == TouchPhase.Began) {
+						GameObject l = (GameObject)Instantiate (line, transform.position, transform.rotation);
+						l.transform.parent = lineContainer.transform;
+						Lines.Add (l.GetComponent<Line> ());
+					}
+
+					if (Input.GetTouch (0).phase == TouchPhase.Moved) {
+						mousePos = Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position);
+						mousePos.z = 0;
+						if (Lines.Count > 0) {
+							if (!Lines [Lines.Count - 1].pointsList.Contains (mousePos)) {
+								dragCount++;
+								if (dragCount == 2) {
+									GetComponent<AudioSource> ().Play ();				
+								}
+								Lines [Lines.Count - 1].addPoint (mousePos);
+							}
+						}
+
+					}
+
+					if (Input.GetTouch (0).phase == TouchPhase.Ended) {
+						dragCount = 0;
+					}
+
+				}
+			}
+			int linesLength = 0;
+			for (int i = 0; i < Lines.Count; i++) {
+				linesLength += Lines [i].pointsList.Count;
+			}
+
+			if (linesLength > numberOfPegs) {
+				if (Lines [0].Shorten ()) {
+					Lines.RemoveAt (0);
 				}
 			}
 

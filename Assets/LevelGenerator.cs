@@ -148,6 +148,6 @@ public class LevelGenerator : MonoBehaviour {
 	private void placeObstacle(GameObject go, Vector3 place, GameObject parent, bool moving) {
 		GameObject o = (GameObject) Instantiate(go, place, transform.rotation);
 		o.transform.parent = parent.transform;
-		o.GetComponent<Obstacle>().moves = moving;
+//		o.GetComponent<Obstacle>().moves = moving;
 	}
 }
