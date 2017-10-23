@@ -15,8 +15,9 @@ public class Line : MonoBehaviour {
 	void Awake () {
 		// Create line renderer component and set its property
 		line = gameObject.AddComponent<LineRenderer> ();
-		line.material = new Material (Shader.Find ("Toon/Basic"));
-		line.material.color = Color.red;
+		line.material = new Material (Shader.Find ("Sprites/Default"));
+		Color whiteAlpha = new Color(255f,255f,255f,150f);
+		line.material.color = whiteAlpha;
 		line.SetVertexCount (0);
 		line.SetWidth (0.1f, 0.15f);
 		line.SetColors (Color.white, Color.white);
