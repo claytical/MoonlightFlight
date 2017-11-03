@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class Ball : MonoBehaviour {
-	public Material death;
-	public Material bump;
 
 	private int timeSinceLastBump = 0;
 	private bool isDead = false;
@@ -20,14 +18,9 @@ public class Ball : MonoBehaviour {
 		timeSinceLastBump++;
 
 		if(isDead) {
-			if(!GetComponentInChildren<ParticleSystem>().IsAlive()) {
-				Destroy(gameObject);
-			}
-		}
-		else if(!GetComponentInChildren<ParticleSystem>().IsAlive()) {
-			GetComponent<Rigidbody2D>().freezeRotation = false;
+			Destroy(gameObject);
 
-		}		
+		}
 
 		if (isWarping) {
 			transform.position = Vector3.Lerp (transform.position, warpPosition, Time.deltaTime * 3f);
@@ -43,6 +36,7 @@ public class Ball : MonoBehaviour {
 	}
 	void warp(GameObject portal) {
 		gameObject.GetComponent<Rigidbody2D> ().simulated = false;
+		portal.GetComponent<Animator> ().SetTrigger ("warp");
 		isWarping = true;
 		warpPosition = portal.transform.position;
 	}
@@ -69,15 +63,8 @@ public class Ball : MonoBehaviour {
 			if(coll.gameObject.GetComponent<Animator>()) {
 				coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
 			}
-			GetComponentInChildren<ParticleSystemRenderer>().material = death;
-			GetComponentInChildren<ParticleSystem>().Play();
 		}
 		if (coll.gameObject.tag == "Disappearing") {
-
-			if(!isDead) {
-				GetComponentInChildren<ParticleSystemRenderer>().material = bump;
-				GetComponentInChildren<ParticleSystem>().Emit(timeSinceLastBump/10);
-			}
 
 			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
 			GetComponentInParent<BallHolder>().addPoints(5);
@@ -92,10 +79,6 @@ public class Ball : MonoBehaviour {
 		}
 		if (coll.gameObject.tag == "Bumpable") {
 
-			if(!isDead) {
-				GetComponentInChildren<ParticleSystemRenderer>().material = bump;
-				GetComponentInChildren<ParticleSystem>().Emit(timeSinceLastBump/10);			
-			}
 			coll.gameObject.GetComponent<Immovable> ().LightUp ();
 			GetComponentInParent<BallHolder>().addPoints(1);
 		}

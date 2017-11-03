@@ -18,6 +18,8 @@ public class Bumpable : MonoBehaviour {
 	public SpriteRenderer color;
 	public SpriteRenderer tint;
 	public SpriteRenderer frame;
+	public AudioClip[] bumpFx;
+	public AudioClip[] deathFx;
 	private SpriteRenderer face;
 	private float lightUpTime;
 	private bool litUp = false;
@@ -52,7 +54,7 @@ public class Bumpable : MonoBehaviour {
 
 
 	public void Crumble() {
-
+		GetComponent<AudioSource> ().PlayOneShot (deathFx [Random.Range (0, deathFx.Length)]);
 		Destroy(this.gameObject);
 
 	}
@@ -75,7 +77,8 @@ public class Bumpable : MonoBehaviour {
 
 	public void LightUp() {
 		transform.Translate (Random.Range (-.01f, .01f), Random.Range (-.01f, .01f), 0);
-
+		GetComponent<ParticleSystem> ().Play ();
+		GetComponent<AudioSource> ().PlayOneShot (bumpFx [Random.Range (0, bumpFx.Length)]);
 		GetComponent<Animator>().SetTrigger("bumped");	
 		if (timesHit < sprites.Length) {
 			face.sprite = sprites [timesHit].bumpedFace;
