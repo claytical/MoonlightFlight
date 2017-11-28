@@ -8,6 +8,7 @@ public class BallHolder : MonoBehaviour {
 	public PlayerControl player;
 	public Animator chute;
 	public Text scoreUI;
+	public Button button;
 	private int score;
 
 	// Use this for initialization
@@ -19,9 +20,13 @@ public class BallHolder : MonoBehaviour {
 	
 	}
 
+	public void DeadBall() {
+		button.interactable = true;
+	}
+
 	public void Drop() {
 		chute.SetTrigger ("fire");
-
+		button.interactable = false;
 		if(player.tutor) {
 			GameObject b = (GameObject) Instantiate(ball, transform.position, transform.rotation);
 			b.transform.parent = transform;

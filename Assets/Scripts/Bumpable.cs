@@ -20,9 +20,12 @@ public class Bumpable : MonoBehaviour {
 	public SpriteRenderer frame;
 	public AudioClip[] bumpFx;
 	public AudioClip[] deathFx;
+	public AudioClip explosion;
+	public AudioClip hit;
 	private SpriteRenderer face;
 	private float lightUpTime;
 	private bool litUp = false;
+	private bool isDying = false;
 
 	// Use this for initialization
 	void Start () {
@@ -37,59 +40,54 @@ public class Bumpable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		gameObject.transform.Rotate (Vector3.Lerp (rotationPrevious, rotationNext, Time.deltaTime));
 		if (Time.time > lightUpTime && litUp) {
 			litUp = false;
 			if (timesHit < sprites.Length) {
 				face.sprite = sprites [timesHit].idleFace;
-				//				gameObject.GetComponent<SpriteRenderer> ().sprite = sprites [timesHit].destroyed;
-			}
-			timesHit++;
-			if (timesHit >= sprites.Length + 1) {
-				GetComponent<Rigidbody2D> ().isKinematic = false;
-				GetComponent<Animator> ().SetBool ("lastBump", true);		
 			}
 		}
 	}
 
 
 	public void Crumble() {
-		GetComponent<AudioSource> ().PlayOneShot (deathFx [Random.Range (0, deathFx.Length)]);
-		Destroy(this.gameObject);
+		if (!isDying) {
+			GetComponent<ParticleSystem> ().Play ();
+			GetComponent<AudioSource> ().PlayOneShot (deathFx [Random.Range (0, deathFx.Length)]);
+			GetComponent<AudioSource> ().PlayOneShot (explosion);
 
+			GetComponent<ParticleSystem> ().Play ();
+			Destroy (this.gameObject, 1f);
+		}
+		isDying = true;
 	}
 
 	public void SwitchOff() {
 	
 		if (timesHit < sprites.Length) {
-//			gameObject.GetComponent<SpriteRenderer>().sprite = sprites[timesHit].destroyed;
 			face.sprite = sprites [timesHit].idleFace;
-
 		}
-		/*
-		if(timesHit > 0) {
-			if(timesHit < sprites.Length) {
-				face.sprite = sprites [timesHit-1].idleFace;
-			}
-		}
-		*/
 	}
 
 	public void LightUp() {
-		transform.Translate (Random.Range (-.01f, .01f), Random.Range (-.01f, .01f), 0);
-		GetComponent<ParticleSystem> ().Play ();
-		GetComponent<AudioSource> ().PlayOneShot (bumpFx [Random.Range (0, bumpFx.Length)]);
-		GetComponent<Animator>().SetTrigger("bumped");	
+
 		if (timesHit < sprites.Length) {
+			GetComponent<Animator>().SetTrigger("bumped");	
 			face.sprite = sprites [timesHit].bumpedFace;
 			frame.sprite = sprites [timesHit].frame;
-		}
-		litUp = true;
-		lightUpTime = Time.time + .2f;
-		if(!GetComponent<AudioSource>().isPlaying) {
-			GetComponent<AudioSource>().Play();
-		}
-//		GetComponent<Animator>().ForceStateNormalizedTime(0.0f);
+			transform.Translate (Random.Range (-.01f, .01f), Random.Range (-.01f, .01f), 0);		
+			if (timesHit < bumpFx.Length) {
+				GetComponent<AudioSource>().Play();
+				GetComponent<AudioSource> ().PlayOneShot (hit);
+				GetComponent<AudioSource> ().PlayOneShot (bumpFx [timesHit]);
+			}
+			litUp = true;
+			lightUpTime = Time.time + .2f;
 
+		} else {
+			GetComponent<Rigidbody2D> ().isKinematic = false;
+			GetComponent<Animator> ().SetBool ("lastBump", true);		
+
+		}
+		timesHit++;
 	}
 }

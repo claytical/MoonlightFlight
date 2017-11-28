@@ -19,7 +19,7 @@ public class Point : MonoBehaviour {
 //			float v = Mathf.Clamp(vel, 0, .75f);
 //			GetComponent<AudioSource>().pitch = Mathf.Clamp(p, -1, 3);
 //			GetComponent<AudioSource>().volume = v;
-			GetComponent<AudioSource>().Play();
+//			GetComponent<AudioSource>().Play();
 		}
 	}
 }

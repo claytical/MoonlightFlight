@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour {
 		timeSinceLastBump++;
 
 		if(isDead) {
+			GetComponentInParent<BallHolder> ().DeadBall ();
 			Destroy(gameObject);
 
 		}
@@ -47,7 +48,7 @@ public class Ball : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		gameObject.GetComponent<AudioSource> ().Play ();
+			gameObject.GetComponent<AudioSource> ().Play ();
 
 		if(coll.gameObject.tag == "Boundary") {
 			isDead = true;
