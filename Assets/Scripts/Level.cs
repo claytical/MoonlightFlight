@@ -13,6 +13,11 @@ public class Level : MonoBehaviour {
 	private GameState gameState;
 	private int nextLevel;
 	private string currentWorld;
+
+	public void Capture() {
+		ScreenCapture.CaptureScreenshot ("bumpin-level1.png");
+	}
+
 	// Use this for initialization
 	void Start () {
 		gameState = (GameState)FindObjectOfType (typeof(GameState));	

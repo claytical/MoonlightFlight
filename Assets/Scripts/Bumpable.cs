@@ -51,11 +51,11 @@ public class Bumpable : MonoBehaviour {
 
 	public void Crumble() {
 		if (!isDying) {
-			GetComponent<ParticleSystem> ().Play ();
+//			GetComponent<ParticleSystem> ().Play ();
 			GetComponent<AudioSource> ().PlayOneShot (deathFx [Random.Range (0, deathFx.Length)]);
 			GetComponent<AudioSource> ().PlayOneShot (explosion);
 
-			GetComponent<ParticleSystem> ().Play ();
+//			GetComponent<ParticleSystem> ().Play ();
 			Destroy (this.gameObject, 1f);
 		}
 		isDying = true;
