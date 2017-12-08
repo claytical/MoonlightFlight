@@ -54,6 +54,7 @@
      <Compile Include="Assets\Easy Screen Align\Scripts\alignElement.cs" />
      <Compile Include="Assets\Easy Screen Align\Scripts\detectResize.cs" />
      <Compile Include="Assets\GameState.cs" />
+     <Compile Include="Assets\LevelComplete.cs" />
      <Compile Include="Assets\Pager.cs" />
      <Compile Include="Assets\SceneSelector.cs" />
      <Compile Include="Assets\Scripts\Ball.cs" />

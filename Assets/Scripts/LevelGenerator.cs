@@ -67,9 +67,9 @@ public class LevelGenerator : MonoBehaviour {
 		}
 
 		player.Lines.Clear();
-		Ball[] balls = player.ballHolder.gameObject.GetComponentsInChildren<Ball>();
+		BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
+		Ball[] balls = ballHolder.gameObject.GetComponentsInChildren<Ball>();
 		for(int i = 0; i < balls.Length; i++) {
-			Debug.Log("Destroying ball " + i);
 			Destroy(balls[i].gameObject);
 		}
 

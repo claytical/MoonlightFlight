@@ -50,7 +50,7 @@ public class Tutor : MonoBehaviour {
 					steps[2].SetActive(false);
 					steps[3].SetActive(true);
 					//ADD BUMPER
-					player.level.tutorialBumper();
+//					player.level.tutorialBumper();
 					break;
 				case 3:
 					//LEARNED HOW TO DESTROY BUMPER

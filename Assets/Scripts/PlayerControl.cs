@@ -4,23 +4,16 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class PlayerControl : MonoBehaviour {
-	public GameObject peg;
-	public GameObject pegContainer;
 	public GameObject lineContainer;
-	public GameObject gameOverText;
-	public Transform ballHolder;
 	public Tutor tutor;
-	public LevelGenerator level;
-	public int numberOfPegs;
+	public Level level;
+	public int lengthOfRope;
 	public int balls;
 	private int dragCount;
 	private bool finished;
 	private bool tutored;
-	private bool readyForStep3;
 	private Vector3 lastMouseCoordinate = Vector3.zero;
-//	private LineRenderer line;
 	private bool isMousePressed;
-	public List<Vector3> pointsList;
 	public List<Line> Lines;
 	public GameObject line;
 
@@ -40,28 +33,11 @@ public class PlayerControl : MonoBehaviour {
 	void Start () {
 		finished = false;
 		tutored = false;
-		readyForStep3 = false;
 		Input.simulateMouseWithTouches = true;
 	}
-
-	public void setReadyForStep3() {
-		readyForStep3 = true;
-	}
-
-	public void Retry() {
-		balls = 5;
-		finished = false;
-		ballHolder.gameObject.GetComponent<BallHolder>().Reset();
-		for (int i = 0; i < pegContainer.transform.childCount; i++) {
-			Destroy(pegContainer.transform.GetChild(i).gameObject);
-		}
-	}
-		
+				
 	// Update is called once per frame
 	void Update () {
-		if(ballHolder.childCount <= 0 && balls <= 0 && !finished) {
-			GameOver();
-		}
 		if(!finished) {
 			if (SystemInfo.deviceType == DeviceType.Desktop) {
 			Vector3 mouseDelta = Input.mousePosition - lastMouseCoordinate;
@@ -137,7 +113,7 @@ public class PlayerControl : MonoBehaviour {
 				linesLength += Lines [i].pointsList.Count;
 			}
 
-			if (linesLength > numberOfPegs) {
+			if (linesLength > lengthOfRope) {
 				if (Lines [0].Shorten ()) {
 					Lines.RemoveAt (0);
 				}
@@ -148,9 +124,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public void GameOver() {		
 		finished = true;
-		//turn on game over component
-		gameOverText.SetActive(true);
-		gameOverText.GetComponent<GameOver>().levelReachedLabel.text = "You reached level " + level.currentLevel + "!";
+		level.LevelFailPanel.SetActive (true);
 	}
 	
 }

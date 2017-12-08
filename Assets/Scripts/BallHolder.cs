@@ -5,14 +5,15 @@ using UnityEngine.UI;
 public class BallHolder : MonoBehaviour {
 	public GameObject ball;
 	public GameObject holder;
+	public GameObject[] ballDisplay;
 	public PlayerControl player;
 	public Animator chute;
-	public Text scoreUI;
 	public Button button;
 	private int score;
 
 	// Use this for initialization
 	void Start () {
+		setBallDisplay ();
 	}
 	
 	// Update is called once per frame
@@ -39,20 +40,28 @@ public class BallHolder : MonoBehaviour {
 				player.balls--;
 			}	
 		}
+		setBallDisplay ();
 	}
 
+	private void setBallDisplay() {
+		for (int i = 0; i < ballDisplay.Length; i++) {
+			if (i < player.balls) {
+				ballDisplay [i].SetActive (true);
+			} else {
+				ballDisplay [i].SetActive (false);
+			}
+		}
+
+	}
 	public void removePoints() {
 		score = 0;
-		scoreUI.text = score.ToString ();
 	}
 	public void addPoints(int points) {
 		score += points;
-		scoreUI.text = score.ToString();
 	}
 
 	public void Reset() {
 		score = 0;
-		scoreUI.text = score.ToString();
 	}
 
 

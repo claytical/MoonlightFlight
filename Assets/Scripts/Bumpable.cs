@@ -70,11 +70,11 @@ public class Bumpable : MonoBehaviour {
 
 	public void LightUp() {
 
-		if (timesHit < sprites.Length) {
+		if (timesHit < sprites.Length - 1) {
 			GetComponent<Animator>().SetTrigger("bumped");	
 			face.sprite = sprites [timesHit].bumpedFace;
 			frame.sprite = sprites [timesHit].frame;
-			transform.Translate (Random.Range (-.01f, .01f), Random.Range (-.01f, .01f), 0);		
+//			transform.Translate (Random.Range (-.01f, .01f), Random.Range (-.01f, .01f), 0);		
 			if (timesHit < bumpFx.Length) {
 				GetComponent<AudioSource>().Play();
 				GetComponent<AudioSource> ().PlayOneShot (hit);

@@ -53,6 +53,11 @@ public class Ball : MonoBehaviour {
 		if(coll.gameObject.tag == "Boundary") {
 			isDead = true;
 			GetComponent<Animator>().SetTrigger("die");
+			if (GetComponentInParent<BallHolder> () != null) {
+				if (GetComponentInParent<BallHolder> ().player.balls == 0) {
+					GetComponentInParent<BallHolder> ().player.GameOver ();
+				}
+			}
 
 		}
 		if (coll.gameObject.tag == "Avoid") {
