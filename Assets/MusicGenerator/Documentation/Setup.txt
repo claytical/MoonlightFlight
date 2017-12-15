@@ -1,0 +1,45 @@
+////////////////////////////////
+////////////////////////////////
+Initial Setup:
+////////////////////////////////
+
+1: Move the StreamingAssets folder out of the MusicGenerator folder and into your main Assets path (merge if needed, all files are in a sub-directory of that so should not cause conflicts).
+We'll be loading the needed music generator assets from here.
+
+2: Drag the prefab /MusicGenerator/Assets/GeneratorPrefab/MusicGenerator prefab into your scene hierarchy (if your game or app has multiple scenes, only use one of these prefabs in your parent, or first loaded scene. It will persist and be available for all scenes).
+
+3. An audio mixer called "GeneratorMixer" will be created the first time this scene is run.
+
+4. You will most likely need to change your Audio project settings. Especially with generator configurations that play many notes/instruments, particularly with a fast tempo, you may encounter issues.
+If you hear notes not playing, or cutting off, popping, increase the values at:
+Edit->ProjectSettings->Audio->MaxVirtualVoices 
+Edit->ProjectSettings->Audio->MaxRealVoices 
+I haven't needed to, but it's possible you'll need to adjust the dsp buffer size or other settings if you're still encountering issues.
+
+5. To note: If you're needing to edit the mixer properties while the program is running in the Unity Editor,  the MusicGenerator member boolean 'mEnableLiveMixerEditing' needs to be set to true. Otherwise set false all other times or edit the mixer while not running the generator. There is an FMOD error caused by unloading the audio clip bundle assets, and the boolean will force the bundles to not be unloaded.
+
+////////////////////////////////
+////////////////////////////////
+To create new song configurations:
+////////////////////////////////
+
+1: Open the scene at MusicGenerator/Assets/EditorScene/MusicGenerator.unity
+
+2: Though you're free to run this through the editor, it's a bit more roomy and performant to go ahead a build the executable and run that as a standalone app. Either way, configs will export fine.
+
+3: Use the interface to create a song to your liking. See the "Tips" documentation for assistance. Hold down the 'Shift' key over ui elements for a tooltip about what it does.
+
+4: When you're done, enter a name for this song in the Export box under the staff player and hit export. A folder with the config information is saved to your persistent data directory under "StickAndBindle/MusicGenerator/InstrumentSaves" Please see the Unity documentation if you're unsure where your persistent data directory is.
+
+5: While the editor can read these configs fine on your machine from the persistent data path, you will want to copy your InstrumentsSaves and Instrument Clips folders from the peristent data path to the StreamingAssets path before shipping/sharing your game or app. ( /Assets/StreamingAssets/MusicGenerator/InstrumentSaves)
+
+6: Please see the scene demo or Tips documentation for additional help or useful functions:
+
+////////////////////////////////
+////////////////////////////////
+To use in your project:
+////////////////////////////////
+1: See the demo scene for a sample usage scenario. Most of the music variables are editable on the fly in your game for whatever reasons you need.
+
+After creating songs to your liking, you're able to load and adjust them on the fly through the public MusicGenerator class functions. The generator prefab has a default configuration it will load, set this to whatever your startup music will be, and use the public load functions in the MusicGenerator class to load new ones on the fly.
+

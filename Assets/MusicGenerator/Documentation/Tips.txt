@@ -1,0 +1,50 @@
+In general these are some good rules of thumb, but like anything with music, rules are often broken, so consider these mere suggestions :P Mostly included as programmer / developer types don't always also have any music theory background.
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+Configuring a new song:
+Feel absolutely free to use / improve on the presets included. It's what they're there for :) 
+
+To Note: Not every configuration you're able to throw together is going to sound good (it'd be like just handing a bunch of instruments to monkeys who randomly pluck at 'em, but happen to pluck in the right key). It takes a small amount of working with the configuration until it sounds up to what you'd like. The tips below are an attempt to ease this process in creating a new song configuration:
+
+Hold shift in the ui editor for Tooltips (this is really useful for seeing what each does, and any relevant notes regarding the options).
+
+1: Use the new Instrument / new Percussion to add instruments.
+
+2: Use the red 'X' button on the side instrument panel to remove them.
+
+3: It's helpful to make good use of the 'group' dropdown on the instrument panel. Each group has a random chance of playing each measure (odds of playing for these are set on the GlobalSettings). This helps a lot toward adding a sense of dynamics to a song as instruments will come in and out for different measures (I prefer to add my bigger, louder things on a group with a lower chance of playing to create a sort of 'crescendo' effect, for example). 
+
+Additionally, under the advanced settings tab, there's a 'Dynamics Style' dropdown with linear and random options. If linear is chosen, the dynamics will move up and down in increments and play all groups under the highest selected (i.e. it will move from group 1 to 2 to 3, maybe back to 2, etc. But, if 3 is playing, 1 and 2 also are. With the random option, each group is determined independently.
+
+4: The stereo pan slider on the instrument panel configures how the sound is routed through stereo (left / right). If things sound muddy, it's best to arrange instruments in different ways (there are a lot of resources and tutorials online regarding panning and mix placement for audio recording).
+
+5: In general, you will want at least one 'rhythm' instrument. This will help establish the rhythm for the piece. These will always play on their time step.
+
+6: Adding too many lead instruments will likely sound a bit confusing, or even dischordant (while the lead instrument takes care to avoid dischordant, it does not take into account other lead instruments).
+
+7: For lead instruments, you'll generally want them on a 1/16 or 1/8 timestep. the 'shortMix' variation of the instruments feel a bit more natural and less robotic and will help smooth out the piece.
+
+8: Instruments set to 'melody' will only play chordal notes, but have options for their odds of playing. 
+
+9: The 'strum' options for rhythm can be used in a few ways, whether strumming a harp, or having a snare or other instrument play faster than the 1/16 timestep (I like using it on percussion quite a bit).
+
+10: in the Advanced panel, there are some chord progression options. You can set the odds of tonic, dominant, subdominant chords, or even select particular chord steps to never play (say you wanted to force the song to a particular progression, or avoid a downer chord in a song you're trying to make happy).
+
+11: Modes and scales are fun. :) I suggest playing with their dropdowns in the Global Settings tab if you're unfamiliar with music theory in general. They will change the 'feel' of your song quite a lot.
+
+12: instrument and global effects are fun as well. But don't overdo it (I usually do and then have to scale it back :P ).
+
+13: It's easy to get things muddy and crummy sounding pretty quick. I recommend starting slow. Add a rhythm instrument, add a lead or melody, and get each sounding okay before moving on. Adding a lot of unconfigured instruments will decidedly sound confusing :P Sometimes less is more.
+
+14: If things sound too 'random' make use of the 'UsePattern' dropdown, especially on instruments with a quicker timestep. It will add some repetition.
+
+15: for lead and melodic instruments, it helps to use the multiplier and lower the odds of playing to 'group up' the lead notes that are played.
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+Usage tips:
+
+There are a lot of public variables and ways to use this player. In addition to just generating music, it allows you to change things on the fly. Mute and unmute instruments or speed up tempo based on in-game events, change the settings to give things a darker tone, etc. I've taken care to expose useful variables and functions for on the fly editing. Anything that is changed in the standalone UI editor is available for editing (though, not all are advisable to change on the fly).
+
+Additionally, I've added a 'Measure Editor' tab that lets you set specific instruments and notes to export, load and play on the fly (think SFX when opening a chest, or starting a level, etc).  See the included demo scene for an example of playing a pre-made clip.
