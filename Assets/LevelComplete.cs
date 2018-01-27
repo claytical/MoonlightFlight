@@ -8,6 +8,7 @@ public class LevelComplete : MonoBehaviour {
 	public void Start() {
 		if (Camera.main.GetComponent<AudioSource> () != null) {
 			Camera.main.GetComponent<AudioSource> ().Stop ();
+
 		}
 	}
 

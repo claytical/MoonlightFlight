@@ -267,7 +267,9 @@
 
 			if (!foundUnplayed) //make a new audio souce.
 			{
-				mAudioSources.Add(Camera.main.gameObject.AddComponent<AudioSource>());
+//				mAudioSources.Add(Camera.main.gameObject.AddComponent<AudioSource>());
+				mAudioSources.Add (this.gameObject.AddComponent<AudioSource> ());				
+
 				AudioSource audioSource = mAudioSources[mAudioSources.Count - 1];
 				audioSource.panStereo = set.mInstruments[indexIN].mStereoPan;
 				audioSource.outputAudioMixerGroup = mMixer.FindMatchingGroups(indexIN.ToString())[0];
@@ -469,7 +471,8 @@
 			// These are generated as needed, but we'll certainly need some on start
 			// this just keeps it from trying to add a dozen audio sources after things have already started playing.
 			for (int i = 0; i < mNumStartingAudioSources; i++)
-				mAudioSources.Add(Camera.main.gameObject.AddComponent<AudioSource>());
+				mAudioSources.Add (this.gameObject.AddComponent<AudioSource> ());				
+//				mAudioSources.Add(Camera.main.gameObject.AddComponent<AudioSource>());
 		}
 
 		///Loads an instrument set configuration:
@@ -837,8 +840,8 @@
 		{
 			for (int i = 0; i < mAudioSources.Count; i++)
 			{
-				if (!mAudioSources[i].isPlaying)
-					mAudioSources[i].Stop();
+					if (!mAudioSources [i].isPlaying)
+						mAudioSources [i].Stop ();
 			}
 		}
 

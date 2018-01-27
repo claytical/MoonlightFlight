@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour {
 	// Use this for initialization
+
 	void Start () {
-		GetComponent<Rigidbody2D> ().AddForce (new Vector2 (Random.Range (-10, 10), Random.Range (-10, 10)), ForceMode2D.Force);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+		Rigidbody2D[] splinters = GetComponentsInChildren<Rigidbody2D> ();
+		for(int i = 0; i < splinters.Length; i++) {
+			Vector2 force =	new Vector2 (Random.Range (-25, 25), Random.Range (-25, 25));
+			splinters [i].AddForce (force, ForceMode2D.Impulse);
+		}
+
+	}	
 }

@@ -11,10 +11,12 @@ public class Moving : MonoBehaviour {
 	private int direction = 1;
 	// Use this for initialization
 	void Start () {
-		if (points.Count > 0) {
-			GameObject g = new GameObject ();
-			g.transform.position = gameObject.transform.localPosition;
-			points.Add(g.transform);
+		if (!halfPipeMotion) {
+			if (points.Count > 0) {
+				GameObject g = new GameObject ();
+				g.transform.position = gameObject.transform.localPosition;
+				points.Add (g.transform);
+			}
 		}
 	}
 	

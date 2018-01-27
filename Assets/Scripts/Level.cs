@@ -45,6 +45,8 @@ public class Level : MonoBehaviour {
 					nextLevel = 1;
 					PlayerPrefs.SetInt (gameState.SelectedWorld, 1);
 					WorldCompletePanel.SetActive (true);
+					ProcGenMusic.MusicGenerator.Instance.Stop ();
+
 				} else {
 					//unlock next level
 					nextLevel = int.Parse (gameState.SelectedLevel) + 1;
@@ -68,6 +70,8 @@ public class Level : MonoBehaviour {
 				}
 				LevelCompletePanel.SetActive(true);
 				LevelCompletePanel.GetComponent<LevelComplete> ().SetStars (2);
+				ProcGenMusic.MusicGenerator.Instance.Stop ();
+
 			}
 		}
 	}

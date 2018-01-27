@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Levels/Grape Gardens/Grape Gardens_10.unity
+- path: Assets/Scenes/Levels/Puce Planet/Puce Planet_4.unity
   isLoaded: 1
   isActive: 1

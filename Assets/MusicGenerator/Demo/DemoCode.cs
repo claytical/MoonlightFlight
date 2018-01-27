@@ -1,4 +1,4 @@
-﻿﻿namespace ProcGenMusic
+﻿namespace ProcGenMusic
 {
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ public class DemoCode : MonoBehaviour {
 	/// or simply add the MusicGenerator script to an object in your app.
 	void Start()
 	{
+			
 		mMusicGenerator = MusicGenerator.Instance;
 		mMusicGenerator.SetVolFadeRate(mVolumeFadeRate);	///< set the speed we fade. value multiplied against deltaT in MusicGenerator update().
 	}

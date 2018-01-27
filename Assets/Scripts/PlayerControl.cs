@@ -125,6 +125,7 @@ public class PlayerControl : MonoBehaviour {
 	public void GameOver() {		
 		finished = true;
 		level.LevelFailPanel.SetActive (true);
+		ProcGenMusic.MusicGenerator.Instance.Stop ();
 	}
 	
 }
