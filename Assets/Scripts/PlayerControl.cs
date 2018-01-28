@@ -59,7 +59,6 @@ public class PlayerControl : MonoBehaviour {
 					if(mouseDelta.magnitude > 0) {
 						//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 						if(tutor && !tutored) {
-							tutor.Continue(0);
 							tutored = true;
 						}
 					}

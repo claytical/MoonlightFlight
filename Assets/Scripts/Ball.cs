@@ -78,10 +78,6 @@ public class Ball : MonoBehaviour {
 		}
 		if(coll.gameObject.tag == "Tone") {
 			coll.gameObject.GetComponent<Point>().Hit(coll.relativeVelocity.magnitude);
-		if(gameObject.GetComponentInParent<BallHolder>().player.tutor) {
-				Debug.Log("Bumped against line move tutorial forward");
-				gameObject.GetComponentInParent<BallHolder>().player.tutor.Continue(2);
-			}
 		}
 		if (coll.gameObject.tag == "Bumpable") {
 
