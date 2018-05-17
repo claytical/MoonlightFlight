@@ -29,6 +29,7 @@ public class BallHolder : MonoBehaviour {
 		chute.SetTrigger ("fire");
 		button.interactable = false;
 		if(player.tutor) {
+			player.tutor.GetComponent<Tutor> ().pressedDropButton ();
 			GameObject b = (GameObject) Instantiate(ball, transform.position, transform.rotation);
 			b.transform.parent = transform;
 
