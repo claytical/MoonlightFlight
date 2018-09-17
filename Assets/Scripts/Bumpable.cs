@@ -83,6 +83,7 @@ public class Bumpable : MonoBehaviour {
 			lightUpTime = Time.time + .2f;
 
 		} else {
+            
 			Instantiate (explosion, transform.position, transform.rotation);
 			GetComponent<Rigidbody2D> ().isKinematic = false;
 			GetComponent<Animator> ().SetBool ("lastBump", true);		

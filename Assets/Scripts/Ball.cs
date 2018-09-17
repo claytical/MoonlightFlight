@@ -69,8 +69,13 @@ public class Ball : MonoBehaviour {
 			if(coll.gameObject.GetComponent<Animator>()) {
 				coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
 			}
-		}
-		if (coll.gameObject.tag == "Disappearing") {
+            if (GetComponentInParent<BallHolder>().player.balls == 0)
+            {
+                GetComponentInParent<BallHolder>().player.GameOver();
+            }
+
+        }
+        if (coll.gameObject.tag == "Disappearing") {
 
 			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
 			GetComponentInParent<BallHolder>().addPoints(5);
