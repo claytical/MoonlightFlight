@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour {
 	private bool isWarping = false;
 	private Vector3 warpPosition;
 	private Vector3 originalPosition;
+    public float force;
 	// Use this for initialization
 	void Start () {
 		originalPosition = transform.position;
@@ -16,7 +17,11 @@ public class Ball : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timeSinceLastBump++;
+              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
+        //GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -100f));
 
+        Debug.Log("X ACCEL: " + Input.acceleration.x + " Y ACCEL: " + Input.acceleration.y + " Z ACCEL: " + Input.acceleration.z);
+        
 		if(isDead) {
 			GetComponentInParent<BallHolder> ().DeadBall ();
 			Destroy(gameObject);

@@ -90,6 +90,7 @@
     <Compile Include="Assets\NewBumperIntro.cs" />
     <Compile Include="Assets\Pager.cs" />
     <Compile Include="Assets\PersistentObject.cs" />
+    <Compile Include="Assets\RotateWithAccelerometer.cs" />
     <Compile Include="Assets\SceneSelector.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\BallHolder.cs" />
