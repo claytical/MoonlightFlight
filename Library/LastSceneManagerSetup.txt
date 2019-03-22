@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Levels/Lemon Land/Lemon Land_2.unity
+- path: Assets/Scenes/BlankLevel.unity
   isLoaded: 1
   isActive: 1

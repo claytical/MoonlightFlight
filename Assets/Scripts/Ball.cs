@@ -90,6 +90,7 @@ public class Ball : MonoBehaviour {
 			coll.gameObject.GetComponent<Point>().Hit(coll.relativeVelocity.magnitude);
 		}
 		if (coll.gameObject.tag == "Bumpable") {
+            //Check for polygon shenanigans
 
 			coll.gameObject.GetComponent<Immovable> ().LightUp ();
 			GetComponentInParent<BallHolder>().addPoints(1);
