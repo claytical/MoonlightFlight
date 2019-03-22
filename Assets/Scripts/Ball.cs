@@ -82,8 +82,9 @@ public class Ball : MonoBehaviour {
         }
         if (coll.gameObject.tag == "Disappearing") {
 
-			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
-			GetComponentInParent<BallHolder>().addPoints(5);
+//			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
+            coll.gameObject.GetComponent<Breakable>().LightUp();
+            GetComponentInParent<BallHolder>().addPoints(5);
 
 		}
 		if(coll.gameObject.tag == "Tone") {
