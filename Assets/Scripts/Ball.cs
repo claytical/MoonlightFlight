@@ -20,9 +20,8 @@ public class Ball : MonoBehaviour {
               GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
         //GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -100f));
 
-        Debug.Log("X ACCEL: " + Input.acceleration.x + " Y ACCEL: " + Input.acceleration.y + " Z ACCEL: " + Input.acceleration.z);
-        
-		if(isDead) {
+
+        if (isDead) {
 			GetComponentInParent<BallHolder> ().DeadBall ();
 			Destroy(gameObject);
 
@@ -96,7 +95,7 @@ public class Ball : MonoBehaviour {
 			coll.gameObject.GetComponent<Immovable> ().LightUp ();
 			GetComponentInParent<BallHolder>().addPoints(1);
 		}
-		GetComponent<Rigidbody2D>().freezeRotation = true;
+//		GetComponent<Rigidbody2D>().freezeRotation = true;
 		timeSinceLastBump = 0;
 	}
 }
