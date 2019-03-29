@@ -23,6 +23,7 @@ public class Breakable : MonoBehaviour {
 	public AudioClip[] deathFx;
 	public AudioClip hit;
 	public GameObject explosion;
+    public Flys flies;
 	private SpriteRenderer face;
 	private float lightUpTime;
 	private bool litUp = false;
@@ -70,7 +71,7 @@ public class Breakable : MonoBehaviour {
 
 	public void LightUp() {
         //HIT
-		if (timesHit < sprites.Length - 1) {
+		if (timesHit < sprites.Length -1 ) {
             sprites[timesHit].SetActive(false);
 			//GetComponent<Animator>().SetTrigger("bumped");
             //			face.sprite = sprites [timesHit].bumpedFace;
@@ -82,10 +83,12 @@ public class Breakable : MonoBehaviour {
 			lightUpTime = Time.time + .2f;
             */
 		} else {
-            
-			Instantiate (explosion, transform.position, transform.rotation);
-			GetComponent<Rigidbody2D> ().isKinematic = false;
-			GetComponent<Animator> ().SetBool ("lastBump", true);		
+
+            //			Instantiate (explosion, transform.position, transform.rotation);
+            sprites[timesHit].SetActive(false);
+            flies.Free();
+            GetComponent<Rigidbody2D> ().isKinematic = false;
+//			GetComponent<Animator> ().SetBool ("lastBump", true);		
 
 		}
 		timesHit++;
