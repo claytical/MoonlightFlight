@@ -19,7 +19,9 @@ public class Fly : MonoBehaviour {
             transform.Rotate(new Vector3(0, 0, Time.deltaTime * 1.0f));
             GetComponent<Rigidbody2D>().isKinematic = false;
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * 5f);
-
+/*            Vector3 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            transform.position = position + Random.insideUnitSphere * .02f;
+ */
         }
         else
         {
@@ -27,10 +29,15 @@ public class Fly : MonoBehaviour {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(Time.deltaTime, Time.deltaTime));
 
             angle += speed * Time.deltaTime; //if you want to switch direction, use -= instead of +=
+
+
+            
             Vector3 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             position.x += Mathf.Cos(angle) * radius;
             position.y += Mathf.Sin(angle) * radius;
             transform.position = position;
-        }
+             
+            
+    }
     }
 }
