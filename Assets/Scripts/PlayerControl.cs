@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour {
 	private bool isMousePressed;
 	public List<Line> Lines;
 	public GameObject line;
+    public float lineTimeLimit = 100f;
 
 	private Vector3 mousePos;
 
@@ -119,9 +120,18 @@ public class PlayerControl : MonoBehaviour {
 			}
 
 		}
-	}
+        for (int i = 0; i < Lines.Count; i++)
+        {
+            //race time condition, need to clear it after the loop
+            if(Lines[i].Timer(lineTimeLimit))
+            {
+                break;
+            }
+        }
 
-	public void GameOver() {		
+    }
+
+    public void GameOver() {		
 		finished = true;
 		level.LevelFailPanel.SetActive (true);
 		ProcGenMusic.MusicGenerator.Instance.Stop ();

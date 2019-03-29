@@ -14,7 +14,6 @@ public class Line : MonoBehaviour {
 	public float fadeOutTime = 3f;
     public Material material;
 
-
         
 	struct myLine {
 		public Vector3 StartPoint;
@@ -56,11 +55,43 @@ public class Line : MonoBehaviour {
 		return false;
 	}
 
-	public void addPoint(Vector3 mousePos) {
+    public bool Timer(float timeLimit)
+    {
+            for (int i = 0; i < pointsList.Count; i++)
+            {
+                Vector3 point = pointsList[i];
+                point.z += 1f;
+                pointsList[i] = point;
+                if(pointsList[i].z > timeLimit) {
+                    pointsList.RemoveAt(i);
+                    if (line)
+                    {
+                        line.SetPositions(pointsList.ToArray());
+                    }
+                //remove point edges
+                  if(pointsList.Count > 1)
+                {
+                    EdgeCollider2D[] points = gameObject.GetComponentsInChildren<EdgeCollider2D>();
+                    Destroy(points[0].gameObject);
+
+                }
+                    else
+                {
+                    Destroy(this.gameObject);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void addPoint(Vector3 mousePos) {
 		pointsList.Add (mousePos);
 		line.SetVertexCount (pointsList.Count);
 		line.SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
 		if(pointsList.Count > 1) {
+            Vector3 position = transform.position;
+            position.z = 0;
 			GameObject p = (GameObject) Instantiate(point, transform.position, transform.rotation);
 			p.transform.parent = transform;
 			List<Vector2> verticies = new List<Vector2>();
