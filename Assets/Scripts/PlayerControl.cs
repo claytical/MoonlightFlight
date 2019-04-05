@@ -125,6 +125,8 @@ public class PlayerControl : MonoBehaviour {
             //race time condition, need to clear it after the loop
             if(Lines[i].Timer(lineTimeLimit))
             {
+                Lines.RemoveAt(0);
+
                 break;
             }
         }
