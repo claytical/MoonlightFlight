@@ -37,6 +37,7 @@ public class Breakable : MonoBehaviour {
 	void OnDestroy() {
 		if (GetComponentInParent<Level> ()) {
 			GetComponentInParent<Level> ().ScanForCompletion ();
+            Debug.Log("Scanning for Completion");
 		}
 	}
 	
@@ -48,6 +49,18 @@ public class Breakable : MonoBehaviour {
 //				face.sprite = sprites [timesHit].idleFace;
 			}
 		}
+        int spritesDeactivated = 0;
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if(!sprites[i].activeSelf)
+            {
+                spritesDeactivated++;
+            }
+        }
+        if(spritesDeactivated == sprites.Length)
+        {
+            Destroy(this.gameObject);
+        }
 	}
 
 

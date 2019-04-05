@@ -18,7 +18,8 @@ public class Debris : MonoBehaviour {
         for (int i = 0; i < numberOfDebris; i++)
         {
 
-            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));            Vector3 position = new Vector3(origin.x, origin.y, 0);
+            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
+            Vector3 position = new Vector3(origin.x, origin.y, 0);
             Instantiate(debris[Random.Range(0, debris.Length)], screenPosition, Quaternion.identity);
         }
 	}

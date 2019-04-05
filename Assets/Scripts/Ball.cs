@@ -57,16 +57,18 @@ public class Ball : MonoBehaviour {
 		if(coll.gameObject.tag == "Boundary") {
 			isDead = true;
 			GetComponent<Animator>().SetTrigger("die");
-			if (GetComponentInParent<BallHolder> () != null) {
+            /*
+            if (GetComponentInParent<BallHolder> () != null) {
 				if (GetComponentInParent<BallHolder> ().player.balls == 0) {
 					GetComponentInParent<BallHolder> ().player.GameOver ();
 				}
 			}
+            */
 
 		}
 		if (coll.gameObject.tag == "Avoid") {
 			gameObject.GetComponentInParent<BallHolder> ().removePoints ();
-			coll.gameObject.GetComponent<AudioSource>().Play();
+//			coll.gameObject.GetComponent<AudioSource>().Play();
 			//Trigger ball animation
 			isDead = true;
 			GetComponent<Animator>().SetTrigger("die");
