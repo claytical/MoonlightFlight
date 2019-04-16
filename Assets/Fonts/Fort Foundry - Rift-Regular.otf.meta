@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: e8612af7624fae3479c60c40163897bc
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Rift
+  fontNames:
+  - Rift
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9b57d511787e8bd43b5a69d71d809f1e, type: 3}
+  - {fileID: 12800000, guid: 3f435541ae8dad346b7eb302430207c6, type: 3}
+  - {fileID: 12800000, guid: bdc7e5149294a434f87e544f4b606692, type: 3}
+  - {fileID: 12800000, guid: 9866ed64a3607714f8032e3440f99568, type: 3}
+  - {fileID: 12800000, guid: d65a697468883f746a570354a45aba51, type: 3}
+  - {fileID: 12800000, guid: 3236c436bced0b246bf1c5af27787f2c, type: 3}
+  - {fileID: 12800000, guid: 5cacf2483520b9545861f92a570b0e8f, type: 3}
+  - {fileID: 12800000, guid: 363a92dd275c77f4e9ff0b804343be40, type: 3}
+  - {fileID: 12800000, guid: 057dfe5eed02b0f47a808b9a590a96d4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

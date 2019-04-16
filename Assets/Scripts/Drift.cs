@@ -42,10 +42,10 @@ public class Drift : MonoBehaviour
         {
             Vector3 topLeftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.farClipPlane / 2));
             Vector3 bottomRightBoundary = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.farClipPlane / 2));
-  //          Vector3 xPos = new Vector3(Input.acceleration.x * mass, 0, 0);
-            Vector3 xPos = new Vector3(Input.GetAxis("Mouse X") * mass, 0, 0); ;
-            //          Vector3 yPos = new Vector3(0, Input.acceleration.y * mass, 0);
-            Vector3 yPos = new Vector3(0, Input.GetAxis("Mouse Y") * mass, 0);
+            Vector3 xPos = new Vector3(Input.acceleration.x * mass, 0, 0);
+//            Vector3 xPos = new Vector3(Input.GetAxis("Mouse X") * mass, 0, 0); ;
+                      Vector3 yPos = new Vector3(0, Input.acceleration.y * mass, 0);
+ //           Vector3 yPos = new Vector3(0, Input.GetAxis("Mouse Y") * mass, 0);
             if ((transform.position.x > topLeftBoundary.x && xPos.x < 0) || (transform.position.x < bottomRightBoundary.x && xPos.x > 0))
             {
                 transform.position = transform.position + xPos;
