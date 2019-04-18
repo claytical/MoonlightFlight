@@ -85,8 +85,7 @@ public class Ball : MonoBehaviour {
 
 //			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
             coll.gameObject.GetComponent<Breakable>().LightUp();
-            GetComponentInParent<BallHolder>().addPoints(5);
-
+            
 		}
 		if(coll.gameObject.tag == "Tone") {
 			coll.gameObject.GetComponent<Point>().Hit(coll.relativeVelocity.magnitude);

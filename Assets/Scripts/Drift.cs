@@ -12,9 +12,10 @@ public class Drift : MonoBehaviour
     private Vector3 destination;
     private float amount;
     // Use this for initialization
+
     void Start()
     {
-        mass = Random.Range(.1f, .5f);
+        mass = Random.Range(.01f, .05f);
         startPosition = transform.position;
         if (randomDrift)
         {

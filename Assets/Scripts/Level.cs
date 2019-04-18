@@ -10,14 +10,19 @@ public class Level : MonoBehaviour {
 	public GameObject WorldCompletePanel;
     public GameObject[] breakableObjects;
 	public Text nextWorldName;
-	private string selectedScene;
+    public Text fliesReleasedUI;
+    public bool endless;
+    public int fliesReleased;
+    private string selectedScene;
 	private AsyncOperation AO;
 	private GameState gameState;
 	private int nextLevel;
 	private string currentWorld;
 
+
 	// Use this for initialization
 	void Start () {
+        fliesReleased = 0;
 		gameState = (GameState)FindObjectOfType (typeof(GameState));	
 		if (gameState != null) {
 			currentWorld = gameState.SelectedWorld;
@@ -28,45 +33,85 @@ public class Level : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void AddFliesReleased(int flies)
+    {
+        fliesReleased += flies;
+        fliesReleasedUI.text = flies + " flies released";
+    }
 	public void ScanForCompletion() {
+        if (endless)
+        {
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
+            if (gos.Length == 0)
+            {
+                PlaceRandomBreakable();
+            }
 
-		GameObject[] gos = GameObject.FindGameObjectsWithTag ("Disappearing");
-		if (gos.Length > 0) {
-			Debug.Log ("Still bumpable objects");
+        }
+        else
+        {
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
+            if (gos.Length > 0)
+            {
+                Debug.Log("Still bumpable objects");
 
-		} else {
-			GameObject player = GameObject.FindGameObjectWithTag("Player");
-			//set stars for current level
-			if (gameState != null) {
-				PlayerPrefs.SetInt (gameState.SelectedWorld + "_" + gameState.SelectedLevel, player.GetComponent<PlayerControl> ().balls + 1);
-				if (int.Parse (gameState.SelectedLevel) >= 10) {
-                    //unlock next world
-                    //WORLD COMPLETE UI
-                    gameState.SelectedWorld = nextWorldName.text;
-					nextLevel = 1;
-					PlayerPrefs.SetInt (gameState.SelectedWorld, 1);
-					WorldCompletePanel.SetActive (true);
-					ProcGenMusic.MusicGenerator.Instance.Stop ();
+            }
+            else
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                //set stars for current level
+                if (gameState != null)
+                {
+                    PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + gameState.SelectedLevel, player.GetComponent<PlayerControl>().balls + 1);
+                    if (int.Parse(gameState.SelectedLevel) >= 10)
+                    {
+                        //unlock next world
+                        //WORLD COMPLETE UI
+                        gameState.SelectedWorld = nextWorldName.text;
+                        nextLevel = 1;
+                        PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
+                        WorldCompletePanel.SetActive(true);
+                        ProcGenMusic.MusicGenerator.Instance.Stop();
+
+                    }
+                    else
+                    {
+
+                        //unlock next level
+                        nextLevel = int.Parse(gameState.SelectedLevel) + 1;
+                        PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
+                        LevelCompletePanel.SetActive(true);
+                        if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
+                        {
+                            LevelCompletePanel.GetComponent<LevelComplete>().SetStars(player.GetComponent<PlayerControl>().balls + 1);
+                        }
+                        BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
+                        Ball[] balls = ballHolder.GetComponentsInChildren<Ball>();
+                        for (int i = 0; i < balls.Length; i++)
+                        {
+                            Destroy(balls[i].gameObject);
+                        }
 
 
 
-
+                    }
                 }
-                else {
-	/*
-                    //unlock next level
-					nextLevel = int.Parse (gameState.SelectedLevel) + 1;
-					PlayerPrefs.SetInt (gameState.SelectedWorld + "_" + nextLevel, 0);
-					LevelCompletePanel.SetActive (true);
-					if (LevelCompletePanel.GetComponent<LevelComplete> () != null) {
-						LevelCompletePanel.GetComponent<LevelComplete> ().SetStars (player.GetComponent<PlayerControl> ().balls + 1);
-					}
-					BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
-					Ball[] balls = ballHolder.GetComponentsInChildren<Ball> ();
-					for (int i = 0; i < balls.Length; i++) {
-						Destroy(balls [i].gameObject);
-					}
-                    */
+                else
+                {
+                    //Debugging level
+
+                    BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
+                    Ball[] balls = ballHolder.GetComponentsInChildren<Ball>();
+                    for (int i = 0; i < balls.Length; i++)
+                    {
+                        Destroy(balls[i].gameObject);
+                    }
+                    LevelCompletePanel.SetActive(true);
+                    LevelCompletePanel.GetComponent<LevelComplete>().SetStars(2);
+                    ProcGenMusic.MusicGenerator.Instance.Stop();
+
+                    /*
                     //Place new object
                     Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
                     Vector3 origin = Camera.main.ViewportToScreenPoint(new Vector3(-7, 0, 0));
@@ -78,38 +123,29 @@ public class Level : MonoBehaviour {
                     Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
                     Vector3 position = new Vector3(origin.x, origin.y, 0);
                     Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], screenPosition, Quaternion.identity);
-
+                    */
 
                 }
-            } else {
-                //Debugging level
-                /*
-                BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
-				Ball[] balls = ballHolder.GetComponentsInChildren<Ball> ();
-				for (int i = 0; i < balls.Length; i++) {
-					Destroy(balls [i].gameObject);
-				}
-				LevelCompletePanel.SetActive(true);
-				LevelCompletePanel.GetComponent<LevelComplete> ().SetStars (2);
-				ProcGenMusic.MusicGenerator.Instance.Stop ();
-                */
-                //Place new object
-                Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
-                Vector3 origin = Camera.main.ViewportToScreenPoint(new Vector3(-7, 0, 0));
-                float startX = Camera.main.transform.position.x - (Screen.width / 2);
-                //+ (_prefabSize.x / 2) + (_prefabSize.x * x);
-                float startY = Camera.main.transform.position.y - (Screen.height / 2);
-                //+ (_prefabSize.y / 2) + (_prefabSize.y * y);
-
-                Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
-                Vector3 position = new Vector3(origin.x, origin.y, 0);
-                Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], screenPosition, Quaternion.identity);
-
-
             }
         }
 	}
-	public void NextLevel() {
+    public void PlaceRandomBreakable()
+    {
+        //Place new object
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
+        Vector3 origin = Camera.main.ViewportToScreenPoint(new Vector3(-7, 0, 0));
+        float startX = Camera.main.transform.position.x - (Screen.width / 2);
+        
+        //+ (_prefabSize.x / 2) + (_prefabSize.x * x);
+        float startY = Camera.main.transform.position.y - (Screen.height / 2);
+        //+ (_prefabSize.y / 2) + (_prefabSize.y * y);
+
+        Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
+        Vector3 position = new Vector3(origin.x, origin.y, 0);
+        GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], screenPosition, Quaternion.identity, transform);
+        
+    }
+    public void NextLevel() {
 		if (gameState != null) {
 			gameState.SelectedLevel = nextLevel.ToString ();
 			selectedScene = gameState.SelectedWorld + "_" + nextLevel;

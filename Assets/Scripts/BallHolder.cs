@@ -58,6 +58,7 @@ public class BallHolder : MonoBehaviour {
 		score = 0;
 	}
 	public void addPoints(int points) {
+        Debug.Log("Adding " + points + " points");
 		score += points;
 	}
 
