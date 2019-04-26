@@ -7,6 +7,8 @@ public class Fly : MonoBehaviour {
     float speed = (2 * Mathf.PI) / 2; //2*PI in degress is 360, so you get 5 seconds to complete a circle
     float radius = .008f;
     public bool free = false;
+    public int timeFreed;
+    public GameObject ball;
     private float direction;
     // Use this for initialization
     void Start () {
@@ -17,31 +19,30 @@ public class Fly : MonoBehaviour {
     void Update () {
         if (free)
         {
-            GetComponentInChildren<Light>().intensity = Random.Range(.2f, 1f);
-            transform.Rotate(new Vector3(0, 0, Time.deltaTime * 400.0f));
-            GetComponent<Rigidbody2D>().isKinematic = false;
-            GetComponent<Rigidbody2D>().AddForce(new Vector3(direction, 20f, 0));//Vector3.up * 15f);
-
-//            Vector3 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-//            transform.position = position + Random.insideUnitSphere * .02f;
+            //GetComponentInChildren<Light>().intensity = Random.Range(.2f, 1f);
+            /*            transform.Rotate(new Vector3(0, 0, Time.deltaTime * 400.0f));
+                        GetComponent<Rigidbody2D>().isKinematic = false;
+                        GetComponent<Rigidbody2D>().AddForce(new Vector3(direction, 100f, 0));//Vector3.up * 15f);
+              */
+            //            Vector3 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            //            transform.position = position + Random.insideUnitSphere * .02f;
+            if (ball)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, ball.transform.position, Time.deltaTime);
+            }
+                if (timeFreed < Time.frameCount)
+            {
+                Destroy(gameObject);
+            }
  
         }
         else
         {
-            GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 2.5f);
-/*
-            transform.Rotate(new Vector3(0, 0, Time.deltaTime * 1.0f));
-                        GetComponent<Rigidbody2D>().AddForce(new Vector2(Time.deltaTime, Time.deltaTime));
-                        angle += speed * Time.deltaTime; //if you want to switch direction, use -= instead of +=
-
-
-            
-            Vector3 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            position.x += Mathf.Cos(angle) * radius;
-            position.y += Mathf.Sin(angle) * radius;
-            transform.position = position;
-  */           
-            
+            GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * .7f);          
+            if(transform.position.x > 1 || transform.localPosition.x < -1 || transform.localPosition.y > 1 || transform.localPosition.y < -1)
+            {
+                transform.position = transform.parent.position;
+            }            
     }
     }
 }

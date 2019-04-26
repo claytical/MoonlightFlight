@@ -36,8 +36,9 @@ public class Level : MonoBehaviour {
 
     public void AddFliesReleased(int flies)
     {
+        Debug.Log("There are " + flies + " flies");
         fliesReleased += flies;
-        fliesReleasedUI.text = flies + " flies released";
+        fliesReleasedUI.text = fliesReleased.ToString();
     }
 	public void ScanForCompletion() {
         if (endless)
@@ -131,18 +132,22 @@ public class Level : MonoBehaviour {
 	}
     public void PlaceRandomBreakable()
     {
+        GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], transform.position, Quaternion.identity, transform);
+        
         //Place new object
         Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
         Vector3 origin = Camera.main.ViewportToScreenPoint(new Vector3(-7, 0, 0));
         float startX = Camera.main.transform.position.x - (Screen.width / 2);
-        
+        float objX = obj.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+        float objY = obj.GetComponentInChildren<SpriteRenderer>().bounds.size.y;
         //+ (_prefabSize.x / 2) + (_prefabSize.x * x);
         float startY = Camera.main.transform.position.y - (Screen.height / 2);
         //+ (_prefabSize.y / 2) + (_prefabSize.y * y);
 
-        Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
-        Vector3 position = new Vector3(origin.x, origin.y, 0);
-        GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], screenPosition, Quaternion.identity, transform);
+        Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(objX, Screen.width - objX), Random.Range(objY, Screen.height - objY), Camera.main.farClipPlane / 2));
+  //      Vector3 position = new Vector3(origin.x, origin.y, 0);
+        obj.transform.position = screenPosition;
+//        GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], screenPosition, Quaternion.identity, transform);
         
     }
     public void NextLevel() {

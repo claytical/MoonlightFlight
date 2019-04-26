@@ -5,7 +5,8 @@ public class Ball : MonoBehaviour {
 
 	private int timeSinceLastBump = 0;
 	private bool isDead = false;
-	private bool isWarping = false;
+    private bool isWarping = false;
+    public bool inPlay = false;
 	private Vector3 warpPosition;
 	private Vector3 originalPosition;
     public float force;
@@ -17,8 +18,16 @@ public class Ball : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timeSinceLastBump++;
-              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
-        //GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -100f));
+        //              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
+        if (inPlay)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(Input.acceleration.x, Input.acceleration.y) * 5f;
+        }  
+            //GetComponent<Rigidbody2D>().AddForce(, ForceMode2D.Impulse);
+//        Vector3 newPosition = new Vector3();
+  //      newPosition = transform.position + (Input.acceleration * .01f);
+
+    //    transform.position = newPosition;
 
 
         if (isDead) {
@@ -84,7 +93,7 @@ public class Ball : MonoBehaviour {
         if (coll.gameObject.tag == "Disappearing") {
 
 //			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
-            coll.gameObject.GetComponent<Breakable>().LightUp();
+            coll.gameObject.GetComponent<Breakable>().LightUp(this.gameObject);
             
 		}
 		if(coll.gameObject.tag == "Tone") {

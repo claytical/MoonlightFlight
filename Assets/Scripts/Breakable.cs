@@ -24,6 +24,7 @@ public class Breakable : MonoBehaviour {
 	public AudioClip hit;
 	public GameObject explosion;
     public Flys flies;
+    private GameObject ball;
 	private SpriteRenderer face;
 	private float lightUpTime;
 	private bool litUp = false;
@@ -59,6 +60,9 @@ public class Breakable : MonoBehaviour {
         }
         if(spritesDeactivated == sprites.Length)
         {
+            //set flies free first
+            flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);
+            flies.Free(ball);
             Destroy(this.gameObject);
         }
 	}
@@ -82,9 +86,10 @@ public class Breakable : MonoBehaviour {
 //		}
 	}
 
-	public void LightUp() {
+	public void LightUp(GameObject b) {
         //HIT
-		if (timesHit < sprites.Length -1 ) {
+        ball = b;
+        if (timesHit < sprites.Length -1 ) {
             sprites[timesHit].SetActive(false);
 			//GetComponent<Animator>().SetTrigger("bumped");
             //			face.sprite = sprites [timesHit].bumpedFace;
@@ -100,7 +105,6 @@ public class Breakable : MonoBehaviour {
             //			Instantiate (explosion, transform.position, transform.rotation);
             sprites[timesHit].SetActive(false);
             GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length);
-            flies.Free();
             GetComponent<Rigidbody2D> ().isKinematic = false;
 //			GetComponent<Animator> ().SetBool ("lastBump", true);		
 

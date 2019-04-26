@@ -11,14 +11,19 @@ public class Flys : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(GetComponentsInChildren<Fly>().Length == 0)
+        {
+            Destroy(gameObject);
+        }
 	}
-    public void Free()
+    public void Free(GameObject ball)
     {
         Fly[] flies = GetComponentsInChildren<Fly>();
         for (int i = 0; i < flies.Length; i++)
         {
             flies[i].free = true;
+            flies[i].timeFreed = Time.frameCount + 500;
+            flies[i].ball = ball;
         }
     }
 }

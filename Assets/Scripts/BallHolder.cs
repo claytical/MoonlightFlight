@@ -22,11 +22,15 @@ public class BallHolder : MonoBehaviour {
 	}
 
 	public void DeadBall() {
-		button.interactable = true;
-	}
+        //		button.interactable = true;
+        player.GameOver();
+    }
 
 	public void Drop() {
-		chute.SetTrigger ("fire");
+        button.gameObject.SetActive(false);
+        ball.GetComponent<Ball>().inPlay = true;
+        /*
+        chute.SetTrigger ("fire");
 		button.interactable = false;
 		if(player.tutor) {
 			player.tutor.GetComponent<Tutor> ().pressedDropButton ();
@@ -42,6 +46,7 @@ public class BallHolder : MonoBehaviour {
 			}	
 		}
 		setBallDisplay ();
+        */
 	}
 
 	private void setBallDisplay() {
