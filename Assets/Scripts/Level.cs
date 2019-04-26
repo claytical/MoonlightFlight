@@ -9,6 +9,7 @@ public class Level : MonoBehaviour {
 	public GameObject LevelFailPanel;
 	public GameObject WorldCompletePanel;
     public GameObject[] breakableObjects;
+    public GameObject spawnLocations;
 	public Text nextWorldName;
     public Text fliesReleasedUI;
     public bool endless;
@@ -27,6 +28,7 @@ public class Level : MonoBehaviour {
 		if (gameState != null) {
 			currentWorld = gameState.SelectedWorld;
 		}
+        PlaceRandomBreakable();
 	}
 	
 	// Update is called once per frame
@@ -34,10 +36,11 @@ public class Level : MonoBehaviour {
 		
 	}
 
-    public void AddFliesReleased(int flies)
+    public void AddFliesReleased(int flies, int ropeLength)
     {
         Debug.Log("There are " + flies + " flies");
-        fliesReleased += flies;
+        
+        fliesReleased += flies + (flies * ropeLength);
         fliesReleasedUI.text = fliesReleased.ToString();
     }
 	public void ScanForCompletion() {
@@ -132,7 +135,9 @@ public class Level : MonoBehaviour {
 	}
     public void PlaceRandomBreakable()
     {
-        GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], transform.position, Quaternion.identity, transform);
+
+        Transform[] locations = spawnLocations.GetComponentsInChildren<Transform>();
+        GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], locations[Random.Range(0, locations.Length)].position, Quaternion.identity, transform);
         
         //Place new object
         Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));

@@ -104,7 +104,7 @@ public class Breakable : MonoBehaviour {
 
             //			Instantiate (explosion, transform.position, transform.rotation);
             sprites[timesHit].SetActive(false);
-            GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length);
+            GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, GetComponentInParent<PlayerControl>().ropeAmount);
             GetComponent<Rigidbody2D> ().isKinematic = false;
 //			GetComponent<Animator> ().SetBool ("lastBump", true);		
 

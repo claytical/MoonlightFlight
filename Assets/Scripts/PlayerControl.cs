@@ -19,6 +19,7 @@ public class PlayerControl : MonoBehaviour {
 	public GameObject line;
     public float lineTimeLimit = 100f;
     public Text ropeLeft;
+    public int ropeAmount = 0;
 
 	private Vector3 mousePos;
 
@@ -138,7 +139,7 @@ public class PlayerControl : MonoBehaviour {
                     linesLength += Lines[i].pointsList.Count;
                     ropeLeft.text = (linesLength - lengthOfRope).ToString();
                 }
-
+                ropeAmount = linesLength;
                 if (linesLength > lengthOfRope)
                 {
                     /*
