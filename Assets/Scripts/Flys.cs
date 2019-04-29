@@ -24,6 +24,7 @@ public class Flys : MonoBehaviour {
             flies[i].free = true;
             flies[i].timeFreed = Time.frameCount + 500;
             flies[i].ball = ball;
+            ball.GetComponent<Ball>().force++;
         }
     }
 }

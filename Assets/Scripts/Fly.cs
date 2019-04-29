@@ -30,7 +30,8 @@ public class Fly : MonoBehaviour {
             {
                 transform.position = Vector3.MoveTowards(transform.position, ball.transform.position, Time.deltaTime);
             }
-                if (timeFreed < Time.frameCount)
+
+            if (timeFreed < Time.frameCount)
             {
                 Destroy(gameObject);
             }
@@ -39,7 +40,7 @@ public class Fly : MonoBehaviour {
         else
         {
             GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * .7f);          
-            if(transform.position.x > 1 || transform.localPosition.x < -1 || transform.localPosition.y > 1 || transform.localPosition.y < -1)
+            if(transform.localPosition.x > 1 || transform.localPosition.x < -1 || transform.localPosition.y > 1 || transform.localPosition.y < -1)
             {
                 transform.position = transform.parent.position;
             }            

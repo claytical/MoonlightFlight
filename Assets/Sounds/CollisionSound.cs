@@ -15,6 +15,6 @@ public class CollisionSound : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		GetComponent<AudioSource> ().PlayOneShot (soundFx [Random.Range (0, soundFx.Length)]);
+//		GetComponent<AudioSource> ().PlayOneShot (soundFx [Random.Range (0, soundFx.Length)]);
 	}
 }

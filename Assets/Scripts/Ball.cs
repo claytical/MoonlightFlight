@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour {
         //              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
         if (inPlay)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(Input.acceleration.x, Input.acceleration.y) * 5f;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(Input.acceleration.x, Input.acceleration.y) * force;
         }  
             //GetComponent<Rigidbody2D>().AddForce(, ForceMode2D.Impulse);
 //        Vector3 newPosition = new Vector3();
@@ -62,10 +62,11 @@ public class Ball : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 			gameObject.GetComponent<AudioSource> ().Play ();
-
+        Debug.Log("This: " + gameObject.tag + " Other: " + coll.gameObject.tag);
 		if(coll.gameObject.tag == "Boundary") {
 			isDead = true;
-			GetComponent<Animator>().SetTrigger("die");
+            GetComponentInParent<BallHolder>().player.GameOver();
+            GetComponent<Animator>().SetTrigger("die");
             /*
             if (GetComponentInParent<BallHolder> () != null) {
 				if (GetComponentInParent<BallHolder> ().player.balls == 0) {
@@ -76,11 +77,14 @@ public class Ball : MonoBehaviour {
 
 		}
 		if (coll.gameObject.tag == "Avoid") {
-			gameObject.GetComponentInParent<BallHolder> ().removePoints ();
+//			gameObject.GetComponentInParent<BallHolder> ().removePoints ();
 //			coll.gameObject.GetComponent<AudioSource>().Play();
 			//Trigger ball animation
 			isDead = true;
-			GetComponent<Animator>().SetTrigger("die");
+            GetComponentInParent<BallHolder>().player.GameOver();
+            Debug.Log("Got hit with avoid");
+            /*
+            GetComponent<Animator>().SetTrigger("die");
 			if(coll.gameObject.GetComponent<Animator>()) {
 				coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
 			}
@@ -88,7 +92,7 @@ public class Ball : MonoBehaviour {
             {
                 GetComponentInParent<BallHolder>().player.GameOver();
             }
-
+            */
         }
         if (coll.gameObject.tag == "Disappearing") {
 

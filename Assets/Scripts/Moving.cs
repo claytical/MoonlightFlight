@@ -42,7 +42,6 @@ public class Moving : MonoBehaviour {
 
 			} else {
 			*/
-            Debug.Log("Distance: " + Vector2.Distance(transform.position, points[currentPoint].position));
             if (Vector2.Distance(transform.position, points[currentPoint].position) < 0.001f)
             {
         
