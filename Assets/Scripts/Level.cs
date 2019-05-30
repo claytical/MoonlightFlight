@@ -10,9 +10,10 @@ public class Level : MonoBehaviour {
 	public GameObject WorldCompletePanel;
     public GameObject[] breakableObjects;
     public GameObject spawnLocations;
-	public Text nextWorldName;
+	public string nextWorldName;
     public Text fliesReleasedUI;
     public bool endless;
+    public bool inkEnabled;
     public int fliesReleased;
     private string selectedScene;
 	private AsyncOperation AO;
@@ -23,24 +24,34 @@ public class Level : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Time.timeScale = 0f;
         fliesReleased = 0;
 		gameState = (GameState)FindObjectOfType (typeof(GameState));	
 		if (gameState != null) {
 			currentWorld = gameState.SelectedWorld;
 		}
-        PlaceRandomBreakable();
-	}
+        if (endless)
+        {
+            PlaceRandomBreakable();
+        }
+        }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    public void AddFliesReleased(int flies, int ropeLength)
+    public void AddFliesReleased(int flies, float inkAmount, int multiplier)
     {
         Debug.Log("There are " + flies + " flies");
-        
-        fliesReleased += flies + (flies * ropeLength);
+        fliesReleased += flies * multiplier;
+
+        if (inkEnabled)
+        {
+            fliesReleased += flies + (flies * (int) inkAmount);
+
+        }
+
         fliesReleasedUI.text = fliesReleased.ToString();
     }
 	public void ScanForCompletion() {
@@ -63,76 +74,47 @@ public class Level : MonoBehaviour {
             }
             else
             {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                //set stars for current level
-                if (gameState != null)
+                Ball ball = GameObject.FindObjectOfType<Ball>();
+                for(int i = 0; i < fliesReleased; i++)
                 {
-                    PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + gameState.SelectedLevel, player.GetComponent<PlayerControl>().balls + 1);
-                    if (int.Parse(gameState.SelectedLevel) >= 10)
-                    {
-                        //unlock next world
-                        //WORLD COMPLETE UI
-                        gameState.SelectedWorld = nextWorldName.text;
-                        nextLevel = 1;
-                        PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
-                        WorldCompletePanel.SetActive(true);
-                        ProcGenMusic.MusicGenerator.Instance.Stop();
-
-                    }
-                    else
-                    {
-
-                        //unlock next level
-                        nextLevel = int.Parse(gameState.SelectedLevel) + 1;
-                        PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
-                        LevelCompletePanel.SetActive(true);
-                        if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
-                        {
-                            LevelCompletePanel.GetComponent<LevelComplete>().SetStars(player.GetComponent<PlayerControl>().balls + 1);
-                        }
-                        BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
-                        Ball[] balls = ballHolder.GetComponentsInChildren<Ball>();
-                        for (int i = 0; i < balls.Length; i++)
-                        {
-                            Destroy(balls[i].gameObject);
-                        }
-
-
-
-                    }
+                    Instantiate(ball.fly, ball.gameObject.transform);
                 }
-                else
-                {
-                    //Debugging level
-
-                    BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
-                    Ball[] balls = ballHolder.GetComponentsInChildren<Ball>();
-                    for (int i = 0; i < balls.Length; i++)
-                    {
-                        Destroy(balls[i].gameObject);
-                    }
-                    LevelCompletePanel.SetActive(true);
-                    LevelCompletePanel.GetComponent<LevelComplete>().SetStars(2);
-                    ProcGenMusic.MusicGenerator.Instance.Stop();
-
-                    /*
-                    //Place new object
-                    Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
-                    Vector3 origin = Camera.main.ViewportToScreenPoint(new Vector3(-7, 0, 0));
-                    float startX = Camera.main.transform.position.x - (Screen.width / 2);
-                    //+ (_prefabSize.x / 2) + (_prefabSize.x * x);
-                    float startY = Camera.main.transform.position.y - (Screen.height / 2);
-                    //+ (_prefabSize.y / 2) + (_prefabSize.y * y);
-
-                    Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
-                    Vector3 position = new Vector3(origin.x, origin.y, 0);
-                    Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], screenPosition, Quaternion.identity);
-                    */
-
-                }
+                    Invoke("EndOfLevel", 2);
             }
         }
 	}
+
+    public void EndOfLevel()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (int.Parse(gameState.SelectedLevel) >= 10)
+        {
+            //unlock next world
+            //WORLD COMPLETE UI
+            gameState.SelectedWorld = nextWorldName;
+            nextLevel = 1;
+            PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
+            WorldCompletePanel.SetActive(true);
+            ProcGenMusic.MusicGenerator.Instance.Stop();
+
+        }
+        else
+        {
+            Debug.Log("Next Level Awaits...");
+            //unlock next level
+            nextLevel = int.Parse(gameState.SelectedLevel) + 1;
+            PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
+            LevelCompletePanel.SetActive(true);
+            if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
+            {
+                LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased);
+                Debug.Log("Setting score");
+            }
+
+        }
+
+    }
     public void PlaceRandomBreakable()
     {
 

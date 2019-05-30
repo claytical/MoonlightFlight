@@ -17,22 +17,16 @@ public class Breakable : MonoBehaviour {
 //	public BreakableSet[] sprites;
     public GameObject[] sprites;
 	public SpriteRenderer color;
-	public SpriteRenderer tint;
-	public SpriteRenderer frame;
-	public AudioClip[] bumpFx;
-	public AudioClip[] deathFx;
 	public AudioClip hit;
-	public GameObject explosion;
+    public AudioClip finished;
     public Flys flies;
     private GameObject ball;
-	private SpriteRenderer face;
 	private float lightUpTime;
 	private bool litUp = false;
 	private bool isDying = false;
 
 	// Use this for initialization
 	void Start () {
-		face = GetComponent<SpriteRenderer> ();
 	}
 
 	void OnDestroy() {
@@ -46,11 +40,10 @@ public class Breakable : MonoBehaviour {
 	void Update () {
 		if (Time.time > lightUpTime && litUp) {
 			litUp = false;
-			if (timesHit < sprites.Length) {
-//				face.sprite = sprites [timesHit].idleFace;
-			}
 		}
+
         int spritesDeactivated = 0;
+
         for (int i = 0; i < sprites.Length; i++)
         {
             if(!sprites[i].activeSelf)
@@ -63,17 +56,13 @@ public class Breakable : MonoBehaviour {
             //set flies free first
             flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);
             flies.Free(ball);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject,1);
         }
 	}
 
 
 	public void Crumble() {
 		if (!isDying) {
-//			GetComponent<ParticleSystem> ().Play ();
-			GetComponent<AudioSource> ().PlayOneShot (deathFx [Random.Range (0, deathFx.Length)]);
-
-//			GetComponent<ParticleSystem> ().Play ();
 			Destroy (this.gameObject, 1f);
 		}
 		isDying = true;
@@ -81,32 +70,19 @@ public class Breakable : MonoBehaviour {
 
 	public void SwitchOff() {
 	
-//		if (timesHit < sprites.Length) {
-//			face.sprite = sprites [timesHit].idleFace;
-//		}
 	}
 
 	public void LightUp(GameObject b) {
         //HIT
         ball = b;
-        if (timesHit < sprites.Length -1 ) {
+        if (timesHit < sprites.Length - 1 ) {
             sprites[timesHit].SetActive(false);
-			//GetComponent<Animator>().SetTrigger("bumped");
-            //			face.sprite = sprites [timesHit].bumpedFace;
-            //			frame.sprite = sprites [timesHit].frame;
-            //			transform.Translate (Random.Range (-.01f, .01f), Random.Range (-.01f, .01f), 0);		
-			GetComponentInParent<AudioSource>().Play();
 			GetComponentInParent<AudioSource> ().PlayOneShot (hit);
-/*			litUp = true;
-			lightUpTime = Time.time + .2f;
-            */
 		} else {
-
-            //			Instantiate (explosion, transform.position, transform.rotation);
+            GetComponentInParent<AudioSource>().PlayOneShot(finished);
             sprites[timesHit].SetActive(false);
-            GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, GetComponentInParent<PlayerControl>().ropeAmount);
+            GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);
             GetComponent<Rigidbody2D> ().isKinematic = false;
-//			GetComponent<Animator> ().SetBool ("lastBump", true);		
 
 		}
 		timesHit++;

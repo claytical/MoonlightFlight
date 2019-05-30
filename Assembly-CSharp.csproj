@@ -61,7 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Hazard.cs" />
+    <Compile Include="Assets\Burst.cs" />
+    <Compile Include="Assets\LevelSound.cs" />
+    <Compile Include="Assets\MenuRoutines.cs" />
     <Compile Include="Assets\MusicGenerator\Assets\Scripts\ChordProgressions.cs" />
     <Compile Include="Assets\MusicGenerator\Assets\Scripts\Instrument.cs" />
     <Compile Include="Assets\MusicGenerator\Assets\Scripts\InstrumentPrefabList.cs" />
@@ -84,7 +86,6 @@
     <Compile Include="Assets\MusicGenerator\Assets\UIEditor\Scripts\Tooltips.cs" />
     <Compile Include="Assets\MusicGenerator\Assets\UIEditor\Scripts\UIManager.cs" />
     <Compile Include="Assets\MusicGenerator\Demo\DemoCode.cs" />
-    <Compile Include="Assets\RotateConstant.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\BallHolder.cs" />
     <Compile Include="Assets\Scripts\Breakable.cs" />
@@ -94,17 +95,20 @@
     <Compile Include="Assets\Scripts\Debris.cs" />
     <Compile Include="Assets\Scripts\Drift.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Fever.cs" />
     <Compile Include="Assets\Scripts\Finger.cs" />
     <Compile Include="Assets\Scripts\Fly.cs" />
     <Compile Include="Assets\Scripts\Flys.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\GameState.cs" />
+    <Compile Include="Assets\Scripts\Hazard.cs" />
     <Compile Include="Assets\Scripts\Immovable.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\LevelComplete.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\LevelRow.cs" />
     <Compile Include="Assets\Scripts\LevelSelector.cs" />
+    <Compile Include="Assets\Scripts\LevelSelectParent.cs" />
     <Compile Include="Assets\Scripts\LevelUp.cs" />
     <Compile Include="Assets\Scripts\Line.cs" />
     <Compile Include="Assets\Scripts\Moving.cs" />
@@ -114,12 +118,14 @@
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Point.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
+    <Compile Include="Assets\Scripts\RotateConstant.cs" />
     <Compile Include="Assets\Scripts\RotateWithAccelerometer.cs" />
     <Compile Include="Assets\Scripts\SceneSelector.cs" />
+    <Compile Include="Assets\Scripts\SnapTo.cs" />
+    <Compile Include="Assets\Scripts\TextOverlay.cs" />
     <Compile Include="Assets\Scripts\Tutor.cs" />
     <Compile Include="Assets\Scripts\World.cs" />
     <Compile Include="Assets\Scripts\WorldSelect.cs" />
-    <Compile Include="Assets\SnapTo.cs" />
     <Compile Include="Assets\Sounds\CollisionSound.cs" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\BougieBall\instruments3.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\PucePlanet\instruments2.txt" />

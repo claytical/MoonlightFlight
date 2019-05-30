@@ -7,9 +7,13 @@ public class Ball : MonoBehaviour {
 	private bool isDead = false;
     private bool isWarping = false;
     public bool inPlay = false;
+    public int framesUntilTilt;
+    private bool canTilt = true;
+    private int frameCountAtBump;
 	private Vector3 warpPosition;
 	private Vector3 originalPosition;
     public float force;
+    public GameObject fly;
 	// Use this for initialization
 	void Start () {
 		originalPosition = transform.position;
@@ -19,10 +23,19 @@ public class Ball : MonoBehaviour {
 	void Update () {
 		timeSinceLastBump++;
         //              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
-        if (inPlay)
+        if (inPlay && canTilt)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(Input.acceleration.x, Input.acceleration.y) * force;
         }  
+        else if (inPlay && !canTilt)
+        {
+            if(frameCountAtBump <= Time.frameCount) {
+                canTilt = true;
+                Debug.Log("Tilt Back");
+                GetComponent<Animator>().SetBool("tiltLocked", false);
+
+            }
+        }
             //GetComponent<Rigidbody2D>().AddForce(, ForceMode2D.Impulse);
 //        Vector3 newPosition = new Vector3();
   //      newPosition = transform.position + (Input.acceleration * .01f);
@@ -96,7 +109,8 @@ public class Ball : MonoBehaviour {
         }
         if (coll.gameObject.tag == "Disappearing") {
 
-//			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
+            //			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
+            Debug.Log("GAMEOBJECT: " + this.gameObject);
             coll.gameObject.GetComponent<Breakable>().LightUp(this.gameObject);
             
 		}
@@ -105,10 +119,26 @@ public class Ball : MonoBehaviour {
 		}
 		if (coll.gameObject.tag == "Bumpable") {
             //Check for polygon shenanigans
+            frameCountAtBump = Time.frameCount + framesUntilTilt;
+            coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
+            if (canTilt)
+            {
+                canTilt = false;
+                GetComponent<Animator>().SetBool("tiltLocked", true);
+            }
+                coll.gameObject.GetComponent<Immovable> ().LightUp ();
+            int speedState = GetComponentInParent<BallHolder>().increaseMultiplier();
+            if (speedState > 0)
+            {
+                force += 1;
+                if(speedState == 2)
+                {
+                    GetComponent<Animator>().SetTrigger("fever");
+                    GetComponentInParent<LevelSound>().MaxMode();
 
-			coll.gameObject.GetComponent<Immovable> ().LightUp ();
-			GetComponentInParent<BallHolder>().addPoints(1);
-		}
+                }
+            }
+        }
 //		GetComponent<Rigidbody2D>().freezeRotation = true;
 		timeSinceLastBump = 0;
 	}

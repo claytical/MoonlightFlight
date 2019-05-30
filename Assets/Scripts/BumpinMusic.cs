@@ -31,6 +31,6 @@ public class BumpinMusic : MonoBehaviour {
 			mMusicGenerator = MusicGenerator.Instance;
 			mMusicGenerator.SetVolume(2);
 			mMusicGenerator.SetState(eGeneratorState.playing);
-		}
+        }
 	}
 }

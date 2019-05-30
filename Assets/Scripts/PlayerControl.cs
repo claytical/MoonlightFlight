@@ -7,19 +7,19 @@ public class PlayerControl : MonoBehaviour {
 	public GameObject lineContainer;
 	public Tutor tutor;
 	public Level level;
-	public int lengthOfRope;
+	public float amountOfInk;
 	public int balls;
 	private int dragCount;
 	private bool finished;
 	private bool tutored;
-    private bool endOfRope = false;
+    private bool endOfInk = false;
 	private Vector3 lastMouseCoordinate = Vector3.zero;
 	private bool isMousePressed;
 	public List<Line> Lines;
 	public GameObject line;
     public float lineTimeLimit = 100f;
-    public Text ropeLeft;
-    public int ropeAmount = 0;
+    public Text inkLeft;
+    public float inkAmount = 0;
 
 	private Vector3 mousePos;
 
@@ -44,7 +44,7 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(!finished) {
-            if (!endOfRope)
+            if (!endOfInk && level.inkEnabled)
             {
                 if (SystemInfo.deviceType == DeviceType.Desktop)
                 {
@@ -137,32 +137,30 @@ public class PlayerControl : MonoBehaviour {
                 for (int i = 0; i < Lines.Count; i++)
                 {
                     linesLength += Lines[i].pointsList.Count;
-                    ropeLeft.text = (linesLength - lengthOfRope).ToString();
+                    //                    inkLeft.text = (linesLength - amountOfInk).ToString();
                 }
-                ropeAmount = linesLength;
-                if (linesLength > lengthOfRope)
+                
+
+                inkAmount = linesLength;
+                if (linesLength > amountOfInk)
                 {
                     /*
                     if (Lines [0].Shorten ()) {
 			    		Lines.RemoveAt (0);
 				    }
                     */
-                    endOfRope = true;
+                    endOfInk = true;
                 }
+                float ink = (1 - (inkAmount / amountOfInk));
+                if(ink < 0)
+                {
+                    ink = 0;
+                }
+                Debug.Log(inkAmount + " divided by " + amountOfInk + " equals " + ink);
+                inkLeft.text = ink.ToString("0%");
+
             }
 		}
-        /*
-        for (int i = 0; i < Lines.Count; i++)
-        {
-            //race time condition, need to clear it after the loop
-            if(Lines[i].Timer(lineTimeLimit))
-            {
-                Lines.RemoveAt(0);
-
-                break;
-            }
-        }
-        */
 
     }
 
@@ -170,7 +168,16 @@ public class PlayerControl : MonoBehaviour {
 		finished = true;
 		level.LevelFailPanel.SetActive (true);
 		ProcGenMusic.MusicGenerator.Instance.Stop ();
-        endOfRope = false;
+        endOfInk = false;
     }
-	
+    public void Pause()
+    {
+        Time.timeScale = 0f;    
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1f;
+    }
+
 }

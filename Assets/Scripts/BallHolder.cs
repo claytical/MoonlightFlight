@@ -5,16 +5,46 @@ using UnityEngine.UI;
 public class BallHolder : MonoBehaviour {
 	public GameObject ball;
 	public GameObject holder;
-	public GameObject[] ballDisplay;
+//	public GameObject[] ballDisplay;
 	public PlayerControl player;
-	public Animator chute;
+//	public Animator chute;
 	public Button button;
+    public Fever feverBar;
+    public GameObject inkJar;
+    public GameObject textOverlay;
+    public GameObject uiCanvas;
+    public int multiplier;
+    private bool maxFever;
 	private int score;
 
 	// Use this for initialization
 	void Start () {
-		setBallDisplay ();
+        //		setBallDisplay ();
+        multiplier = 1;
+        maxFever = false;
+        inkJar.SetActive(player.level.inkEnabled);
+
 	}
+
+    public int increaseMultiplier()
+    {
+//        bool speedUp = false;
+        int speedState = 0;
+        if(multiplier < 27)
+        {
+            multiplier++;
+            feverBar.increaseFever();
+            speedState = 1;
+        }
+        if(multiplier == 27 && !maxFever)
+        {
+            speedState = 2;
+            maxFever = true;
+            Debug.Log("MAX FEVER!!!");
+            Instantiate(textOverlay, uiCanvas.transform);
+        }
+        return speedState;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,7 +57,8 @@ public class BallHolder : MonoBehaviour {
     }
 
 	public void Drop() {
-        button.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        button.GetComponent<Animator>().SetTrigger("pop");
         ball.GetComponent<Ball>().inPlay = true;
         /*
         chute.SetTrigger ("fire");
@@ -48,7 +79,7 @@ public class BallHolder : MonoBehaviour {
 		setBallDisplay ();
         */
 	}
-
+    /*
 	private void setBallDisplay() {
 		for (int i = 0; i < ballDisplay.Length; i++) {
 			if (i < player.balls) {
@@ -59,6 +90,7 @@ public class BallHolder : MonoBehaviour {
 		}
 
 	}
+    */
 	public void removePoints() {
 		score = 0;
 	}
