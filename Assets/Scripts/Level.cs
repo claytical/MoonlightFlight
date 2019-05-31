@@ -15,11 +15,13 @@ public class Level : MonoBehaviour {
     public bool endless;
     public bool inkEnabled;
     public int fliesReleased;
+    public AudioClip success;
     private string selectedScene;
 	private AsyncOperation AO;
 	private GameState gameState;
 	private int nextLevel;
 	private string currentWorld;
+    private bool levelFinished;
 
 
 	// Use this for initialization
@@ -36,10 +38,13 @@ public class Level : MonoBehaviour {
         }
         }
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+        if (!levelFinished)
+        {
+            ScanForCompletion();
+        }
 	}
+
 
     public void AddFliesReleased(int flies, float inkAmount, int multiplier)
     {
@@ -66,7 +71,8 @@ public class Level : MonoBehaviour {
         }
         else
         {
-            GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
+            Breakable[] gos = GetComponentsInChildren<Breakable>();
+//            GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
             if (gos.Length > 0)
             {
                 Debug.Log("Still bumpable objects");
@@ -74,12 +80,20 @@ public class Level : MonoBehaviour {
             }
             else
             {
+                levelFinished = true;
+                Debug.Log("Level Complete");
                 Ball ball = GameObject.FindObjectOfType<Ball>();
-                for(int i = 0; i < fliesReleased; i++)
+                ball.gameObject.GetComponent<Collider2D>().enabled = false;
+                ball.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+                ball.gameObject.GetComponentInParent<LevelSound>().SilentMode();
+                ball.gameObject.GetComponent<AudioSource>().PlayOneShot(success);
+                //chunk sets
+                for(int i = 0; i < 100; i++)
                 {
                     Instantiate(ball.fly, ball.gameObject.transform);
                 }
-                    Invoke("EndOfLevel", 2);
+//                EndOfLevel();
+                    Invoke("EndOfLevel", 5);
             }
         }
 	}
@@ -87,24 +101,34 @@ public class Level : MonoBehaviour {
     public void EndOfLevel()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        if (int.Parse(gameState.SelectedLevel) >= 10)
+        if (gameState != null)
         {
-            //unlock next world
-            //WORLD COMPLETE UI
-            gameState.SelectedWorld = nextWorldName;
-            nextLevel = 1;
-            PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
-            WorldCompletePanel.SetActive(true);
-            ProcGenMusic.MusicGenerator.Instance.Stop();
 
+            if (int.Parse(gameState.SelectedLevel) >= 10)
+            {
+                //unlock next world
+                //WORLD COMPLETE UI
+                gameState.SelectedWorld = nextWorldName;
+                nextLevel = 1;
+                PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
+                WorldCompletePanel.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("Next Level Awaits...");
+                //unlock next level
+                nextLevel = int.Parse(gameState.SelectedLevel) + 1;
+                PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
+                LevelCompletePanel.SetActive(true);
+                if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
+                {
+                    LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased);
+                    Debug.Log("Setting score");
+                }
+            }
         }
         else
         {
-            Debug.Log("Next Level Awaits...");
-            //unlock next level
-            nextLevel = int.Parse(gameState.SelectedLevel) + 1;
-            PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
             LevelCompletePanel.SetActive(true);
             if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
             {

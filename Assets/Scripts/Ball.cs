@@ -18,24 +18,31 @@ public class Ball : MonoBehaviour {
 	void Start () {
 		originalPosition = transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		timeSinceLastBump++;
-        //              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
+
+    // Update is called once per frame
+
+    void FixedUpdate()
+    {
         if (inPlay && canTilt)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(Input.acceleration.x, Input.acceleration.y) * force;
-        }  
+        }
         else if (inPlay && !canTilt)
         {
-            if(frameCountAtBump <= Time.frameCount) {
+            if (frameCountAtBump <= Time.frameCount)
+            {
                 canTilt = true;
                 Debug.Log("Tilt Back");
                 GetComponent<Animator>().SetBool("tiltLocked", false);
 
             }
         }
+
+    }
+
+    void Update () {
+		timeSinceLastBump++;
+        //              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
             //GetComponent<Rigidbody2D>().AddForce(, ForceMode2D.Impulse);
 //        Vector3 newPosition = new Vector3();
   //      newPosition = transform.position + (Input.acceleration * .01f);
@@ -69,55 +76,29 @@ public class Ball : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("Warping!");
-		warp (other.gameObject);
-	}
+        if (other.tag == "Warp")
+        {
+            Debug.Log("Warping!");
+            warp(other.gameObject);
+        }
+        else
+        {
+            isDead = true;
+            GetComponentInParent<LevelSound>().NormalMode();
+            GetComponentInParent<BallHolder>().player.GameOver();
+
+        }
+    }
 
 	void OnCollisionEnter2D(Collision2D coll) {
-			gameObject.GetComponent<AudioSource> ().Play ();
-        Debug.Log("This: " + gameObject.tag + " Other: " + coll.gameObject.tag);
-		if(coll.gameObject.tag == "Boundary") {
-			isDead = true;
-            GetComponentInParent<BallHolder>().player.GameOver();
-            GetComponent<Animator>().SetTrigger("die");
-            /*
-            if (GetComponentInParent<BallHolder> () != null) {
-				if (GetComponentInParent<BallHolder> ().player.balls == 0) {
-					GetComponentInParent<BallHolder> ().player.GameOver ();
-				}
-			}
-            */
-
-		}
-		if (coll.gameObject.tag == "Avoid") {
-//			gameObject.GetComponentInParent<BallHolder> ().removePoints ();
-//			coll.gameObject.GetComponent<AudioSource>().Play();
-			//Trigger ball animation
-			isDead = true;
-            GetComponentInParent<BallHolder>().player.GameOver();
-            Debug.Log("Got hit with avoid");
-            /*
-            GetComponent<Animator>().SetTrigger("die");
-			if(coll.gameObject.GetComponent<Animator>()) {
-				coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
-			}
-            if (GetComponentInParent<BallHolder>().player.balls == 0)
-            {
-                GetComponentInParent<BallHolder>().player.GameOver();
-            }
-            */
-        }
         if (coll.gameObject.tag == "Disappearing") {
 
             //			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
-            Debug.Log("GAMEOBJECT: " + this.gameObject);
             coll.gameObject.GetComponent<Breakable>().LightUp(this.gameObject);
             
 		}
-		if(coll.gameObject.tag == "Tone") {
-			coll.gameObject.GetComponent<Point>().Hit(coll.relativeVelocity.magnitude);
-		}
-		if (coll.gameObject.tag == "Bumpable") {
+
+        if (coll.gameObject.tag == "Bumpable") {
             //Check for polygon shenanigans
             frameCountAtBump = Time.frameCount + framesUntilTilt;
             coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
@@ -139,7 +120,36 @@ public class Ball : MonoBehaviour {
                 }
             }
         }
-//		GetComponent<Rigidbody2D>().freezeRotation = true;
-		timeSinceLastBump = 0;
-	}
+        /*
+        if (coll.gameObject.tag == "Boundary")
+        {
+            isDead = true;
+            GetComponentInParent<LevelSound>().NormalMode();
+            GetComponentInParent<BallHolder>().player.GameOver();
+     
+        }
+   */
+        if (coll.gameObject.tag == "Avoid")
+        {
+            //			gameObject.GetComponentInParent<BallHolder> ().removePoints ();
+            //			coll.gameObject.GetComponent<AudioSource>().Play();
+            //Trigger ball animation
+            isDead = true;
+            GetComponentInParent<BallHolder>().player.GameOver();
+            Debug.Log("Got hit with avoid");
+            /*
+            GetComponent<Animator>().SetTrigger("die");
+			if(coll.gameObject.GetComponent<Animator>()) {
+				coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
+			}
+            if (GetComponentInParent<BallHolder>().player.balls == 0)
+            {
+                GetComponentInParent<BallHolder>().player.GameOver();
+            }
+            */
+        }
+        //		GetComponent<Rigidbody2D>().freezeRotation = true;
+        timeSinceLastBump = 0;
+        gameObject.GetComponent<AudioSource>().Play();
+    }
 }

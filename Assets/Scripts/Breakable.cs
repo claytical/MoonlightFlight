@@ -30,11 +30,13 @@ public class Breakable : MonoBehaviour {
 	}
 
 	void OnDestroy() {
-		if (GetComponentInParent<Level> ()) {
+        /*
+        if (GetComponentInParent<Level> ()) {
 			GetComponentInParent<Level> ().ScanForCompletion ();
             Debug.Log("Scanning for Completion");
 		}
-	}
+	*/
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -56,7 +58,7 @@ public class Breakable : MonoBehaviour {
             //set flies free first
             flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);
             flies.Free(ball);
-            Destroy(this.gameObject,1);
+            Destroy(this.gameObject);
         }
 	}
 

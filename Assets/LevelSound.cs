@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class LevelSound : MonoBehaviour {
     public AudioMixerSnapshot maxMode;
     public AudioMixerSnapshot normalMode;
+    public AudioMixerSnapshot silentMode;
     // Use this for initialization
     void Start() {
     }
@@ -21,5 +22,10 @@ public class LevelSound : MonoBehaviour {
     }
     public void NormalMode() { 
         normalMode.TransitionTo(0);
+    }
+
+    public void SilentMode()
+    {
+        silentMode.TransitionTo(0);
     }
 }
