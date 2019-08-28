@@ -20,4 +20,12 @@ public class Fever : MonoBehaviour {
         GameObject bar = Instantiate(feverBar, transform);
 
     }
+    public void resetFever()
+    {
+        foreach (Transform child in transform) {
+            GameObject.Destroy(child.gameObject);
+        }
+
+    
+    }
 }

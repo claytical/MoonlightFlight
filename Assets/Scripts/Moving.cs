@@ -17,16 +17,13 @@ public class Moving : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (points.Count > 1) {
-            Debug.Log("Moving Towards Point");
 			transform.position = Vector2.MoveTowards (transform.position, points [currentPoint].position, speed * Time.deltaTime);
             if (Vector2.Distance(transform.position, points[currentPoint].position) < 0.001f)
             {
-                Debug.Log("Hit Destination");
 
                 currentPoint++;
                 if (currentPoint == points.Count)
                 {
-                    Debug.Log("Returning");
                     currentPoint = 0;
                 }
             }

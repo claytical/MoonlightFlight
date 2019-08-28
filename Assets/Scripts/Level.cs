@@ -22,6 +22,8 @@ public class Level : MonoBehaviour {
 	private int nextLevel;
 	private string currentWorld;
     private bool levelFinished;
+    private int totalRings;
+    private int maxScore;
 
 
 	// Use this for initialization
@@ -36,9 +38,11 @@ public class Level : MonoBehaviour {
         {
             PlaceRandomBreakable();
         }
-        }
-	
-	void FixedUpdate () {
+        maxScore = gameObject.GetComponentsInChildren<Fly>().Length * 27;
+        Debug.Log("Max Score: " + maxScore);
+    }
+
+    void FixedUpdate () {
         if (!levelFinished)
         {
             ScanForCompletion();
@@ -50,11 +54,10 @@ public class Level : MonoBehaviour {
     {
         Debug.Log("There are " + flies + " flies");
         fliesReleased += flies * multiplier;
-
         if (inkEnabled)
         {
-            fliesReleased += flies + (flies * (int) inkAmount);
-
+//            fliesReleased += flies + (flies * (int) inkAmount);
+//            maxScore += flies + (flies * (in))
         }
 
         fliesReleasedUI.text = fliesReleased.ToString();
@@ -122,7 +125,9 @@ public class Level : MonoBehaviour {
                 LevelCompletePanel.SetActive(true);
                 if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
                 {
-                    LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased);
+                    //max multiplier = 27
+                    
+                    LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased, maxScore);
                     Debug.Log("Setting score");
                 }
             }
@@ -132,7 +137,7 @@ public class Level : MonoBehaviour {
             LevelCompletePanel.SetActive(true);
             if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
             {
-                LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased);
+                LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased, maxScore);
                 Debug.Log("Setting score");
             }
 

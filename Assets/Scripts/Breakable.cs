@@ -13,8 +13,10 @@ public struct BreakableSet
 
 public class Breakable : MonoBehaviour {
 	private int timesHit = 0;
-//	public int requiredHits = 3;
-//	public BreakableSet[] sprites;
+    //	public int requiredHits = 3;
+    //	public BreakableSet[] sprites;
+    public bool shrinksIntruder;
+    public bool enlargesIntruder;
     public GameObject[] sprites;
 	public SpriteRenderer color;
 	public AudioClip hit;
@@ -56,6 +58,15 @@ public class Breakable : MonoBehaviour {
         if(spritesDeactivated == sprites.Length)
         {
             //set flies free first
+            if (shrinksIntruder)
+            {
+                ball.GetComponent<Ball>().Shrink();
+            }
+            if(enlargesIntruder)
+            {
+                ball.GetComponent<Ball>().Enlarge();
+
+            }
             flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);
             flies.Free(ball);
             Destroy(this.gameObject);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Immovable : MonoBehaviour {
 	private float lightUpTime;
 	private bool currentlyLitUp;
-//	public Sprite litUp;
+    //	public Sprite litUp;
 //	private Sprite originalSprite;
 	// Use this for initialization
 	void Start () {
@@ -14,12 +14,13 @@ public class Immovable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	/*	if (Time.time > lightUpTime && currentlyLitUp) {
-			currentlyLitUp = false;
-			gameObject.GetComponent<SpriteRenderer> ().sprite = originalSprite;
-		}
-        */
-	}
+        /*	if (Time.time > lightUpTime && currentlyLitUp) {
+                currentlyLitUp = false;
+                gameObject.GetComponent<SpriteRenderer> ().sprite = originalSprite;
+            }
+
+            */
+    }
 
 	public void LightUp() {
         /*

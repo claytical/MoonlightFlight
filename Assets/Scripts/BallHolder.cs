@@ -15,6 +15,7 @@ public class BallHolder : MonoBehaviour {
     public GameObject uiCanvas;
     public int multiplier;
     private bool maxFever;
+    private float maxFeverTime;
 	private int score;
 
 	// Use this for initialization
@@ -41,14 +42,23 @@ public class BallHolder : MonoBehaviour {
             speedState = 2;
             maxFever = true;
             Debug.Log("MAX FEVER!!!");
+            maxFeverTime = Time.time + 10f;
             Instantiate(textOverlay, uiCanvas.transform);
         }
         return speedState;
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (maxFever && maxFeverTime <= Time.time) { 
+            multiplier = 1;
+            maxFever = false;
+            GetComponentInParent<LevelSound>().NormalMode();
+            ball.GetComponent<Animator>().SetTrigger("fever");
+            feverBar.resetFever();
+            ball.GetComponent<Ball>().force = 5f;
+        }
 	}
 
 	public void DeadBall() {
@@ -60,6 +70,8 @@ public class BallHolder : MonoBehaviour {
         Time.timeScale = 1f;
         button.GetComponent<Animator>().SetTrigger("pop");
         ball.GetComponent<Ball>().inPlay = true;
+        GetComponentInParent<LevelSound>().NormalMode();
+
         /*
         chute.SetTrigger ("fire");
 		button.interactable = false;
@@ -78,7 +90,7 @@ public class BallHolder : MonoBehaviour {
 		}
 		setBallDisplay ();
         */
-	}
+    }
     /*
 	private void setBallDisplay() {
 		for (int i = 0; i < ballDisplay.Length; i++) {
@@ -91,7 +103,7 @@ public class BallHolder : MonoBehaviour {
 
 	}
     */
-	public void removePoints() {
+    public void removePoints() {
 		score = 0;
 	}
 	public void addPoints(int points) {

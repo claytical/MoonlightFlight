@@ -10,11 +10,12 @@ public class Burst : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
         velocity = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f));
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         body.AddForce(velocity);
         Debug.Log("Adding Force of : " + velocity);
+        transform.Rotate(new Vector3(0, 0, Random.Range(1f, 3f)));
 
     }
 }

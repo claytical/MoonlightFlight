@@ -13,9 +13,9 @@ public class LevelComplete : MonoBehaviour {
 		}
 	}
 
-    public void SetScore(int amount)
+    public void SetScore(int amount, int total)
     {
-        score.text = amount.ToString("0 points");
+        score.text = amount.ToString("0") + total.ToString("/0 points");
     }
 
 	public void SetStars(int amount) {

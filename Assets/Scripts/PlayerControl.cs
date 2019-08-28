@@ -20,6 +20,8 @@ public class PlayerControl : MonoBehaviour {
     public float lineTimeLimit = 100f;
     public Text inkLeft;
     public float inkAmount = 0;
+    public GameObject inkJar;
+    public GameObject goButton;
 
 	private Vector3 mousePos;
 
@@ -150,6 +152,13 @@ public class PlayerControl : MonoBehaviour {
 				    }
                     */
                     endOfInk = true;
+                    if(inkJar.activeSelf)
+                    {
+                        inkJar.SetActive(false);
+                        goButton.SetActive(true);
+//                        GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.FindSnapshot("Normal").TransitionTo(0);
+                    }
+                    
                 }
                 float ink = (1 - (inkAmount / amountOfInk));
                 if(ink < 0)
@@ -161,6 +170,7 @@ public class PlayerControl : MonoBehaviour {
 
             }
 		}
+
 
     }
 
