@@ -20,7 +20,7 @@ public class Hazard : MonoBehaviour
     {
         if(coll.gameObject.tag == "Player")
         {
-            coll.gameObject.GetComponentInParent<BallHolder>().player.GameOver();
+            coll.gameObject.GetComponentInParent<BallHolder>().player.GameOver("You hit a hazard!");
 
         }
 

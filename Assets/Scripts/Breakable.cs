@@ -18,6 +18,7 @@ public class Breakable : MonoBehaviour {
     public bool shrinksIntruder;
     public bool enlargesIntruder;
     public GameObject[] sprites;
+    public ParticleSystem[] particles;
 	public SpriteRenderer color;
 	public AudioClip hit;
     public AudioClip finished;
@@ -85,19 +86,29 @@ public class Breakable : MonoBehaviour {
 	
 	}
 
-	public void LightUp(GameObject b) {
+	public bool LightUp(GameObject b) {
         //HIT
         ball = b;
         if (timesHit < sprites.Length - 1 ) {
+            //activate particles
+            particles[timesHit].Play();
             sprites[timesHit].SetActive(false);
 			GetComponentInParent<AudioSource> ().PlayOneShot (hit);
-		} else {
+            timesHit++;
+            return true;
+        }
+        else {
+//            particles[timesHit].Play();
             GetComponentInParent<AudioSource>().PlayOneShot(finished);
+            b.GetComponentInChildren<ParticleSystem>().Play();
             sprites[timesHit].SetActive(false);
-            GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);
+            //            GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);
+            GetComponentInParent<EndlessLevel>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);
+            
             GetComponent<Rigidbody2D> ().isKinematic = false;
+            timesHit++;
 
-		}
-		timesHit++;
-	}
+        }
+        return false;
+    }
 }

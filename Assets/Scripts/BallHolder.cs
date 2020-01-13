@@ -5,26 +5,27 @@ using UnityEngine.UI;
 public class BallHolder : MonoBehaviour {
 	public GameObject ball;
 	public GameObject holder;
-//	public GameObject[] ballDisplay;
 	public PlayerControl player;
-//	public Animator chute;
 	public Button button;
     public Fever feverBar;
     public GameObject inkJar;
     public GameObject textOverlay;
     public GameObject uiCanvas;
+    public int maxFeverPlaytime;
     public int multiplier;
     private bool maxFever;
     private float maxFeverTime;
 	private int score;
+    public Grid grid;
+    // Use this for initialization
 
-	// Use this for initialization
-	void Start () {
+    void Start () {
         //		setBallDisplay ();
         multiplier = 1;
         maxFever = false;
+        /*
         inkJar.SetActive(player.level.inkEnabled);
-
+        */
 	}
 
     public int increaseMultiplier()
@@ -37,40 +38,103 @@ public class BallHolder : MonoBehaviour {
             feverBar.increaseFever();
             speedState = 1;
         }
-        if(multiplier == 27 && !maxFever)
+        if(multiplier >= 27 && !maxFever)
         {
+            //EVENT #3 - FEVER REACHED
             speedState = 2;
-            maxFever = true;
-            Debug.Log("MAX FEVER!!!");
-            maxFeverTime = Time.time + 10f;
-            Instantiate(textOverlay, uiCanvas.transform);
         }
         return speedState;
+    }
+
+    public void FeverReached()
+    {
+        //        Instantiate(textOverlay, uiCanvas.transform);
+        grid.currentSet.BroadcastMessage("FeverReached", SendMessageOptions.DontRequireReceiver);
+        maxFever = true;
+        maxFeverTime = Time.time + maxFeverPlaytime;
+
+    }
+
+    public void BreakFever()
+    {
+        multiplier = 1;
+        maxFever = false;
+        //        GetComponentInParent<LevelSound>().NormalMode();
+        Debug.Log("Breaking Fever");
+        ball.GetComponent<Animator>().SetTrigger("fever");
+        feverBar.resetFever();
+        ball.GetComponent<Ball>().force = 5f;
+
+    }
+
+    public bool HasFever()
+    {
+        return maxFever;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (maxFever && maxFeverTime <= Time.time) { 
-            multiplier = 1;
-            maxFever = false;
-            GetComponentInParent<LevelSound>().NormalMode();
-            ball.GetComponent<Animator>().SetTrigger("fever");
-            feverBar.resetFever();
-            ball.GetComponent<Ball>().force = 5f;
+
+
+        if (Input.touchCount > 0 || Input.GetMouseButton(0))
+        {
+            if (Input.GetMouseButton(0)) {
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (ball)
+                {
+                    Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
+                    direction.Normalize();
+
+                    ball.GetComponent<Rigidbody2D>().AddForce(direction * 20f, ForceMode2D.Impulse);
+                }
+                /*            touchPosition.z = ball.transform.position.z - Camera.main.transform.position.z;
+                            touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
+                            touchPosition.y = ball.transform.position.y;
+                            */
+
+                //            Vector2 dir = lastKnown - (Vector2)(player.transform.position);
+            }
+            else
+            {
+                for(int i = 0; i < Input.touchCount; i++)
+                {
+                    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
+                    if (ball)
+                    {
+                        Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
+                        direction.Normalize();
+
+                        ball.GetComponent<Rigidbody2D>().AddForce(direction * 20f, ForceMode2D.Impulse);
+                    }
+
+                }
+            }
+        }
+
+        if (maxFever && maxFeverTime <= Time.time) {
+            //EVENT #6 - FEVER TIME OUT
+            BreakFever();
+            Debug.Log("Fever Timeout");
+            grid.currentSet.BroadcastMessage("FeverTimeout", SendMessageOptions.DontRequireReceiver);
         }
 	}
 
 	public void DeadBall() {
         //		button.interactable = true;
-        player.GameOver();
+        player.GameOver("Your firefly died...");
     }
 
 	public void Drop() {
         Time.timeScale = 1f;
         button.GetComponent<Animator>().SetTrigger("pop");
         ball.GetComponent<Ball>().inPlay = true;
-        GetComponentInParent<LevelSound>().NormalMode();
+        if(GetComponentInParent<LevelSound>())
+        {
+//            GetComponentInParent<LevelSound>().NormalMode();
+
+        }
+        grid.currentSet.Starting();
 
         /*
         chute.SetTrigger ("fire");

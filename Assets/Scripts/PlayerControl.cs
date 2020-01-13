@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class PlayerControl : MonoBehaviour {
 	public GameObject lineContainer;
 	public Tutor tutor;
-	public Level level;
+	public EndlessLevel level;
 	public float amountOfInk;
 	public int balls;
 	private int dragCount;
@@ -46,6 +46,8 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(!finished) {
+            //magic ink
+            /*
             if (!endOfInk && level.inkEnabled)
             {
                 if (SystemInfo.deviceType == DeviceType.Desktop)
@@ -146,11 +148,7 @@ public class PlayerControl : MonoBehaviour {
                 inkAmount = linesLength;
                 if (linesLength > amountOfInk)
                 {
-                    /*
-                    if (Lines [0].Shorten ()) {
-			    		Lines.RemoveAt (0);
-				    }
-                    */
+
                     endOfInk = true;
                     if(inkJar.activeSelf)
                     {
@@ -169,15 +167,18 @@ public class PlayerControl : MonoBehaviour {
                 inkLeft.text = ink.ToString("0%");
 
             }
+            */
 		}
 
 
     }
 
-    public void GameOver() {		
+    public void GameOver(string message) {		
 		finished = true;
-		level.LevelFailPanel.SetActive (true);
-		ProcGenMusic.MusicGenerator.Instance.Stop ();
+        level.grid.currentSet.Waiting();
+        level.LevelFailPanel.SetActive (true);
+        level.failureMessage.text = message;
+        //		ProcGenMusic.MusicGenerator.Instance.Stop ();
         endOfInk = false;
     }
     public void Pause()
