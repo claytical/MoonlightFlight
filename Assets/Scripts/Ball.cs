@@ -68,13 +68,6 @@ public class Ball : MonoBehaviour {
     */
     void Update () {
 		timeSinceLastBump++;
-        //              GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.acceleration.x * force, Input.acceleration.y * force));
-            //GetComponent<Rigidbody2D>().AddForce(, ForceMode2D.Impulse);
-//        Vector3 newPosition = new Vector3();
-  //      newPosition = transform.position + (Input.acceleration * .01f);
-
-    //    transform.position = newPosition;
-
 
         if (isDead) {
 			GetComponentInParent<BallHolder> ().DeadBall ();
@@ -120,13 +113,12 @@ public class Ball : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Disappearing")
         {
-
-            //			coll.gameObject.GetComponent<Bumpable> ().LightUp ();
             if (coll.gameObject.GetComponent<Breakable>())
             {
                 if(coll.gameObject.GetComponent<Breakable>().LightUp(this.gameObject))
                 {
                     //not dead
+                    CheckFever(1);
                 }
                 else
                 {
@@ -134,6 +126,8 @@ public class Ball : MonoBehaviour {
                     //EVENT #1 - BROKE OBJECT
                     Debug.Log("Hit something" + coll.gameObject);
                     grid.currentSet.BroadcastMessage("BrokeObject", SendMessageOptions.DontRequireReceiver);
+                    CheckFever(2);
+
                 }
             }
 
@@ -164,22 +158,7 @@ public class Ball : MonoBehaviour {
                 }
             }
             //coll.gameObject.GetComponent<Immovable> ().LightUp ();
-            int speedState = GetComponentInParent<BallHolder>().increaseMultiplier();
-            if (speedState > 0)
-            {
-                force += 1;
-                if (speedState == 2)
-                {
-                    //EVENT #3 - FEVER REACHED
-
-                    GetComponentInParent<BallHolder>().FeverReached();
-                    Debug.Log("Fever Reached!");
-                    GetComponent<Animator>().SetTrigger("fever");
-
-                    //                    GetComponentInParent<LevelSound>().MaxMode();
-
-                }
-            }
+            CheckFever(1);
         }
         
         if (coll.gameObject.tag == "Boundary")
@@ -227,7 +206,26 @@ public class Ball : MonoBehaviour {
             timeSinceLastBump = 0;
             gameObject.GetComponent<AudioSource>().Play();
     }
+    void CheckFever(int amount = 0)
+    {
+        int speedState = GetComponentInParent<BallHolder>().increaseMultiplier(amount);
+        if (speedState > 0)
+        {
+            force += 1;
+            if (speedState == 2)
+            {
+                //EVENT #3 - FEVER REACHED
 
+                GetComponentInParent<BallHolder>().FeverReached();
+                Debug.Log("Fever Reached!");
+                GetComponent<Animator>().SetTrigger("fever");
+
+                //                    GetComponentInParent<LevelSound>().MaxMode();
+
+            }
+        }
+
+    }
     public void Shrink()
     {
         gameObject.transform.localScale = gameObject.transform.localScale * .5f;

@@ -7,6 +7,7 @@ public class Grid : MonoBehaviour
 
     public GameObject spawnLocations;
     public GameObject platforms;
+    public GameObject[] breakables;
     public ProceduralSet currentSet;
     public int numberOfObjectsToPlace;
 

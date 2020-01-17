@@ -56,14 +56,22 @@ public class EndlessLevel : MonoBehaviour {
         fliesReleasedUI.text = fliesReleased.ToString();
     }
 	public void ScanForCompletion() {
-            GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
-            if (gos.Length == 0)
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
+        bool skipToFever = ballHolder.HasFever();
+
+        if (gos.Length == 0)
             {
+            //old grid saved
+            Grid oldGrid = grid;
+
             //EVENT #1 - FINISHED GRID
             //tell the current grid (open) to transition to finished grid
-            grid.currentSet.BroadcastMessage("FinishedGrid", SendMessageOptions.DontRequireReceiver);
-            //open grid saved
-            Grid oldGrid = grid;
+            if (!skipToFever)
+            {
+                grid.currentSet.BroadcastMessage("FinishedGrid", SendMessageOptions.DontRequireReceiver);
+
+            }
+
             //set current grid to whatever grid is next (set 2)
             grid = grid.currentSet.nextGrid;
             //set ball holder's grid to our current grid 
@@ -74,6 +82,10 @@ public class EndlessLevel : MonoBehaviour {
             ballHolder.ball.GetComponent<Ball>().grid = grid;
             grid.gameObject.SetActive(true);
             CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
+            if (skipToFever)
+            {
+                grid.currentSet.BroadcastMessage("FeverReached", SendMessageOptions.DontRequireReceiver);
+            }
             Debug.Log("Shutting down old grid: " + oldGrid.gameObject.name);
 
 
@@ -130,7 +142,7 @@ public class EndlessLevel : MonoBehaviour {
     {
 
         Transform[] locations = grid.spawnLocations.GetComponentsInChildren<Transform>();
-        GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], locations[Random.Range(0, locations.Length)].position, Quaternion.identity, transform);
+        GameObject obj = Instantiate(grid.breakables[Random.Range(0, grid.breakables.Length)], locations[Random.Range(0, locations.Length)].position, Quaternion.identity, transform);
         
         //Place new object
         Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
@@ -158,7 +170,7 @@ public class EndlessLevel : MonoBehaviour {
         {
             if (locations[set[i]].position != Vector3.zero)
             {
-                GameObject obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], locations[set[i]].position, Quaternion.identity, transform);
+                GameObject obj = Instantiate(grid.breakables[Random.Range(0, grid.breakables.Length)], locations[set[i]].position, Quaternion.identity, transform);
             }
         }
     }
@@ -171,11 +183,11 @@ public class EndlessLevel : MonoBehaviour {
         for (int i = 0; i < set.Length - 2; i+=3)
         {
             //switch
-            GameObject switch_obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], locations[set[i]].position, Quaternion.identity, transform);
+            GameObject switch_obj = Instantiate(grid.breakables[Random.Range(0, grid.breakables.Length)], locations[set[i]].position, Quaternion.identity, transform);
             //lock
-            GameObject lock_obj = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], locations[set[i+1]].position, Quaternion.identity, transform);
+            GameObject lock_obj = Instantiate(grid.breakables[Random.Range(0, grid.breakables.Length)], locations[set[i+1]].position, Quaternion.identity, transform);
             //lock
-            GameObject obj_treasure = Instantiate(breakableObjects[Random.Range(0, breakableObjects.Length)], locations[set[i + 2]].position, Quaternion.identity, transform);
+            GameObject obj_treasure = Instantiate(grid.breakables[Random.Range(0, grid.breakables.Length)], locations[set[i + 2]].position, Quaternion.identity, transform);
 
         }
     }

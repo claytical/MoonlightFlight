@@ -13,19 +13,15 @@ public struct BreakableSet
 
 public class Breakable : MonoBehaviour {
 	private int timesHit = 0;
-    //	public int requiredHits = 3;
-    //	public BreakableSet[] sprites;
     public bool shrinksIntruder;
     public bool enlargesIntruder;
     public GameObject[] sprites;
-    public ParticleSystem[] particles;
-	public SpriteRenderer color;
+    public GameObject explosion;
 	public AudioClip hit;
-    public AudioClip finished;
     public Flys flies;
     private GameObject ball;
 	private float lightUpTime;
-	private bool litUp = false;
+	private bool litUp = false; //
 	private bool isDying = false;
 
 	// Use this for initialization
@@ -43,10 +39,9 @@ public class Breakable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > lightUpTime && litUp) {
+        /*if (Time.time > lightUpTime && litUp) {
 			litUp = false;
-		}
-
+		}*/
         int spritesDeactivated = 0;
 
         for (int i = 0; i < sprites.Length; i++)
@@ -89,20 +84,20 @@ public class Breakable : MonoBehaviour {
 	public bool LightUp(GameObject b) {
         //HIT
         ball = b;
+        Debug.Log("Creating Explosion");
+        Instantiate(explosion, transform.position, Quaternion.identity, transform.parent);
+        //
+        GetComponentInParent<AudioSource>().PlayOneShot(hit);
         if (timesHit < sprites.Length - 1 ) {
             //activate particles
-            particles[timesHit].Play();
+          //    particles[timesHit].Play();
             sprites[timesHit].SetActive(false);
-			GetComponentInParent<AudioSource> ().PlayOneShot (hit);
             timesHit++;
             return true;
         }
         else {
-//            particles[timesHit].Play();
-            GetComponentInParent<AudioSource>().PlayOneShot(finished);
-            b.GetComponentInChildren<ParticleSystem>().Play();
+            //b.GetComponentInChildren<ParticleSystem>().Play();
             sprites[timesHit].SetActive(false);
-            //            GetComponentInParent<Level>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);
             GetComponentInParent<EndlessLevel>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);
             
             GetComponent<Rigidbody2D> ().isKinematic = false;

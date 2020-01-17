@@ -63,13 +63,23 @@ public class ProceduralSet : MonoBehaviour
 
     public void BrokeObject()
     {
-        brokeObject.TransitionTo(0);
-        Debug.Log("Crushed a disappearing object");
-    }
+        Debug.Log("Running Broke Object");
+        if (brokeObject)
+        {
+            brokeObject.TransitionTo(0);
+            Debug.Log("Transitioned to Broke Object");
+        }
+        }
 
     public void BumpedPlatform()
     {
-        bumpedPlatform.TransitionTo(0);
+        Debug.Log("Running Bumped Platform");
+        if(bumpedPlatform)
+        {
+            Debug.Log("Transitioned to Bumped Platform");
+            bumpedPlatform.TransitionTo(0);
+
+        }
     }
 
     public void Switched()

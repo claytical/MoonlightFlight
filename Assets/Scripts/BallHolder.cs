@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class BallHolder : MonoBehaviour {
 	public GameObject ball;
@@ -17,33 +18,41 @@ public class BallHolder : MonoBehaviour {
     private float maxFeverTime;
 	private int score;
     public Grid grid;
+    public GameObject touchPoint;
+    private List<GameObject> touchPoints;
+    private bool[] startedTouching;
+
     // Use this for initialization
 
     void Start () {
         //		setBallDisplay ();
         multiplier = 1;
         maxFever = false;
+        touchPoints = new List<GameObject>();
         /*
         inkJar.SetActive(player.level.inkEnabled);
         */
-	}
+    }
 
-    public int increaseMultiplier()
+    public int increaseMultiplier(int amount)
     {
-//        bool speedUp = false;
-        int speedState = 0;
-        if(multiplier < 27)
+        //        bool speedUp = false;
+        if (amount > 0)
         {
-            multiplier++;
-            feverBar.increaseFever();
-            speedState = 1;
+            int speedState = 0;
+            if (multiplier < 26)
+            {
+                multiplier+=amount;
+                feverBar.increaseFever(amount);
+                speedState = 1;
+            }
+            else if(!maxFever) { 
+                //EVENT #3 - FEVER REACHED
+                speedState = 2;
+            }
+            return speedState;
         }
-        if(multiplier >= 27 && !maxFever)
-        {
-            //EVENT #3 - FEVER REACHED
-            speedState = 2;
-        }
-        return speedState;
+        return -1;
     }
 
     public void FeverReached()
@@ -72,15 +81,57 @@ public class BallHolder : MonoBehaviour {
         return maxFever;
     }
 
+
+    void CheckTouches()
+    {
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Touch touch = Input.GetTouch(i);
+            if(touch.phase == TouchPhase.Began)
+            {
+                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+
+                GameObject go = (GameObject) Instantiate(touchPoint, touch.position, transform.rotation);
+                touchPosition.z = 0;
+                touchPoints.Add(go);
+            }
+            if(touch.phase == TouchPhase.Ended)
+            {
+                GameObject tP = touchPoints[i];
+                touchPoints.RemoveAt(i);
+                Destroy(tP,5);
+            }
+            if(touch.phase == TouchPhase.Moved)
+            {
+                touchPoints[i].transform.position = touch.position;
+            }
+        }
+
+
+    }
     // Update is called once per frame
     void Update()
     {
 
-
-        if (Input.touchCount > 0 || Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButton(0)) {
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            touchPosition.z = 0;
+            GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
+            go.transform.parent = transform;
+           
+            touchPoints.Add(go);
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            GameObject tP = touchPoints[0];
+            touchPoints.RemoveAt(0);
+            Destroy(tP,5);
+        }
+
+        if (Input.GetMouseButton(0)) {
+            
+                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 if (ball)
                 {
                     Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
@@ -110,7 +161,6 @@ public class BallHolder : MonoBehaviour {
 
                 }
             }
-        }
 
         if (maxFever && maxFeverTime <= Time.time) {
             //EVENT #6 - FEVER TIME OUT

@@ -1,11 +1,10 @@
 fileFormatVersion: 2
 guid: ae1b3da4da0583d409623d32f41d7a4f
-timeCreated: 1506019195
-licenseType: Pro
 AudioImporter:
+  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
-    loadType: 0
+    loadType: 2
     sampleRateSetting: 0
     sampleRateOverride: 44100
     compressionFormat: 1
