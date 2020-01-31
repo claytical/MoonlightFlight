@@ -5,48 +5,63 @@ using System.Collections.Generic;
 
 public class BallHolder : MonoBehaviour {
 	public GameObject ball;
-	public GameObject holder;
+//	public GameObject holder;
 	public PlayerControl player;
-	public Button button;
-    public Fever feverBar;
-    public GameObject inkJar;
+//	public Button button;
+//    public GameObject inkJar;
     public GameObject textOverlay;
     public GameObject uiCanvas;
-    public int maxFeverPlaytime;
-    public int multiplier;
-    private bool maxFever;
-    private float maxFeverTime;
+    public int maxEnergyPlaytime;
+    private int seedsCollected;
+    private bool maxEnergy;
+    private float maxEnergyTime;
 	private int score;
     public Grid grid;
     public GameObject touchPoint;
     private List<GameObject> touchPoints;
     private bool[] startedTouching;
-
+    public int energy;
+    public Text energyUI;
+    private float force;
+    private bool useTilt;
     // Use this for initialization
 
-    void Start () {
+    void Start()
+    {
         //		setBallDisplay ();
-        multiplier = 1;
-        maxFever = false;
+        energy = 0;
+        seedsCollected = 0;
+        maxEnergy = false;
         touchPoints = new List<GameObject>();
+        force = ball.GetComponent<Ball>().force;
+        if (PlayerPrefs.GetInt("tilt") == 1)
+        {
+            useTilt = true;
+        }
+        else
+        {
+            useTilt = false;
+        }
+
         /*
         inkJar.SetActive(player.level.inkEnabled);
         */
     }
-
-    public int increaseMultiplier(int amount)
+        public int increaseEnergy(int amount)
     {
         //        bool speedUp = false;
         if (amount > 0)
         {
             int speedState = 0;
-            if (multiplier < 26)
+            if (energy < grid.energyRequiredForPowerUp)
             {
-                multiplier+=amount;
-                feverBar.increaseFever(amount);
+                energy+=amount;
+                //update score
+                score += score;
+//                feverBar.increaseFever(amount);
                 speedState = 1;
             }
-            else if(!maxFever) { 
+            else if(!maxEnergy && energy >= grid.energyRequiredForPowerUp) {
                 //EVENT #3 - FEVER REACHED
                 speedState = 2;
             }
@@ -55,173 +70,188 @@ public class BallHolder : MonoBehaviour {
         return -1;
     }
 
-    public void FeverReached()
+    public void MaxEnergy()
     {
-        //        Instantiate(textOverlay, uiCanvas.transform);
-        grid.currentSet.BroadcastMessage("FeverReached", SendMessageOptions.DontRequireReceiver);
-        maxFever = true;
-        maxFeverTime = Time.time + maxFeverPlaytime;
+        AddSeed();
+        player.level.CreatePowerUp();
+        Debug.Log("MAX ENERGY!");
+        grid.currentSet.BroadcastMessage("MaxEnergy", SendMessageOptions.DontRequireReceiver);
+        maxEnergy = true;
+        energy = 0;
+//        maxEnergyTime = Time.time + maxEnergyPlaytime;
 
     }
 
-    public void BreakFever()
+    public void NormalEnergy()
     {
-        multiplier = 1;
-        maxFever = false;
+        grid.LowEnergy();
+        energy = 0;
+        maxEnergy = false;
         //        GetComponentInParent<LevelSound>().NormalMode();
-        Debug.Log("Breaking Fever");
-        ball.GetComponent<Animator>().SetTrigger("fever");
-        feverBar.resetFever();
-        ball.GetComponent<Ball>().force = 5f;
-
+        //        ball.GetComponent<Animator>().SetTrigger("fever");
+        //        feverBar.resetFever();
+        //ball.GetComponent<Ball>().force = 5f;
+        ball.GetComponent<Ball>().SetPassThrough(false);
+        grid.PlatformTransparency(false);
     }
 
-    public bool HasFever()
+    public bool HasFullEnergy()
     {
-        return maxFever;
+        return maxEnergy;
     }
 
+    void CheckMouse()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Making Mouse Touch Point");
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            touchPosition.z = 0;
+            GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
+            go.transform.parent = transform;
+
+            touchPoints.Add(go);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            GameObject tP = touchPoints[0];
+            touchPoints.RemoveAt(0);
+            Destroy(tP, 5);
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (ball)
+            {
+                Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
+                direction.Normalize();
+
+                ball.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+            }
+            /*            touchPosition.z = ball.transform.position.z - Camera.main.transform.position.z;
+                        touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
+                        touchPosition.y = ball.transform.position.y;
+                        */
+
+            //            Vector2 dir = lastKnown - (Vector2)(player.transform.position);
+        }
+        else
+        {
+        }
+
+    }
+    void CheckControl()
+    {
+        if (Input.mousePresent)
+        {
+            CheckMouse();
+        }
+        CheckTouches();
+
+    }
+
+    public void AddSeed()
+    {
+        seedsCollected++;
+        energyUI.text = seedsCollected.ToString();
+        energyUI.GetComponent<Animator>().SetTrigger("add");
+        energyUI.GetComponent<AudioSource>().Play();
+
+    }
 
     void CheckTouches()
     {
+        Touch touch = new Touch();
+
         for (int i = 0; i < Input.touchCount; i++)
         {
-            Touch touch = Input.GetTouch(i);
-            if(touch.phase == TouchPhase.Began)
+            touch = Input.GetTouch(i);
+            if (touch.phase == TouchPhase.Began)
             {
+                GetComponent<AudioSource>().Play();
+                Debug.Log("Touch Began! " + touch.fingerId);
+                //                Vector3 touchPosition = Camera.main.WorldToScreenPoint(touch.position);
                 Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-
-                GameObject go = (GameObject) Instantiate(touchPoint, touch.position, transform.rotation);
-                touchPosition.z = 0;
+                touchPosition.z = 10;
+                GameObject go = (GameObject) Instantiate(touchPoint, touchPosition, transform.rotation);
+                go.transform.parent = transform;
                 touchPoints.Add(go);
-            }
-            if(touch.phase == TouchPhase.Ended)
-            {
-                GameObject tP = touchPoints[i];
-                touchPoints.RemoveAt(i);
-                Destroy(tP,5);
             }
             if(touch.phase == TouchPhase.Moved)
             {
-                touchPoints[i].transform.position = touch.position;
+ //               Debug.Log("Moving Touch! " + i);
+//                touchPoints[i].transform.position = touch.position;
             }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+   //             Debug.Log("Touch Ended! " + i);
+     //           GameObject tP = touchPoints[i];
+       //         touchPoints.RemoveAt(i);
+         //       Destroy(tP, 5);
+            }
+            
         }
 
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
+            if (ball)
+            {
+                Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
+                direction.Normalize();
+
+                ball.GetComponent<Rigidbody2D>().AddForce(direction * ball.GetComponent<Ball>().force, ForceMode2D.Impulse);
+            }
+
+        }
 
     }
     // Update is called once per frame
     void Update()
     {
 
-        if(Input.GetMouseButtonDown(0))
+        if (energy > 25)
         {
-            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            touchPosition.z = 0;
-            GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
-            go.transform.parent = transform;
-           
-            touchPoints.Add(go);
+            MaxEnergy();
         }
-        if(Input.GetMouseButtonUp(0))
+        else
         {
-            GameObject tP = touchPoints[0];
-            touchPoints.RemoveAt(0);
-            Destroy(tP,5);
+
         }
 
-        if (Input.GetMouseButton(0)) {
-            
-                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if (ball)
-                {
-                    Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
-                    direction.Normalize();
-
-                    ball.GetComponent<Rigidbody2D>().AddForce(direction * 20f, ForceMode2D.Impulse);
-                }
-                /*            touchPosition.z = ball.transform.position.z - Camera.main.transform.position.z;
-                            touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
-                            touchPosition.y = ball.transform.position.y;
-                            */
-
-                //            Vector2 dir = lastKnown - (Vector2)(player.transform.position);
-            }
-            else
-            {
-                for(int i = 0; i < Input.touchCount; i++)
-                {
-                    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-                    if (ball)
-                    {
-                        Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
-                        direction.Normalize();
-
-                        ball.GetComponent<Rigidbody2D>().AddForce(direction * 20f, ForceMode2D.Impulse);
-                    }
-
-                }
-            }
-
-        if (maxFever && maxFeverTime <= Time.time) {
-            //EVENT #6 - FEVER TIME OUT
-            BreakFever();
-            Debug.Log("Fever Timeout");
-            grid.currentSet.BroadcastMessage("FeverTimeout", SendMessageOptions.DontRequireReceiver);
+        if (!useTilt)
+        {
+            CheckControl();
         }
+
+
+        if(maxEnergy && !grid.fullEnergy.isPlaying)
+        {
+            //ENERGY TIMEOUT
+            NormalEnergy();
+
+        }
+
 	}
 
 	public void DeadBall() {
-        //		button.interactable = true;
-        player.GameOver("Your firefly died...");
+        player.GameOver("Your journey has come to an end.", seedsCollected + PlayerPrefs.GetInt("seeds"));
     }
 
 	public void Drop() {
         Time.timeScale = 1f;
-        button.GetComponent<Animator>().SetTrigger("pop");
+//        button.GetComponent<Animator>().SetTrigger("pop");
         ball.GetComponent<Ball>().inPlay = true;
-        if(GetComponentInParent<LevelSound>())
-        {
-//            GetComponentInParent<LevelSound>().NormalMode();
-
-        }
         grid.currentSet.Starting();
 
-        /*
-        chute.SetTrigger ("fire");
-		button.interactable = false;
-		if(player.tutor) {
-			player.tutor.GetComponent<Tutor> ().pressedDropButton ();
-			GameObject b = (GameObject) Instantiate(ball, transform.position, transform.rotation);
-			b.transform.parent = transform;
-
-		}
-		else {
-			if(player.balls > 0) {
-				GameObject b = (GameObject) Instantiate(ball, transform.position, transform.rotation);
-				b.transform.parent = transform;
-				player.balls--;
-			}	
-		}
-		setBallDisplay ();
-        */
     }
-    /*
-	private void setBallDisplay() {
-		for (int i = 0; i < ballDisplay.Length; i++) {
-			if (i < player.balls) {
-				ballDisplay [i].SetActive (true);
-			} else {
-				ballDisplay [i].SetActive (false);
-			}
-		}
-
-	}
-    */
     public void removePoints() {
 		score = 0;
 	}
 	public void addPoints(int points) {
-        Debug.Log("Adding " + points + " points");
 		score += points;
 	}
 

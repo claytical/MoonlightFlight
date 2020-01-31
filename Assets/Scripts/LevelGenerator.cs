@@ -27,7 +27,7 @@ public class LevelGenerator : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
-
+    /*
 	public void removeBumper() {
 		currentBumpers--;
 		if(currentBumpers <= 0) {
@@ -60,14 +60,16 @@ public class LevelGenerator : MonoBehaviour {
 		}
 
 	}
-
+    */
 	public void ClearGrid() {
-		foreach(Transform child in player.lineContainer.GetComponentInChildren<Transform>()) {
+        /*
+        foreach (Transform child in player.lineContainer.GetComponentInChildren<Transform>()) {
 			Destroy(child.gameObject);
 		}
-
+        
 		player.Lines.Clear();
-		BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
+	*/	
+        BallHolder ballHolder = (BallHolder)FindObjectOfType(typeof(BallHolder));
 		Ball[] balls = ballHolder.gameObject.GetComponentsInChildren<Ball>();
 		for(int i = 0; i < balls.Length; i++) {
 			Destroy(balls[i].gameObject);

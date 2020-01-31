@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fly : MonoBehaviour {
-    float angle = 0;
-    float speed = (2 * Mathf.PI) / 2; //2*PI in degress is 360, so you get 5 seconds to complete a circle
-    float radius = .008f;
     public bool free = false;
     public int timeFreed;
     public GameObject ball;
@@ -19,13 +16,6 @@ public class Fly : MonoBehaviour {
     void Update () {
         if (free)
         {
-            //GetComponentInChildren<Light>().intensity = Random.Range(.2f, 1f);
-            /*            transform.Rotate(new Vector3(0, 0, Time.deltaTime * 400.0f));
-                        GetComponent<Rigidbody2D>().isKinematic = false;
-                        GetComponent<Rigidbody2D>().AddForce(new Vector3(direction, 100f, 0));//Vector3.up * 15f);
-              */
-            //            Vector3 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            //            transform.position = position + Random.insideUnitSphere * .02f;
             if (ball)
             {
                 transform.position = Vector3.MoveTowards(transform.position, ball.transform.position, Time.deltaTime);
@@ -39,7 +29,21 @@ public class Fly : MonoBehaviour {
         }
         else
         {
-            GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * .7f);          
+            /*
+              
+            Vector3 extents = transform.parent.GetComponentInParent<Breakable>().sprites[0].GetComponent<SpriteRenderer>().bounds.extents;
+
+            extents = extents / 2;
+            extents += transform.parent.position;
+
+            if(transform.position.x > extents.x || transform.position.x < -extents.x || transform.position.y > extents.y || transform.position.y < -extents.y)
+            {
+                transform.position = transform.parent.position;
+            }
+
+            */
+
+            GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 2f);          
             if(transform.localPosition.x > 1 || transform.localPosition.x < -1 || transform.localPosition.y > 1 || transform.localPosition.y < -1)
             {
                 transform.position = transform.parent.position;

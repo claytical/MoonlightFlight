@@ -8,7 +8,6 @@ public class EndlessLevel : MonoBehaviour {
 	public GameObject LevelFailPanel;
     public GameObject[] breakableObjects;
     public Grid grid;
-    public Text fliesReleasedUI;
     public Text failureMessage;
     public bool inkEnabled;
     public int fliesReleased;
@@ -22,6 +21,9 @@ public class EndlessLevel : MonoBehaviour {
     private bool levelFinished;
     private int totalRings;
     private int maxScore;
+    private int setCount;
+    private int powerUpIndex = 0;
+    private bool hasPowerup = false;
 
 
     // Use this for initialization
@@ -30,6 +32,7 @@ public class EndlessLevel : MonoBehaviour {
     void Start () {
 //        Time.timeScale = 0f;
         fliesReleased = 0;
+        setCount = 0;
         CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
         gameState = (GameState)FindObjectOfType (typeof(GameState));
         //        PlaceRandomBreakable(Random.Range(1,3));
@@ -51,16 +54,15 @@ public class EndlessLevel : MonoBehaviour {
 
     public void AddFliesReleased(int flies, float inkAmount, int multiplier)
     {
-        Debug.Log("There are " + flies + " flies");
         fliesReleased += flies * multiplier;
-        fliesReleasedUI.text = fliesReleased.ToString();
     }
 	public void ScanForCompletion() {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
-        bool skipToFever = ballHolder.HasFever();
-
-        if (gos.Length == 0)
-            {
+        bool skipToFever = ballHolder.HasFullEnergy();
+        if (gos.Length == 0 && setCount >= grid.sets ) //add check for current Set
+        {
+            //reset set counter
+            setCount = 0;
             //old grid saved
             Grid oldGrid = grid;
 
@@ -68,8 +70,13 @@ public class EndlessLevel : MonoBehaviour {
             //tell the current grid (open) to transition to finished grid
             if (!skipToFever)
             {
+                Animator[] platforms = grid.platforms.GetComponentsInChildren<Animator>();
+                for(int i = 0; i < platforms.Length; i++)
+                {
+                    platforms[i].SetTrigger("done");
+                }
                 grid.currentSet.BroadcastMessage("FinishedGrid", SendMessageOptions.DontRequireReceiver);
-
+                ballHolder.AddSeed();
             }
 
             //set current grid to whatever grid is next (set 2)
@@ -82,12 +89,16 @@ public class EndlessLevel : MonoBehaviour {
             ballHolder.ball.GetComponent<Ball>().grid = grid;
             grid.gameObject.SetActive(true);
             CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
-            if (skipToFever)
-            {
-                grid.currentSet.BroadcastMessage("FeverReached", SendMessageOptions.DontRequireReceiver);
-            }
+
             Debug.Log("Shutting down old grid: " + oldGrid.gameObject.name);
 
+
+        }
+        else if (gos.Length == 0) //place more breakables
+        {
+            //new set
+            setCount++;
+            CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
 
         }
 
@@ -170,11 +181,41 @@ public class EndlessLevel : MonoBehaviour {
         {
             if (locations[set[i]].position != Vector3.zero)
             {
-                GameObject obj = Instantiate(grid.breakables[Random.Range(0, grid.breakables.Length)], locations[set[i]].position, Quaternion.identity, transform);
+                if (i == set.Length - 1)
+                {
+
+                    //set position for recall later
+                    powerUpIndex = i;
+                } else
+                {
+                    GameObject obj = Instantiate(grid.breakables[Random.Range(0, grid.breakables.Length)], locations[set[i]].position, Quaternion.identity, transform);
+
+                }
             }
         }
     }
 
+    public GameObject CreatePowerUp()
+    {
+        Debug.Log("Creating Powerup");
+        grid.PowerUp();
+        Transform[] locations = grid.spawnLocations.GetComponentsInChildren<Transform>();
+        if (!locations[powerUpIndex].GetComponent<PowerUp>()) {
+            GameObject obj = Instantiate(grid.powerUp, locations[powerUpIndex].position, Quaternion.identity, transform);
+            return obj;
+        }
+
+/*        if (!hasPowerup)
+        {
+            Transform[] locations = grid.spawnLocations.GetComponentsInChildren<Transform>();
+            GameObject obj = Instantiate(grid.powerUp, locations[powerUpIndex].position, Quaternion.identity, transform);
+            hasPowerup = true;
+            return obj;
+        }
+*/
+        //        obj.SetActive(false);
+        return null;
+    }
     public void CreateRandomSetOfBreakablesWithSwitches(int n)
     {
         Transform[] locations = grid.spawnLocations.GetComponentsInChildren<Transform>();

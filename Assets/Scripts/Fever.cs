@@ -36,7 +36,7 @@ public class Fever : MonoBehaviour {
         {
             for (int i = 0; i < amount; i++)
             {
-                GameObject bar = Instantiate(feverBar, transform);
+//                GameObject bar = Instantiate(feverBar, transform);
             }
 
         } else if(go.Length < 27)
@@ -44,7 +44,7 @@ public class Fever : MonoBehaviour {
             int resizedAmount = 26 - go.Length;
             for (int i = 0; i < resizedAmount; i++)
             {
-                GameObject bar = Instantiate(feverBar, transform);
+            //    GameObject bar = Instantiate(feverBar, transform);
 
             }
         }

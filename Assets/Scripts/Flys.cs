@@ -22,7 +22,7 @@ public class Flys : MonoBehaviour {
         for (int i = 0; i < flies.Length; i++)
         {
             flies[i].free = true;
-            flies[i].timeFreed = Time.frameCount + 500;
+            flies[i].timeFreed = Time.frameCount + 100;
             flies[i].ball = ball;
         }
         ball.GetComponent<Ball>().force += .01f;

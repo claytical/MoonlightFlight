@@ -22,6 +22,17 @@ public class GameState : MonoBehaviour {
 		
 	}
 	
+    public void UseTiltControls()
+    {
+        PlayerPrefs.SetInt("tilt", 1);
+    }
+
+    public void UseTouchControls()
+    {
+        PlayerPrefs.SetInt("tilt", 0);
+
+    }
+
 	// Update is called once per frame
 	void Update () {
 		

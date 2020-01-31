@@ -4,24 +4,25 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class PlayerControl : MonoBehaviour {
-	public GameObject lineContainer;
-	public Tutor tutor;
+//	public GameObject lineContainer;
+//	public Tutor tutor;
 	public EndlessLevel level;
-	public float amountOfInk;
-	public int balls;
-	private int dragCount;
+//	public float amountOfInk;
+//	public int balls;
+//	private int dragCount;
 	private bool finished;
-	private bool tutored;
-    private bool endOfInk = false;
+//	private bool tutored;
+//    private bool endOfInk = false;
 	private Vector3 lastMouseCoordinate = Vector3.zero;
 	private bool isMousePressed;
-	public List<Line> Lines;
-	public GameObject line;
-    public float lineTimeLimit = 100f;
-    public Text inkLeft;
-    public float inkAmount = 0;
-    public GameObject inkJar;
-    public GameObject goButton;
+//	public List<Line> Lines;
+//	public GameObject line;
+//    public float lineTimeLimit = 100f;
+//    public Text inkLeft;
+//    public float inkAmount = 0;
+//    public GameObject inkJar;
+//    public GameObject goButton;
+    public GameObject boundary;
 
 	private Vector3 mousePos;
 
@@ -32,14 +33,14 @@ public class PlayerControl : MonoBehaviour {
 
 	void Awake () {
 		isMousePressed = false;
-		Lines = new List<Line>();
+//		Lines = new List<Line>();
 	}
 
 	// Use this for initialization
 	void Start () {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         finished = false;
-		tutored = false;
+	//	tutored = false;
 		Input.simulateMouseWithTouches = true;
 	}
 				
@@ -173,13 +174,17 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
-    public void GameOver(string message) {		
-		finished = true;
+
+
+    public void GameOver(string message, int seedsCollected) {
+        Debug.Log("Collected SEEDS: " + seedsCollected);
+        PlayerPrefs.SetInt("seeds", seedsCollected);
+        finished = true;
         level.grid.currentSet.Waiting();
         level.LevelFailPanel.SetActive (true);
         level.failureMessage.text = message;
         //		ProcGenMusic.MusicGenerator.Instance.Stop ();
-        endOfInk = false;
+      //  endOfInk = false;
     }
     public void Pause()
     {

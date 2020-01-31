@@ -15,22 +15,22 @@ public class SnapTo : MonoBehaviour {
         //        Vector3 origin = Camera.main.ViewportToScreenPoint(new Vector3(Screen.width/2, 0, 0));
         if (left) {
             Vector3 origin = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 2, 0));
-            transform.position = new Vector3(origin.x-.55f, origin.y, 1.5f);
+            transform.position = new Vector3(origin.x-2f, origin.y, 1.5f);
          }
         if (right)
         {
             Vector3 origin = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 2, 0));
-            transform.position = new Vector3(origin.x+.55f, origin.y, 1.5f);
+            transform.position = new Vector3(origin.x+2f, origin.y, 1.5f);
         }
         if (top)
         {
             Vector3 origin = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, 0, 0));
-            transform.position = new Vector3(origin.x, origin.y-.55f, 1.5f);
+            transform.position = new Vector3(origin.x, origin.y-2f, 1.5f);
         }
         if (bottom)
         {
             Vector3 origin = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height, 0));
-            transform.position = new Vector3(origin.x, origin.y+.55f, 1.5f);
+            transform.position = new Vector3(origin.x, origin.y+2f, 1.5f);
         }
 
 

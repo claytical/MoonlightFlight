@@ -82,28 +82,28 @@ public class Breakable : MonoBehaviour {
 	}
 
 	public bool LightUp(GameObject b) {
+        GetComponent<AudioSource>().PlayOneShot(hit);
         //HIT
         ball = b;
         Debug.Log("Creating Explosion");
         Instantiate(explosion, transform.position, Quaternion.identity, transform.parent);
         //
-        GetComponentInParent<AudioSource>().PlayOneShot(hit);
-        if (timesHit < sprites.Length - 1 ) {
+        if (timesHit <= sprites.Length - 1 ) {
             //activate particles
-          //    particles[timesHit].Play();
+          //    particles[timesHit].Play();d
             sprites[timesHit].SetActive(false);
             timesHit++;
             return true;
         }
+/*
         else {
-            //b.GetComponentInChildren<ParticleSystem>().Play();
             sprites[timesHit].SetActive(false);
-            GetComponentInParent<EndlessLevel>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);
-            
+            GetComponentInParent<EndlessLevel>().AddFliesReleased(gameObject.GetComponentsInChildren<Fly>().Length, b.GetComponentInParent<BallHolder>().player.inkAmount, b.GetComponentInParent<BallHolder>().multiplier);            
             GetComponent<Rigidbody2D> ().isKinematic = false;
             timesHit++;
 
         }
-        return false;
+  */
+    return false;
     }
 }

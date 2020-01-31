@@ -3,24 +3,58 @@ using System.Collections;
 
 public class Ball : MonoBehaviour {
 
-	private int timeSinceLastBump = 0;
-	private bool isDead = false;
-    private bool isWarping = false;
     public bool inPlay = false;
     public int framesUntilTilt;
-    private bool canTilt = true;
+    public float force;
+    public GameObject fly;
+    public GameObject shield;
+    public Light light;
+
     private int frameCountAtBump;
-	private Vector3 warpPosition;
+    private int timeSinceLastBump = 0;
+
+    private Vector3 warpPosition;
 	private Vector3 originalPosition;
     private Vector3 calibratedTilt;
     private Vector3 tilt;
-    public float force;
-    public GameObject fly;
-//    public ProceduralSet currentSet;
+
+    private bool canTilt = true;
+    private bool usingTiltControls = false;
+    private bool hasShield;
+    private bool isDead = false;
+    private bool isWarping = false;
+    private bool canPassThroughObjects = false;
+    private bool deadBall = false;
+
+    //    public ProceduralSet currentSet;
     public Grid grid;
-	// Use this for initialization
-	void Start () {
+    
+    public void ToggleShield()
+    {
+        shield.SetActive(!shield.activeSelf);
+
+    }
+
+    public void SetPassThrough(bool active)
+    {
+        Debug.Log("Settting Transparency to " + active);
+        canPassThroughObjects = active;
+        GetComponentInParent<BallHolder>().grid.PlatformTransparency(active);
+    }
+
+    // Use this for initialization
+
+    
+    void Start () {
 		originalPosition = transform.position;
+        if (PlayerPrefs.GetInt("tilt") == 1)
+        {
+            usingTiltControls = true;
+        }
+        else
+        {
+            usingTiltControls = false;
+        }
 	}
 
 
@@ -33,10 +67,19 @@ public class Ball : MonoBehaviour {
         calibratedTilt.z = Input.acceleration.z;
     }
     // Update is called once per frame
-    /*
+
+    public void SetTiltControls(bool status)
+    {
+        usingTiltControls = status;
+    }
+    public bool UsingTiltControls()
+    {
+        return usingTiltControls;
+    }
+
     void FixedUpdate()
     {
-        if (inPlay && canTilt)
+        if (inPlay && canTilt && usingTiltControls)
         {
 
 
@@ -47,31 +90,31 @@ public class Ball : MonoBehaviour {
             tilt.y = Input.acceleration.y - calibratedTilt.y;
             tilt.z = -Input.acceleration.z - calibratedTilt.z;
             tilt = Quaternion.Euler(90, 0, 0) * tilt;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(tilt.x, tilt.y) * force;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(tilt.x, tilt.y) * (force * .5f);
 
         
 
 
         }
-        else if (inPlay && !canTilt)
+        else if (inPlay && !canTilt && usingTiltControls)
         {
             if (frameCountAtBump <= Time.frameCount)
             {
                 canTilt = true;
-                Debug.Log("Tilt Back");
                 GetComponent<Animator>().SetBool("tiltLocked", false);
 
             }
         }
         
     }
-    */
+    
     void Update () {
 		timeSinceLastBump++;
 
-        if (isDead) {
+        if (isDead && !deadBall) {
+            deadBall = true;
 			GetComponentInParent<BallHolder> ().DeadBall ();
-			Destroy(gameObject);
+			Destroy(gameObject, 4);
 
 		}
 
@@ -104,21 +147,25 @@ public class Ball : MonoBehaviour {
         {
             isDead = true;
             //GetComponentInParent<LevelSound>().NormalMode();
-            GetComponentInParent<BallHolder>().player.GameOver("Didn't warp!");
+//            GetComponentInParent<BallHolder>().player.GameOver("Didn't warp!", seedsCollected);
 
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        Debug.Log("Changing Score");
         if (coll.gameObject.tag == "Disappearing")
         {
+            GetComponentInParent<BallHolder>().energy++;
             if (coll.gameObject.GetComponent<Breakable>())
             {
+
+                GetComponent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
                 if(coll.gameObject.GetComponent<Breakable>().LightUp(this.gameObject))
                 {
                     //not dead
-                    CheckFever(1);
+                    CheckEnergy(1);
                 }
                 else
                 {
@@ -126,7 +173,7 @@ public class Ball : MonoBehaviour {
                     //EVENT #1 - BROKE OBJECT
                     Debug.Log("Hit something" + coll.gameObject);
                     grid.currentSet.BroadcastMessage("BrokeObject", SendMessageOptions.DontRequireReceiver);
-                    CheckFever(2);
+                    CheckEnergy(2);
 
                 }
             }
@@ -138,8 +185,48 @@ public class Ball : MonoBehaviour {
             }
         }
 
-        if (coll.gameObject.tag == "Bumpable")
+        if(coll.gameObject.tag == ("Power Up"))
         {
+            
+            if (coll.gameObject.GetComponent<PowerUp>()) {
+//                GameObject obj = GetComponentInParent<BallHolder>().player.level.CreatePowerUp();
+
+                switch (coll.gameObject.GetComponent<PowerUp>().reward)
+                {
+                    case PowerUp.Reward.Shield:
+                        ToggleShield();
+                        break;
+                    case PowerUp.Reward.Boundary:
+                        GetComponentInParent<BallHolder>().player.boundary.GetComponent<BoundaryPowerUp>().SetBorderStrength(3);
+
+                        break;
+                    case PowerUp.Reward.SpeedUp:
+                        force *= 2;
+                        break;
+
+                    case PowerUp.Reward.SlowDown:
+                        force *= .5f;
+                        break;
+
+                    case PowerUp.Reward.PassThrough:
+                        SetPassThrough(true);
+                        break;
+                  
+                }
+                Destroy(coll.gameObject);
+
+            }
+
+        }
+
+        if(coll.gameObject.tag == "Bumpable" && canPassThroughObjects)
+        {
+            Debug.Log("I'm going through a bumpable object");
+        }
+        if (coll.gameObject.tag == "Bumpable" && !canPassThroughObjects)
+        {
+            Debug.Log("Bumped Object");
+            GetComponentInParent<BallHolder>().energy++;
             //EVENT #2 - BUMPED PLATFORM
             Debug.Log("Hit Platform");
             grid.currentSet.BroadcastMessage("BumpedPlatform", SendMessageOptions.DontRequireReceiver);
@@ -158,70 +245,48 @@ public class Ball : MonoBehaviour {
                 }
             }
             //coll.gameObject.GetComponent<Immovable> ().LightUp ();
-            CheckFever(1);
+            CheckEnergy(1);
         }
+        
         
         if (coll.gameObject.tag == "Boundary")
         {
-            isDead = true;
-        //    GetComponentInParent<LevelSound>().NormalMode();
-            GetComponentInParent<BallHolder>().player.GameOver("You flew out of bounds!");
+            Debug.Log("Hit Boundary");
+            isDead = coll.gameObject.GetComponentInParent<BoundaryPowerUp>().Hit();
+            /*
+            if (isDead)
+            {
+                GetComponentInParent<BallHolder>().player.GameOver("You flew out of bounds!", seedsCollected);
+
+            }
+            */
         }
    
         if (coll.gameObject.tag == "Avoid")
         {
-            //			gameObject.GetComponentInParent<BallHolder> ().removePoints ();
-            //			coll.gameObject.GetComponent<AudioSource>().Play();
-            //Trigger ball animation
-
-            if (GetComponentInParent<BallHolder>().HasFever())
+            if (hasShield)
             {
-                //EVENT #4 - Fever Broke
-                GetComponentInParent<BallHolder>().BreakFever();
-                GetComponent<Animator>().SetTrigger("fever");
-                Debug.Log("Fever Broke by Losing Invincibility");
-                grid.currentSet.BroadcastMessage("FeverBroke", SendMessageOptions.DontRequireReceiver);
-            }
-
-            else
-            {
-                isDead = true;
-                GetComponentInParent<BallHolder>().player.GameOver("You hit a mine!");
+                isDead = GetComponent<Shield>().Hit(1);
+                Debug.Log("Your shield is now  " + isDead);
 
             }
-            //
-            /*
-            GetComponent<Animator>().SetTrigger("die");
-            if(coll.gameObject.GetComponent<Animator>()) {
-                coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
-            }
-            if (GetComponentInParent<BallHolder>().player.balls == 0)
-            {
-                GetComponentInParent<BallHolder>().player.GameOver();
-            }
-            */
         }
     
-            //		GetComponent<Rigidbody2D>().freezeRotation = true;
             timeSinceLastBump = 0;
             gameObject.GetComponent<AudioSource>().Play();
     }
-    void CheckFever(int amount = 0)
+    void CheckEnergy(int amount = 0)
     {
-        int speedState = GetComponentInParent<BallHolder>().increaseMultiplier(amount);
+        int speedState = GetComponentInParent<BallHolder>().increaseEnergy(amount);
+        light.intensity = Mathf.InverseLerp(0, 25, GetComponentInParent<BallHolder>().energy);
         if (speedState > 0)
         {
             force += 1;
             if (speedState == 2)
             {
-                //EVENT #3 - FEVER REACHED
+                //EVENT #3 - MAX ENERGY REACHED
 
-                GetComponentInParent<BallHolder>().FeverReached();
-                Debug.Log("Fever Reached!");
-                GetComponent<Animator>().SetTrigger("fever");
-
-                //                    GetComponentInParent<LevelSound>().MaxMode();
-
+             //   GetComponentInParent<BallHolder>().MaxEnergy();
             }
         }
 
@@ -229,7 +294,6 @@ public class Ball : MonoBehaviour {
     public void Shrink()
     {
         gameObject.transform.localScale = gameObject.transform.localScale * .5f;
-            //new Vector3(.1f, .1f, .1f);
     }
 
     public void Enlarge()
