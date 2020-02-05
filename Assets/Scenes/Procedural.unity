@@ -2514,6 +2514,60 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4528313550827995, guid: 61bde6124a87a06498b9254f4989fb93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50863317970988321, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Mass
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Range
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_DrawHalo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114290716119402125, guid: 61bde6124a87a06498b9254f4989fb93,
         type: 3}
       propertyPath: grid

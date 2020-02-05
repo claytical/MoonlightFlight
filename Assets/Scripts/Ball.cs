@@ -258,7 +258,7 @@ public void Calibrate()
         if (coll.gameObject.tag == "Bumpable" && !canPassThroughObjects)
         {
             //ADD SOUND
-            GetComponent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<AudioSource>().clip);
+            GetComponent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<CollisionSound>().soundFx[0],.5f);
             Debug.Log("Bumped Object");
             GetComponentInParent<BallHolder>().energy++;
             //EVENT #2 - BUMPED PLATFORM
