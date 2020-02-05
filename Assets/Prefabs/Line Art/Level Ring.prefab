@@ -434,7 +434,7 @@ MonoBehaviour:
   - {fileID: 1345685674709518}
   explosion: {fileID: 8455937364993888704, guid: a7bca7ddf5071004ab12b90503aebe5b,
     type: 3}
-  hit: {fileID: 8300000, guid: 07c1cefb5a9fee342aae8b8823991d24, type: 3}
+  hit: {fileID: 8300000, guid: 664d9d8e8f8740945a1e4b4c6d430394, type: 3}
   flies: {fileID: 114148255737202766}
 --- !u!1 &1345685674709518
 GameObject:

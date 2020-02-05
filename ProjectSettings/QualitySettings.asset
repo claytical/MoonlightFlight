@@ -226,6 +226,7 @@ QualitySettings:
     Android: 2
     BlackBerry: 2
     GLES Emulation: 5
+    Lumin: 0
     Nintendo 3DS: 5
     PS3: 5
     PS4: 5

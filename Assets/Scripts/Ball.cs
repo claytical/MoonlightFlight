@@ -1,11 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+//using UnityEngine.GameTune;
 
 public class Ball : MonoBehaviour {
 
     public bool inPlay = false;
     public int framesUntilTilt;
     public float force;
+
+
+
+    /*
+     * GAMETUNE POTENTIAL: 
+     * BALL FORCE: 2, 5, 10, 15
+     * GRID SELECTION (ARRAY, RANDOMIZE)
+     * SHIELD STRENGTH
+     * BORDER STRENGTH
+     * NUMBER OF CLEARED GRIDS REQUIRED FOR ADVANCEMENT
+     */
+     
     public GameObject fly;
     public GameObject shield;
     public Light light;
@@ -46,7 +59,9 @@ public class Ball : MonoBehaviour {
 
     
     void Start () {
-		originalPosition = transform.position;
+//        Question speed = GameTune.CreateQuestion("BallSpeed", new string[] { "medium", "fast", "slow" }, SpeedAnswerHandler);
+
+        originalPosition = transform.position;
         if (PlayerPrefs.GetInt("tilt") == 1)
         {
             usingTiltControls = true;
@@ -56,9 +71,26 @@ public class Ball : MonoBehaviour {
             usingTiltControls = false;
         }
 	}
+    /*
+    private void SpeedAnswerHandler(Answer answer)
+    {
+        Debug.Log("Using " + answer.Value);
+        switch (answer.Value) {
+            case "medium":
+                force = 5f;
+                break;
+            case "fast":
+                force = 10f;
+                break;
+            case "slow":
+                force = 2f;
+                break;
+        }
 
-
-    public void Calibrate()
+        answer.Use();
+    }
+    */
+public void Calibrate()
     {
         //Gets devices physical rotation in 3D space
 
@@ -225,10 +257,11 @@ public class Ball : MonoBehaviour {
         }
         if (coll.gameObject.tag == "Bumpable" && !canPassThroughObjects)
         {
+            //ADD SOUND
+            GetComponent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<AudioSource>().clip);
             Debug.Log("Bumped Object");
             GetComponentInParent<BallHolder>().energy++;
             //EVENT #2 - BUMPED PLATFORM
-            Debug.Log("Hit Platform");
             grid.currentSet.BroadcastMessage("BumpedPlatform", SendMessageOptions.DontRequireReceiver);
             //Check for polygon shenanigans
             frameCountAtBump = Time.frameCount + framesUntilTilt;

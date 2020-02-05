@@ -176,21 +176,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 212375929196836916, guid: 5ad950ef2ed8aac44af4f2f735b9d1a0,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212375929196836916, guid: 5ad950ef2ed8aac44af4f2f735b9d1a0,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212375929196836916, guid: 5ad950ef2ed8aac44af4f2f735b9d1a0,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ad950ef2ed8aac44af4f2f735b9d1a0, type: 3}
 --- !u!1 &5938309
@@ -673,7 +658,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
   currentSet: {fileID: 70221877}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -1770,7 +1755,7 @@ MonoBehaviour:
   platforms: {fileID: 935860737}
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: 1402b7c6cb967674eb8bb048bdddfbd4, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 869d30802fffdb94e905ebc33c538679, type: 3}
   currentSet: {fileID: 151801132}
   numberOfObjectsToPlace: 3
   sets: 2
@@ -1859,7 +1844,7 @@ MonoBehaviour:
   platforms: {fileID: 1548071171}
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 869d30802fffdb94e905ebc33c538679, type: 3}
   currentSet: {fileID: 168124414}
   numberOfObjectsToPlace: 2
   sets: 5
@@ -2534,6 +2519,11 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 151801137}
+    - target: {fileID: 114290716119402125, guid: 61bde6124a87a06498b9254f4989fb93,
+        type: 3}
+      propertyPath: force
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 114981825232247724, guid: 61bde6124a87a06498b9254f4989fb93,
         type: 3}
       propertyPath: player
@@ -3031,7 +3021,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
   currentSet: {fileID: 247484146}
   numberOfObjectsToPlace: 5
   sets: 5
@@ -4276,7 +4266,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1472934837486336, guid: 298117bb50c1b4345a3b21faee23c35e, type: 3}
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: 1402b7c6cb967674eb8bb048bdddfbd4, type: 3}
   currentSet: {fileID: 329801981}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -6166,7 +6156,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1472934837486336, guid: 298117bb50c1b4345a3b21faee23c35e, type: 3}
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 1402b7c6cb967674eb8bb048bdddfbd4, type: 3}
   currentSet: {fileID: 639227625}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -9506,7 +9496,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: 1402b7c6cb967674eb8bb048bdddfbd4, type: 3}
   currentSet: {fileID: 1134651680}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -10375,10 +10365,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -854998193656957392, guid: 07985bf4f6d469340930e958ef313c14,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: d710c61ed560484409f2f9ae55f9cbd0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6edcdbe06c8712748a945eb563de65de, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.502
+  m_Pitch: 0.48
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -10961,8 +10951,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1155.0001, y: 70.25998}
-  m_SizeDelta: {x: 75, y: 80.26}
+  m_AnchoredPosition: {x: 1110, y: 70}
+  m_SizeDelta: {x: 75, y: 80}
   m_Pivot: {x: 0, y: 2}
 --- !u!114 &1304820636
 MonoBehaviour:
@@ -10971,7 +10961,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304820634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -11227,7 +11217,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1472934837486336, guid: 298117bb50c1b4345a3b21faee23c35e, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
   currentSet: {fileID: 1310111174}
   numberOfObjectsToPlace: 2
   sets: 5
@@ -12814,7 +12804,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
   currentSet: {fileID: 1581067788}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -14553,7 +14543,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: 1402b7c6cb967674eb8bb048bdddfbd4, type: 3}
   currentSet: {fileID: 1808170343}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -15486,7 +15476,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
   currentSet: {fileID: 1944150152}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -16621,7 +16611,7 @@ MonoBehaviour:
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
   currentSet: {fileID: 2065277450}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -17280,6 +17270,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4282271147963490080, guid: ceabffc0d29f3764581ea4c9e9731914,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dea6f2068f351fc4b8fdfbcc186ae761,
+        type: 3}
     - target: {fileID: 4282271148844572842, guid: ceabffc0d29f3764581ea4c9e9731914,
         type: 3}
       propertyPath: m_Name
