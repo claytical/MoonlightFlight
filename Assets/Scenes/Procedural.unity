@@ -1755,7 +1755,7 @@ MonoBehaviour:
   platforms: {fileID: 935860737}
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: 869d30802fffdb94e905ebc33c538679, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
   currentSet: {fileID: 151801132}
   numberOfObjectsToPlace: 3
   sets: 2
@@ -2514,70 +2514,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4528313550827995, guid: 61bde6124a87a06498b9254f4989fb93, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 50863317970988321, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Mass
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Range
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_DrawHalo
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108644813699008133, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114290716119402125, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: grid
-      value: 
-      objectReference: {fileID: 151801137}
-    - target: {fileID: 114290716119402125, guid: 61bde6124a87a06498b9254f4989fb93,
-        type: 3}
-      propertyPath: force
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 114981825232247724, guid: 61bde6124a87a06498b9254f4989fb93,
         type: 3}
       propertyPath: player
@@ -3075,7 +3011,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
   currentSet: {fileID: 247484146}
   numberOfObjectsToPlace: 5
   sets: 5
@@ -11987,7 +11923,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: End of Journey
+  m_Text: Your Flight Has Ended
 --- !u!222 &1377073076
 CanvasRenderer:
   m_ObjectHideFlags: 0

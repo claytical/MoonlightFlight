@@ -189,9 +189,9 @@ GameObject:
   - component: {fileID: 82695317225404862}
   - component: {fileID: 114526990455429030}
   - component: {fileID: 108689902293291666}
-  - component: {fileID: 58486286959406346}
+  - component: {fileID: 5392377308109826209}
   m_Layer: 0
-  m_Name: Glow Ball
+  m_Name: Rocket
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d337917fc2286764381b5a6eba92cc79, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1748d28921715645ba3911b6e8ba8c9, type: 3}
   m_Color: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
@@ -298,7 +298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inPlay: 0
   framesUntilTilt: 5
-  force: 5
+  force: 1
+  maxForce: 10
   fly: {fileID: 1761691463573632, guid: 6c7925fe79cfbb94cb8668a6913474d1, type: 3}
   shield: {fileID: 0}
   light: {fileID: 108644813069699016}
@@ -491,8 +492,8 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!58 &58486286959406346
-CircleCollider2D:
+--- !u!60 &5392377308109826209
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -504,6 +505,71 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.010840297}
-  serializedVersion: 2
-  m_Radius: 2.7024314
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 27.76, y: 27.74}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.53, y: -1.42}
+      - {x: -0.53, y: -1.42}
+      - {x: -0.55, y: -1.4399999}
+      - {x: -0.56, y: -1.4699999}
+      - {x: -0.56, y: -1.49}
+      - {x: -0.48, y: -1.63}
+      - {x: -0.07, y: -2.34}
+      - {x: -0.04, y: -2.3899999}
+      - {x: 0.02, y: -2.3899999}
+      - {x: 0.06, y: -2.3799999}
+      - {x: 0.14, y: -2.22}
+      - {x: 0.55, y: -1.5}
+      - {x: 0.56, y: -1.4599999}
+    - - {x: 0.79999995, y: -1}
+      - {x: 0.83, y: -0.78999996}
+      - {x: 0.87, y: -0.83}
+      - {x: 1.06, y: -0.95}
+      - {x: 1.22, y: -1.05}
+      - {x: 1.28, y: -1.0799999}
+      - {x: 1.3, y: -1.0799999}
+      - {x: 1.3199999, y: -1.06}
+      - {x: 1.3199999, y: -0.089999996}
+      - {x: 1.26, y: -0.03}
+      - {x: 1.22, y: 0}
+      - {x: 1.13, y: 0.08}
+      - {x: 1.03, y: 0.16}
+      - {x: 0.79999995, y: 0.32999998}
+      - {x: 0.79999995, y: 1.4399999}
+      - {x: 0.77, y: 1.49}
+      - {x: 0.12, y: 2.35}
+      - {x: 0.049999997, y: 2.4099998}
+      - {x: -0.07, y: 2.4099998}
+      - {x: -0.16, y: 2.31}
+      - {x: -0.39, y: 2.01}
+      - {x: -0.44, y: 1.93}
+      - {x: -0.65, y: 1.67}
+      - {x: -0.77, y: 1.49}
+      - {x: -0.79999995, y: 1.4399999}
+      - {x: -0.79999995, y: 0.32999998}
+      - {x: -0.83, y: 0.31}
+      - {x: -1.26, y: -0.03}
+      - {x: -1.3199999, y: -0.089999996}
+      - {x: -1.3199999, y: -1.06}
+      - {x: -1.31, y: -1.09}
+      - {x: -1.22, y: -1.06}
+      - {x: -1.0699999, y: -0.95}
+      - {x: -0.79999995, y: -0.78}
+      - {x: -0.79999995, y: -1}
+      - {x: -0.78, y: -1.05}
+      - {x: -0.76, y: -1.0799999}
+      - {x: -0.71999997, y: -1.13}
+      - {x: -0.63, y: -1.17}
+      - {x: 0.63, y: -1.17}
+      - {x: 0.68, y: -1.15}
+      - {x: 0.71, y: -1.13}
+      - {x: 0.76, y: -1.09}

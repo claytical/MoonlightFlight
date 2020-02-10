@@ -4,11 +4,10 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class BallHolder : MonoBehaviour {
-	public GameObject ball;
-//	public GameObject holder;
+//	public GameObject ball;
+    public GameObject[] ships;
+    public GameObject ship;
 	public PlayerControl player;
-//	public Button button;
-//    public GameObject inkJar;
     public GameObject textOverlay;
     public GameObject uiCanvas;
     public int maxEnergyPlaytime;
@@ -33,7 +32,22 @@ public class BallHolder : MonoBehaviour {
         seedsCollected = 0;
         maxEnergy = false;
         touchPoints = new List<GameObject>();
-        force = ball.GetComponent<Ball>().force;
+        GameState gameState = (GameState)FindObjectOfType(typeof(GameState));
+
+        switch (gameState.ship)
+        {
+            case GameState.Ship.Boomerang:
+                ship = Instantiate(ships[0], transform);
+                break;
+            case GameState.Ship.Rocket:
+                ship = Instantiate(ships[1], transform);
+
+                break;
+
+        }
+        
+            
+        force = ship.GetComponent<Ball>().force;
         if (PlayerPrefs.GetInt("tilt") == 1)
         {
             useTilt = true;
@@ -91,7 +105,7 @@ public class BallHolder : MonoBehaviour {
         //        ball.GetComponent<Animator>().SetTrigger("fever");
         //        feverBar.resetFever();
         //ball.GetComponent<Ball>().force = 5f;
-        ball.GetComponent<Ball>().SetPassThrough(false);
+        ship.GetComponent<Ball>().SetPassThrough(false);
         grid.PlatformTransparency(false);
     }
 
@@ -123,12 +137,12 @@ public class BallHolder : MonoBehaviour {
         {
 
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (ball)
+            if (ship)
             {
-                Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
+                Vector2 direction = (Vector2)touchPosition - (Vector2)ship.transform.position;
                 direction.Normalize();
 
-                ball.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+                ship.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
             }
             /*            touchPosition.z = ball.transform.position.z - Camera.main.transform.position.z;
                         touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
@@ -198,12 +212,12 @@ public class BallHolder : MonoBehaviour {
         for (int i = 0; i < Input.touchCount; i++)
         {
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-            if (ball)
+            if (ship)
             {
-                Vector2 direction = (Vector2)touchPosition - (Vector2)ball.transform.position;
+                Vector2 direction = (Vector2)touchPosition - (Vector2)ship.transform.position;
                 direction.Normalize();
 
-                ball.GetComponent<Rigidbody2D>().AddForce(direction * ball.GetComponent<Ball>().force, ForceMode2D.Impulse);
+                ship.GetComponent<Rigidbody2D>().AddForce(direction * ship.GetComponent<Ball>().force, ForceMode2D.Impulse);
             }
 
         }
@@ -238,13 +252,13 @@ public class BallHolder : MonoBehaviour {
 	}
 
 	public void DeadBall() {
-        player.GameOver("Your journey has come to an end.", seedsCollected + PlayerPrefs.GetInt("seeds"));
+        player.GameOver(seedsCollected);
     }
 
 	public void Drop() {
         Time.timeScale = 1f;
 //        button.GetComponent<Animator>().SetTrigger("pop");
-        ball.GetComponent<Ball>().inPlay = true;
+        ship.GetComponent<Ball>().inPlay = true;
         grid.currentSet.Starting();
 
     }

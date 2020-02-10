@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour {
     public bool inPlay = false;
     public int framesUntilTilt;
     public float force;
+    public float maxForce;
 
 
 
@@ -141,8 +142,8 @@ public void Calibrate()
     }
     
     void Update () {
-		timeSinceLastBump++;
-
+        CheckSpeedLimit();
+        timeSinceLastBump++;
         if (isDead && !deadBall) {
             deadBall = true;
 			GetComponentInParent<BallHolder> ().DeadBall ();
@@ -308,6 +309,15 @@ public void Calibrate()
             timeSinceLastBump = 0;
             gameObject.GetComponent<AudioSource>().Play();
     }
+
+    void CheckSpeedLimit()
+    {
+        if(force > maxForce)
+        {
+            force = maxForce;
+        }
+    }
+
     void CheckEnergy(int amount = 0)
     {
         int speedState = GetComponentInParent<BallHolder>().increaseEnergy(amount);

@@ -21,7 +21,7 @@ public class Hazard : MonoBehaviour
         if(coll.gameObject.tag == "Player")
         {
             //update this logic to allow seeds collected
-            coll.gameObject.GetComponentInParent<BallHolder>().player.GameOver("You hit a hazard!", 0);
+            coll.gameObject.GetComponentInParent<BallHolder>().player.GameOver(0);
 
         }
 

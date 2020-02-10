@@ -86,7 +86,7 @@ public class EndlessLevel : MonoBehaviour {
             //turn off the old grid
             oldGrid.gameObject.SetActive(false);
             //set the grid of the ball to the current grid
-            ballHolder.ball.GetComponent<Ball>().grid = grid;
+            ballHolder.ship.GetComponent<Ball>().grid = grid;
             grid.gameObject.SetActive(true);
             CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
 

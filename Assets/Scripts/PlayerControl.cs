@@ -176,15 +176,24 @@ public class PlayerControl : MonoBehaviour {
 
 
 
-    public void GameOver(string message, int seedsCollected) {
+    public void GameOver(int seedsCollected) {
         Debug.Log("Collected SEEDS: " + seedsCollected);
-        PlayerPrefs.SetInt("seeds", seedsCollected);
+        PlayerPrefs.SetInt("seeds", seedsCollected + PlayerPrefs.GetInt("seeds"));
         finished = true;
         level.grid.currentSet.Waiting();
         level.LevelFailPanel.SetActive (true);
-        level.failureMessage.text = message;
+        if (seedsCollected > 0)
+        {
+            level.failureMessage.text = "You collected " + seedsCollected + " seeds of light on your journey.";
+        }
+        else
+        {
+            level.failureMessage.text = "You didn't collect any seeds of light on your journey.";
+
+        }
+        //check for high score
         //		ProcGenMusic.MusicGenerator.Instance.Stop ();
-      //  endOfInk = false;
+        //  endOfInk = false;
     }
     public void Pause()
     {
