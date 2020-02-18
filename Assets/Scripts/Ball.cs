@@ -41,7 +41,7 @@ public class Ball : MonoBehaviour {
     private bool deadBall = false;
 
     //    public ProceduralSet currentSet;
-    public Grid grid;
+//    public Grid grid;
     
     public void ToggleShield()
     {
@@ -49,12 +49,6 @@ public class Ball : MonoBehaviour {
 
     }
 
-    public void SetPassThrough(bool active)
-    {
-        Debug.Log("Settting Transparency to " + active);
-        canPassThroughObjects = active;
-        GetComponentInParent<BallHolder>().grid.PlatformTransparency(active);
-    }
 
     // Use this for initialization
 
@@ -205,8 +199,8 @@ public void Calibrate()
                     //dead
                     //EVENT #1 - BROKE OBJECT
                     Debug.Log("Hit something" + coll.gameObject);
-                    grid.currentSet.BroadcastMessage("BrokeObject", SendMessageOptions.DontRequireReceiver);
-                    CheckEnergy(2);
+//                    grid.currentSet.BroadcastMessage("BrokeObject", SendMessageOptions.DontRequireReceiver);
+                    CheckEnergy(1);
 
                 }
             }
@@ -230,7 +224,8 @@ public void Calibrate()
                         ToggleShield();
                         break;
                     case PowerUp.Reward.Boundary:
-                        GetComponentInParent<BallHolder>().player.boundary.GetComponent<BoundaryPowerUp>().SetBorderStrength(3);
+                       //TODO: BALL IS OBSOLETE
+                        // GetComponentInParent<BallHolder>().player.boundary.GetComponent<BoundaryPowerUp>().SetBorderStrength(3);
 
                         break;
                     case PowerUp.Reward.SpeedUp:
@@ -242,7 +237,7 @@ public void Calibrate()
                         break;
 
                     case PowerUp.Reward.PassThrough:
-                        SetPassThrough(true);
+//                        SetPassThrough(true);
                         break;
                   
                 }
@@ -263,7 +258,7 @@ public void Calibrate()
             Debug.Log("Bumped Object");
             GetComponentInParent<BallHolder>().energy++;
             //EVENT #2 - BUMPED PLATFORM
-            grid.currentSet.BroadcastMessage("BumpedPlatform", SendMessageOptions.DontRequireReceiver);
+            //grid.currentSet.BroadcastMessage("BumpedPlatform", SendMessageOptions.DontRequireReceiver);
             //Check for polygon shenanigans
             frameCountAtBump = Time.frameCount + framesUntilTilt;
             if (coll.gameObject.GetComponent<Animator>())
@@ -279,7 +274,9 @@ public void Calibrate()
                 }
             }
             //coll.gameObject.GetComponent<Immovable> ().LightUp ();
-            CheckEnergy(1);
+            //add power up to include platforms in energy bonus
+        
+        //            CheckEnergy(0);
         }
         
         
@@ -312,10 +309,7 @@ public void Calibrate()
 
     void CheckSpeedLimit()
     {
-        if(force > maxForce)
-        {
-            force = maxForce;
-        }
+
     }
 
     void CheckEnergy(int amount = 0)

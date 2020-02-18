@@ -49,6 +49,7 @@ public class ProceduralSet : MonoBehaviour
 
     public void MaxEnergy()
     {
+
         maxEnergy.TransitionTo(0);
     }
 

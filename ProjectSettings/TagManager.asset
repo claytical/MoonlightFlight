@@ -10,6 +10,7 @@ TagManager:
   - Tone
   - Boundary
   - Power Up
+  - Energy
   layers:
   - Default
   - TransparentFX

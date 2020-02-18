@@ -31,7 +31,9 @@ public class BallHolder : MonoBehaviour {
         energy = 0;
         seedsCollected = 0;
         maxEnergy = false;
+        /*
         touchPoints = new List<GameObject>();
+
         GameState gameState = (GameState)FindObjectOfType(typeof(GameState));
 
         switch (gameState.ship)
@@ -48,6 +50,7 @@ public class BallHolder : MonoBehaviour {
         
             
         force = ship.GetComponent<Ball>().force;
+        */
         if (PlayerPrefs.GetInt("tilt") == 1)
         {
             useTilt = true;
@@ -95,20 +98,6 @@ public class BallHolder : MonoBehaviour {
 //        maxEnergyTime = Time.time + maxEnergyPlaytime;
 
     }
-
-    public void NormalEnergy()
-    {
-        grid.LowEnergy();
-        energy = 0;
-        maxEnergy = false;
-        //        GetComponentInParent<LevelSound>().NormalMode();
-        //        ball.GetComponent<Animator>().SetTrigger("fever");
-        //        feverBar.resetFever();
-        //ball.GetComponent<Ball>().force = 5f;
-        ship.GetComponent<Ball>().SetPassThrough(false);
-        grid.PlatformTransparency(false);
-    }
-
     public bool HasFullEnergy()
     {
         return maxEnergy;
@@ -162,7 +151,7 @@ public class BallHolder : MonoBehaviour {
         {
             CheckMouse();
         }
-        CheckTouches();
+//        CheckTouches();
 
     }
 
@@ -175,54 +164,6 @@ public class BallHolder : MonoBehaviour {
 
     }
 
-    void CheckTouches()
-    {
-        Touch touch = new Touch();
-
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            touch = Input.GetTouch(i);
-            if (touch.phase == TouchPhase.Began)
-            {
-                GetComponent<AudioSource>().Play();
-                Debug.Log("Touch Began! " + touch.fingerId);
-                //                Vector3 touchPosition = Camera.main.WorldToScreenPoint(touch.position);
-                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                touchPosition.z = 10;
-                GameObject go = (GameObject) Instantiate(touchPoint, touchPosition, transform.rotation);
-                go.transform.parent = transform;
-                touchPoints.Add(go);
-            }
-            if(touch.phase == TouchPhase.Moved)
-            {
- //               Debug.Log("Moving Touch! " + i);
-//                touchPoints[i].transform.position = touch.position;
-            }
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-   //             Debug.Log("Touch Ended! " + i);
-     //           GameObject tP = touchPoints[i];
-       //         touchPoints.RemoveAt(i);
-         //       Destroy(tP, 5);
-            }
-            
-        }
-
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-            if (ship)
-            {
-                Vector2 direction = (Vector2)touchPosition - (Vector2)ship.transform.position;
-                direction.Normalize();
-
-                ship.GetComponent<Rigidbody2D>().AddForce(direction * ship.GetComponent<Ball>().force, ForceMode2D.Impulse);
-            }
-
-        }
-
-    }
     // Update is called once per frame
     void Update()
     {
@@ -238,16 +179,10 @@ public class BallHolder : MonoBehaviour {
 
         if (!useTilt)
         {
-            CheckControl();
+//            CheckControl();
         }
 
 
-        if(maxEnergy && !grid.fullEnergy.isPlaying)
-        {
-            //ENERGY TIMEOUT
-            NormalEnergy();
-
-        }
 
 	}
 

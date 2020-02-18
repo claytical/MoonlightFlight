@@ -14,12 +14,21 @@ public class Grid : MonoBehaviour
     public int sets = 5;
     public AudioSource fullEnergy;
     public int energyRequiredForPowerUp = 25;
+
+    private bool poweredUp;
+    private Ship ship;
     //remaining spaces to populate
 
     // Start is called before the first frame update
+
     void Start()
     {
         platforms.SetActive(true);
+    }
+
+    public void SetShip(Ship s)
+    {
+        ship = s;
     }
 
     public void LowEnergy()
@@ -52,15 +61,27 @@ public class Grid : MonoBehaviour
 
     public void PowerUp()
     {
-//        Instantiate(powerUp, transform);
+        //        Instantiate(powerUp, transform);
+        currentSet.BroadcastMessage("MaxEnergy", SendMessageOptions.DontRequireReceiver);
         fullEnergy.Play();
-        Debug.Log("POWER UP!");
+        poweredUp = true;
     }
 
     // Update is called once per frame
+
     void Update()
     {
-        
+        if(poweredUp)
+        {
+            if (!fullEnergy.isPlaying)
+            {
+                LowEnergy();
+                poweredUp = false;
+                ship.powerDown();
+                //power down ship
+            }
+
+        }
     }
 
     void Setup()

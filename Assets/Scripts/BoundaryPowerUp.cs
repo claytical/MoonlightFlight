@@ -10,6 +10,7 @@ public class BoundaryPowerUp : MonoBehaviour
     public GameObject leftCollider;
     public GameObject rightCollider;
     public SpriteRenderer border;
+    public GameObject smallerBorder;
     public int strength = 3;
     private int hits; //count the amount of hits on the bumpers
 
@@ -42,9 +43,19 @@ public class BoundaryPowerUp : MonoBehaviour
     public void SetBorderStrength(int amount)
     {
         strength = amount;
-        Color borderColor = border.color;
+/*        Color borderColor = border.color;
         borderColor.a = 1;
         border.color = borderColor;
+ */
+    }
+
+    public void AddBorders(int amount)
+    {
+        strength += amount;
+        for(int i = 0; i < amount; i++)
+        {
+            Instantiate(smallerBorder, transform);
+        }
     }
 
     public bool Hit()

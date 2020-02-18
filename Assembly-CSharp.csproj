@@ -62,6 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Dock.cs" />
+    <Compile Include="Assets\Energy.cs" />
     <Compile Include="Assets\GleyPlugins\AllPlatformsSave\Example\Scripts\GameValues.cs" />
     <Compile Include="Assets\GleyPlugins\AllPlatformsSave\Example\Scripts\TestSave.cs" />
     <Compile Include="Assets\GleyPlugins\AllPlatformsSave\Scripts\BinarySerializationFileSave.cs" />
@@ -271,6 +273,7 @@
     <Compile Include="Assets\Scripts\World.cs" />
     <Compile Include="Assets\Scripts\WorldSelect.cs" />
     <Compile Include="Assets\SeedOfLight.cs" />
+    <Compile Include="Assets\Ship.cs" />
     <Compile Include="Assets\Sounds\CollisionSound.cs" />
     <Compile Include="Assets\UDP\Sample\Scripts\UDPSampleScript.cs" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\LonesomeSpace\generator.txt" />

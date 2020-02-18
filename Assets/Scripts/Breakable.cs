@@ -63,8 +63,9 @@ public class Breakable : MonoBehaviour {
                 ball.GetComponent<Ball>().Enlarge();
 
             }
-            flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);
+/*            flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);
             flies.Free(ball);
+  */
             Destroy(this.gameObject);
         }
 	}

@@ -13,6 +13,8 @@ public class EndlessLevel : MonoBehaviour {
     public int fliesReleased;
     public AudioClip success;
     public BallHolder ballHolder;
+    public Dock dock;
+
     private string selectedScene;
 	private AsyncOperation AO;
 	private GameState gameState;
@@ -24,6 +26,7 @@ public class EndlessLevel : MonoBehaviour {
     private int setCount;
     private int powerUpIndex = 0;
     private bool hasPowerup = false;
+    private Ship ship;
 
 
     // Use this for initialization
@@ -35,13 +38,28 @@ public class EndlessLevel : MonoBehaviour {
         setCount = 0;
         CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
         gameState = (GameState)FindObjectOfType (typeof(GameState));
-        //        PlaceRandomBreakable(Random.Range(1,3));
-//        CreateRandomSetOfBreakables(Random.Range(4, 10));
 
         if (gameState != null) {
 			currentWorld = gameState.SelectedWorld;
 		}
         maxScore = gameObject.GetComponentsInChildren<Fly>().Length * 27;
+        dock.SelectShip(gameState);
+        ship = dock.ship.GetComponentInChildren<Ship>();
+        ship.SetGrid(grid);
+        ship.SetLevel(this);
+        grid.SetShip(ship);
+
+
+    }
+    public void MaxEnergy()
+    {
+
+        dock.AddSeeds(1);
+        CreatePowerUp();
+        Debug.Log("MAX ENERGY!");
+        grid.PowerUp();
+        dock.ship.GetComponentInChildren<Ship>().SetEnergyLevel(0);
+
     }
 
     void FixedUpdate () {
@@ -49,106 +67,132 @@ public class EndlessLevel : MonoBehaviour {
         {
             ScanForCompletion();
         }
-	}
+    }
 
 
     public void AddFliesReleased(int flies, float inkAmount, int multiplier)
     {
         fliesReleased += flies * multiplier;
     }
-	public void ScanForCompletion() {
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
-        bool skipToFever = ballHolder.HasFullEnergy();
-        if (gos.Length == 0 && setCount >= grid.sets ) //add check for current Set
-        {
-            //reset set counter
-            setCount = 0;
-            //old grid saved
-            Grid oldGrid = grid;
 
-            //EVENT #1 - FINISHED GRID
-            //tell the current grid (open) to transition to finished grid
-            if (!skipToFever)
+    public void ScanForCompletion() {
+        if (ship) {
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
+            bool skipToFever = ship.HasFullEnergy();
+            if (gos.Length == 0 && setCount >= grid.sets) //add check for current Set
             {
-                Animator[] platforms = grid.platforms.GetComponentsInChildren<Animator>();
-                for(int i = 0; i < platforms.Length; i++)
+                //reset set counter
+                setCount = 0;
+                //old grid saved
+                Grid oldGrid = grid;
+
+                //EVENT #1 - FINISHED GRID
+                //tell the current grid (open) to transition to finished grid
+                if (!skipToFever)
                 {
-                    platforms[i].SetTrigger("done");
+                    Animator[] platforms = grid.platforms.GetComponentsInChildren<Animator>();
+                    for (int i = 0; i < platforms.Length; i++)
+                    {
+                        platforms[i].SetTrigger("done");
+                    }
+                    grid.currentSet.BroadcastMessage("FinishedGrid", SendMessageOptions.DontRequireReceiver);
+                    dock.AddSeeds(1);
                 }
-                grid.currentSet.BroadcastMessage("FinishedGrid", SendMessageOptions.DontRequireReceiver);
-                ballHolder.AddSeed();
+
+                //set current grid to whatever grid is next (set 2)
+                grid = grid.currentSet.nextGrid;
+                //set ball holder's grid to our current grid 
+//                ship.SetGrid(grid);
+
+                //turn off the old grid
+                oldGrid.gameObject.SetActive(false);
+                //set the grid of the ball to the current grid
+
+                ship.SetGrid(grid);
+                grid.gameObject.SetActive(true);
+                grid.SetShip(ship);
+                CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
+
+                Debug.Log("Shutting down old grid: " + oldGrid.gameObject.name);
+
+
             }
+            else if (gos.Length == 0) //place more breakables
+            {
+                //new set
+                setCount++;
+                CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
 
-            //set current grid to whatever grid is next (set 2)
-            grid = grid.currentSet.nextGrid;
-            //set ball holder's grid to our current grid 
-            ballHolder.grid = grid;
-            //turn off the old grid
-            oldGrid.gameObject.SetActive(false);
-            //set the grid of the ball to the current grid
-            ballHolder.ship.GetComponent<Ball>().grid = grid;
-            grid.gameObject.SetActive(true);
-            CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
-
-            Debug.Log("Shutting down old grid: " + oldGrid.gameObject.name);
-
-
+            }
         }
-        else if (gos.Length == 0) //place more breakables
-        {
-            //new set
-            setCount++;
-            CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
-
-        }
-
     }
 
-/*
-    public void EndOfLevel()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (gameState != null)
+    /*
+        public void EndOfLevel()
         {
-
-            if (int.Parse(gameState.SelectedLevel) >= 10)
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (gameState != null)
             {
-                //unlock next world
-                //WORLD COMPLETE UI
-                gameState.SelectedWorld = nextWorldName;
-                nextLevel = 1;
-                PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
-                WorldCompletePanel.SetActive(true);
+
+                if (int.Parse(gameState.SelectedLevel) >= 10)
+                {
+                    //unlock next world
+                    //WORLD COMPLETE UI
+                    gameState.SelectedWorld = nextWorldName;
+                    nextLevel = 1;
+                    PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
+                    WorldCompletePanel.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("Next Level Awaits...");
+                    //unlock next level
+                    nextLevel = int.Parse(gameState.SelectedLevel) + 1;
+                    PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
+                    LevelCompletePanel.SetActive(true);
+                    if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
+                    {
+                        //max multiplier = 27
+
+                        LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased, maxScore);
+                        Debug.Log("Setting score");
+                    }
+                }
             }
             else
             {
-                Debug.Log("Next Level Awaits...");
-                //unlock next level
-                nextLevel = int.Parse(gameState.SelectedLevel) + 1;
-                PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
                 LevelCompletePanel.SetActive(true);
                 if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
                 {
-                    //max multiplier = 27
-                    
                     LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased, maxScore);
                     Debug.Log("Setting score");
                 }
+
             }
+
+        }
+        */
+
+    public void GameOver()
+    {
+
+        PlayerPrefs.SetInt("seeds", dock.seedsCollected + PlayerPrefs.GetInt("seeds"));
+        //        finished = true;
+        grid.currentSet.Waiting();
+        LevelFailPanel.SetActive(true);
+        if (dock.seedsCollected > 0)
+        {
+            failureMessage.text = "You collected " + dock.seedsCollected + " seeds of light on your journey.";
         }
         else
         {
-            LevelCompletePanel.SetActive(true);
-            if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
-            {
-                LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased, maxScore);
-                Debug.Log("Setting score");
-            }
+            failureMessage.text = "You didn't collect any seeds of light on your journey.";
 
         }
-
     }
-    */
+
+
+
     public void PlaceRandomBreakable(int amount)
     {
 
