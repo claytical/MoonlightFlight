@@ -16,7 +16,7 @@ public class Energy : MonoBehaviour
     {
         activated = true;
         Color activeColor = startColor;
-        activeColor.a = 100f;
+        activeColor.a = 80f;
         GetComponent<SpriteRenderer>().color = activeColor;
     }
 

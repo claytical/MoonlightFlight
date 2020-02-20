@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4062359766963496}
-  - component: {fileID: 114981825232247724}
   - component: {fileID: 82399481100336622}
+  - component: {fileID: 1019036148}
   m_Layer: 0
   m_Name: Ball Holder
   m_TagString: Untagged
@@ -32,32 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114981825232247724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921376732884472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f722dd3be0c240cbbc8d157b3950744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 0}
-  ships:
-  - {fileID: 1556315624568502, guid: ac0a199adfe77de419562ff54a35eec8, type: 3}
-  - {fileID: 1556315624568502, guid: 5f391fc821a8d2141b7882e03d7329e7, type: 3}
-  player: {fileID: 0}
-  textOverlay: {fileID: 1828139352169244, guid: 99172f5a775c1a94ea6a7c9ae5891a4a,
-    type: 3}
-  uiCanvas: {fileID: 0}
-  maxEnergyPlaytime: 0
-  grid: {fileID: 0}
-  touchPoint: {fileID: 8455937364993888704, guid: 08a87ae8892458741b1a98e7dba483ec,
-    type: 3}
-  energy: 0
-  energyUI: {fileID: 0}
 --- !u!82 &82399481100336622
 AudioSource:
   m_ObjectHideFlags: 0
@@ -155,3 +129,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1019036148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921376732884472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b38122e3fd84c4bbb5c0b84316e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ships:
+  - {fileID: 1556315624568502, guid: ac0a199adfe77de419562ff54a35eec8, type: 3}
+  - {fileID: 1556315624568502, guid: 5f391fc821a8d2141b7882e03d7329e7, type: 3}
+  - {fileID: 1556315624568502, guid: c9353f80843842544a74f905ccdc4081, type: 3}
+  - {fileID: 1556315624568502, guid: 8b5451586bfc83f4a8f651babb218c58, type: 3}
+  - {fileID: 1556315624568502, guid: 4b82fa14806082c46911d1e078857f0e, type: 3}
+  - {fileID: 1556315624568502, guid: 666d25f3829b8fb479878d124e596881, type: 3}
+  ship: {fileID: 0}
+  seedsCollected: 0
+  seedUI: {fileID: 0}

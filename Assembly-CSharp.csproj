@@ -274,6 +274,7 @@
     <Compile Include="Assets\Scripts\WorldSelect.cs" />
     <Compile Include="Assets\SeedOfLight.cs" />
     <Compile Include="Assets\Ship.cs" />
+    <Compile Include="Assets\ShipLock.cs" />
     <Compile Include="Assets\Sounds\CollisionSound.cs" />
     <Compile Include="Assets\UDP\Sample\Scripts\UDPSampleScript.cs" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\LonesomeSpace\generator.txt" />

@@ -12,6 +12,7 @@ public class Ship : MonoBehaviour
     private bool isDead;
     private bool deadShip;
     private bool hasShield;
+    private bool hasPowerup = false;
     private Grid grid;
     private EndlessLevel level;
     private float yOffset;
@@ -48,6 +49,7 @@ public class Ship : MonoBehaviour
         grid.LowEnergy();
         SetPassThrough(false);
         grid.PlatformTransparency(false);
+        hasPowerup = false;
     }
 
     public void addEnergy(int amount)
@@ -75,11 +77,12 @@ public class Ship : MonoBehaviour
 
         currentEnergyLevel += amount;
 
-        if (HasFullEnergy()) {
+        if (HasFullEnergy() && !hasPowerup) {
             //EVENT #3 - FEVER REACHED
-
             level.MaxEnergy();
-            }
+            hasPowerup = true;
+
+        }
     }
 
     public void SetLevel(EndlessLevel l)
@@ -226,6 +229,7 @@ public class Ship : MonoBehaviour
 
         gameObject.GetComponentInParent<AudioSource>().Play();
     }
+   
     public bool EnergyTimeout()
     {
         if(HasFullEnergy())
@@ -234,8 +238,7 @@ public class Ship : MonoBehaviour
         }
        
         if (HasFullEnergy() && !grid.fullEnergy.isPlaying)
-        {
-           
+        {           
             return true;
         }
         else

@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class EndlessLevel : MonoBehaviour {
 	public GameObject LevelFailPanel;
     public GameObject[] breakableObjects;
-    public Grid grid;
+    public Grid[] grids;
     public Text failureMessage;
     public bool inkEnabled;
     public int fliesReleased;
     public AudioClip success;
-    public BallHolder ballHolder;
+//    public BallHolder ballHolder;
     public Dock dock;
 
     private string selectedScene;
@@ -25,8 +25,10 @@ public class EndlessLevel : MonoBehaviour {
     private int maxScore;
     private int setCount;
     private int powerUpIndex = 0;
+    private int gridIndex;
     private bool hasPowerup = false;
     private Ship ship;
+    private Grid grid;
 
 
     // Use this for initialization
@@ -36,7 +38,9 @@ public class EndlessLevel : MonoBehaviour {
 //        Time.timeScale = 0f;
         fliesReleased = 0;
         setCount = 0;
-        CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
+        gridIndex = Random.Range(0, grids.Length);
+        grid = grids[gridIndex];
+        CreateRandomSetOfBreakables(grids[gridIndex].numberOfObjectsToPlace);
         gameState = (GameState)FindObjectOfType (typeof(GameState));
 
         if (gameState != null) {
@@ -48,7 +52,6 @@ public class EndlessLevel : MonoBehaviour {
         ship.SetGrid(grid);
         ship.SetLevel(this);
         grid.SetShip(ship);
-
 
     }
     public void MaxEnergy()
@@ -100,7 +103,7 @@ public class EndlessLevel : MonoBehaviour {
                 }
 
                 //set current grid to whatever grid is next (set 2)
-                grid = grid.currentSet.nextGrid;
+                grid = grid.currentSet.SetNextGrid();
                 //set ball holder's grid to our current grid 
 //                ship.SetGrid(grid);
 
@@ -175,8 +178,7 @@ public class EndlessLevel : MonoBehaviour {
 
     public void GameOver()
     {
-
-        PlayerPrefs.SetInt("seeds", dock.seedsCollected + PlayerPrefs.GetInt("seeds"));
+        dock.SetSeeds();
         //        finished = true;
         grid.currentSet.Waiting();
         LevelFailPanel.SetActive(true);
@@ -191,7 +193,10 @@ public class EndlessLevel : MonoBehaviour {
         }
     }
 
-
+    public void Wait()
+    {
+        grid.currentSet.Waiting();
+    }
 
     public void PlaceRandomBreakable(int amount)
     {

@@ -10,17 +10,27 @@ public class ProceduralSet : MonoBehaviour
     public AudioMixerSnapshot finishedGrid;
 /*    public AudioMixerSnapshot bumpedPlatform;*/
     public AudioMixerSnapshot maxEnergy;
-/*
-    public AudioMixerSnapshot switched;
-    public AudioMixerSnapshot brokeObject;
-  */  
+    /*
+        public AudioMixerSnapshot switched;
+        public AudioMixerSnapshot brokeObject;
+      */
 
-    public Grid nextGrid;
+    public Grid[] nextGrids;
+
+    private int selectedGrid;
+    private Grid nextGrid;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+    
+    public Grid SetNextGrid()
+    {
+        selectedGrid = Random.Range(0, nextGrids.Length);
+        nextGrid = nextGrids[selectedGrid];
+        return nextGrid;
     }
 
     // Update is called once per frame

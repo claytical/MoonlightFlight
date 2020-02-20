@@ -180,7 +180,7 @@ public class PlayerControl : MonoBehaviour {
         Debug.Log("Collected SEEDS: " + seedsCollected);
         PlayerPrefs.SetInt("seeds", seedsCollected + PlayerPrefs.GetInt("seeds"));
         finished = true;
-        level.grid.currentSet.Waiting();
+        level.Wait();
         level.LevelFailPanel.SetActive (true);
         if (seedsCollected > 0)
         {

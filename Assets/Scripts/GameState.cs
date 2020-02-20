@@ -11,7 +11,7 @@ public class GameState : MonoBehaviour {
         Rocket = 1,
         XWing = 2,
         Falcon = 3,
-        Shooter = 4,
+        Fighter = 4,
         UFO = 5
     };
 
@@ -28,19 +28,19 @@ public class GameState : MonoBehaviour {
                 ship = Ship.Boomerang;
                 break;
             case 1:
-                ship = Ship.Rocket;
-                break;
-            case 2:
-                ship = Ship.XWing;
-                break;
-            case 3:
                 ship = Ship.Falcon;
                 break;
+            case 2:
+                ship = Ship.Fighter;
+                break;
+            case 3:
+                ship = Ship.Rocket;
+                break;
             case 4:
-                ship = Ship.Shooter;
+                ship = Ship.UFO;
                 break;
             case 5:
-                ship = Ship.UFO;
+                ship = Ship.XWing;
                 break;
         }
     }

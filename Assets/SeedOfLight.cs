@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class SeedOfLight : MonoBehaviour
 {
     public Text SeedCounter;
+    public string shipName;
     // Start is called before the first frame update
     void Start()
     {
-        int seedsCollected = PlayerPrefs.GetInt("seeds");
-        Debug.Log("SEEDS COLLECTED:" + seedsCollected);
+        int seedsCollected = PlayerPrefs.GetInt(shipName + "_seeds");
         SeedCounter.text = seedsCollected.ToString("0");
     }
 
