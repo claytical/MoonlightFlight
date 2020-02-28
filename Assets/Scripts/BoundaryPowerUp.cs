@@ -54,7 +54,16 @@ public class BoundaryPowerUp : MonoBehaviour
         strength += amount;
         for(int i = 0; i < amount; i++)
         {
-            Instantiate(smallerBorder, transform);
+            Transform borderParent = GetComponentsInChildren<Border>()[GetComponentsInChildren<Border>().Length - 1].transform;
+            if (borderParent)
+            {
+                Instantiate(smallerBorder, borderParent);
+            }
+            else
+            {
+                Instantiate(smallerBorder, transform);
+
+            }
         }
     }
 

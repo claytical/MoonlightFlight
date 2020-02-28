@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4039400763039473649}
   - component: {fileID: 6043177690188977805}
+  - component: {fileID: 2394997569187425958}
   m_Layer: 0
   m_Name: Border Addition
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dea6f2068f351fc4b8fdfbcc186ae761, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -81,3 +82,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2394997569187425958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606924193102166488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a728741e8e60d4694249a8e9ed8131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

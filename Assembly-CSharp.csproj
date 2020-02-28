@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Border.cs" />
     <Compile Include="Assets\Dock.cs" />
     <Compile Include="Assets\Energy.cs" />
     <Compile Include="Assets\GleyPlugins\AllPlatformsSave\Example\Scripts\GameValues.cs" />
