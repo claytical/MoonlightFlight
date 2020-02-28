@@ -108,6 +108,7 @@ public class EndlessLevel : MonoBehaviour {
         ship.LinkGrid(grid);
 
         //populate breakables for current grid
+        Debug.Log("CREATING " + grid.numberOfObjectsToPlace + " FOR " + grid.name);
         CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
         //turn off old grid - NO GRIDS SHOWN
         previousGrid.gameObject.SetActive(false);
@@ -281,15 +282,6 @@ public class EndlessLevel : MonoBehaviour {
             return obj;
         }
 
-/*        if (!hasPowerup)
-        {
-            Transform[] locations = grid.spawnLocations.GetComponentsInChildren<Transform>();
-            GameObject obj = Instantiate(grid.powerUp, locations[powerUpIndex].position, Quaternion.identity, transform);
-            hasPowerup = true;
-            return obj;
-        }
-*/
-        //        obj.SetActive(false);
         return null;
     }
     public void CreateRandomSetOfBreakablesWithSwitches(int n)

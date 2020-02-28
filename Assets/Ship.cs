@@ -74,7 +74,7 @@ public class Ship : MonoBehaviour
 
         currentEnergyLevel += amount;
 
-        if (HasFullEnergy() && !hasPowerup) {
+        if (HasFullEnergy() && !hasPowerup && !grid.fullEnergy.isPlaying) {
             //EVENT #3
             level.MaxEnergyReached();
             hasPowerup = true;
@@ -240,6 +240,7 @@ public class Ship : MonoBehaviour
                 return false;
             }
         }
+        
         return true;
     }
 
