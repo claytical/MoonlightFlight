@@ -220,6 +220,7 @@
     <Compile Include="Assets\MusicGenerator\Assets\UIEditor\Scripts\Tooltips.cs" />
     <Compile Include="Assets\MusicGenerator\Assets\UIEditor\Scripts\UIManager.cs" />
     <Compile Include="Assets\MusicGenerator\Demo\DemoCode.cs" />
+    <Compile Include="Assets\Platform.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\BallHolder.cs" />
     <Compile Include="Assets\Scripts\BoundaryPowerUp.cs" />

@@ -10,9 +10,7 @@ public class EndlessLevel : MonoBehaviour {
     public Grid[] grids;
     public Text failureMessage;
     public bool inkEnabled;
-    public int fliesReleased;
     public AudioClip success;
-//    public BallHolder ballHolder;
     public Dock dock;
 
     private string selectedScene;
@@ -29,39 +27,44 @@ public class EndlessLevel : MonoBehaviour {
     private bool hasPowerup = false;
     private Ship ship;
     private Grid grid;
+    private bool buildingNewGrid = false;
 
 
     // Use this for initialization
     static System.Random rnd = new System.Random();
 
     void Start () {
-//        Time.timeScale = 0f;
-        fliesReleased = 0;
-        setCount = 0;
-        gridIndex = Random.Range(0, grids.Length);
-        grid = grids[gridIndex];
-        CreateRandomSetOfBreakables(grids[gridIndex].numberOfObjectsToPlace);
-        gameState = (GameState)FindObjectOfType (typeof(GameState));
+        //SETUP SHIP NAME AND CREATE IT
+        gameState = (GameState)FindObjectOfType(typeof(GameState));
+        ship = dock.SelectShip(gameState);
 
-        if (gameState != null) {
-			currentWorld = gameState.SelectedWorld;
-		}
-        maxScore = gameObject.GetComponentsInChildren<Fly>().Length * 27;
-        dock.SelectShip(gameState);
-        ship = dock.ship.GetComponentInChildren<Ship>();
-        ship.SetGrid(grid);
+        //EACH GRID REPEATS A GIVEN NUMBER, RESET TO ZERO
+        setCount = 0;
+        
+        //PICK A STARTING GRID
+        gridIndex = Random.Range(0, grids.Length);
+        
+        //ASSIGN THAT GRID TO START
+        grid = grids[gridIndex];
+
+        //PASS GRID INFO TO SHIP
+        ship.LinkGrid(grid);
+
+        //SET LEVEL FOR THE SHIP
         ship.SetLevel(this);
-        grid.SetShip(ship);
+
+        
+        //CREATE BREAKABLES IN GRID
+        CreateRandomSetOfBreakables(grids[gridIndex].numberOfObjectsToPlace);
 
     }
-    public void MaxEnergy()
+    
+    public void MaxEnergyReached()
     {
 
         dock.AddSeeds(1);
         CreatePowerUp();
-        Debug.Log("MAX ENERGY!");
         grid.PowerUp();
-        dock.ship.GetComponentInChildren<Ship>().SetEnergyLevel(0);
 
     }
 
@@ -69,58 +72,82 @@ public class EndlessLevel : MonoBehaviour {
         if (!levelFinished)
         {
             ScanForCompletion();
+            if(buildingNewGrid)
+            {
+                if(HavePlatformsDisappeared())
+                {
+                    BuildNextGrid();
+                }
+            }
         }
     }
 
-
-    public void AddFliesReleased(int flies, float inkAmount, int multiplier)
+    private void ResetPlatforms()
     {
-        fliesReleased += flies * multiplier;
+        for (int i = 0; i < grid.platforms.GetComponentsInChildren<Platform>().Length; i++)
+        {
+            grid.platforms.GetComponentsInChildren<Platform>()[i].finished = true;
+        }
+
+    }
+    public void BuildNextGrid()
+    {
+        ResetPlatforms();
+        Grid previousGrid = grid;
+        //set current grid to whatever grid is next (set 2) -> NEXT GRID SELECTED
+        grid = grid.currentSet.SetNextGrid();
+        //BROKE ALL RINGS, CLEARED ALL SETS                    
+        setCount = 0;
+
+        //start new music, set procedural set's current next grid active -> NEW GRID SHOWN
+        previousGrid.currentSet.FinishedGrid();
+        //reward player
+        dock.AddSeeds(1);
+
+        //link ship and grid scripts
+        ship.LinkGrid(grid);
+
+        //populate breakables for current grid
+        CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
+        //turn off old grid - NO GRIDS SHOWN
+        previousGrid.gameObject.SetActive(false);
+
+        buildingNewGrid = false;
+
+    }
+
+    public bool HavePlatformsDisappeared()
+    {
+        int numberOfPlatforms = grid.platforms.GetComponentsInChildren<Platform>().Length;
+        int numberOfFinishedPlatforms = 0;
+        for (int i = 0; i < numberOfPlatforms; i++) {
+            if(grid.platforms.GetComponentsInChildren<Platform>()[i].finished) {
+                numberOfFinishedPlatforms++;
+            }
+        }
+        if(numberOfPlatforms == numberOfFinishedPlatforms)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void ScanForCompletion() {
         if (ship) {
             GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
-            bool skipToFever = ship.HasFullEnergy();
-            if (gos.Length == 0 && setCount >= grid.sets) //add check for current Set
+            if (gos.Length == 0 && setCount >= grid.sets && !buildingNewGrid)
             {
-                //reset set counter
-                setCount = 0;
-                //old grid saved
-                Grid oldGrid = grid;
-
                 //EVENT #1 - FINISHED GRID
                 //tell the current grid (open) to transition to finished grid
-                if (!skipToFever)
+                Animator[] platforms = grid.platforms.GetComponentsInChildren<Animator>();
+
+                for (int i = 0; i < platforms.Length; i++)
                 {
-                    Animator[] platforms = grid.platforms.GetComponentsInChildren<Animator>();
-                    for (int i = 0; i < platforms.Length; i++)
-                    {
-                        platforms[i].SetTrigger("done");
-                    }
-                    grid.currentSet.BroadcastMessage("FinishedGrid", SendMessageOptions.DontRequireReceiver);
-                    dock.AddSeeds(1);
+                    platforms[i].SetTrigger("done");
                 }
-
-                //set current grid to whatever grid is next (set 2)
-                grid = grid.currentSet.SetNextGrid();
-                //set ball holder's grid to our current grid 
-//                ship.SetGrid(grid);
-
-                //turn off the old grid
-                oldGrid.gameObject.SetActive(false);
-                //set the grid of the ball to the current grid
-
-                ship.SetGrid(grid);
-                grid.gameObject.SetActive(true);
-                grid.SetShip(ship);
-                CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
-
-                Debug.Log("Shutting down old grid: " + oldGrid.gameObject.name);
-
-
+                buildingNewGrid = true;
             }
-            else if (gos.Length == 0) //place more breakables
+            else if (gos.Length == 0 && setCount < grid.sets) //place more breakables
             {
                 //new set
                 setCount++;

@@ -7,6 +7,7 @@ public class Ship : MonoBehaviour
     private int currentEnergyLevel;
     public Energy[] meter;
     public GameObject energy;
+    public bool poweredUp = false;
     private List<GameObject> touchPoints;
     private bool canPassThroughObjects;
     private bool isDead;
@@ -45,7 +46,7 @@ public class Ship : MonoBehaviour
             meter[i].Deactivate();
             
         }
-        currentEnergyLevel = 0;
+        SetEnergyLevel(0);
         grid.LowEnergy();
         SetPassThrough(false);
         grid.PlatformTransparency(false);
@@ -54,13 +55,11 @@ public class Ship : MonoBehaviour
 
     public void addEnergy(int amount)
     {
-        Debug.Log("Adding Energy!");
         if (currentEnergyLevel + amount <= meter.Length)
         {
             //has less than the amount of energy to go full
             for (int i = currentEnergyLevel; i < currentEnergyLevel + amount; i++)
             {
-                Debug.Log("Activating Energy #" + i);
                 meter[i].Activate();
             }
         }
@@ -69,8 +68,6 @@ public class Ship : MonoBehaviour
             //has all the energy to go full
             for (int i = currentEnergyLevel; i < meter.Length; i++)
             {
-                Debug.Log("Activating Full Energy #" + i);
-
                 meter[i].Activate();
             }
         }
@@ -78,8 +75,8 @@ public class Ship : MonoBehaviour
         currentEnergyLevel += amount;
 
         if (HasFullEnergy() && !hasPowerup) {
-            //EVENT #3 - FEVER REACHED
-            level.MaxEnergy();
+            //EVENT #3
+            level.MaxEnergyReached();
             hasPowerup = true;
 
         }
@@ -106,9 +103,10 @@ public class Ship : MonoBehaviour
 
     }
     */
-    public void SetGrid(Grid g)
+    public void LinkGrid(Grid g)
     {
         grid = g;
+        grid.SetShip(this);
     }
 
     // Update is called once per frame
@@ -136,7 +134,11 @@ public class Ship : MonoBehaviour
     {
         if (coll.gameObject.tag == "Disappearing")
         {
-            addEnergy(1);
+            if (!HasFullEnergy())
+            {
+                addEnergy(1);
+            }
+
             if (coll.gameObject.GetComponent<Breakable>())
             {
                 GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
@@ -157,6 +159,7 @@ public class Ship : MonoBehaviour
 
         if (coll.gameObject.tag == ("Power Up"))
         {
+        
 
             if (coll.gameObject.GetComponent<PowerUp>())
             {
@@ -167,7 +170,7 @@ public class Ship : MonoBehaviour
 //                        ToggleShield();
                         break;
                     case PowerUp.Reward.Boundary:
-                        GetComponentInParent<BallHolder>().player.boundary.GetComponent<BoundaryPowerUp>().AddBorders(3);
+                        GetComponentInParent<Dock>().boundaries.AddBorders(3);
 
                         break;
                     case PowerUp.Reward.SpeedUp:
@@ -199,7 +202,6 @@ public class Ship : MonoBehaviour
             //ADD SOUND
             GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<CollisionSound>().soundFx[0], .5f);
             Debug.Log("Bumped Object");
-            GetComponentInParent<BallHolder>().energy++;
             //EVENT #2 - BUMPED PLATFORM
             grid.currentSet.BroadcastMessage("BumpedPlatform", SendMessageOptions.DontRequireReceiver);
             //Check for polygon shenanigans
@@ -229,23 +231,6 @@ public class Ship : MonoBehaviour
 
         gameObject.GetComponentInParent<AudioSource>().Play();
     }
-   
-    public bool EnergyTimeout()
-    {
-        if(HasFullEnergy())
-        {
-            Debug.Log("Has Full Energy and full music is playing: " + grid.fullEnergy.isPlaying);
-        }
-       
-        if (HasFullEnergy() && !grid.fullEnergy.isPlaying)
-        {           
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     public bool HasFullEnergy() {
         for (int i = 0; i < meter.Length; i++)
@@ -271,7 +256,6 @@ public class Ship : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Making Mouse Touch Point");
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             touchPosition.z = 0;
             GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);

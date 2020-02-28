@@ -8,17 +8,13 @@ public class ProceduralSet : MonoBehaviour
     public AudioMixerSnapshot waiting;
     public AudioMixerSnapshot starting;
     public AudioMixerSnapshot finishedGrid;
-/*    public AudioMixerSnapshot bumpedPlatform;*/
     public AudioMixerSnapshot maxEnergy;
-    /*
-        public AudioMixerSnapshot switched;
-        public AudioMixerSnapshot brokeObject;
-      */
+
 
     public Grid[] nextGrids;
 
-    private int selectedGrid;
-    private Grid nextGrid;
+    private int selectedGridIndex;
+    public Grid nextGrid;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +24,13 @@ public class ProceduralSet : MonoBehaviour
     
     public Grid SetNextGrid()
     {
-        selectedGrid = Random.Range(0, nextGrids.Length);
-        nextGrid = nextGrids[selectedGrid];
-        return nextGrid;
+        selectedGridIndex = Random.Range(0, nextGrids.Length);
+        Debug.Log("Selected Grid " + selectedGridIndex);
+        Grid _nextGrid = nextGrids[selectedGridIndex];
+        nextGrid = _nextGrid;
+        Debug.Log("SELECTED GRID: " + nextGrids[selectedGridIndex].name);
+
+        return _nextGrid;
     }
 
     // Update is called once per frame
@@ -67,9 +67,9 @@ public class ProceduralSet : MonoBehaviour
     {
         //transition from current procedural set to next one
         finishedGrid.TransitionTo(0);
+        Debug.Log("I'm in " + gameObject.name);
         nextGrid.gameObject.SetActive(true);
-//        nextGrid.currentSet.Starting();
-        //gameObject.SetActive(false);
+        Debug.Log("TURNING ON " + nextGrid.name);
     }
     /*
     public void BrokeObject()
@@ -94,18 +94,18 @@ public void BumpedPlatform()
     }
 }
 */
-/*
-    public void Switched()
-    {
-        switched.TransitionTo(0);
-    }
-*/
-/*
-    public void FeverTimeout()
-    {
-        Debug.Log("fever timeout!");
-
-        feverTimeout.TransitionTo(.1f);
-    }
+    /*
+        public void Switched()
+        {
+            switched.TransitionTo(0);
+        }
     */
+    /*
+        public void FeverTimeout()
+        {
+            Debug.Log("fever timeout!");
+
+            feverTimeout.TransitionTo(.1f);
+        }
+        */
 }

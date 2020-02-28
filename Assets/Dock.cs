@@ -11,12 +11,19 @@ public class Dock : MonoBehaviour
     public int seedsCollected;
     public Text seedUI;
     public AudioClip seedFx;
+    public BoundaryPowerUp boundaries;
     private string shipName;
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+
+    public Ship GetShip()
+    {
+        return ship.GetComponentInChildren<Ship>();
     }
 
     public void AddSeeds(int seeds)
@@ -36,7 +43,9 @@ public class Dock : MonoBehaviour
         PlayerPrefs.SetInt("seeds", seedsCollected + PlayerPrefs.GetInt("seeds"));
 
     }
-    public void SelectShip(GameState gs)
+
+    
+    public Ship SelectShip(GameState gs)
     {
         switch (gs.ship)
         {
@@ -75,7 +84,7 @@ public class Dock : MonoBehaviour
         Vector3 newPosition = ship.transform.position;
         newPosition.z = 10f;
         ship.transform.position = newPosition;
-
+        return ship.GetComponentInChildren<Ship>();
     }
 
     // Update is called once per frame

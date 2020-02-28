@@ -15,7 +15,6 @@ public class Grid : MonoBehaviour
     public AudioSource fullEnergy;
     public int energyRequiredForPowerUp = 25;
 
-    private bool poweredUp;
     private Ship ship;
     //remaining spaces to populate
 
@@ -64,19 +63,19 @@ public class Grid : MonoBehaviour
         //        Instantiate(powerUp, transform);
         currentSet.BroadcastMessage("MaxEnergy", SendMessageOptions.DontRequireReceiver);
         fullEnergy.Play();
-        poweredUp = true;
+        ship.poweredUp = true;
     }
 
     // Update is called once per frame
 
     void Update()
     {
-        if(poweredUp)
+        if(ship.poweredUp)
         {
             if (!fullEnergy.isPlaying)
             {
                 LowEnergy();
-                poweredUp = false;
+                ship.poweredUp = false;
                 ship.powerDown();
                 //power down ship
             }
