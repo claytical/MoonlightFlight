@@ -85,18 +85,7 @@ public class Level : MonoBehaviour {
             {
                 levelFinished = true;
                 Debug.Log("Level Complete");
-                Ball ball = GameObject.FindObjectOfType<Ball>();
-                ball.gameObject.GetComponent<Collider2D>().enabled = false;
-                ball.gameObject.GetComponent<Rigidbody2D>().simulated = false;
-                ball.gameObject.GetComponentInParent<LevelSound>().SilentMode();
-                ball.gameObject.GetComponent<AudioSource>().PlayOneShot(success);
-                //chunk sets
-                for(int i = 0; i < 100; i++)
-                {
-                    Instantiate(ball.fly, ball.gameObject.transform);
-                }
-//                EndOfLevel();
-                    Invoke("EndOfLevel", 5);
+                Invoke("EndOfLevel", 5);
             }
         }
 	}

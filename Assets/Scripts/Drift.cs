@@ -5,8 +5,6 @@ using UnityEngine;
 public class Drift : MonoBehaviour
 {
     public bool randomDrift = false;
-    private float angle = 0f;
-    private float speed = 5f;
     private float mass;
     private Vector3 startPosition;
     private Vector3 destination;

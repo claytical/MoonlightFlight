@@ -19,9 +19,7 @@ public class Breakable : MonoBehaviour {
     public GameObject explosion;
 	public AudioClip hit;
     public Flys flies;
-    private GameObject ball;
 	private float lightUpTime;
-	private bool litUp = false; //
 	private bool isDying = false;
 
 	// Use this for initialization
@@ -56,11 +54,11 @@ public class Breakable : MonoBehaviour {
             //set flies free first
             if (shrinksIntruder)
             {
-                ball.GetComponent<Ball>().Shrink();
+//                ball.GetComponent<Ball>().Shrink();
             }
             if(enlargesIntruder)
             {
-                ball.GetComponent<Ball>().Enlarge();
+ //               ball.GetComponent<Ball>().Enlarge();
 
             }
 /*            flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);

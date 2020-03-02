@@ -16,14 +16,4 @@ public class Hazard : MonoBehaviour
     {
 
     }
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if(coll.gameObject.tag == "Player")
-        {
-            //update this logic to allow seeds collected
-            coll.gameObject.GetComponentInParent<BallHolder>().player.GameOver(0);
-
-        }
-
-    }
 }

@@ -99,8 +99,6 @@
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUpgrader.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUtil.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
-    <Compile Include="Assets\MusicGenerator\Editor\AssetBundleBuildClass.cs" />
-    <Compile Include="Assets\MusicGenerator\Editor\PrefabBuilder.cs" />
     <Compile Include="Assets\UDP\Editor\Analytics\Common.cs" />
     <Compile Include="Assets\UDP\Editor\Analytics\EditorAnalytcisApi.cs" />
     <Compile Include="Assets\UDP\Editor\Analytics\ProjectBuildEvent.cs" />

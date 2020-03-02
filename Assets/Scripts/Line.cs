@@ -27,12 +27,13 @@ public class Line : MonoBehaviour {
         //		line.material = new Material(Shader.Find ("Assets/Sprites/Pieces/Outline.mat"));
         line.material = material;
 
-        line.SetVertexCount (0);
-		line.SetWidth (0.1f, 0.15f);
-		line.SetColors (Color.white, Color.white);
+        line.positionCount = 0;
+        line.startWidth = .1f;
+        line.endWidth = .15f;
+        line.startColor = Color.white;
+        line.endColor = Color.white;
 		line.useWorldSpace = true;    
-		pointsList = new List<Vector3> ();
-		line.SetVertexCount (0);
+		pointsList = new List<Vector3> ();        
 		pointsList.RemoveRange (0, pointsList.Count);
 		//line.SetColors (Color.white, Color.white);
 	}
@@ -87,7 +88,7 @@ public class Line : MonoBehaviour {
 
     public void addPoint(Vector3 mousePos) {
 		pointsList.Add (mousePos);
-		line.SetVertexCount (pointsList.Count);
+        line.positionCount = pointsList.Count;
 		line.SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
 		if(pointsList.Count > 1) {
             Vector3 position = transform.position;

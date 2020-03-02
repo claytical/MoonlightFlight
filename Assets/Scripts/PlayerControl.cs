@@ -14,14 +14,6 @@ public class PlayerControl : MonoBehaviour {
 //	private bool tutored;
 //    private bool endOfInk = false;
 	private Vector3 lastMouseCoordinate = Vector3.zero;
-	private bool isMousePressed;
-//	public List<Line> Lines;
-//	public GameObject line;
-//    public float lineTimeLimit = 100f;
-//    public Text inkLeft;
-//    public float inkAmount = 0;
-//    public GameObject inkJar;
-//    public GameObject goButton;
     public GameObject boundary;
 
 	private Vector3 mousePos;
@@ -32,8 +24,6 @@ public class PlayerControl : MonoBehaviour {
 	};
 
 	void Awake () {
-		isMousePressed = false;
-//		Lines = new List<Line>();
 	}
 
 	// Use this for initialization

@@ -12,9 +12,8 @@ public class Ship : MonoBehaviour
     private bool canPassThroughObjects;
     private bool isDead;
     private bool deadShip;
-    private bool hasShield;
     private bool hasPowerup = false;
-    private Grid grid;
+    private LevelGrid grid;
     private EndlessLevel level;
     private float yOffset;
 
@@ -103,7 +102,7 @@ public class Ship : MonoBehaviour
 
     }
     */
-    public void LinkGrid(Grid g)
+    public void LinkGrid(LevelGrid g)
     {
         grid = g;
         grid.SetShip(this);
@@ -221,7 +220,8 @@ public class Ship : MonoBehaviour
 
         if (coll.gameObject.tag == "Avoid")
         {
-            if (hasShield)
+            //TODO: CHECK FOR SHIELD
+            if (false)
             {
                 isDead = GetComponent<Shield>().Hit(1);
                 Debug.Log("Your shield is now  " + isDead);

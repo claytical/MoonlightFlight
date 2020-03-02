@@ -8,7 +8,6 @@ public class Moving : MonoBehaviour {
 	public List<Transform> points;
 	public bool halfPipeMotion;
 	public int currentPoint = 0;
-	private int direction = 1;
 	// Use this for initialization
 	void Start () {
 

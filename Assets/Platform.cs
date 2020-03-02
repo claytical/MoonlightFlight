@@ -22,8 +22,4 @@ public class Platform : MonoBehaviour
         finished = true;
     }
 
-    public void Remove()
-    {
-        Destroy(this.gameObject);
-    }
 }

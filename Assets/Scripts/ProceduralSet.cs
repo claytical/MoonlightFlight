@@ -11,10 +11,10 @@ public class ProceduralSet : MonoBehaviour
     public AudioMixerSnapshot maxEnergy;
 
 
-    public Grid[] nextGrids;
+    public LevelGrid[] nextGrids;
 
     private int selectedGridIndex;
-    public Grid nextGrid;
+    public LevelGrid nextGrid;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +22,11 @@ public class ProceduralSet : MonoBehaviour
         
     }
     
-    public Grid SetNextGrid()
+    public LevelGrid SetNextGrid()
     {
         selectedGridIndex = Random.Range(0, nextGrids.Length);
         Debug.Log("Selected Grid " + selectedGridIndex);
-        Grid _nextGrid = nextGrids[selectedGridIndex];
+        LevelGrid _nextGrid = nextGrids[selectedGridIndex];
         nextGrid = _nextGrid;
         Debug.Log("SELECTED GRID: " + nextGrids[selectedGridIndex].name);
 

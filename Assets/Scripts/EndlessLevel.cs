@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class EndlessLevel : MonoBehaviour {
 	public GameObject LevelFailPanel;
     public GameObject[] breakableObjects;
-    public Grid[] grids;
+    public PowerUpMusic fullEnergyLoops;
+    public LevelGrid[] grids;
     public Text failureMessage;
     public bool inkEnabled;
     public AudioClip success;
@@ -18,16 +19,15 @@ public class EndlessLevel : MonoBehaviour {
 	private GameState gameState;
 	private int nextLevel;
 	private string currentWorld;
-    private bool levelFinished;
     private int totalRings;
     private int maxScore;
     private int setCount;
     private int powerUpIndex = 0;
     private int gridIndex;
-    private bool hasPowerup = false;
     private Ship ship;
-    private Grid grid;
+    private LevelGrid grid;
     private bool buildingNewGrid = false;
+    public bool useAnimationForPlatforms = false;
 
 
     // Use this for initialization
@@ -65,21 +65,27 @@ public class EndlessLevel : MonoBehaviour {
         dock.AddSeeds(1);
         CreatePowerUp();
         grid.PowerUp();
+        fullEnergyLoops.LimitLoopsPlaying(grid);
 
     }
 
-    void FixedUpdate () {
-        if (!levelFinished)
-        {
+    void Update () {
             ScanForCompletion();
-            if(buildingNewGrid)
+            if(useAnimationForPlatforms)
             {
-                if(HavePlatformsDisappeared())
+                if (buildingNewGrid)
                 {
-                    BuildNextGrid();
+                    if (HavePlatformsDisappeared())
+                    {
+                        BuildNextGrid();
+                    }
                 }
+
             }
-        }
+            else
+            {
+
+            }
     }
 
     private void ResetPlatforms()
@@ -92,8 +98,12 @@ public class EndlessLevel : MonoBehaviour {
     }
     public void BuildNextGrid()
     {
-        ResetPlatforms();
-        Grid previousGrid = grid;
+        if (useAnimationForPlatforms)
+        {
+            ResetPlatforms();
+        }
+
+        LevelGrid previousGrid = grid;
         //set current grid to whatever grid is next (set 2) -> NEXT GRID SELECTED
         grid = grid.currentSet.SetNextGrid();
         //BROKE ALL RINGS, CLEARED ALL SETS                    
@@ -114,6 +124,8 @@ public class EndlessLevel : MonoBehaviour {
         previousGrid.gameObject.SetActive(false);
 
         buildingNewGrid = false;
+        fullEnergyLoops.LimitLoopsPlaying(grid);
+
 
     }
 
@@ -136,25 +148,44 @@ public class EndlessLevel : MonoBehaviour {
     public void ScanForCompletion() {
         if (ship) {
             GameObject[] gos = GameObject.FindGameObjectsWithTag("Disappearing");
-            if (gos.Length == 0 && setCount >= grid.sets && !buildingNewGrid)
+            if (useAnimationForPlatforms)
             {
-                //EVENT #1 - FINISHED GRID
-                //tell the current grid (open) to transition to finished grid
-                Animator[] platforms = grid.platforms.GetComponentsInChildren<Animator>();
-
-                for (int i = 0; i < platforms.Length; i++)
+                if (gos.Length == 0 && setCount >= grid.sets && !buildingNewGrid)
                 {
-                    platforms[i].SetTrigger("done");
+                    //EVENT #1 - FINISHED GRID
+                    //tell the current grid (open) to transition to finished grid
+
+                    Animator[] platforms = grid.platforms.GetComponentsInChildren<Animator>();
+
+                    for (int i = 0; i < platforms.Length; i++)
+                    {
+                        platforms[i].SetTrigger("done");
+                    }
+                    buildingNewGrid = true;
                 }
-                buildingNewGrid = true;
+                else if (gos.Length == 0 && setCount < grid.sets) //place more breakables
+                {
+                    //new set
+                    setCount++;
+                    CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
+
+                }
             }
-            else if (gos.Length == 0 && setCount < grid.sets) //place more breakables
+            else
             {
-                //new set
-                setCount++;
-                CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
+                if (gos.Length == 0 && setCount >= grid.sets)
+                {
+                    BuildNextGrid();
+                }
+                else if(gos.Length == 0 && setCount < grid.sets)
+                {
+                    setCount++;
+                    CreateRandomSetOfBreakables(grid.numberOfObjectsToPlace);
+
+                }
 
             }
+
         }
     }
 
