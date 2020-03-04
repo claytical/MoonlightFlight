@@ -12,8 +12,7 @@ public class Dock : MonoBehaviour
     public Text seedUI;
     public AudioClip seedFx;
     public BoundaryPowerUp boundaries;
-    private string shipName;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -37,48 +36,40 @@ public class Dock : MonoBehaviour
 
     public void SetSeeds()
     {
-        //SET SHIP SPECIFIC SEEDS COLLECTED
-        PlayerPrefs.SetInt(shipName + "_seeds", seedsCollected + PlayerPrefs.GetInt(shipName + "_seeds"));
         //SET TOTAL SEEDS COLLECTED 
         PlayerPrefs.SetInt("seeds", seedsCollected + PlayerPrefs.GetInt("seeds"));
 
     }
 
     
-    public Ship SelectShip(GameState gs)
+    public Ship SelectShip(ShipType s)
     {
-        switch (gs.ship)
+        switch (s)
         {
-            case GameState.Ship.Boomerang:
+            case ShipType.Boomerang:
                 ship = Instantiate(ships[0], transform);
-                shipName = "boomerang";
+                break;
+            case ShipType.Rocket:
+                ship = Instantiate(ships[1], transform);
                 break;
 
-            case GameState.Ship.Falcon:
+            case ShipType.Racer:
+                ship = Instantiate(ships[2], transform);
+                break;
+
+            case ShipType.Falcon:
                 ship = Instantiate(ships[3], transform);
-                shipName = "falcon";
                 break;
 
-            case GameState.Ship.Fighter:
-                shipName = "fighter";
+            case ShipType.Fighter:
                 ship = Instantiate(ships[4], transform);
                 break;
 
-            case GameState.Ship.Rocket:
-                ship = Instantiate(ships[1], transform);
-                shipName = "rocket";
-                break;
-
-            case GameState.Ship.UFO:
-                shipName = "ufo";
+            case ShipType.UFO:
                 ship = Instantiate(ships[5], transform);
 
                 break;
 
-            case GameState.Ship.XWing:
-                shipName = "xwing";
-                ship = Instantiate(ships[2], transform);
-                break;
 
         }
         Vector3 newPosition = ship.transform.position;

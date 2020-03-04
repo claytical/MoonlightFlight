@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Ship : MonoBehaviour
 {
-    private int currentEnergyLevel;
-    public Energy[] meter;
     public GameObject energy;
     public bool poweredUp = false;
+    public float force;
+    public float maxForce;
+    public GameObject touchPoint;
+    public ShipType type;
+    public Shield shield;
+
+    private int currentEnergyLevel;
+    private Energy[] meter;
     private List<GameObject> touchPoints;
     private bool canPassThroughObjects;
     private bool isDead;
@@ -17,9 +25,6 @@ public class Ship : MonoBehaviour
     private EndlessLevel level;
     private float yOffset;
 
-    public float force;
-    public float maxForce;
-    public GameObject touchPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +32,7 @@ public class Ship : MonoBehaviour
         yOffset = energy.transform.position.y;
         //        meter = new List<Energy>();
         touchPoints = new List<GameObject>();
+        meter = energy.GetComponentsInChildren<Energy>();
         
         for(int i = 0; i < meter.Length; i++) {
             meter[i].Deactivate();
@@ -34,6 +40,7 @@ public class Ship : MonoBehaviour
         currentEnergyLevel = 0;
 
     }
+
 
     public void powerDown()
     {
@@ -108,6 +115,12 @@ public class Ship : MonoBehaviour
         grid.SetShip(this);
     }
 
+    private void ToggleShield()
+    {
+        shield.gameObject.SetActive(true);
+        shield.Setup();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -166,7 +179,7 @@ public class Ship : MonoBehaviour
                 switch (coll.gameObject.GetComponent<PowerUp>().reward)
                 {
                     case PowerUp.Reward.Shield:
-//                        ToggleShield();
+                        ToggleShield();
                         break;
                     case PowerUp.Reward.Boundary:
                         GetComponentInParent<Dock>().boundaries.AddBorders(3);
@@ -221,11 +234,14 @@ public class Ship : MonoBehaviour
         if (coll.gameObject.tag == "Avoid")
         {
             //TODO: CHECK FOR SHIELD
-            if (false)
+            if (shield.isActiveAndEnabled)
             {
-                isDead = GetComponent<Shield>().Hit(1);
-                Debug.Log("Your shield is now  " + isDead);
-
+                Debug.Log("Using Shield!");
+                shield.Hit(1);
+            }
+            else
+            {
+                isDead = true;
             }
         }
 

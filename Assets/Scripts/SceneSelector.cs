@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneSelector : MonoBehaviour {
 	public string scene;
-	AsyncOperation AO;
+    AsyncOperation AO;
 	private GameState gameState;
 
 	// Use this for initialization
@@ -18,6 +18,7 @@ public class SceneSelector : MonoBehaviour {
 	void Update () {
 		
 	}
+
 
 	IEnumerator load() {
 		AO = SceneManager.LoadSceneAsync (scene, LoadSceneMode.Single);

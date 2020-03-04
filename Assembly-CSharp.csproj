@@ -251,6 +251,9 @@
     <Compile Include="Assets\SeedOfLight.cs" />
     <Compile Include="Assets\Ship.cs" />
     <Compile Include="Assets\ShipLock.cs" />
+    <Compile Include="Assets\ShipSelector.cs" />
+    <Compile Include="Assets\ShipStats.cs" />
+    <Compile Include="Assets\ShipUnlockPanel.cs" />
     <Compile Include="Assets\Sounds\CollisionSound.cs" />
     <Compile Include="Assets\UDP\Sample\Scripts\UDPSampleScript.cs" />
     <Compile Include="Assets\Vanishing.cs" />

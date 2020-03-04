@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class EndlessLevel : MonoBehaviour {
 	public GameObject LevelFailPanel;
+    public GameObject shipUnlockedPanel;
     public GameObject[] breakableObjects;
     public PowerUpMusic fullEnergyLoops;
     public LevelGrid[] grids;
@@ -36,7 +37,7 @@ public class EndlessLevel : MonoBehaviour {
     void Start () {
         //SETUP SHIP NAME AND CREATE IT
         gameState = (GameState)FindObjectOfType(typeof(GameState));
-        ship = dock.SelectShip(gameState);
+        ship = dock.SelectShip(gameState.GetShip());
 
         //EACH GRID REPEATS A GIVEN NUMBER, RESET TO ZERO
         setCount = 0;
@@ -189,58 +190,43 @@ public class EndlessLevel : MonoBehaviour {
         }
     }
 
-    /*
-        public void EndOfLevel()
+    
+    private bool unlockedNewShips()
+    {
+        //TODO: instantiate new unlocked item screen
+        for(int i = 0; i < dock.ships.Length; i++)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (gameState != null)
-            {
-
-                if (int.Parse(gameState.SelectedLevel) >= 10)
+            Debug.Log("CHECKING " + dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
+            if(PlayerPrefs.HasKey(dock.ships[i].GetComponentInChildren<Ship>().type.ToString())) {
+                //ship was locked before playing
+                int seedsRequired = PlayerPrefs.GetInt(dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
+                Debug.Log("SEEDS REQUIRED: " + seedsRequired);
+                if (seedsRequired <= PlayerPrefs.GetInt("seeds"))
                 {
-                    //unlock next world
-                    //WORLD COMPLETE UI
-                    gameState.SelectedWorld = nextWorldName;
-                    nextLevel = 1;
-                    PlayerPrefs.SetInt(gameState.SelectedWorld, 1);
-                    WorldCompletePanel.SetActive(true);
-                }
-                else
-                {
-                    Debug.Log("Next Level Awaits...");
-                    //unlock next level
-                    nextLevel = int.Parse(gameState.SelectedLevel) + 1;
-                    PlayerPrefs.SetInt(gameState.SelectedWorld + "_" + nextLevel, 0);
-                    LevelCompletePanel.SetActive(true);
-                    if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
-                    {
-                        //max multiplier = 27
-
-                        LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased, maxScore);
-                        Debug.Log("Setting score");
-                    }
-                }
-            }
-            else
-            {
-                LevelCompletePanel.SetActive(true);
-                if (LevelCompletePanel.GetComponent<LevelComplete>() != null)
-                {
-                    LevelCompletePanel.GetComponent<LevelComplete>().SetScore(fliesReleased, maxScore);
-                    Debug.Log("Setting score");
+                    Debug.Log("UNLOCKED " + dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
+                    //UNLOCKED NEW SHIP!
+                    shipUnlockedPanel.SetActive(true);
+                    shipUnlockedPanel.GetComponent<ShipUnlockPanel>().UnlockShip(dock.ships[i].GetComponentInChildren<Ship>().type);
+                    return true;
                 }
 
             }
 
         }
-        */
+
+        return false;
+    }
 
     public void GameOver()
     {
         dock.SetSeeds();
         //        finished = true;
+        if(!unlockedNewShips())
+        {
+            LevelFailPanel.SetActive(true);
+
+        }
         grid.currentSet.Waiting();
-        LevelFailPanel.SetActive(true);
         if (dock.seedsCollected > 0)
         {
             failureMessage.text = "You collected " + dock.seedsCollected + " seeds of light on your journey.";

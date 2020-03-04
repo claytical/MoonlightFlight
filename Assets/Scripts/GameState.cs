@@ -3,46 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameState : MonoBehaviour {
-    [System.Serializable]
 
-    public enum Ship
-    {
-        Boomerang = 0,
-        Rocket = 1,
-        XWing = 2,
-        Falcon = 3,
-        Fighter = 4,
-        UFO = 5
-    };
 
     public string SelectedWorld;
 	public string SelectedLevel;
-    public Ship ship;
+    public bool resetKeys = false;
+    private ShipType selectedShip;
+    //    public Ship ship;
 
 
-    public void ChooseShip(int s)
+    public void SetShip(ShipType _shipType)
     {
-        switch(s)
-        {
-            case 0:
-                ship = Ship.Boomerang;
-                break;
-            case 1:
-                ship = Ship.Falcon;
-                break;
-            case 2:
-                ship = Ship.Fighter;
-                break;
-            case 3:
-                ship = Ship.Rocket;
-                break;
-            case 4:
-                ship = Ship.UFO;
-                break;
-            case 5:
-                ship = Ship.XWing;
-                break;
-        }
+        selectedShip = _shipType;
+    }
+
+    public ShipType GetShip()
+    {
+        return selectedShip;
     }
 
     void Awake() {
@@ -57,7 +34,11 @@ public class GameState : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-//        GameTune.Initialize("026bab3d-3490-4a7f-beba-60c6947e88f2");
+        //        GameTune.Initialize("026bab3d-3490-4a7f-beba-60c6947e88f2");
+        if(resetKeys)
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 	
     public void UseTiltControls()
