@@ -228,7 +228,16 @@ public class Ship : MonoBehaviour
         if (coll.gameObject.tag == "Boundary")
         {
             Debug.Log("Hit Boundary");
-            isDead = coll.gameObject.GetComponentInParent<BoundaryPowerUp>().Hit();
+            if (shield.isActiveAndEnabled)
+            {
+                Debug.Log("Using Shield!");
+                shield.Hit(1);
+            }
+            else
+            {
+
+                isDead = coll.gameObject.GetComponentInParent<BoundaryPowerUp>().Hit();
+            }
         }
 
         if (coll.gameObject.tag == "Avoid")

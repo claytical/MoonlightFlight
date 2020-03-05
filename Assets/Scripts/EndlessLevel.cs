@@ -196,20 +196,24 @@ public class EndlessLevel : MonoBehaviour {
         //TODO: instantiate new unlocked item screen
         for(int i = 0; i < dock.ships.Length; i++)
         {
-            Debug.Log("CHECKING " + dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
-            if(PlayerPrefs.HasKey(dock.ships[i].GetComponentInChildren<Ship>().type.ToString())) {
-                //ship was locked before playing
-                int seedsRequired = PlayerPrefs.GetInt(dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
-                Debug.Log("SEEDS REQUIRED: " + seedsRequired);
-                if (seedsRequired <= PlayerPrefs.GetInt("seeds"))
+            if (dock.ships[i].GetComponentInChildren<Ship>())
+            {
+                Debug.Log("Has Ship Script");
+                if (PlayerPrefs.HasKey(dock.ships[i].GetComponentInChildren<Ship>().type.ToString()))
                 {
-                    Debug.Log("UNLOCKED " + dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
-                    //UNLOCKED NEW SHIP!
-                    shipUnlockedPanel.SetActive(true);
-                    shipUnlockedPanel.GetComponent<ShipUnlockPanel>().UnlockShip(dock.ships[i].GetComponentInChildren<Ship>().type);
-                    return true;
-                }
+                    //ship was locked before playing
+                    int seedsRequired = PlayerPrefs.GetInt(dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
+                    Debug.Log("SEEDS REQUIRED: " + seedsRequired);
+                    if (seedsRequired <= PlayerPrefs.GetInt("seeds"))
+                    {
+                        Debug.Log("UNLOCKED " + dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
+                        //UNLOCKED NEW SHIP!
+                        shipUnlockedPanel.SetActive(true);
+                        shipUnlockedPanel.GetComponent<ShipUnlockPanel>().UnlockShip(dock.ships[i].GetComponentInChildren<Ship>().type);
+                        return true;
+                    }
 
+                }
             }
 
         }

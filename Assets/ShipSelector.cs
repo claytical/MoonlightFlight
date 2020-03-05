@@ -47,6 +47,17 @@ public class ShipSelector : MonoBehaviour
         }
     }
 
+
+    public void Previous()
+    {
+        currentShipIndex--;
+        if (currentShipIndex < 0)
+        {
+            currentShipIndex = ships.Count - 1;
+        }
+        toggleShips();
+
+    }
     public void Next()
     {
         currentShipIndex++;
