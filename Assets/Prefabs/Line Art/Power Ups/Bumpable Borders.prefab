@@ -284,7 +284,7 @@ MonoBehaviour:
   - {fileID: 1345685674709518}
   explosion: {fileID: 8455937364993888704, guid: a7bca7ddf5071004ab12b90503aebe5b,
     type: 3}
-  hit: {fileID: 8300000, guid: 07c1cefb5a9fee342aae8b8823991d24, type: 3}
+  hit: {fileID: 8300000, guid: 702903659e2ff804abd837809cbbf067, type: 3}
   flies: {fileID: 0}
 --- !u!114 &-7977990374769904945
 MonoBehaviour:

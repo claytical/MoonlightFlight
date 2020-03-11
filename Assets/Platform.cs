@@ -8,7 +8,7 @@ public class Platform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<BoxCollider2D>().enabled = false;   
     }
 
     // Update is called once per frame
@@ -20,6 +20,7 @@ public class Platform : MonoBehaviour
     public void Finished()
     {
         finished = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
 }

@@ -30,7 +30,6 @@ public class Ship : MonoBehaviour
     void Start()
     {
         yOffset = energy.transform.position.y;
-        //        meter = new List<Energy>();
         touchPoints = new List<GameObject>();
         meter = energy.GetComponentsInChildren<Energy>();
         
@@ -175,25 +174,31 @@ public class Ship : MonoBehaviour
 
             if (coll.gameObject.GetComponent<PowerUp>())
             {
-
+                GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
                 switch (coll.gameObject.GetComponent<PowerUp>().reward)
                 {
                     case PowerUp.Reward.Shield:
+                        GetComponentInParent<Dock>().GiveFeedback("Shield Activated!");
                         ToggleShield();
                         break;
                     case PowerUp.Reward.Boundary:
+                        GetComponentInParent<Dock>().GiveFeedback("Borders Strengthened!");
                         GetComponentInParent<Dock>().boundaries.AddBorders(3);
 
                         break;
                     case PowerUp.Reward.SpeedUp:
+                        GetComponentInParent<Dock>().GiveFeedback("Speeding Up!");
                         force *= 1.5f;
                         break;
 
                     case PowerUp.Reward.SlowDown:
+                        GetComponentInParent<Dock>().GiveFeedback("Slowing Down!");
+
                         force *= .5f;
                         break;
 
                     case PowerUp.Reward.PassThrough:
+                        GetComponentInParent<Dock>().GiveFeedback("Ship Phasing Enabled!");
                         SetPassThrough(true);
                         break;
 
@@ -211,6 +216,7 @@ public class Ship : MonoBehaviour
 
         if (coll.gameObject.tag == "Bumpable" && !canPassThroughObjects)
         {
+            
             //ADD SOUND
             GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<CollisionSound>().soundFx[0], .5f);
             Debug.Log("Bumped Object");

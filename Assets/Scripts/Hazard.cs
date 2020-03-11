@@ -16,4 +16,15 @@ public class Hazard : MonoBehaviour
     {
 
     }
+
+    public void TurnOffCollider()
+    {
+        GetComponent<CircleCollider2D>().enabled = false;
+
+    }
+    public void TurnOnCollider()
+    {
+        GetComponent<CircleCollider2D>().enabled = true;
+    }
 }
+

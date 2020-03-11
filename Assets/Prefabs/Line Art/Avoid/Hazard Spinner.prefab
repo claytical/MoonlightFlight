@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 114078700380783034}
   - component: {fileID: 114967761790412470}
   - component: {fileID: 60671552599392776}
+  - component: {fileID: 6395658430871188317}
   m_Layer: 0
   m_Name: Hazard Spinner
   m_TagString: Avoid
@@ -382,3 +383,22 @@ PolygonCollider2D:
       - {x: -0.015, y: 0.515}
       - {x: -0.024999999, y: 0.53499997}
       - {x: -0.035, y: 0.315}
+--- !u!95 &6395658430871188317
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660095881296426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a83261035a512934e9d314f7fc46caf6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

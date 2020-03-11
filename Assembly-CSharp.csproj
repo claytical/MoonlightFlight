@@ -65,6 +65,7 @@
     <Compile Include="Assets\Border.cs" />
     <Compile Include="Assets\Dock.cs" />
     <Compile Include="Assets\Energy.cs" />
+    <Compile Include="Assets\Feedback.cs" />
     <Compile Include="Assets\GleyPlugins\AllPlatformsSave\Example\Scripts\GameValues.cs" />
     <Compile Include="Assets\GleyPlugins\AllPlatformsSave\Example\Scripts\TestSave.cs" />
     <Compile Include="Assets\GleyPlugins\AllPlatformsSave\Scripts\BinarySerializationFileSave.cs" />
@@ -443,6 +444,12 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/2019.3.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

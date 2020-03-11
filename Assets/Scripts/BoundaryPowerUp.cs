@@ -13,6 +13,7 @@ public class BoundaryPowerUp : MonoBehaviour
     public GameObject smallerBorder;
     public int strength = 3;
     private int hits; //count the amount of hits on the bumpers
+    private Transform lastKnownBorderEnd;
 
     //    private float timer; //allow the powerup to stay until it times out
 
@@ -31,7 +32,7 @@ public class BoundaryPowerUp : MonoBehaviour
 
     void Start()
     {
-        
+        lastKnownBorderEnd = border.transform;
     }
 
     // Update is called once per frame
@@ -54,16 +55,11 @@ public class BoundaryPowerUp : MonoBehaviour
         strength += amount;
         for(int i = 0; i < amount; i++)
         {
-            Transform borderParent = GetComponentsInChildren<Border>()[GetComponentsInChildren<Border>().Length - 1].transform;
-            if (borderParent)
-            {
-                Instantiate(smallerBorder, borderParent);
-            }
-            else
-            {
-                Instantiate(smallerBorder, transform);
 
-            }
+            GameObject border = Instantiate<GameObject>(smallerBorder, transform);
+            border.transform.SetParent(lastKnownBorderEnd);
+            border.transform.localScale *= .99f;
+            lastKnownBorderEnd = border.transform;
         }
     }
 

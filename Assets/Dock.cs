@@ -8,6 +8,7 @@ public class Dock : MonoBehaviour
 
     public GameObject[] ships;
     public GameObject ship;
+    public Feedback feedback;
     public int seedsCollected;
     public Text seedUI;
     public AudioClip seedFx;
@@ -31,8 +32,14 @@ public class Dock : MonoBehaviour
         seedUI.text = seedsCollected.ToString();
         seedUI.gameObject.GetComponent<Animator>().SetTrigger("add");
         GetComponent<AudioSource>().PlayOneShot(seedFx);
+
     }
 
+    public void GiveFeedback(string message)
+    {
+        feedback.gameObject.SetActive(true);
+        feedback.SetMessage(message);
+    }
 
     public void SetSeeds()
     {
