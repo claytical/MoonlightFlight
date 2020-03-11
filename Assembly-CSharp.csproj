@@ -421,6 +421,12 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -444,12 +450,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Recorder.Editor">
-      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Recorder">
-      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/2019.3.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
