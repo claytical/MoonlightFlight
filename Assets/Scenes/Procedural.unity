@@ -2177,7 +2177,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
   currentSet: {fileID: 70221877}
   numberOfObjectsToPlace: 2
   sets: 3
@@ -5360,7 +5360,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
   currentSet: {fileID: 247484146}
   numberOfObjectsToPlace: 2
   sets: 5
@@ -6641,7 +6641,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
   currentSet: {fileID: 303390265}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -15497,7 +15497,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: 869d30802fffdb94e905ebc33c538679, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
   currentSet: {fileID: 853766307}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -19831,7 +19831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1050140384
 Transform:
   m_ObjectHideFlags: 0
@@ -19901,7 +19901,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
   currentSet: {fileID: 1050384042}
   numberOfObjectsToPlace: 3
   sets: 3
@@ -24121,7 +24121,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
   currentSet: {fileID: 1275900580}
   numberOfObjectsToPlace: 2
   sets: 5
@@ -31751,7 +31751,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: ca671bfe37a52be4a81121a26a1886a1, type: 3}
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
   currentSet: {fileID: 1707565304}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -36196,7 +36196,7 @@ MonoBehaviour:
   breakables:
   - {fileID: 1316711709889716, guid: f96959b59c13ef842937703b51846cad, type: 3}
   - {fileID: 1316711709889716, guid: fcb3237da58009641934978f8dd1fb7e, type: 3}
-  powerUp: {fileID: 1316711709889716, guid: 869d30802fffdb94e905ebc33c538679, type: 3}
+  powerUp: {fileID: 1316711709889716, guid: d4ac091778054f9469e02f9082b8e2fd, type: 3}
   currentSet: {fileID: 1944150152}
   numberOfObjectsToPlace: 3
   sets: 5
@@ -36990,7 +36990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1978906334
 Transform:
   m_ObjectHideFlags: 0
