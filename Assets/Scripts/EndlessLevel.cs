@@ -358,7 +358,11 @@ public class EndlessLevel : MonoBehaviour {
         }
         */
     public void SetSceneToLoad(string s) {
-		selectedScene = s;
+        if(s.Contains("Main"))
+        {
+            Destroy(gameState.gameObject);
+        }
+        selectedScene = s;
 	}
 
 	public void SelectScene() {
