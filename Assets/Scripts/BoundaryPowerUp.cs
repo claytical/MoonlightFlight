@@ -14,6 +14,7 @@ public class BoundaryPowerUp : MonoBehaviour
     public int strength = 3;
     private int hits; //count the amount of hits on the bumpers
     private Transform lastKnownBorderEnd;
+    
 
     //    private float timer; //allow the powerup to stay until it times out
 
@@ -40,10 +41,11 @@ public class BoundaryPowerUp : MonoBehaviour
     {
         
     }
-
+    
     public void SetBorderStrength(int amount)
     {
         strength = amount;
+        border.material.SetFloat("_Thickness", strength);
 /*        Color borderColor = border.color;
         borderColor.a = 1;
         border.color = borderColor;
@@ -53,6 +55,14 @@ public class BoundaryPowerUp : MonoBehaviour
     public void AddBorders(int amount)
     {
         strength += amount;
+        border.material.SetFloat("_Thickness", strength);
+        if(border.color.a <= 0)
+        {
+            Color borderColor = border.color;
+            borderColor.a = 100f;
+        }
+
+        /*
         for(int i = 0; i < amount; i++)
         {
 
@@ -61,23 +71,28 @@ public class BoundaryPowerUp : MonoBehaviour
             border.transform.localScale *= .99f;
             lastKnownBorderEnd = border.transform;
         }
+        */
     }
 
     public bool Hit()
     {
 //        hits++;
         strength--;
-        Color borderColor = border.color;
-        if(strength <= 1)
-        {
-            borderColor.a = 0;
-        }
-        else
-        {
-            borderColor.a -= .3f;
 
-        }
-        border.color = borderColor;
+        
+                Color borderColor = border.color;
+                if(strength <= 1)
+                {
+                    borderColor.a = 0;
+                }
+                else
+                {
+                    borderColor.a -= .1f;
+
+                }
+
+                border.color = borderColor;
+         
         if (strength <= 0)
         {
             return true;

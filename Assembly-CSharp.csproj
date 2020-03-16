@@ -202,6 +202,7 @@
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
     <Compile Include="Assets\Platform.cs" />
     <Compile Include="Assets\PowerUpMusic.cs" />
+    <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\BoundaryPowerUp.cs" />
     <Compile Include="Assets\Scripts\Breakable.cs" />
     <Compile Include="Assets\Scripts\BreakablePlatform.cs" />
@@ -280,6 +281,7 @@
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\AAADefault\generator.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\DemoClip2\generator.txt" />
     <None Include="Assets\GleyPlugins\AllPlatformsSave\Scripts\Version.txt" />
+    <None Include="Assets\SpriteOutline\Shaders\SpriteOutline.shader" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\Fireside\instruments2.txt" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\UponReflection\instruments0.txt" />
@@ -302,6 +304,7 @@
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\Fireside\instruments1.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\DemoClip\instruments0.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\WinterTheme\generator.txt" />
+    <None Include="Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\KrysTheme\instruments6.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\MagicalAfternoon\instruments0.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\AAADefault\instruments4.txt" />
@@ -352,6 +355,7 @@
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\Fireside\instruments7.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\WinterTheme\instruments3.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\BossIntro2\instruments5.txt" />
+    <None Include="Assets\QuickOutline\Readme.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\LemonLand\instruments0.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\UponReflection\instruments4.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\PucePlanet\instruments1.txt" />
@@ -399,6 +403,7 @@
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\BougieBall\instruments3.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\BougieBall\instruments9.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentClips\Test1.txt" />
+    <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\PastelPlayground\instruments0.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\BossIntro2\instruments3.txt" />
     <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentSaves\Atmospheric\instruments0.txt" />

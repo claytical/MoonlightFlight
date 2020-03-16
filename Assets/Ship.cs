@@ -129,15 +129,17 @@ public class Ship : MonoBehaviour
             force = maxForce;
         }
 
-        if (isDead && !deadShip)
-        {
-            deadShip = true;
-            Destroy(gameObject, 4);
-            level.GameOver();
-        }
         Vector3 energyPos = transform.position;
         energyPos.y = energyPos.y + yOffset;
         energy.transform.position = energyPos;
+
+        if (isDead && !deadShip)
+        {
+            deadShip = true;
+            level.GameOver();
+            Destroy(gameObject, 4);
+        }
+
     }
 
 
@@ -233,7 +235,6 @@ public class Ship : MonoBehaviour
 
         if (coll.gameObject.tag == "Boundary")
         {
-            Debug.Log("Hit Boundary");
             if (shield.isActiveAndEnabled)
             {
                 Debug.Log("Using Shield!");
