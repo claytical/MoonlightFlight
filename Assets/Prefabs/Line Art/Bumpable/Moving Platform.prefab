@@ -444,9 +444,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFx:
-  - {fileID: 8300000, guid: 088985bd1c3bb93448bf7e08e70ce5d4, type: 3}
-  - {fileID: 8300000, guid: 36493998f01c8d640bfe0203ac61121a, type: 3}
-  - {fileID: 8300000, guid: a1fa0938622fcf04693fda3464ad1650, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114689969108359888
 MonoBehaviour:
   m_ObjectHideFlags: 0
