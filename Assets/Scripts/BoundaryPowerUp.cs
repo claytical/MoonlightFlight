@@ -34,6 +34,8 @@ public class BoundaryPowerUp : MonoBehaviour
     void Start()
     {
         lastKnownBorderEnd = border.transform;
+        SetBorderStrength(strength-1);
+
     }
 
     // Update is called once per frame
@@ -46,57 +48,24 @@ public class BoundaryPowerUp : MonoBehaviour
     {
         strength = amount;
         border.material.SetFloat("_Thickness", strength);
-/*        Color borderColor = border.color;
-        borderColor.a = 1;
-        border.color = borderColor;
- */
     }
 
     public void AddBorders(int amount)
     {
         strength += amount;
         border.material.SetFloat("_Thickness", strength);
-        if(border.color.a <= 0)
-        {
-            Color borderColor = border.color;
-            borderColor.a = 100f;
-        }
-
-        /*
-        for(int i = 0; i < amount; i++)
-        {
-
-            GameObject border = Instantiate<GameObject>(smallerBorder, transform);
-            border.transform.SetParent(lastKnownBorderEnd);
-            border.transform.localScale *= .99f;
-            lastKnownBorderEnd = border.transform;
-        }
-        */
     }
 
     public bool Hit()
     {
 //        hits++;
         strength--;
-
-        
-                Color borderColor = border.color;
-                if(strength <= 1)
-                {
-                    borderColor.a = 0;
-                }
-                else
-                {
-                    borderColor.a -= .1f;
-
-                }
-
-                border.color = borderColor;
-         
         if (strength <= 0)
         {
             return true;
         }
+
+        SetBorderStrength(strength);         
         return false;
         
     }

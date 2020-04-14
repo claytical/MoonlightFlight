@@ -185,7 +185,7 @@ public class Ship : MonoBehaviour
                         break;
                     case PowerUp.Reward.Boundary:
                         GetComponentInParent<Dock>().GiveFeedback("Borders Strengthened!");
-                        GetComponentInParent<Dock>().boundaries.AddBorders(3);
+                        GetComponentInParent<Dock>().boundaries.AddBorders(2);
 
                         break;
                     case PowerUp.Reward.SpeedUp:
