@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AppLovinSdk\Scripts\Editor\AppLovinPostProcessBuildiOS.cs" />
     <Compile Include="Assets\GleyPlugins\About\Editor\AssetState.cs" />
     <Compile Include="Assets\GleyPlugins\About\Editor\AssetStorePackage.cs" />
     <Compile Include="Assets\GleyPlugins\About\Editor\AssetVersion.cs" />
@@ -91,6 +92,14 @@
     <Compile Include="Assets\GleyPlugins\RateGame\Scripts\VisualScriptingSupport\GameFlowSupport\Editor\ForceShowRatePopupEditor.cs" />
     <Compile Include="Assets\GleyPlugins\RateGame\Scripts\VisualScriptingSupport\GameFlowSupport\Editor\IncreaseCustomEventsEditor.cs" />
     <Compile Include="Assets\GleyPlugins\RateGame\Scripts\VisualScriptingSupport\GameFlowSupport\Editor\ShowRatePopupEditor.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\GPGSAndroidSetupUI.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\GPGSDocsUI.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\GPGSPostBuild.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\GPGSProjectSettings.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\GPGSStrings.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\GPGSUpgrader.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\GPGSUtil.cs" />
+    <Compile Include="Assets\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
     <Compile Include="Assets\UDP\Editor\Analytics\Common.cs" />
     <Compile Include="Assets\UDP\Editor\Analytics\EditorAnalytcisApi.cs" />
     <Compile Include="Assets\UDP\Editor\Analytics\ProjectBuildEvent.cs" />
@@ -102,6 +111,14 @@
     <Compile Include="Assets\UDP\Editor\AppStoreSettingsEditor.cs" />
     <Compile Include="Assets\UDP\Editor\AppStoreStyles.cs" />
     <Compile Include="Assets\UDP\Editor\Utils.cs" />
+    <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPlugin_v0.10.08.txt" />
+    <None Include="Assets\ExternalDependencyManager\Editor\GoogleRegistries.xml" />
+    <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
+    <None Include="Assets\ExternalDependencyManager\Editor\external-dependency-manager_v1.2.144.txt" />
+    <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPluginDependencies.xml" />
+    <None Include="Assets\GooglePlayGames\Editor\m2repository\com\google\games\gpgs-plugin-support\maven-metadata.xml" />
+    <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
+    <None Include="Assets\GooglePlayGames\Editor\template-Constants.txt" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -341,6 +358,21 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.IOSResolver_v1.2.144">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.144.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver_v1.2.144">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Assets/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.144.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.UnityPackageManagerResolver_v1.2.144">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Assets/ExternalDependencyManager/Editor/Google.UnityPackageManagerResolver_v1.2.144.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.144">
+      <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.144.dll</HintPath>
     </Reference>
     <Reference Include="UnityWindowsPhonePlugin">
       <HintPath>C:/Users/clay/Documents/GitHub/Bumpin/Assets/GleyPlugins/AllPlatformsSave/Plugins/UnityWindowsPhonePlugin.dll</HintPath>
