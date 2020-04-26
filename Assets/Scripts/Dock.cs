@@ -44,6 +44,21 @@ public class Dock : MonoBehaviour
     public void SetSeeds()
     {
         //SET TOTAL SEEDS COLLECTED 
+        if (Social.localUser.authenticated)
+        {
+            Social.ReportScore(seedsCollected, "CgkIm_nTr7sPEAIQAg", (bool success) =>
+            {
+                if (success)
+                {
+                    Debug.Log("Update Score Success");
+
+                }
+                else
+                {
+                    Debug.Log("Update Score Fail");
+                }
+            });
+        }
         PlayerPrefs.SetInt("seeds", seedsCollected + PlayerPrefs.GetInt("seeds"));
 
     }

@@ -1,4 +1,5 @@
 #if UNITY_ANDROID
+#pragma warning disable 0642 // Possible mistaken empty statement
 
 namespace GooglePlayGames.Android
 {
@@ -473,7 +474,7 @@ namespace GooglePlayGames.Android
                 if (update.IsPlayedTimeUpdated)
                 {
                     using (builder.Call<AndroidJavaObject>("setPlayedTimeMillis",
-                        (long) update.UpdatedPlayedTime.Value.TotalMilliseconds)) ;
+                        Convert.ToInt64(update.UpdatedPlayedTime.Value.TotalMilliseconds))) ;
                 }
 
                 return builder.Call<AndroidJavaObject>("build");

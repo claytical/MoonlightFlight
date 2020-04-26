@@ -35,12 +35,36 @@ public class GameState : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //        GameTune.Initialize("026bab3d-3490-4a7f-beba-60c6947e88f2");
+        GooglePlayGames.PlayGamesPlatform.Activate();
+        AppLovin.InitializeSdk();
         if(resetKeys)
         {
             PlayerPrefs.DeleteAll();
         }
     }
 	
+
+    public void Login()
+    {
+        if (!Social.localUser.authenticated)
+        {
+            Social.localUser.Authenticate((bool success) =>
+            {
+                if (success)
+                {
+                    Debug.Log("Login Sucess");
+                }
+                else
+                {
+                    Debug.Log("Login failed");
+                }
+            });
+
+        }
+
+    }
+
+
     public void UseTiltControls()
     {
         PlayerPrefs.SetInt("tilt", 1);

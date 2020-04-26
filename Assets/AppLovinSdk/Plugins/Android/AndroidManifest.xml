@@ -3,6 +3,6 @@
     <application>
         <meta-data
             android:name="applovin.sdk.key"
-            android:value="YOUR_SDK_KEY" />
+           android:value="3C26Gk_Rq5H7BNZEyR9ggo3qKOxnKwdShfHMNDfMZKaAgfHaB92EGduEy6M1L4aCW5oSATrVLcGXQU-hw7Lfm2" />
     </application>
 </manifest>
