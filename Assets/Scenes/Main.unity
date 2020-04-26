@@ -1183,8 +1183,8 @@ RectTransform:
   m_Father: {fileID: 830901180}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 170, y: 88.666}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1485,7 +1485,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269415555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3582,6 +3582,1563 @@ RectTransform:
   m_AnchoredPosition: {x: -475, y: 200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!1001 &1005397742
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100038, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Name
+      value: ScreenshotManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Overlays.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_CaptureMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_CameraMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShotMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_GameViewResolution.m_Width
+      value: 444
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_GameViewResolution.m_Height
+      value: 222
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_PreviewSize
+      value: 0.551
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_PlaySoundOnCapture
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_StopTimeOnCapture
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_CaptureHotkey.m_Shift
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_CaptureHotkey.m_Key
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_BatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShowDestination
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShowName
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShowCameras
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShowCanvas
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShowComposition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[0].m_Name
+      value: FHD(1080p)   -   1920x1080  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[1].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[1].m_Name
+      value: WSXGA+   -   1680x1050  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[1].m_Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[2].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[2].m_Name
+      value: HD+   -   1600x900  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[2].m_Id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[3].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[3].m_Name
+      value: WXGA+   -   1440x900  8:5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[3].m_Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[4].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[4].m_Name
+      value: HD   -   1366x768  683:384
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[4].m_Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[5].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[5].m_Name
+      value: SXGA   -   1280x1024  5:4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[5].m_Id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[6].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[6].m_Name
+      value: WXGA(720p)   -   1280x720  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[6].m_Id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[7].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[7].m_Name
+      value: XGA   -   1024x768  4:3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[7].m_Id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_FileName
+      value: '{category}-{width}x{height}/{name}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_MaxBurstShotsNumber
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShotTimeStep
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_ShowGuidesInPreview
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_GameViewResizingWaitingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[8].m_Width
+      value: 2688
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[8].m_Height
+      value: 1242
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[8].m_Scale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[8].m_ResolutionName
+      value: iPhone XS Max, XR (6.5 Inch)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[8].m_Category
+      value: Stores/AppStore
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[8].m_Ratio
+      value: 448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[9].m_Width
+      value: 2208
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[9].m_Height
+      value: 1242
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[9].m_Scale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[9].m_ResolutionName
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[9].m_Category
+      value: Stores/AppStore
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[9].m_Ratio
+      value: 16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[8].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[8].m_Name
+      value: iPhone XS Max, XR (6.5 Inch)   -   2688x1242  448:207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[8].m_Id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[9].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[9].m_Name
+      value: iPhone 6 Plus, 7 Plus, 8 Plus (5.5 Inch)   -   2208x1242  16:9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[9].m_Id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[10].m_Width
+      value: 2732
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[10].m_Height
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[10].m_Scale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[10].m_ResolutionName
+      value: iPad Pro (12.9 Inch)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[10].m_Category
+      value: Stores/AppStore
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[10].m_Ratio
+      value: 683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[0].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[1].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[2].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[3].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[4].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[5].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[6].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[7].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[8].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[10].m_Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[10].m_Name
+      value: iPad Pro (12.9 Inch)   -   2732x2048  683:512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400048, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
+      propertyPath: m_Config.m_Batches.Array.data[9].m_ActiveResolutions.Array.data[10].m_Id
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17f70b34ca78a8843aeba4110051a266, type: 3}
 --- !u!1 &1198560408
 GameObject:
   m_ObjectHideFlags: 0
@@ -4573,7 +6130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 120}
+  m_AnchoredPosition: {x: 84.4, y: 140}
   m_SizeDelta: {x: 1400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607254676
