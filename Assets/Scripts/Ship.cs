@@ -137,7 +137,8 @@ public class Ship : MonoBehaviour
         {
             deadShip = true;
             level.GameOver();
-            Destroy(gameObject, 4);
+            //TODO: Fix ship disappearance
+            //            Destroy(gameObject, 4);
         }
 
     }
