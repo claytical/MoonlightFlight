@@ -22,7 +22,7 @@ public class FullscreenSprite : MonoBehaviour
 
         float width = sr.sprite.bounds.size.x;
         float height = sr.sprite.bounds.size.y;
-
+        Debug.Log("WIDTH: " + width);
 
         float worldScreenHeight = Camera.main.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;

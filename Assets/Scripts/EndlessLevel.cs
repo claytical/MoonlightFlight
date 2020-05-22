@@ -29,6 +29,7 @@ public class EndlessLevel : MonoBehaviour {
     private LevelGrid grid;
     private bool buildingNewGrid = false;
     public bool useAnimationForPlatforms = false;
+    private bool gameIsOver = false;
 
 
     // Use this for initialization
@@ -223,23 +224,38 @@ public class EndlessLevel : MonoBehaviour {
 
     public void GameOver()
     {
-        dock.SetSeeds();
-        //        finished = true;
-        if(!unlockedNewShips())
+        Debug.Log("Game Over Called");
+        if (!gameIsOver)
         {
-            LevelFailPanel.SetActive(true);
 
-        }
-        grid.currentSet.Waiting();
-        if (dock.seedsCollected > 0)
-        {
-            failureMessage.text = "You collected " + dock.seedsCollected + " seeds of light on your journey.";
-        }
-        else
-        {
-            failureMessage.text = "You didn't collect any seeds of light on your journey.";
+            dock.SetSeeds();
+            //        finished = true;
+            if (!unlockedNewShips())
+            {
+                LevelFailPanel.SetActive(true);
 
+            }
+            grid.currentSet.Waiting();
+            if (dock.seedsCollected > 0)
+            {
+                if (dock.seedsCollected == 1)
+                {
+                    failureMessage.text = "You collected " + dock.seedsCollected + " seed of light on your journey.";
+
+                }
+                else
+                {
+                    failureMessage.text = "You collected " + dock.seedsCollected + " seeds of light on your journey.";
+
+                }
+            }
+            else
+            {
+                failureMessage.text = "You didn't collect any seeds of light on your journey.";
+
+            }
         }
+        gameIsOver = true;
     }
 
     public void Wait()

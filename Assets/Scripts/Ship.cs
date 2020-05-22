@@ -19,7 +19,6 @@ public class Ship : MonoBehaviour
     private List<GameObject> touchPoints;
     private bool canPassThroughObjects;
     private bool isDead;
-    private bool deadShip;
     private bool hasPowerup = false;
     private LevelGrid grid;
     private EndlessLevel level;
@@ -32,8 +31,8 @@ public class Ship : MonoBehaviour
         yOffset = energy.transform.position.y;
         touchPoints = new List<GameObject>();
         meter = energy.GetComponentsInChildren<Energy>();
-        
-        for(int i = 0; i < meter.Length; i++) {
+
+        for (int i = 0; i < meter.Length; i++) {
             meter[i].Deactivate();
         }
         currentEnergyLevel = 0;
@@ -49,7 +48,7 @@ public class Ship : MonoBehaviour
         {
             //TODO: set transparency instead
             meter[i].Deactivate();
-            
+
         }
         SetEnergyLevel(0);
         grid.LowEnergy();
@@ -113,12 +112,14 @@ public class Ship : MonoBehaviour
         grid = g;
         grid.SetShip(this);
     }
-
-    private void ToggleShield()
+    
+    private void TurnOnShield()
     {
         shield.gameObject.SetActive(true);
-        shield.Setup();
+        //start with 3 shield defense
+        shield.Setup(3);
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -133,11 +134,10 @@ public class Ship : MonoBehaviour
         energyPos.y = energyPos.y + yOffset;
         energy.transform.position = energyPos;
 
-        if (isDead && !deadShip)
+        if (isDead)
         {
-            deadShip = true;
             level.GameOver();
-            Destroy(gameObject, 4);
+            //            Destroy(gameObject, 4);
         }
 
     }
@@ -145,6 +145,29 @@ public class Ship : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+
+        if (coll.gameObject.tag == "Boundary" || coll.gameObject.tag == "Avoid")
+        {
+            if (shield.gameObject.activeSelf)
+
+            {
+                Debug.Log("Using Shield!");
+                shield.Hit(1);
+            }
+            else
+            {
+                if (coll.gameObject.tag == "Boundary")
+                {
+
+                    isDead = coll.gameObject.GetComponentInParent<BoundaryPowerUp>().Hit();
+                }
+                else if (coll.gameObject.tag == "Avoid")
+                {
+                    isDead = true;
+                }
+            }
+        }
+
         if (coll.gameObject.tag == "Disappearing")
         {
             if (!HasFullEnergy())
@@ -172,7 +195,7 @@ public class Ship : MonoBehaviour
 
         if (coll.gameObject.tag == ("Power Up"))
         {
-        
+
 
             if (coll.gameObject.GetComponent<PowerUp>())
             {
@@ -181,7 +204,7 @@ public class Ship : MonoBehaviour
                 {
                     case PowerUp.Reward.Shield:
                         GetComponentInParent<Dock>().GiveFeedback("Shield Activated!");
-                        ToggleShield();
+                        TurnOnShield();
                         break;
                     case PowerUp.Reward.Boundary:
                         GetComponentInParent<Dock>().GiveFeedback("Borders Strengthened!");
@@ -218,7 +241,7 @@ public class Ship : MonoBehaviour
 
         if (coll.gameObject.tag == "Bumpable" && !canPassThroughObjects)
         {
-            
+
             //ADD SOUND
             GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<CollisionSound>().soundFx[0], .5f);
             Debug.Log("Bumped Object");
@@ -233,33 +256,7 @@ public class Ship : MonoBehaviour
         }
 
 
-        if (coll.gameObject.tag == "Boundary")
-        {
-            if (shield.isActiveAndEnabled)
-            {
-                Debug.Log("Using Shield!");
-                shield.Hit(1);
-            }
-            else
-            {
 
-                isDead = coll.gameObject.GetComponentInParent<BoundaryPowerUp>().Hit();
-            }
-        }
-
-        if (coll.gameObject.tag == "Avoid")
-        {
-            //TODO: CHECK FOR SHIELD
-            if (shield.isActiveAndEnabled)
-            {
-                Debug.Log("Using Shield!");
-                shield.Hit(1);
-            }
-            else
-            {
-                isDead = true;
-            }
-        }
 
         gameObject.GetComponentInParent<AudioSource>().Play();
     }
