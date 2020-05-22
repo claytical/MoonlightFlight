@@ -688,10 +688,6 @@
       <Project>{813B4C0B-1013-5DC6-9B3F-6587BB44C209}</Project>
       <Name>Unity.Recorder</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{BA355BDC-D9AC-4DF0-CBE7-0822160BAB0E}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{6940CB9D-2F64-7CD4-BA0F-5610D5AB47B0}</Project>
       <Name>Unity.Timeline</Name>
