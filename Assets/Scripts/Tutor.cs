@@ -4,50 +4,79 @@ using UnityEngine.UI;
 
 public class Tutor : MonoBehaviour {
 
-	public GameObject lines;
-	public GameObject finger;
-	public GameObject dropButton;
-	public GameObject bumper;
-	public GameObject[] script;
+	public string[] instructions;
+	public GameObject[] panels; 
+	
+	public GameObject previous; 
+	public GameObject next; 
+	public GameObject back;
+	public Text instruction;
+	private int instructionIndex = 0;
 
-	private bool lineHasBeenDrawn;
-	private bool buttonHasBeenPressed;
 
 	void Start () {
-		GetComponent<Animator> ().SetTrigger ("drawWithFinger");
-		lineHasBeenDrawn = false;
-		for (int i = 1; i < script.Length; i++) {
-			script [i].SetActive (false);
-		}
+		instruction.text = instructions[instructionIndex];
+		panels[instructionIndex].SetActive(true);
+		next.SetActive(true);
+		previous.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!lineHasBeenDrawn) {
-			if (lines.GetComponentInChildren<LineRenderer> () != null) {
-				lineHasBeenDrawn = true;
-				finger.SetActive (false);
-				script [0].SetActive (false);
-				script [1].SetActive (true);
-				Debug.Log ("Line has been drawn");
-				dropButton.GetComponent<Animator> ().SetTrigger ("wiggle");
-			}
-		}
-		if (buttonHasBeenPressed) {
-			dropButton.GetComponent<Animator> ().SetTrigger ("normal");
-			script [1].SetActive (false);
-			script [2].SetActive (true);
-			buttonHasBeenPressed = false;
-		}
 
-		if (bumper == null) {
-			Destroy (this.gameObject);
-		}
 
 	}
 
-	public void pressedDropButton() {
-		buttonHasBeenPressed = true;
+	public void Next()
+	{
+		hidePanels();
+		instructionIndex++;
+		if(instructionIndex == instructions.Length - 2)
+        {
+			//done
+			next.SetActive(false);
+			back.SetActive(true);
+			instruction.text = instructions[instructionIndex];
+			panels[instructionIndex].SetActive(true);
+		}
+		else
+        {
+			previous.SetActive(true);
+			Debug.Log("Next Panel");
+			instruction.text = instructions[instructionIndex];
+			panels[instructionIndex].SetActive(true);
+		}
 	}
+
+	private void hidePanels()
+    {
+		for (int i = 0; i < panels.Length; i++)
+		{
+			panels[i].SetActive(false);
+		}
+	}
+
+	public void Previous()
+	{
+		hidePanels();
+		back.SetActive(false);
+		instructionIndex--;
+		if (instructionIndex == 0)
+		{
+			instruction.text = instructions[instructionIndex];
+			panels[instructionIndex].SetActive(true);
+			previous.SetActive(false);
+			//done
+		}
+		else
+		{
+			instruction.text = instructions[instructionIndex];
+			panels[instructionIndex].SetActive(true);
+
+			next.SetActive(true);
+
+		}
+	}
+
 
 }

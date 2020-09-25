@@ -32,14 +32,13 @@ public class GameState : MonoBehaviour {
 
 		}
 	}
-	// Use this for initialization
-	void Start () {
+
+
+    // Use this for initialization
+    void Start () {
         //        GameTune.Initialize("026bab3d-3490-4a7f-beba-60c6947e88f2");
-//        GooglePlayGames.PlayGamesPlatform.Activate();
-//        AppLovin.InitializeSdk();
-        AppLovin.SetSdkKey("3C26Gk_Rq5H7BNZEyR9ggo3qKOxnKwdShfHMNDfMZKaAgfHaB92EGduEy6M1L4aCW5oSATrVLcGXQU-hw7Lfm2");
-        AppLovin.InitializeSdk();
-        if (resetKeys)
+        GooglePlayGames.PlayGamesPlatform.Activate();
+        if(resetKeys)
         {
             PlayerPrefs.DeleteAll();
         }

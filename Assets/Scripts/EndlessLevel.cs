@@ -29,7 +29,6 @@ public class EndlessLevel : MonoBehaviour {
     private LevelGrid grid;
     private bool buildingNewGrid = false;
     public bool useAnimationForPlatforms = false;
-    private bool gameIsOver = false;
 
 
     // Use this for initialization
@@ -224,38 +223,23 @@ public class EndlessLevel : MonoBehaviour {
 
     public void GameOver()
     {
-        Debug.Log("Game Over Called");
-        if (!gameIsOver)
+        dock.SetSeeds();
+        //        finished = true;
+        if(!unlockedNewShips())
         {
+            LevelFailPanel.SetActive(true);
 
-            dock.SetSeeds();
-            //        finished = true;
-            if (!unlockedNewShips())
-            {
-                LevelFailPanel.SetActive(true);
-
-            }
-            grid.currentSet.Waiting();
-            if (dock.seedsCollected > 0)
-            {
-                if (dock.seedsCollected == 1)
-                {
-                    failureMessage.text = "You collected " + dock.seedsCollected + " seed of light on your journey.";
-
-                }
-                else
-                {
-                    failureMessage.text = "You collected " + dock.seedsCollected + " seeds of light on your journey.";
-
-                }
-            }
-            else
-            {
-                failureMessage.text = "You didn't collect any seeds of light on your journey.";
-
-            }
         }
-        gameIsOver = true;
+        grid.currentSet.Waiting();
+        if (dock.seedsCollected > 0)
+        {
+            failureMessage.text = "You collected " + dock.seedsCollected + " seeds of light on your journey.";
+        }
+        else
+        {
+            failureMessage.text = "You didn't collect any seeds of light on your journey.";
+
+        }
     }
 
     public void Wait()
@@ -290,7 +274,6 @@ public class EndlessLevel : MonoBehaviour {
     {
         Transform[] locations = grid.spawnLocations.GetComponentsInChildren<Transform>();
         int[] set = Reservoir(n, locations.Length);
-        Debug.Log("SET: " + set.ToString());
         for (int i = 0; i < set.Length; i++)
         {
             if (locations[set[i]].position != Vector3.zero)

@@ -11,7 +11,7 @@ public class BoundaryPowerUp : MonoBehaviour
     public GameObject rightCollider;
     public SpriteRenderer border;
     public GameObject smallerBorder;
-    public int strength = 30;
+    public int strength = 3;
     private int hits; //count the amount of hits on the bumpers
     private Transform lastKnownBorderEnd;
     
@@ -34,23 +34,35 @@ public class BoundaryPowerUp : MonoBehaviour
     void Start()
     {
         lastKnownBorderEnd = border.transform;
-        SetBorderStrength(strength);
-
+        SetBorderStrength(strength-1);
+        InvokeRepeating("ToggleColliders", 0, 2f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
+
+    private void ToggleColliders()
+    {
+        topCollider.SetActive(false);
+        bottomCollider.SetActive(false);
+        leftCollider.SetActive(false);
+        rightCollider.SetActive(false);
+
+        topCollider.SetActive(true);
+        bottomCollider.SetActive(true);
+        leftCollider.SetActive(true);
+        rightCollider.SetActive(true);
+
+    }
+
+
     public void SetBorderStrength(int amount)
     {
         strength = amount;
         border.material.SetFloat("_Thickness", strength);
-        border.material.SetFloat("_Width", strength);
-        Debug.Log("Setting thickness " + strength);
-
     }
 
     public void AddBorders(int amount)
@@ -61,7 +73,8 @@ public class BoundaryPowerUp : MonoBehaviour
 
     public bool Hit()
     {
-        strength-=3;
+//        hits++;
+        strength--;
         if (strength <= 0)
         {
             return true;
