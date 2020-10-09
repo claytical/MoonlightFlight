@@ -257,7 +257,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: user.keystore'
+  AndroidKeystoreName: C:/Users/imfaculty/Documents/user.keystore
   AndroidKeyaliasName: moonlight
   AndroidBuildApkPerCpuArchitecture: 1
   AndroidTVCompatibility: 1
@@ -872,74 +872,74 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 1
   platformCapabilities:
     WindowsStoreApps:
-      CodeGeneration: False
-      Location: False
       AccountRead: False
-      Email: False
-      MusicLibrary: False
-      ContentWrite: False
-      Push: False
-      Objects3D: False
-      BlockedChatMessages: False
-      PhoneCall: False
-      SpatialPerception: False
-      MediaStorage: False
-      Microphone: False
-      Internet: False
-      Call: False
-      AlarmSet: False
-      AppManagerLaunch: False
-      Camera: False
-      Display: False
-      SharedUserCertificates: False
-      NFC: False
-      PicturesLibrary: False
-      LED: False
-      Recorder: False
-      VoipCall: False
-      UserAccountInformation: False
-      VolumeSet: False
-      Telephony: False
-      NetworkSet: False
-      NetworkProfile: False
-      DataSharing: False
-      EnterpriseAuthentication: False
-      VideosLibrary: False
-      HumanInterfaceDevice: False
       AccountWrite: False
-      Bluetooth: False
-      AllJoyn: False
-      NetworkGet: False
-      ContactRead: False
-      PrivateNetworkClientServer: False
-      InternetClientServer: False
       AlarmGet: False
-      KeyManager: False
-      Shortcut: False
-      Chat: False
-      ContactWrite: False
-      Notification: False
-      MessageWrite: False
-      WindowPrioritySet: False
-      CallHistoryRead: False
-      Download: False
-      CalendarWrite: False
-      MessageRead: False
-      ExternalStorage: False
-      NFCCardEmulation: False
-      Power: False
+      AlarmSet: False
+      AllJoyn: False
+      AppManagerLaunch: False
+      BlockedChatMessages: False
+      Bluetooth: False
       CalendarRead: False
-      InputInjectionBrokered: False
-      RemovableStorage: False
-      Haptic: False
-      WebCam: False
-      ExternalStorageAppData: False
-      WifiDirect: False
-      SystemSettings: False
-      Proximity: False
-      InternetClient: False
+      CalendarWrite: False
+      Call: False
+      CallHistoryRead: False
       CallHistoryWrite: False
+      Camera: False
+      Chat: False
+      CodeGeneration: False
+      ContactRead: False
+      ContactWrite: False
+      ContentWrite: False
+      DataSharing: False
+      Display: False
+      Download: False
+      Email: False
+      EnterpriseAuthentication: False
+      ExternalStorage: False
+      ExternalStorageAppData: False
+      Haptic: False
+      HumanInterfaceDevice: False
+      InputInjectionBrokered: False
+      Internet: False
+      InternetClient: False
+      InternetClientServer: False
+      KeyManager: False
+      LED: False
+      Location: False
+      MediaStorage: False
+      MessageRead: False
+      MessageWrite: False
+      Microphone: False
+      MusicLibrary: False
+      NFC: False
+      NFCCardEmulation: False
+      NetworkGet: False
+      NetworkProfile: False
+      NetworkSet: False
+      Notification: False
+      Objects3D: False
       PackageManagerInfo: True
+      PhoneCall: False
+      PicturesLibrary: False
+      Power: False
+      PrivateNetworkClientServer: False
+      Proximity: False
+      Push: False
+      Recorder: False
+      RemovableStorage: False
+      SharedUserCertificates: False
+      Shortcut: False
+      SpatialPerception: False
+      SystemSettings: False
+      Telephony: False
+      UserAccountInformation: False
+      VideosLibrary: False
+      VoipCall: False
+      VolumeSet: False
+      WebCam: False
+      WifiDirect: False
+      WindowPrioritySet: False
   metroTargetDeviceFamilies: {}
   metroFTAName: 
   metroFTAFileTypes: []

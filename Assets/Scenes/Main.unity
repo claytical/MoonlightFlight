@@ -232,6 +232,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 908413100}
     m_Modifications:
+    - target: {fileID: 1679651295442867201, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_Text
+      value: 50 More Light Required
+      objectReference: {fileID: 0}
     - target: {fileID: 2415244525717948727, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -397,6 +402,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415244526018492547, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2415244526018492548, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
@@ -1803,6 +1813,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 908413100}
     m_Modifications:
+    - target: {fileID: 1679651295442867201, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_Text
+      value: 50 More Light Required
+      objectReference: {fileID: 0}
     - target: {fileID: 2415244525717948727, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1968,6 +1983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Falcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415244526018492547, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2415244526018492548, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
@@ -2391,6 +2411,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 908413100}
     m_Modifications:
+    - target: {fileID: 1679651295442867201, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_Text
+      value: 50 More Light Required
+      objectReference: {fileID: 0}
     - target: {fileID: 2415244525717948727, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2556,6 +2581,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415244526018492547, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2415244526018492548, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
@@ -4388,6 +4418,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 908413100}
     m_Modifications:
+    - target: {fileID: 1679651295442867201, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_Text
+      value: 50 More Light Required
+      objectReference: {fileID: 0}
     - target: {fileID: 2415244525717948727, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4553,6 +4588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UFO
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415244526018492547, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2415244526018492548, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
@@ -5381,6 +5421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 908413100}
     m_Modifications:
+    - target: {fileID: 1679651295442867201, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_Text
+      value: 50 More Light Required
+      objectReference: {fileID: 0}
     - target: {fileID: 2415244525717948727, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5546,6 +5591,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Racer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415244526018492547, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2415244526018492548, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
@@ -6627,6 +6677,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 908413100}
     m_Modifications:
+    - target: {fileID: 1679651295442867201, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_Text
+      value: 50 More Light Required
+      objectReference: {fileID: 0}
     - target: {fileID: 2415244525717948727, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6776,6 +6831,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boomerang
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415244526018492547, guid: 04ee4cdbf84b47849b6c90fbe5539622,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2415244526018492549, guid: 04ee4cdbf84b47849b6c90fbe5539622,
         type: 3}

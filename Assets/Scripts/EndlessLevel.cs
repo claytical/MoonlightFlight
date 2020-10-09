@@ -202,9 +202,9 @@ public class EndlessLevel : MonoBehaviour {
                 if (PlayerPrefs.HasKey(dock.ships[i].GetComponentInChildren<Ship>().type.ToString()))
                 {
                     //ship was locked before playing
-                    int seedsRequired = PlayerPrefs.GetInt(dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
-                    Debug.Log("SEEDS REQUIRED: " + seedsRequired);
-                    if (seedsRequired <= PlayerPrefs.GetInt("seeds"))
+                    int energyRequired = PlayerPrefs.GetInt(dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
+                    Debug.Log("energy REQUIRED: " + energyRequired);
+                    if (energyRequired <= PlayerPrefs.GetInt("seeds"))
                     {
                         Debug.Log("UNLOCKED " + dock.ships[i].GetComponentInChildren<Ship>().type.ToString());
                         //UNLOCKED NEW SHIP!
@@ -233,11 +233,11 @@ public class EndlessLevel : MonoBehaviour {
         grid.currentSet.Waiting();
         if (dock.seedsCollected > 0)
         {
-            failureMessage.text = "You collected " + dock.seedsCollected + " seeds of light on your journey.";
+            failureMessage.text = "You collected " + dock.seedsCollected + " light on your journey.";
         }
         else
         {
-            failureMessage.text = "You didn't collect any seeds of light on your journey.";
+            failureMessage.text = "You didn't collect any light on your journey.";
 
         }
     }
