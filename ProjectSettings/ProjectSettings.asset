@@ -129,7 +129,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 0
-  bundleVersion: 6.2
+  bundleVersion: 6.3
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -872,74 +872,74 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 1
   platformCapabilities:
     WindowsStoreApps:
-      AccountRead: False
-      AccountWrite: False
-      AlarmGet: False
-      AlarmSet: False
-      AllJoyn: False
-      AppManagerLaunch: False
-      BlockedChatMessages: False
-      Bluetooth: False
-      CalendarRead: False
-      CalendarWrite: False
-      Call: False
-      CallHistoryRead: False
-      CallHistoryWrite: False
-      Camera: False
-      Chat: False
       CodeGeneration: False
-      ContactRead: False
-      ContactWrite: False
-      ContentWrite: False
-      DataSharing: False
-      Display: False
-      Download: False
-      Email: False
-      EnterpriseAuthentication: False
-      ExternalStorage: False
-      ExternalStorageAppData: False
-      Haptic: False
-      HumanInterfaceDevice: False
-      InputInjectionBrokered: False
-      Internet: False
-      InternetClient: False
-      InternetClientServer: False
-      KeyManager: False
-      LED: False
       Location: False
-      MediaStorage: False
-      MessageRead: False
-      MessageWrite: False
-      Microphone: False
+      AccountRead: False
+      Email: False
       MusicLibrary: False
-      NFC: False
-      NFCCardEmulation: False
-      NetworkGet: False
-      NetworkProfile: False
-      NetworkSet: False
-      Notification: False
-      Objects3D: False
-      PackageManagerInfo: True
-      PhoneCall: False
-      PicturesLibrary: False
-      Power: False
-      PrivateNetworkClientServer: False
-      Proximity: False
+      ContentWrite: False
       Push: False
-      Recorder: False
-      RemovableStorage: False
-      SharedUserCertificates: False
-      Shortcut: False
+      Objects3D: False
+      BlockedChatMessages: False
+      PhoneCall: False
       SpatialPerception: False
-      SystemSettings: False
-      Telephony: False
-      UserAccountInformation: False
-      VideosLibrary: False
+      MediaStorage: False
+      Microphone: False
+      Internet: False
+      Call: False
+      AlarmSet: False
+      AppManagerLaunch: False
+      Camera: False
+      Display: False
+      SharedUserCertificates: False
+      NFC: False
+      PicturesLibrary: False
+      LED: False
+      Recorder: False
       VoipCall: False
+      UserAccountInformation: False
       VolumeSet: False
-      WebCam: False
-      WifiDirect: False
+      Telephony: False
+      NetworkSet: False
+      NetworkProfile: False
+      DataSharing: False
+      EnterpriseAuthentication: False
+      VideosLibrary: False
+      HumanInterfaceDevice: False
+      AccountWrite: False
+      Bluetooth: False
+      AllJoyn: False
+      NetworkGet: False
+      ContactRead: False
+      PrivateNetworkClientServer: False
+      InternetClientServer: False
+      AlarmGet: False
+      KeyManager: False
+      Shortcut: False
+      Chat: False
+      ContactWrite: False
+      Notification: False
+      MessageWrite: False
       WindowPrioritySet: False
+      CallHistoryRead: False
+      Download: False
+      CalendarWrite: False
+      MessageRead: False
+      ExternalStorage: False
+      NFCCardEmulation: False
+      Power: False
+      CalendarRead: False
+      InputInjectionBrokered: False
+      RemovableStorage: False
+      Haptic: False
+      WebCam: False
+      ExternalStorageAppData: False
+      WifiDirect: False
+      SystemSettings: False
+      Proximity: False
+      InternetClient: False
+      CallHistoryWrite: False
+      PackageManagerInfo: True
   metroTargetDeviceFamilies: {}
   metroFTAName: 
   metroFTAFileTypes: []
