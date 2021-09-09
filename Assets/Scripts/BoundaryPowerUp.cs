@@ -22,8 +22,8 @@ public class BoundaryPowerUp : MonoBehaviour
 
     public void SetCollisionBorders()
     {
-        Vector2 minimum = new Vector3(border.bounds.min.x, border.bounds.min.y);
-        Vector3 maximum = new Vector3(border.bounds.max.x, border.bounds.max.y);
+        Vector2 minimum = new Vector3(border.bounds.min.x-1, border.bounds.min.y-1);
+        Vector3 maximum = new Vector3(border.bounds.max.x+1, border.bounds.max.y+1);
 
         leftCollider.transform.position = new Vector2(minimum.x, 0);
         rightCollider.transform.position = new Vector2(maximum.x, 0);
@@ -75,6 +75,7 @@ public class BoundaryPowerUp : MonoBehaviour
     {
 //        hits++;
         strength--;
+        Debug.Log("Border Strength: " + strength);
         if (strength <= 0)
         {
             return true;

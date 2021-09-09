@@ -22,6 +22,8 @@ public class ProceduralSet : MonoBehaviour
         
     }
     
+
+
     public LevelGrid SetNextGrid()
     {
         selectedGridIndex = Random.Range(0, nextGrids.Length);

@@ -37,7 +37,14 @@ public class EndlessLevel : MonoBehaviour {
     void Start () {
         //SETUP SHIP NAME AND CREATE IT
         gameState = (GameState)FindObjectOfType(typeof(GameState));
-        ship = dock.SelectShip(gameState.GetShip());
+        if (gameState != null)
+        {
+            ship = dock.SelectShip(gameState.GetShip());
+        }
+        else
+        {
+            ship = dock.DefaultShip();
+        }
 
         //EACH GRID REPEATS A GIVEN NUMBER, RESET TO ZERO
         setCount = 0;

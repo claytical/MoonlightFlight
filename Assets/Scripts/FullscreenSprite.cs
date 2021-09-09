@@ -20,8 +20,8 @@ public class FullscreenSprite : MonoBehaviour
 
         transform.localScale = new Vector3(1, 1, 1);
 
-        float width = sr.sprite.bounds.size.x;
-        float height = sr.sprite.bounds.size.y;
+        float width = sr.sprite.bounds.size.x-1;
+        float height = sr.sprite.bounds.size.y - 1;
 
 
         float worldScreenHeight = Camera.main.orthographicSize * 2f;

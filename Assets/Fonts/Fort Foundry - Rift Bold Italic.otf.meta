@@ -3,16 +3,16 @@ guid: 3236c436bced0b246bf1c5af27787f2c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
+  fontSize: 90
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Rift
   fontNames:
   - Rift
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 057dfe5eed02b0f47a808b9a590a96d4, type: 3}
+  - {fileID: 12800000, guid: d65a697468883f746a570354a45aba51, type: 3}
+  - {fileID: 12800000, guid: e8612af7624fae3479c60c40163897bc, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
