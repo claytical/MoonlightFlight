@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GooglePlayGames;
 
 public class GameState : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class GameState : MonoBehaviour {
 	public string SelectedLevel;
     public bool resetKeys = false;
     private ShipType selectedShip;
+    public VehicleType selectedVehicle;
     //    public Ship ship;
 
 
@@ -21,6 +23,18 @@ public class GameState : MonoBehaviour {
     {
         return selectedShip;
     }
+
+
+    public void SetVehicle(VehicleType _vehicleType)
+    {
+        selectedVehicle = _vehicleType;
+    }
+
+    public VehicleType GetVehicle()
+    {
+        return selectedVehicle;
+    }
+
 
     void Awake() {
 		GameState[] gameStates = FindObjectsOfType (typeof(GameState)) as GameState[];	
@@ -37,7 +51,7 @@ public class GameState : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //        GameTune.Initialize("026bab3d-3490-4a7f-beba-60c6947e88f2");
-        GooglePlayGames.PlayGamesPlatform.Activate();
+//        GooglePlayGames.PlayGamesPlatform.Activate();
         if(resetKeys)
         {
             PlayerPrefs.DeleteAll();

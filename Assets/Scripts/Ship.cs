@@ -22,7 +22,9 @@ public class Ship : MonoBehaviour
     private bool deadShip;
     private bool hasPowerup = false;
     private LevelGrid grid;
+    private SetInfo set;
     private EndlessLevel level;
+    private ProceduralLevel track;
     private float yOffset;
 
 
@@ -92,6 +94,12 @@ public class Ship : MonoBehaviour
         level = l;
     }
 
+    
+    public void SetTrack(ProceduralLevel t)
+    {
+        track = t;
+    }
+
     public void SetEnergyLevel(int amount)
     {
         currentEnergyLevel = amount;
@@ -113,6 +121,8 @@ public class Ship : MonoBehaviour
         grid = g;
         grid.SetShip(this);
     }
+
+
 
     private void ToggleShield()
     {
@@ -189,17 +199,13 @@ public class Ship : MonoBehaviour
                         GetComponentInParent<Dock>().boundaries.AddBorders(2);
 
                         break;
-                    case PowerUp.Reward.SpeedUp:
-                        GetComponentInParent<Dock>().GiveFeedback("Speeding Up!");
-                        force *= 1.5f;
-                        break;
-
-                    case PowerUp.Reward.SlowDown:
-                        GetComponentInParent<Dock>().GiveFeedback("Slowing Down!");
+                        /*
+                    case PowerUp.Reward.Part:
+                        GetComponentInParent<Dock>().GiveFeedback("Adding Ship Part to Inventory");
 
                         force *= .5f;
                         break;
-
+                        */
                     case PowerUp.Reward.PassThrough:
                         GetComponentInParent<Dock>().GiveFeedback("Ship Phasing Enabled!");
                         SetPassThrough(true);

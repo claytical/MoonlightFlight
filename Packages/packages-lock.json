@@ -69,12 +69,29 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.recorder": {
-      "version": "2.2.0-preview.4",
-      "depth": 0,
+    "com.unity.render-pipelines.core": {
+      "version": "8.2.0",
+      "depth": 2,
       "source": "registry",
       "dependencies": {
-        "com.unity.timeline": "1.0.0"
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.searcher": {
+      "version": "4.0.9",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.shadergraph": {
+      "version": "8.2.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "8.2.0",
+        "com.unity.searcher": "4.0.9"
       },
       "url": "https://packages.unity.com"
     },
@@ -104,6 +121,15 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.visualeffectgraph": {
+      "version": "8.2.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.shadergraph": "8.2.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

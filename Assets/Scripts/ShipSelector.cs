@@ -12,23 +12,34 @@ public class ShipSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ships = new List<GameObject>();
-        for (int i = 0; i < GetComponentsInChildren<ShipStats>().Length; i++)
+        int galaxies = PlayerPrefs.GetInt("galaxies", 0);
+        if(galaxies <= 0)
         {
-            ships.Add(GetComponentsInChildren<ShipStats>()[i].gameObject);
-            //remove existing lock check
-            PlayerPrefs.DeleteKey(GetComponentsInChildren<ShipStats>()[i].type.ToString());
-            int seedsNeeded = GetComponentsInChildren<ShipLock>()[i].seedsRequired - PlayerPrefs.GetInt("seeds", 0);
-            if(seedsNeeded > 0)
-            {
-                //ship locked
-                PlayerPrefs.SetInt(GetComponentsInChildren<ShipStats>()[i].type.ToString(), GetComponentsInChildren<ShipLock>()[i].seedsRequired);
-                Debug.Log("STILL LOCKED: " + GetComponentsInChildren<ShipStats>()[i].type.ToString());
-            }
 
         }
-        Debug.Log(ships.Count + " ships found");
-        toggleShips();
+        else {
+
+            Debug.Log("Not processing ship types yet...");
+            ships = new List<GameObject>();
+            /*
+            for (int i = 0; i < GetComponentsInChildren<ShipStats>().Length; i++)
+            {
+                ships.Add(GetComponentsInChildren<ShipStats>()[i].gameObject);
+                //remove existing lock check
+                PlayerPrefs.DeleteKey(GetComponentsInChildren<ShipStats>()[i].type.ToString());
+                int seedsNeeded = GetComponentsInChildren<ShipLock>()[i].seedsRequired - PlayerPrefs.GetInt("seeds", 0);
+                if (seedsNeeded > 0)
+                {
+                    //ship locked
+                    PlayerPrefs.SetInt(GetComponentsInChildren<ShipStats>()[i].type.ToString(), GetComponentsInChildren<ShipLock>()[i].seedsRequired);
+                    Debug.Log("STILL LOCKED: " + GetComponentsInChildren<ShipStats>()[i].type.ToString());
+                }
+
+            }
+            Debug.Log(ships.Count + " ships found");
+            toggleShips();
+            */
+        }
 
     }
 

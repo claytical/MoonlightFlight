@@ -22,10 +22,17 @@ public class Vanishing : MonoBehaviour
             sprites[i] = bodies[i].gameObject;
             sprites[i].SetActive(false);
         }
-
     }
 
     // Update is called once per frame
+    private void TurnOff()
+    {
+        for(int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].SetActive(false);
+        }
+    } 
+
     void Update()
     {
         if (Time.time >= nextVanishingTime)
@@ -33,13 +40,14 @@ public class Vanishing : MonoBehaviour
             nextVanishingTime = Time.time + timeBetweenVanishing;
             if (sequential)
             {
+                TurnOff();
                 sprites[currentIndex].SetActive(true);
                 currentIndex++;
                 if (currentIndex >= sprites.Length)
                 {
                     currentIndex = 0;
                 }
-                sprites[currentIndex].SetActive(false);
+//                sprites[currentIndex].SetActive(false);
             }
             else
             {

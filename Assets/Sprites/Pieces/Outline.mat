@@ -8,9 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Outline
-  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _ALPHATEST_ON _OUTLINEENABLED_ON _OUTLINEMODE_SOLID
-    _OUTLINEPOSITION_INSIDE_OVER_SPRITE _OUTLINESHAPE_FRAME _TILEMODE_STRETCH
+  m_Shader: {fileID: 4800000, guid: 42434164cfe7a174a9dcac20349cf53c, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _ALPHATEST_ON _DISPGLITCHON_ON _OUTLINEENABLED_ON
+    _OUTLINEMODE_SOLID _OUTLINEPOSITION_INSIDE_OVER_SPRITE _OUTLINESHAPE_FRAME _TILEMODE_STRETCH
+    _WRAPDISPCOORDS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -73,11 +74,18 @@ Material:
     - _AlphaThreshold: 0
     - _Angle: 45
     - _BumpScale: 1
+    - _ColorGlitchOn: 0
+    - _ColorIntensity: 0.07
+    - _ColorProbability: 0.02
     - _ConnectedAlpha: 0
     - _Cutoff: 1
     - _DetailNormalMapScale: 1
+    - _DispGlitchOn: 1
+    - _DispIntensity: 0.09
+    - _DispProbability: 0.022
     - _DstBlend: 0
     - _EnableExternalAlpha: 0
+    - _GlitchInterval: 0.16
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -96,6 +104,7 @@ Material:
     - _TileMode: 0
     - _UVSec: 0
     - _Weight: 0.673
+    - _WrapDispCoords: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106,3 +115,4 @@ Material:
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

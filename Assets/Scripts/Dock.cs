@@ -24,6 +24,7 @@ public class Dock : MonoBehaviour
     public Ship GetShip()
     {
         return ship.GetComponentInChildren<Ship>();
+       
     }
 
     public void AddSeeds(int seeds)
@@ -63,7 +64,14 @@ public class Dock : MonoBehaviour
 
     }
 
-    
+    public Ship DefaultShip()
+    {
+        ship = Instantiate(ships[0], transform);
+        Vector3 newPosition = ship.transform.position;
+        newPosition.z = 10f;
+        ship.transform.position = newPosition;
+        return ship.GetComponentInChildren<Ship>();
+    }
     public Ship SelectShip(ShipType s)
     {
         switch (s)
@@ -91,7 +99,6 @@ public class Dock : MonoBehaviour
                 ship = Instantiate(ships[5], transform);
 
                 break;
-
 
         }
         Vector3 newPosition = ship.transform.position;

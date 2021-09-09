@@ -43,7 +43,7 @@ public class Fly : MonoBehaviour {
 
             */
 
-            GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 2f);          
+            GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 4f);          
             if(transform.localPosition.x > 1 || transform.localPosition.x < -1 || transform.localPosition.y > 1 || transform.localPosition.y < -1)
             {
                 transform.position = transform.parent.position;

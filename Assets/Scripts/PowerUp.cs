@@ -10,21 +10,10 @@ public class PowerUp : MonoBehaviour
         Shield,
         Boundary,
         PassThrough,
-        SpeedUp,
-        SlowDown
+        Part,
+        Consciousness
     };
 
     public Reward reward;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

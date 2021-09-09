@@ -15,55 +15,54 @@ public class Breakable : MonoBehaviour {
 	private int timesHit = 0;
     public bool shrinksIntruder;
     public bool enlargesIntruder;
-    public GameObject[] sprites;
+    private GameObject[] layers;
     public GameObject explosion;
 	public AudioClip hit;
-    public Flys flies;
 	private float lightUpTime;
 	private bool isDying = false;
+    private bool scaleUp = true;
+    private Vector3 originalScale;
 
 	// Use this for initialization
 	void Start () {
-	}
+        originalScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        layers = new GameObject[GetComponentsInChildren<SpriteRenderer>().Length];
+        for(int i = 0; i < GetComponentsInChildren<SpriteRenderer>().Length; i++)
+        {
+            layers[i] = GetComponentsInChildren<SpriteRenderer>()[i].gameObject;
+        }
+    }
 
-	void OnDestroy() {
-        /*
-        if (GetComponentInParent<Level> ()) {
-			GetComponentInParent<Level> ().ScanForCompletion ();
-            Debug.Log("Scanning for Completion");
-		}
-	*/
+    void OnDestroy() {
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        /*if (Time.time > lightUpTime && litUp) {
-			litUp = false;
-		}*/
+        if(scaleUp)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.deltaTime);
+            if(transform.localScale == originalScale)
+            {
+                scaleUp = false;
+            }
+        }
+
         int spritesDeactivated = 0;
 
-        for (int i = 0; i < sprites.Length; i++)
+
+
+        for (int i = 0; i < layers.Length; i++)
         {
-            if(!sprites[i].activeSelf)
+            if(!layers[i].activeSelf)
             {
                 spritesDeactivated++;
             }
         }
-        if(spritesDeactivated == sprites.Length)
+        if(spritesDeactivated == layers.Length)
         {
-            //set flies free first
-            if (shrinksIntruder)
-            {
-//                ball.GetComponent<Ball>().Shrink();
-            }
-            if(enlargesIntruder)
-            {
- //               ball.GetComponent<Ball>().Enlarge();
 
-            }
-/*            flies.GetComponent<Transform>().SetParent(gameObject.transform.parent);
-            flies.Free(ball);
-  */
             Destroy(this.gameObject);
         }
 	}
@@ -84,9 +83,16 @@ public class Breakable : MonoBehaviour {
         GetComponent<AudioSource>().PlayOneShot(hit);
         //HIT
         Instantiate(explosion, transform.position, Quaternion.identity, transform.parent);
+        //0 <= 2 - 1
+        //0 <= 1
 
-        if (timesHit <= sprites.Length - 1 ) {
-            sprites[timesHit].SetActive(false);
+        // 1 <= 2 - 1
+
+        // 1 < 1
+        layers[timesHit].SetActive(false);
+
+        if (timesHit < layers.Length - 1 ) {
+            Debug.Log("TIMES HIT: " + timesHit + " LAYERS LENGTH: " + layers.Length);
             timesHit++;
             return true;
         }

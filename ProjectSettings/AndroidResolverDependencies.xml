@@ -3,19 +3,22 @@
     <package>com.google.android.gms:play-services-ads:19.3.0</package>
     <package>com.google.games:gpgs-plugin-support:0.10.08</package>
   </packages>
-  <files />
+  <files>
+    <file>Assets/GeneratedLocalRepo/GooglePlayGames/Editor/m2repository/com/google/games/gpgs-plugin-support/0.10.08/gpgs-plugin-support-0.10.08.aar</file>
+    <file>Assets/GeneratedLocalRepo/GooglePlayGames/Editor/m2repository/com/google/games/gpgs-plugin-support/0.10.08/gpgs-plugin-support-0.10.08.pom</file>
+  </files>
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
     <setting name="bundleId" value="edu.nerdlab.moonlightflight" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
-    <setting name="gradleTemplateEnabled" value="False" />
+    <setting name="gradleTemplateEnabled" value="True" />
     <setting name="installAndroidPackages" value="True" />
     <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
     <setting name="packageDir" value="Assets/Plugins/Android" />
     <setting name="patchAndroidManifest" value="True" />
     <setting name="patchMainTemplateGradle" value="True" />
-    <setting name="projectExportEnabled" value="False" />
+    <setting name="projectExportEnabled" value="True" />
     <setting name="useJetifier" value="False" />
   </settings>
 </dependencies>
