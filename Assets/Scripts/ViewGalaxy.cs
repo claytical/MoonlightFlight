@@ -19,6 +19,7 @@ public class ViewGalaxy : MonoBehaviour
     private string[] galaxyNames;
     private float[] galaxyLightyears;
     private List<bool> galaxyMarkerCreated;
+    public GameObject noGalaxiesPresent;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,14 @@ public class ViewGalaxy : MonoBehaviour
   */
         galaxyDescription.text = galaxyNames[0].ToString() + "\n(home)";
 
+        if(galaxyNames.Length == 0)
+        {
+            noGalaxiesPresent.SetActive(true);
+        }
+        else
+        {
+            noGalaxiesPresent.SetActive(false);
+        }
 
     }
 

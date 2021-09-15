@@ -50,11 +50,11 @@ public class GameState : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //        GameTune.Initialize("026bab3d-3490-4a7f-beba-60c6947e88f2");
-//        GooglePlayGames.PlayGamesPlatform.Activate();
         if(resetKeys)
         {
             PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt(selectedVehicle.ToString(), 0);
+
         }
     }
 	
