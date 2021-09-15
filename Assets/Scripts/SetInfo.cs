@@ -8,7 +8,6 @@ public class SetInfo : MonoBehaviour
     public GameObject spawnLocations;
     public GameObject platforms;
     public GameObject[] breakables;
-    public GameObject powerUp;
     public int numberOfObjectsToPlace;
     public int sets = 5;
     public ProceduralInfo currentSet;
@@ -17,8 +16,6 @@ public class SetInfo : MonoBehaviour
     private Transform[] platformsToMove;
     private bool movingOffScreenInProgress = false;
     private bool movingOnScreenInProgress = false;
-    private float highestY = 0;
-    private int highestYIndex = 0;
 
     //remaining spaces to populate
 

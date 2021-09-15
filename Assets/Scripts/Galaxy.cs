@@ -18,8 +18,6 @@ public class Galaxy : MonoBehaviour
     public float timeSpentCreatingGalaxy = 0;
     public bool letsMakePlanets = false;
     private bool readyToLoadMain = false;
-    private bool loadingNewScene = false;
-    private bool createdGalaxy = false;
     private bool travelThroughGalaxy = false;
     private bool notEnoughEnergy = false;
     public GameObject backToMainButton;
@@ -30,8 +28,6 @@ public class Galaxy : MonoBehaviour
     private bool skipSavingGalaxy = false;
 
 
-    JSONObject galaxyNames;
-    public TextAsset json;
     private string galaxyName;
 
     void Awake()
@@ -64,16 +60,64 @@ public class Galaxy : MonoBehaviour
         coordinates = new List<Vector3>();
         if(maxPlanets > 0)
         {
-            galaxyNames = new JSONObject(json.ToString());
-            JSONObject galaxyList = galaxyNames["names"][0];
-            string chars = "AB 23456789";
-            galaxyName = galaxyNames.list[0][Random.Range(0, galaxyNames.list[0].Count)].str + " " + chars[Random.Range(0, chars.Length)];
+            galaxyName = newGalaxyName();
         }
         calculateLightYearsAway();
         Vector3 newCameraPosition = Camera.main.transform.position;
         newCameraPosition.z += lightYearsAway;
         Camera.main.transform.position = newCameraPosition;
 
+    }
+
+    private string newGalaxyName ()
+    {
+        string[] nm1 = new string[] { "Alpha", "Apus", "Aquila", "Ara", "Beta", "Canis", "Carina", "Comae", "Corona", "Crux", "Delta", "Draco", "Epsilon", "Gamma", "Lambda", "Lyra", "Nemo", "Omega", "Omicron", "Pavo", "Proxima", "Sagitta", "Serpens", "Sigma", "Theta", "Upsilon", "Ursa", "Vela", "Virgo", "Zeta", "", "", "", "", "", "" };
+        string[] nm2 = new string[] { "Acallaris", "Achelois", "Adastreia", "Aegialeus", "Aegimius", "Alatheia", "Alcyoneus", "Aldebaran", "Amphiaraus", "Anadeia", "Andromeda", "Aquarii", "Arcturus", "Aristaeus", "Asteria", "Asteropaios", "Astraeus", "Aurigae", "Boreas", "Borysthenis", "Calesius", "Capella", "Cassiopeia", "Centauri", "Centaurus", "Chronos", "Cymopoleia", "Dioscuri", "Draconis", "Eioneus", "Eridani", "Eridanus", "Eubuleus", "Euphorion", "Eusebeia", "Euthenia", "Hemithea", "Hyperbius", "Hyperes", "Hyperion", "Icarius", "Ichnaea", "Ilioneus", "Kentaurus", "Leporis", "Librae", "Lyrae", "Majoris", "Miriandynus", "Myrmidon", "Nebula", "Nemesis", "Odysseus", "Ophiuchi", "Orion", "Orionis", "Orithyia", "Palioxis", "Peleus", "Perileos", "Perseus", "Phoroneus", "Polystratus", "Porphyrion", "Proioxis", "Sagittarius", "Sirius", "Solymus", "Zagreus", "Zephyrus" };
+        string[] nm3 = new string[] { "Abyss", "Acorn", "Arrowhead", "Banana", "Beansprout", "Beanstalk", "Bell", "Blue Ribbon", "Blueberry", "Bottleneck", "Bowl", "Bull's Eye", "Bullet", "Butterfly", "Cat's Ear", "Cat's Eye", "Catterpillar", "Cherry", "Chickpea", "Clover", "Coconut", "Comet", "Crescent", "Crow's Feet", "Crown", "Dandelion", "Diamond", "Dragontooth", "Droplet", "Eagle Claw", "Eggshell", "Exploding", "Eyebrow", "Eyelash", "Falling", "Feather", "Fern Leaf", "Fingerprint", "Fisheye", "Fishscale", "Flame", "Football", "Grain", "Halo", "Heart", "Horseshoe", "Hurricane", "Icicle", "Iris", "Jellyfish", "Kettle", "Leaf", "Lemon", "Lightbulb", "Lilypad", "Lion's Mane", "Lion's Tail", "Maelstrom", "Meridian", "Mosaic", "Mouse", "Octopus", "Oculus", "Onion", "Owl Head", "Pear", "Pepper", "Pig's Tail", "Pinecone", "Ponytail", "Potato", "Red Ribbon", "Rippled", "Rose Petal", "Sawblade", "Seashell", "Serpent", "Serpent's Eye", "Sharkfin", "Sharktooth", "Shield", "Shooting Star", "Snail Shell", "Snowflake", "Soap Bubble", "Sparrow", "Spearpoint", "Spiderleg", "Spiderweb", "Spiral", "Starfish", "Strawberry", "Teacup", "Tiara", "Tiger Paw", "Tree Root", "Tree Trunk", "Turtle Shell", "Vortex", "Wave", "Whale's Tail", "Zodiac" };
+        string[] nm4 = new string[] { "Nebula", "Galaxy", "Cloud", "Star System" };
+        string[] nm5 = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "" };
+        string[] nm6 = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "" };
+
+        int randomPoint = Random.Range(0, 11);
+
+
+            if (randomPoint < 3)
+            {
+
+                int rnd = (int) Mathf.Floor(Random.Range(0, nm1.Length));
+                int rnd2 = (int) Mathf.Floor(Random.Range(0, nm2.Length));
+                return nm1[rnd] + " " + nm2[rnd2];
+            }
+            else if (randomPoint < 5)
+            {
+                int rnd = (int)Mathf.Floor(Random.Range(0, nm2.Length));
+                int rnd2 = (int)Mathf.Floor(Random.Range(0, nm4.Length));
+                return nm2[rnd] + " " + nm4[rnd2];
+            }
+            else if (randomPoint < 8)
+            {
+            int rnd = (int)Mathf.Floor(Random.Range(0, nm3.Length));
+            int rnd2 = (int)Mathf.Floor(Random.Range(0, nm4.Length));
+                return nm3[rnd] + " " + nm4[rnd2];
+            }
+            else if (randomPoint < 9)
+            {
+                int rnd = (int)Mathf.Floor(Random.Range(0, nm5.Length));
+                int rnd2 = (int)Mathf.Floor(Random.Range(0, nm5.Length));
+                int rnd3 = (int)Mathf.Floor(Random.Range(0, nm6.Length));
+                int rnd4 = (int)Mathf.Floor(Random.Range(0, nm6.Length));
+                int rnd5 = (int)Mathf.Floor(Random.Range(0, nm6.Length));
+                return nm5[rnd] + nm5[rnd2] + "-" + nm6[rnd3] + nm6[rnd4] + nm6[rnd5];
+            }
+            else
+            {
+            int rnd = (int)Mathf.Floor(Random.Range(0, nm5.Length));
+            int rnd2 = (int)Mathf.Floor(Random.Range(0, nm5.Length));
+            int rnd3 = (int)Mathf.Floor(Random.Range(0, nm5.Length));
+            int rnd4 = (int)Mathf.Floor(Random.Range(0, nm6.Length));
+            int rnd5 = (int)Mathf.Floor(Random.Range(0, nm6.Length));
+            return nm5[rnd] + nm5[rnd2] + nm5[rnd3] + " " + nm6[rnd4] + nm6[rnd5] + nm5[rnd5];
+            }
     }
 
     private void calculateLightYearsAway()
@@ -145,11 +189,8 @@ public class Galaxy : MonoBehaviour
                 else
                 {
                     ShowGalaxyName();
-                    createdGalaxy = true;
                     letsMakePlanets = false;
                     Debug.Log("Saving Galaxy....");
-                    //RUNNING TWICE!
-//                    SaveGalaxyAndLoadMain();
                     travelThroughGalaxy = true;
                 }
             }
@@ -206,7 +247,7 @@ public class Galaxy : MonoBehaviour
 
     private void ShowGalaxyName()
     {
-        ui.text = galaxyName + " Galaxy has been born.\nIt spans " + lightYearsTraveled + " light-years and has " + maxPlanets + " stars!";
+        ui.text = galaxyName + " has been born.\nThe galaxy spans " + lightYearsTraveled + " light-years and has " + maxPlanets + " stars!";
         ui.enabled = true;
         readyToLoadMain = true;
 

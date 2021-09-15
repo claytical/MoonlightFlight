@@ -8,7 +8,6 @@ public class CraftableVehicle : MonoBehaviour
 
     public VehicleType vehicle;
     public int partsRequired;
-    bool previouslyCrafted = false;
 
     // Start is called before the first frame update
     void Start()
