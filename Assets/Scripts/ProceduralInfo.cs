@@ -36,31 +36,7 @@ public class ProceduralInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (changingMusic)
-        {
-            Debug.Log("CHANGING MUSIC!");
-            if (gameObject.GetComponents<AudioSource>()[0].loop == true)
-            {
-                gameObject.GetComponents<AudioSource>()[0].loop = false;
-            }
-            //transition from current procedural set to next one
-            if(!gameObject.GetComponents<AudioSource>()[0].isPlaying)
-            {
-                Debug.Log("Not playing loop anymore.");
-                changingMusic = false;
-                start.TransitionTo(0f);
-                Debug.Log("I'm in " + gameObject.name);
-            }
-            else
-            {
-                Debug.Log("Still Looping");
-                gameObject.GetComponents<AudioSource>()[0].loop = false;
 
-            }
-
-        }
-        */
     }
 
     public void Starting()
@@ -90,8 +66,6 @@ public class ProceduralInfo : MonoBehaviour
         //PLAY TRANSITION EFFECT
         nextSet.gameObject.SetActive(true);
         Debug.Log("TURNING ON " + nextSet.name);
-//        nextSet.currentSet.changingMusic = true;
-//    changingMusic = true;
 
     }
 
