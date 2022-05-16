@@ -25,7 +25,8 @@ public class ProceduralLevel : MonoBehaviour {
 
 	public GameObject LevelFailPanel;
     public GameObject vehicleUnlockedPanel;
-    public SetInfo[] sets;
+    private SetInfo[] sets;
+    public GameObject patterns;
     public Text failureMessage;
     public ParkingLot lot;
     public ProceduralMusic music;
@@ -73,23 +74,30 @@ public class ProceduralLevel : MonoBehaviour {
         Debug.Log("Nerfing Vehicle Force");
 
 
+        sets = patterns.GetComponentsInChildren<SetInfo>();
+
         //EACH GRID REPEATS A GIVEN NUMBER, RESET TO ZERO
         setCount = 0;
         
         //PICK A STARTING GRID
         setIndex = Random.Range(0, sets.Length);
-        
+
         //ASSIGN THAT GRID TO START
         set = sets[setIndex];
 
+        //ASSIGN NEXT SETS
+
+//        set.currentSet.SetNextSet();
+        
         //PASS GRID INFO TO SHIP
         vehicle.LinkSet(set);
 
         //SET TRACK FOR THE SHIP
         vehicle.SetTrack(this);
-        
-        
+
+
         //CREATE BREAKABLES IN GRID
+        Debug.Log("Creating Random Breakables for " + sets[setIndex].name);
         CreateRandomSetOfBreakables(sets[setIndex].numberOfObjectsToPlace);
 //        set.GetComponent<ProceduralInfo>().start.TransitionTo(0);
 
@@ -364,18 +372,20 @@ public class ProceduralLevel : MonoBehaviour {
     public void CreateRandomSetOfBreakables(int n)
     {
         Transform[] locations = set.spawnLocations.GetComponentsInChildren<Transform>();
+        Debug.Log(n + " SPAWNED FROM: " + set.spawnLocations.gameObject.name);
         int[] series = Reservoir(n, locations.Length);
 
         if (n <= 1)
         {
             GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[0]].position, Quaternion.identity, transform);
-
+            Debug.Log("N <= 1 OBJECT:" + locations[series[0]].name);
         }
         else
         {
 
             for (int i = 0; i < n; i++)
                 {
+                Debug.Log("I: " + i);
                 if (locations[series[i]].position != Vector3.zero)
                     {
                     if (i == series.Length - 1)
@@ -388,10 +398,14 @@ public class ProceduralLevel : MonoBehaviour {
                         }
 
                         GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
+                        Debug.Log("ELSE I == SERIES " + i + "OBJECT:" + locations[series[i]].name);
+
                     }
                     else
                     {
                         GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
+                        Debug.Log("ELSE " + i + "OBJECT:" + locations[series[i]].name);
+
                     }
                 } else
                 {

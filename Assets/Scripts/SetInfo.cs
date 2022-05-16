@@ -27,7 +27,10 @@ public class SetInfo : MonoBehaviour
         topOfScreen.y = 10f;
         platforms.transform.position = topOfScreen;
         platforms.SetActive(true);
+        //add platforms to descending objects
         platformsToMove = platforms.GetComponentsInChildren<Transform>();
+
+
         for (int i = 0; i < platformsToMove.Length; i++)
         {
             if(platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())

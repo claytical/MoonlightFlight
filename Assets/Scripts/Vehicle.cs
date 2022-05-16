@@ -10,6 +10,7 @@ public class Vehicle : MonoBehaviour
     public ParticleSystem energyCollection;
     public SpriteRenderer energyOverlay;
     public float energyUnit;
+    public GameObject explosion;
     public bool poweredUp = false;
     public float force;
     public float maxForce;
@@ -27,6 +28,7 @@ public class Vehicle : MonoBehaviour
     public SetInfo set;
     private ProceduralLevel track;
     private float yOffset;
+    private float explosionTimer;
 
 
     // Start is called before the first frame update
@@ -136,14 +138,21 @@ public class Vehicle : MonoBehaviour
         if (isDead && !deadShip)
         {
             Debug.Log("DEAD SHIP. GAME OVER");
+            Instantiate(explosion, transform.parent);
+            GetComponent<SpriteRenderer>().enabled = false;
             deadShip = true;
-            track.GameOver();
+            explosionTimer = Time.time + 1f;
             //TODO: Fix ship disappearance
             //            Destroy(gameObject, 4);
         }
 
-//        GetComponent<Light>().intensity = Mathf.Sin(Time.time * (4f * Mathf.Lerp(0, maxEnergy, currentEnergyLevel)));
-        
+        if(isDead && deadShip && explosionTimer < Time.time)
+        {
+
+            track.GameOver();
+
+        }
+
     }
 
 

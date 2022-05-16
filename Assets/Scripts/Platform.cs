@@ -40,7 +40,10 @@ public class Platform : MonoBehaviour
     {
         Invoke("switchTag", 1);
         //TODO: Change to custom sprite
-        GetComponent<SpriteRenderer>().color = Color.red;
+        GetComponent<Remix>().hazard.color = GetComponent<Remix>().level.hazardColor;
+        Color hColor = GetComponent<SpriteRenderer>().color;
+        hColor.a = 0;
+        GetComponent<SpriteRenderer>().color = hColor;
     }
 
     // Update is called once per frame

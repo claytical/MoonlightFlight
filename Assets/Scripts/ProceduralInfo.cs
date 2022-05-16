@@ -22,6 +22,7 @@ public class ProceduralInfo : MonoBehaviour
         {
             selectedSetIndex = Random.Range(0, nextSets.Length);
             SetInfo _nextSet = nextSets[selectedSetIndex];
+            //in case the next set hasn't been set on this object
             nextSet = _nextSet;
             return _nextSet;
         }

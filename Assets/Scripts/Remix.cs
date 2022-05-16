@@ -49,7 +49,10 @@ public class Remix : MonoBehaviour
         }
         if (hazard)
         {
-            hazard.color = level.hazardColor;
+            if(gameObject.tag == "Avoid")
+            {
+                hazard.color = level.hazardColor;
+            }
 
         }
 

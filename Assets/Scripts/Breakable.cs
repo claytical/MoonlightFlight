@@ -42,7 +42,8 @@ public class Breakable : MonoBehaviour {
 	void Update () {
         if(scaleUp)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.deltaTime);
+            
+            transform.localScale = Vector3.Slerp(transform.localScale, originalScale, .001f);
             if(transform.localScale == originalScale)
             {
                 scaleUp = false;

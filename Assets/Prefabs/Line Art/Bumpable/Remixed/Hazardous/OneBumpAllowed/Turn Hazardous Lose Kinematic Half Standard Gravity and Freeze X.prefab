@@ -71,15 +71,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 10005f1f046fc2b409b3ceb3e457c405, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: dbd411bdb3ee09f47ba1b858546d2e1e, type: 3}
+  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.03, y: 1.04}
+  m_Size: {x: 0.5, y: 0.44}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1781116594832268
@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 95000926235985850}
   - component: {fileID: 9820157716094619}
   - component: {fileID: 8143086062404273585}
+  - component: {fileID: 257247498}
   m_Layer: 0
   m_Name: Turn Hazardous Lose Kinematic Half Standard Gravity and Freeze X
   m_TagString: Bumpable
@@ -298,7 +299,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 0}
   primary: {fileID: 0}
-  secondary: {fileID: 212053718670736404}
+  secondary: {fileID: 212375929196836916}
   energy: {fileID: 0}
   ship: {fileID: 0}
-  hazard: {fileID: 212375929196836916}
+  hazard: {fileID: 212053718670736404}
+--- !u!114 &257247498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781116594832268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da54ebe0e3d12242a50395721f1ffab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useGravity: 0
+  timeUntilDestroy: 0
