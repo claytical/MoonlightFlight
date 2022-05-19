@@ -274,7 +274,8 @@ public class Vehicle : MonoBehaviour
             //frameCountAtBump = Time.frameCount + framesUntilTilt;
             if (coll.gameObject.GetComponent<Animator>())
             {
-                coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
+//                coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
+                  //TODO: Better Juice System
             }
         }
 

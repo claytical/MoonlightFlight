@@ -41,9 +41,10 @@ public class Platform : MonoBehaviour
         Invoke("switchTag", 1);
         //TODO: Change to custom sprite
         GetComponent<Remix>().hazard.color = GetComponent<Remix>().level.hazardColor;
-        Color hColor = GetComponent<SpriteRenderer>().color;
-        hColor.a = 0;
-        GetComponent<SpriteRenderer>().color = hColor;
+        GetComponent<Remix>().primary.enabled = false;
+        GetComponent<Remix>().hazard.transform.localScale = Vector3.one;
+        GetComponent<Animator>().enabled = false;
+        Debug.Log("turned hazardous");
     }
 
     // Update is called once per frame
@@ -60,7 +61,6 @@ public class Platform : MonoBehaviour
         if(isMovingFromPush)
         {
         }
-        
     }
 
     public void SetConstraints()
