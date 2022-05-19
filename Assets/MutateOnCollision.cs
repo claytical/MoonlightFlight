@@ -26,16 +26,14 @@ public class MutateOnCollision : MonoBehaviour
             {
                 Debug.Log("THIS BUMPABLE IS BREAKABLE!");
                 //CAN IT USE OTHER OBJECTS TO BREAK IT?
-                GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
             }
 
             if (coll.gameObject.GetComponent<Platform>())
             {
-                Debug.Log(coll.gameObject.name + " collding with " + this.name + " it's a platform too.");
 
-                if (coll.gameObject.GetComponent<Platform>().canBePushed)
+                if (gameObject.GetComponent<Platform>().canBePushed)
                 {
-                    Debug.Log(coll.gameObject.name + " pushing " + this.name);
+                    Debug.Log(gameObject.name + " pushing " + coll.gameObject.name);
 
                     GetComponent<Rigidbody2D>().isKinematic = false;
                     GetComponent<Platform>().SetConstraints();
@@ -48,15 +46,13 @@ public class MutateOnCollision : MonoBehaviour
                     gameObject.GetComponent<Platform>().TurnHazardous();
                 }
 
-                if (coll.gameObject.GetComponent<Platform>().canSpawnNewObjects)
+                if (gameObject.GetComponent<Platform>().canSpawnNewObjects)
                 {
                     Debug.Log(coll.gameObject.name + " spawning for " + this.name);
 
-                    coll.gameObject.GetComponent<Platform>().SpawnObject();
+                    gameObject.GetComponent<Platform>().SpawnObject();
                 }
             }
-            //PLAY COLLISION SOUND EFFECT
-            GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<CollisionSound>().soundFx[0], .5f);
 
         }
 
@@ -76,7 +72,6 @@ public class MutateOnCollision : MonoBehaviour
             //SHOULD IT DESTROY BUMPABLE OBJECTS?
         }
 
-        gameObject.GetComponentInParent<AudioSource>().Play();
     }
 
 

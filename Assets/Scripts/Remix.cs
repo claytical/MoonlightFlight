@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Remix : MonoBehaviour
 {
-    public ProceduralLevel level;
+    private ProceduralLevel level;
     public SpriteRenderer primary;
     public SpriteRenderer secondary;
     public SpriteRenderer energy;
@@ -14,6 +14,7 @@ public class Remix : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        level = FindObjectOfType<ProceduralLevel>();
         SetColors();        
     }
 

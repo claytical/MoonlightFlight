@@ -45,7 +45,8 @@ public class ProceduralLevel : MonoBehaviour {
     private SetInfo set;
     private bool buildingNewSet = false;
     public bool useAnimationForPlatforms = false;
-
+    public float waitTimeForGameOver;
+    private float gameOverTime = 9999;
 
     // Use this for initialization
     static System.Random rnd = new System.Random();
@@ -164,10 +165,19 @@ public class ProceduralLevel : MonoBehaviour {
                 }
 
             }
-            else
-            {
-                
-            }
+
+        if (gameOverTime <= Time.time && gameOverTime != 9999)
+        {
+            lot.SetEnergy();
+            PlayerPrefs.SetFloat("light years traveled", lot.lightYearsTraveled);
+            PlayerPrefs.SetInt("planets collected", lot.planetsCollected);
+            scene.SetSceneToLoad("End");
+            scene.SelectScene();
+            gameOverTime = 9999;
+        }
+
+
+
     }
 
     private void ResetPlatforms()
@@ -317,28 +327,8 @@ public class ProceduralLevel : MonoBehaviour {
 
     public void GameOver()
     {
-        lot.SetEnergy();
-        //        finished = true;
+        gameOverTime = waitTimeForGameOver + Time.time;
 
-        PlayerPrefs.SetFloat ("light years traveled", lot.lightYearsTraveled);
-        PlayerPrefs.SetInt("planets collected", lot.planetsCollected);
-        scene.SetSceneToLoad("End");
-        scene.SelectScene();
-        
-//        LevelFailPanel.SetActive(true);
-//        Time.timeScale = 0f;
-//        set.currentSet.Waiting();
- /*
-        if (lot.energyCollected > 0)
-        {
-            failureMessage.text = "You collected " + lot.energyCollected + " light on your journey.";
-        }
-        else
-        {
-            failureMessage.text = "You didn't collect any light on your journey.";
-
-        }
-   */
     }
 
     public void Wait()

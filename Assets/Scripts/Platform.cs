@@ -9,8 +9,11 @@ public class Platform : MonoBehaviour
     public bool canBePushed = false;
     public bool canTurnHazardous = false;
     public bool canSpawnNewObjects;
+    public int maxiumumNumberOfSpawnedObjects = -1;
+    private int numberOfObjectsSpawned = 0;
     public GameObject[] objectsToSpawn;
     public Transform[] placesToSpawn;
+    public GameObject explosion;
     public RigidbodyConstraints2D constraints;
     public float gravity;
 
@@ -40,7 +43,7 @@ public class Platform : MonoBehaviour
     {
         Invoke("switchTag", 1);
         //TODO: Change to custom sprite
-        GetComponent<Remix>().hazard.color = GetComponent<Remix>().level.hazardColor;
+        GetComponent<Remix>().SetColors();
         GetComponent<Remix>().primary.enabled = false;
         GetComponent<Remix>().hazard.transform.localScale = Vector3.one;
         GetComponent<Animator>().enabled = false;
@@ -53,7 +56,19 @@ public class Platform : MonoBehaviour
     {
         Vector3 newPosition = transform.position;
         newPosition.y += -1;
-        Instantiate(objectsToSpawn[Random.Range(0, objectsToSpawn.Length)],newPosition, Quaternion.identity, transform.parent);
+        GameObject go = Instantiate(objectsToSpawn[Random.Range(0, objectsToSpawn.Length)],newPosition, Quaternion.identity, transform.parent);
+        numberOfObjectsSpawned++;
+        if(maxiumumNumberOfSpawnedObjects > 0)
+        {
+            SpawnedObject so = go.AddComponent<SpawnedObject>();
+            so.SetLifeTime(10);
+
+        }
+        if (numberOfObjectsSpawned >= maxiumumNumberOfSpawnedObjects)
+        {
+            Instantiate(explosion);
+            Destroy(gameObject);
+        }
     }
 
     void Update()

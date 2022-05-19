@@ -28,7 +28,6 @@ public class Vehicle : MonoBehaviour
     public SetInfo set;
     private ProceduralLevel track;
     private float yOffset;
-    private float explosionTimer;
 
 
     // Start is called before the first frame update
@@ -138,20 +137,14 @@ public class Vehicle : MonoBehaviour
         if (isDead && !deadShip)
         {
             Debug.Log("DEAD SHIP. GAME OVER");
-            Instantiate(explosion, transform.parent);
-            GetComponent<SpriteRenderer>().enabled = false;
-            deadShip = true;
-            explosionTimer = Time.time + 1f;
-            //TODO: Fix ship disappearance
-            //            Destroy(gameObject, 4);
-        }
-
-        if(isDead && deadShip && explosionTimer < Time.time)
-        {
-
+            Vector3 pos = transform.position;
+            Instantiate(explosion,pos, Quaternion.identity);
+            //            GetComponent<SpriteRenderer>().enabled = false;
             track.GameOver();
-
+            this.gameObject.SetActive(false);
+            deadShip = true;
         }
+
 
     }
 
@@ -190,7 +183,7 @@ public class Vehicle : MonoBehaviour
             }
         }
 
-        if (coll.gameObject.tag == ("Power Up"))
+        if (coll.gameObject.tag == "Power Up")
         {
         
 
@@ -246,7 +239,7 @@ public class Vehicle : MonoBehaviour
             {
                 if(coll.gameObject.GetComponent<Platform>().canBePushed)
                 {
- 
+                    Debug.Log("I can be pushed by a vehicle");
                     coll.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
                     coll.gameObject.GetComponent<Platform>().SetConstraints();
                 }
@@ -278,7 +271,6 @@ public class Vehicle : MonoBehaviour
                   //TODO: Better Juice System
             }
         }
-
 
         if (coll.gameObject.tag == "Boundary")
         {
