@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Remix : MonoBehaviour
 {
-    private ProceduralLevel level;
-    public SpriteRenderer primary;
-    public SpriteRenderer secondary;
+    public ProceduralLevel level;
+    public SpriteRenderer border;
+    public SpriteRenderer identifier;
+    public SpriteRenderer subidentifier;
+
     public SpriteRenderer energy;
     public SpriteRenderer ship;
-    public SpriteRenderer hazard;
     private Renderer rend;    
     // Start is called before the first frame update
     void Start()
     {
         level = FindObjectOfType<ProceduralLevel>();
+        Debug.Log("LEVEL INIT: " + level.name);
         SetColors();        
     }
 
@@ -27,16 +29,24 @@ public class Remix : MonoBehaviour
             level = GetComponentInParent<ProceduralLevel>();
         }
 
-        if (primary)
+        if (border)
         {
-            primary.color = level.primaryColor;
+            border.color = level.primaryColor;
         }
 
-        if (secondary)
+        if (identifier)
         {
-            secondary.color = level.secondaryColor;
+            if(GetComponent<Hazard>())
+            {
+                identifier.color = level.hazardColor;
+            }
+            else {
+                identifier.color = level.secondaryColor;
+
+            }
 
         }
+
         if (energy)
         {
             energy.color = level.energyColor;
@@ -48,16 +58,17 @@ public class Remix : MonoBehaviour
             ship.color = level.shipColor;
 
         }
-        if (hazard)
+        /*
+        if (subidentifier)
         {
-            if(gameObject.tag == "Avoid")
-            {
-                hazard.color = level.hazardColor;
-            }
+            subidentifier.color = level.hazardColor;
 
         }
+        */
 
     }
+
+
 
     // Update is called once per frame
     void Update()

@@ -262,11 +262,11 @@ public class ProceduralLevel : MonoBehaviour {
 
                     for (int i = 0; i < platforms.Length; i++)
                     {
-                        platforms[i].SetTrigger("done");
+//                        platforms[i].SetTrigger("done");
                     }
                     buildingNewSet = true;
                 }
-                else if (gos.Length == 0 && setCount < set.sets) //place more breakables
+                else if (gos == null && setCount < set.sets) //place more breakables
                 {
                     //new set
                     setCount++;

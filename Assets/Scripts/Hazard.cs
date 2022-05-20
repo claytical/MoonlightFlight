@@ -31,7 +31,17 @@ public class Hazard : MonoBehaviour
         }
     }
 
-    public void TurnOffCollider()
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        Debug.Log(coll.gameObject.name + " collding with " + this.name);
+        if (coll.gameObject.tag == "Bumpable")
+        {
+            Debug.Log("Hazard Colliding with Bumpable, let's destroy it.");
+            Destroy(coll.gameObject);
+        }
+    }
+
+            public void TurnOffCollider()
     {
         GetComponent<CircleCollider2D>().enabled = false;
 
