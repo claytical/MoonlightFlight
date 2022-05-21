@@ -39,16 +39,33 @@ public class Hazard : MonoBehaviour
             Debug.Log("Hazard Colliding with Bumpable, let's destroy it.");
             Destroy(coll.gameObject);
         }
+        if(coll.gameObject.tag == "Disappearing")
+        {
+
+            if(gameObject.tag == "Avoid")
+            {
+                GetComponent<Animator>().SetTrigger("destroy");
+            }
+            if (coll.gameObject.GetComponent<Breakable>())
+            {
+
+            }
+        }
     }
 
-            public void TurnOffCollider()
+    public void TurnOffCollider()
     {
-        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<PolygonCollider2D>().enabled = false;
 
     }
     public void TurnOnCollider()
     {
-        GetComponent<CircleCollider2D>().enabled = true;
+        GetComponent<PolygonCollider2D>().enabled = true;
+    }
+
+    public void Disappear()
+    {
+        Destroy(gameObject);
     }
 }
 

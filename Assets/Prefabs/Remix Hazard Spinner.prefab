@@ -212,11 +212,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
-  primary: {fileID: 0}
-  secondary: {fileID: 0}
+  border: {fileID: 0}
+  identifier: {fileID: 212153469563071436}
+  subidentifier: {fileID: 0}
   energy: {fileID: 0}
   ship: {fileID: 0}
-  hazard: {fileID: 212153469563071436}
 --- !u!114 &1728068746
 MonoBehaviour:
   m_ObjectHideFlags: 0

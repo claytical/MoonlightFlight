@@ -18,7 +18,7 @@ public class MutateOnCollision : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log(coll.gameObject.name + " collding with " + this.name);
+        Debug.Log(coll.gameObject.name + " colliding with " + this.name);
         if (coll.gameObject.tag == "Bumpable")
         {
 
@@ -56,6 +56,12 @@ public class MutateOnCollision : MonoBehaviour
 
         }
 
+        if(coll.gameObject.tag == "Disappearing")
+        {
+            Debug.Log("Mutant Disappearing");
+            GetComponent<Animator>().SetTrigger("destroy");
+
+        }
         if (coll.gameObject.tag == ("Power Up"))
         {
 
@@ -66,7 +72,7 @@ public class MutateOnCollision : MonoBehaviour
 
         }
 
-
+        
         if (coll.gameObject.tag == "Avoid")
         {
             //SHOULD IT DESTROY BUMPABLE OBJECTS?

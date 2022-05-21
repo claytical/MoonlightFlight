@@ -280,8 +280,14 @@ MonoBehaviour:
   canBePushed: 0
   canTurnHazardous: 0
   canSpawnNewObjects: 0
+  spawnTimer: 0
+  numberOfSpawnedObjectsBeforeSelfDestruction: -1
+  maximumNumberOfSpawnedObjects: -1
+  spawnedObjectLifetime: -1
   objectsToSpawn: []
   placesToSpawn: []
+  spawnedObjects: []
+  explosion: {fileID: 0}
   constraints: 0
   gravity: 0
 --- !u!114 &8143086062404273585
@@ -297,8 +303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
-  primary: {fileID: 212375929196836916}
-  secondary: {fileID: 212053718670736404}
+  border: {fileID: 0}
+  identifier: {fileID: 212053718670736404}
+  subidentifier: {fileID: 0}
   energy: {fileID: 0}
   ship: {fileID: 0}
-  hazard: {fileID: 0}

@@ -73,9 +73,9 @@ public class Platform : MonoBehaviour
     {
         Invoke("switchTag", 1);
         //TODO: Change to custom sprite
-        GetComponent<Remix>().identifier.enabled = false;
+        GetComponent<Remix>().border.enabled = false;
         GetComponent<Remix>().identifier.transform.localScale = Vector3.one;
-        GetComponent<Animator>().enabled = false;
+//        GetComponent<Animator>().enabled = false;
         Debug.Log("turned hazardous");
     }
 
@@ -135,6 +135,7 @@ public class Platform : MonoBehaviour
     }
 
     public void Disappear() {
+        Debug.Log("Disappearing " + gameObject.name);
         Destroy(this.gameObject);
     }
     public void Finished()

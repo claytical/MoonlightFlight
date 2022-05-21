@@ -36,6 +36,7 @@ public class SetInfo : MonoBehaviour
             if(platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
             {
                 platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                platformsToMove[i].gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             }
 
             movingOnScreenInProgress = true;
@@ -103,8 +104,10 @@ public class SetInfo : MonoBehaviour
 
     private void PlatformsFinishedMovingOnScreen()
     {
+
         movingOnScreenInProgress = false;
         transform.position = Vector3.zero;
+
     }
     private void PlatformsFinishedMovingOffScreen()
     {
