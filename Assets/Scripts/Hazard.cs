@@ -42,10 +42,13 @@ public class Hazard : MonoBehaviour
         if(coll.gameObject.tag == "Disappearing")
         {
 
+            //SELF DESTRUCTING HAZARDS?
+/*
             if(gameObject.tag == "Avoid")
             {
                 GetComponent<Animator>().SetTrigger("destroy");
             }
+*/
             if (coll.gameObject.GetComponent<Breakable>())
             {
 

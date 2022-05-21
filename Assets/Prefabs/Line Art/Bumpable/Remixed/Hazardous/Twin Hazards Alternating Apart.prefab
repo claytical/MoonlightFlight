@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466683948, guid: e26a1cd9d0e8f474b9198aa5da0d4a53, type: 3}
       propertyPath: travelSpeed
-      value: 0.001
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1466683948, guid: e26a1cd9d0e8f474b9198aa5da0d4a53, type: 3}
       propertyPath: verticalMovement
@@ -50,12 +50,12 @@ PrefabInstance:
     - target: {fileID: 531954136403370037, guid: e26a1cd9d0e8f474b9198aa5da0d4a53,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6469443994331831609, guid: e26a1cd9d0e8f474b9198aa5da0d4a53,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7854916022420387743, guid: e26a1cd9d0e8f474b9198aa5da0d4a53,
         type: 3}
@@ -117,7 +117,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4984410859383691666, guid: e26a1cd9d0e8f474b9198aa5da0d4a53, type: 3}
+    - {fileID: 6896829256824014198, guid: e26a1cd9d0e8f474b9198aa5da0d4a53, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e26a1cd9d0e8f474b9198aa5da0d4a53, type: 3}
 --- !u!4 &9193752933095909497 stripped
 Transform:

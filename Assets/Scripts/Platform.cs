@@ -19,7 +19,7 @@ public class Platform : MonoBehaviour
     private int spawnedObjectIndex = 0;
     public Transform[] placesToSpawn;
     public List<GameObject> spawnedObjects;
-    public GameObject explosion;
+//    public GameObject explosion;
     public RigidbodyConstraints2D constraints;
     public float gravity;
 
@@ -31,7 +31,7 @@ public class Platform : MonoBehaviour
     void Start()
     {
         spawnedObjects = new List<GameObject>();
-        if (spawnTimer > 0)
+        if (objectsToSpawn.Length > 0)
         {
             nextSpawnTime = Time.time + spawnTimer + 3;
             SetNextSpawnedItem();
@@ -83,31 +83,28 @@ public class Platform : MonoBehaviour
 
     public void SpawnObject()
     {
-        Vector3 newPosition = transform.position;
-        //        newPosition.y += -1;
-
-        GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], transform.position, transform.rotation, transform.parent);
-        go.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.down);
-        spawnedObjectIndex++;
-        if(spawnedObjectIndex >= objectsToSpawn.Length)
+        if (spawnedObjectIndex >= objectsToSpawn.Length)
         {
             spawnedObjectIndex = 0;
         }
-        numberOfObjectsSpawned++;
+
+        GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], transform.position, transform.rotation, transform.parent);
+        go.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.down);
+
         spawnedObjects.Add(go);
-        SetNextSpawnedItem();
 
         if (numberOfObjectsSpawned > maximumNumberOfSpawnedObjects)
         {
             Debug.Log("Culling spawned objects...");
-            Vector3 pos = transform.position;
-            Instantiate(spawnedObjects[0].GetComponent<Platform>().explosion, spawnedObjects[0].transform.position,Quaternion.identity);
-            spawnedObjects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-            spawnedObjects[0].gameObject.GetComponent<Animator>().SetTrigger("destroy");
+            if(spawnedObjects[0].GetComponent<Explode>())
+            {
+                spawnedObjects[0].GetComponent<Explode>().Go();
+            }
             spawnedObjects.RemoveAt(0);
         }
 
         SpawnedObject so = go.AddComponent<SpawnedObject>();
+
         if (spawnedObjectLifetime > 0)
         {
             so.SetLifeTime(spawnedObjectLifetime);
@@ -116,9 +113,18 @@ public class Platform : MonoBehaviour
 
         if (numberOfObjectsSpawned >= numberOfSpawnedObjectsBeforeSelfDestruction && numberOfSpawnedObjectsBeforeSelfDestruction > 0)
         {
-            Instantiate(explosion);
-            Destroy(gameObject);
+            if (GetComponent<Explode>())
+            {
+                Debug.Log("Blowing up platform...");
+                GetComponent<Explode>().Go();
+            }
+//            Destroy(gameObject);
         }
+        SetNextSpawnedItem();
+        spawnedObjectIndex++;
+        numberOfObjectsSpawned++;
+
+
     }
 
 

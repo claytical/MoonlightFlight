@@ -90,6 +90,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1660095881296426
@@ -107,6 +108,8 @@ GameObject:
   - component: {fileID: 114967761790412470}
   - component: {fileID: 60671552599392776}
   - component: {fileID: 6395658430871188317}
+  - component: {fileID: 6799989158334673428}
+  - component: {fileID: 175329974812558484}
   m_Layer: 0
   m_Name: Hazard Spinner
   m_TagString: Avoid
@@ -144,6 +147,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -191,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad4f98b6b9d39b4baa92b0dfd6598b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: -3
+  acceleration: -1
 --- !u!114 &114078700380783034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da54ebe0e3d12242a50395721f1ffab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useGravity: 0
+  timeUntilDestroy: 0
 --- !u!60 &60671552599392776
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -402,3 +408,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6799989158334673428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660095881296426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5ee3188eaa9874d9195c450cd16cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 8455937364993888704, guid: 08a87ae8892458741b1a98e7dba483ec,
+    type: 3}
+--- !u!114 &175329974812558484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660095881296426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e097fd62730ca469772eff2435b326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 0}
+  border: {fileID: 0}
+  identifier: {fileID: 212153469563071436}
+  subidentifier: {fileID: 0}
+  energy: {fileID: 0}
+  ship: {fileID: 0}

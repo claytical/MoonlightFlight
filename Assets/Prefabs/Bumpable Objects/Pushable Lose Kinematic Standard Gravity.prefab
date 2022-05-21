@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 95000926235985850}
   - component: {fileID: 9820157716094619}
   - component: {fileID: 8143086062404273585}
+  - component: {fileID: 8072674063059411884}
   m_Layer: 0
   m_Name: Pushable Lose Kinematic Standard Gravity
   m_TagString: Bumpable
@@ -287,7 +288,6 @@ MonoBehaviour:
   objectsToSpawn: []
   placesToSpawn: []
   spawnedObjects: []
-  explosion: {fileID: 0}
   constraints: 0
   gravity: 1
 --- !u!114 &8143086062404273585
@@ -302,8 +302,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e097fd62730ca469772eff2435b326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 0}
   border: {fileID: 212375929196836916}
   identifier: {fileID: 212053718670736404}
   subidentifier: {fileID: 0}
   energy: {fileID: 0}
   ship: {fileID: 0}
+--- !u!114 &8072674063059411884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781116594832268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5ee3188eaa9874d9195c450cd16cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 8455937364993888704, guid: 08a87ae8892458741b1a98e7dba483ec,
+    type: 3}
