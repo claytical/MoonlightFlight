@@ -166,7 +166,7 @@ public class Ship : MonoBehaviour
             if (coll.gameObject.GetComponent<Breakable>())
             {
                 GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
-                if (!coll.gameObject.GetComponent<Breakable>().LightUp(this.gameObject))
+                if (coll.gameObject.GetComponent<Breakable>().isDead())
                 {
                     //EVENT #1 - BROKE OBJECT
                     grid.currentSet.BroadcastMessage("BrokeObject", SendMessageOptions.DontRequireReceiver);

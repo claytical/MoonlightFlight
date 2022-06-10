@@ -5,134 +5,55 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public bool finished = false;
-    private Vector3 originalScale;
     public bool canBePushed = false;
-    public bool canTurnHazardous = false;
-    public bool canSpawnNewObjects;
-    public float spawnTimer = 0;
-    private float nextSpawnTime;
-    public int numberOfSpawnedObjectsBeforeSelfDestruction = -1;
-    public int maximumNumberOfSpawnedObjects = -1;
-    public int spawnedObjectLifetime = -1;
-    private int numberOfObjectsSpawned = 0;
-    public GameObject[] objectsToSpawn;
-    private int spawnedObjectIndex = 0;
-    public Transform[] placesToSpawn;
-    public List<GameObject> spawnedObjects;
-//    public GameObject explosion;
     public RigidbodyConstraints2D constraints;
     public float gravity;
-
-    private bool isMovingFromPush = false;
-    private Vector3 originalPosition;
-    private Vector3 pushToPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnedObjects = new List<GameObject>();
-        if (objectsToSpawn.Length > 0)
+
+        TurnOffCollision();
+        //SetConstraints();
+        
+    }
+
+
+    void TurnOffCollision()
+    {
+        if (GetComponent<BoxCollider2D>())
         {
-            nextSpawnTime = Time.time + spawnTimer + 3;
-            SetNextSpawnedItem();
+            GetComponent<BoxCollider2D>().enabled = false;
 
         }
 
-        originalScale = transform.localScale;
-        GetComponent<BoxCollider2D>().enabled = false;
-        if (canBePushed)
+        if (GetComponent<PolygonCollider2D>())
         {
-            originalPosition = transform.position;
-        }
-        SetConstraints();
-    }
-
-    void SetNextSpawnedItem()
-    {
-        GetComponent<Remix>().identifier.sprite = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.sprite;
-        Debug.Log("Changing " + GetComponent<Remix>().identifier.gameObject.name + " to " + objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.sprite.name);
-
-        GetComponent<Remix>().identifier.gameObject.transform.rotation = Quaternion.identity;
-    }
-    void FixedUpdate()
-    {
-        if (spawnTimer > 0 && nextSpawnTime <= Time.time)
-        {
-            nextSpawnTime = Time.time + spawnTimer;
-            Debug.Log("NEXT SPAWN TIME: " + nextSpawnTime);
-            SpawnObject();
-        }
-    }
-
-    private void switchTag()
-    {
-        gameObject.tag = "Avoid";
-
-    }
-    public void TurnHazardous()
-    {
-        Invoke("switchTag", 1);
-        //TODO: Change to custom sprite
-        GetComponent<Remix>().border.enabled = false;
-        GetComponent<Remix>().identifier.transform.localScale = Vector3.one;
-//        GetComponent<Animator>().enabled = false;
-        Debug.Log("turned hazardous");
-    }
-
-    // Update is called once per frame
-
-    public void SpawnObject()
-    {
-        if (spawnedObjectIndex >= objectsToSpawn.Length)
-        {
-            spawnedObjectIndex = 0;
+            GetComponent<PolygonCollider2D>().enabled = false;
         }
 
-        GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], transform.position, transform.rotation, transform.parent);
-        go.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.down);
+    }
 
-        spawnedObjects.Add(go);
-
-        if (numberOfObjectsSpawned > maximumNumberOfSpawnedObjects)
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (GetComponent<OneDirection>())
         {
-            Debug.Log("Culling spawned objects...");
-            if(spawnedObjects[0].GetComponent<Explode>())
+            GetComponent<Rigidbody2D>().AddForce(GetComponent<OneDirection>().direction);
+        }
+
+        if (coll.otherRigidbody.velocity.magnitude > .2f)
+        {
+            if(coll.gameObject.GetComponent<Platform>())
             {
-                spawnedObjects[0].GetComponent<Explode>().Go();
+                Debug.Log("Big Hit, Triggering Animation");
+
+                coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
+
             }
-            spawnedObjects.RemoveAt(0);
         }
-
-        SpawnedObject so = go.AddComponent<SpawnedObject>();
-
-        if (spawnedObjectLifetime > 0)
-        {
-            so.SetLifeTime(spawnedObjectLifetime);
-
-        }
-
-        if (numberOfObjectsSpawned >= numberOfSpawnedObjectsBeforeSelfDestruction && numberOfSpawnedObjectsBeforeSelfDestruction > 0)
-        {
-            if (GetComponent<Explode>())
-            {
-                Debug.Log("Blowing up platform...");
-                GetComponent<Explode>().Go();
-            }
-//            Destroy(gameObject);
-        }
-        SetNextSpawnedItem();
-        spawnedObjectIndex++;
-        numberOfObjectsSpawned++;
-
-
     }
+  
 
-
-
-    void Update()
-    {
-
-    }
 
     public void SetConstraints()
     {
@@ -141,15 +62,13 @@ public class Platform : MonoBehaviour
     }
 
     public void Disappear() {
-        Debug.Log("Disappearing " + gameObject.name);
         Destroy(this.gameObject);
     }
     public void Finished()
     {
         //CALLED IN INITIAL ANIMATION
         finished = true;
-        transform.localScale = originalScale;
-        GetComponent<BoxCollider2D>().enabled = true;
+
     }
 
 }

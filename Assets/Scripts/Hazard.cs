@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
-    public bool useGravity;
+    public bool randomGravity;
     public int timeUntilDestroy;
     private float timeCreated;
 
@@ -12,7 +12,7 @@ public class Hazard : MonoBehaviour
     void Start()
     {
         timeCreated = Time.time;
-        if(useGravity)
+        if(randomGravity)
         {
             if(GetComponent<Rigidbody2D>())
             {
@@ -27,17 +27,28 @@ public class Hazard : MonoBehaviour
     {
         if(Time.time >= timeCreated + timeUntilDestroy)
         {
-         //   Destroy(this.gameObject);
         }
     }
 
+
+    void Update()
+    {
+        if (GetComponent<OneDirection>())
+        {
+ //           Debug.Log("Rotating Hazard 90 degrees...");
+//            transform.Rotate(90, 0, 90);
+        }
+
+    }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log(coll.gameObject.name + " collding with " + this.name);
         if (coll.gameObject.tag == "Bumpable")
         {
             Debug.Log("Hazard Colliding with Bumpable, let's destroy it.");
-            Destroy(coll.gameObject);
+            if(coll.gameObject.GetComponent<Explode>())
+            {
+                coll.gameObject.GetComponent<Explode>().Go();
+            }
         }
         if(coll.gameObject.tag == "Disappearing")
         {

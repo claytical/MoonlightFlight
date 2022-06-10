@@ -18,6 +18,9 @@ public class Vehicle : MonoBehaviour
     public VehicleType type;
     public Shield shield;
     public float timeStuck;
+    public GameObject energyTransfer;
+
+
     private int currentEnergyLevel;
 //    private Energy[] meter;
     private List<GameObject> touchPoints;
@@ -63,6 +66,9 @@ public class Vehicle : MonoBehaviour
             //EVENT #3
             track.MaxEnergyReached();
             hasPowerup = true;
+            currentEnergyLevel = 0;
+            energyColor.a = 0;
+            energyOverlay.color = energyColor;
 
         }
     }
@@ -103,20 +109,6 @@ public class Vehicle : MonoBehaviour
         shield.Setup();
     }
 
-    // Update is called once per frame
-
-    void Update()
-    {
-        /*
-        //FLASHING ENERGY
-        if (!HasFullEnergy())
-        {
-            Color eColor = energyOverlay.color;
-            eColor.a = Mathf.Lerp(0, energyUnit * currentEnergyLevel, (Time.frameCount % 1000) * .001f);
-            energyOverlay.color = eColor;
-        }
-        */
-    }
     void FixedUpdate()
     {
         CheckControl();
@@ -125,10 +117,6 @@ public class Vehicle : MonoBehaviour
             force = maxForce;
         }
 
-/*        Vector3 energyPos = transform.position;
-        energyPos.y = energyPos.y + yOffset;
-        energy.transform.position = energyPos;
-*/
         if(timeStuck > 1)
         {
             Debug.Log("SHIP STUCK: " + timeStuck);
@@ -139,7 +127,6 @@ public class Vehicle : MonoBehaviour
             Debug.Log("DEAD SHIP. GAME OVER");
             Vector3 pos = transform.position;
             Instantiate(explosion,pos, Quaternion.identity);
-            //            GetComponent<SpriteRenderer>().enabled = false;
             track.GameOver();
             this.gameObject.SetActive(false);
             deadShip = true;
@@ -151,6 +138,17 @@ public class Vehicle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+
+
+        if (coll.gameObject.GetComponent<SpawnsObjects>())
+        {
+            if (coll.gameObject.GetComponent<SpawnsObjects>().collisionCausesSpawn)
+            {
+                coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
+
+            }
+        }
+
         if (coll.gameObject.tag == "Disappearing")
         {
             if (!HasFullEnergy())
@@ -162,12 +160,14 @@ public class Vehicle : MonoBehaviour
             {
                 GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
                 energyCollection.Play();
-                if (!coll.gameObject.GetComponent<Breakable>().LightUp(this.gameObject))
+
+
+                if (coll.gameObject.GetComponent<Breakable>().isDead())
                 {
                     //EVENT #1 - BROKE OBJECT
                     GetComponentInParent<ParkingLot>().PlanetCollected();
+                    Destroy(coll.gameObject);
 
-                    //                    set.currentSet.BroadcastMessage("BrokeObject", SendMessageOptions.DontRequireReceiver);
                 }
                 else
                 {
@@ -239,20 +239,9 @@ public class Vehicle : MonoBehaviour
             {
                 if(coll.gameObject.GetComponent<Platform>().canBePushed)
                 {
-                    Debug.Log("I can be pushed by a vehicle");
                     coll.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                    coll.gameObject.GetComponent<Platform>().SetConstraints();
                 }
 
-                if(coll.gameObject.GetComponent<Platform>().canTurnHazardous)
-                {
-                    coll.gameObject.GetComponent<Platform>().TurnHazardous();
-                }
-
-                if(coll.gameObject.GetComponent<Platform>().canSpawnNewObjects)
-                {
-                    coll.gameObject.GetComponent<Platform>().SpawnObject();
-                }
             }
             //PLAY COLLISION SOUND EFFECT
             GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<CollisionSound>().soundFx[0], .5f);
@@ -267,8 +256,7 @@ public class Vehicle : MonoBehaviour
             //frameCountAtBump = Time.frameCount + framesUntilTilt;
             if (coll.gameObject.GetComponent<Animator>())
             {
-//                coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
-                  //TODO: Better Juice System
+                coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
             }
         }
 
@@ -368,17 +356,6 @@ public class Vehicle : MonoBehaviour
                 GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
                 go.transform.parent = transform.parent;
                 touchPoints.Add(go);
-            }
-            if (touch.phase == TouchPhase.Moved)
-            {
-                //                touchPoints[i].transform.position = touch.position;
-            }
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-                //       GameObject tP = touchPoints[i];
-                //       touchPoints.RemoveAt(i);
-                //       Destroy(tP, 5);
             }
 
         }

@@ -10,11 +10,14 @@ using UnityEngine.UI;
     public int weight;
 }
 
+
 public class ProceduralLevel : MonoBehaviour {
 
     public Color shipColor;
     public Color[] gradients;
-    public Color primaryColor;
+    public Color borderColor;
+    public Color itemColor;
+    public Color boxColor;
     public Color secondaryColor;
     public Color hazardColor;
     public Color energyColor;
@@ -98,7 +101,6 @@ public class ProceduralLevel : MonoBehaviour {
 
 
         //CREATE BREAKABLES IN GRID
-        Debug.Log("Creating Random Breakables for " + sets[setIndex].name);
         CreateRandomSetOfBreakables(sets[setIndex].numberOfObjectsToPlace);
 //        set.GetComponent<ProceduralInfo>().start.TransitionTo(0);
 
@@ -106,6 +108,8 @@ public class ProceduralLevel : MonoBehaviour {
 
     void LootDrop()
     {
+
+
 
         int total = 0;
         int[] lootRange = new int[availableLoot.Length];
@@ -136,9 +140,10 @@ public class ProceduralLevel : MonoBehaviour {
         Transform[] locations = set.spawnLocations.GetComponentsInChildren<Transform>();
         if (!locations[powerUpIndex].GetComponent<PowerUp>())
         {
-            //TODO: Change to Loot Drop with weights
-
             GameObject obj = Instantiate(availableLoot[selectedLoot].item, locations[powerUpIndex].position, Quaternion.identity, transform);
+            GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
+            energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
+            energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
         }
 
         else
@@ -218,7 +223,6 @@ public class ProceduralLevel : MonoBehaviour {
         vehicle.LinkSet(set);
 
         //populate breakables for current grid
-        Debug.Log("CREATING " + set.numberOfObjectsToPlace + " FOR " + set.name);
         CreateRandomSetOfBreakables(set.numberOfObjectsToPlace);
         //turn off old grid - NO GRIDS SHOWN
         //Does this screw with the audio sources?
@@ -368,7 +372,6 @@ public class ProceduralLevel : MonoBehaviour {
         if (n <= 1)
         {
             GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[0]].position, Quaternion.identity, transform);
-            Debug.Log("N <= 1 OBJECT:" + locations[series[0]].name);
         }
         else
         {

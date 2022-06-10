@@ -8,23 +8,10 @@ public class Shield : MonoBehaviour
     private int power = 0;
     private Color startColor;
     private bool usedShieldBefore = false;
-    /*
-    public Vector3 WobbleAmount = new Vector3(0.1F, 0.1F, 0.1F);
-    public Vector3 WobbleSpeed = new Vector3(0.5F, 0.5F, 0.5F);
-    private Transform tr;
-    private Vector3 BasePosition;
-    private Vector3 NoiseIndex = new Vector3();
-    */
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        BasePosition = tr.position;
-
-        NoiseIndex.x = Random.value;
-        NoiseIndex.y = Random.value;
-        NoiseIndex.z = Random.value;
-    */
+      
     }
 
     public void Setup()

@@ -15,7 +15,7 @@ public class Breakable : MonoBehaviour {
 	private int timesHit = 0;
     public bool shrinksIntruder;
     public bool enlargesIntruder;
-    private GameObject[] layers;
+   public GameObject[] layers;
     public GameObject explosion;
 	public AudioClip hit;
 	private float lightUpTime;
@@ -43,60 +43,41 @@ public class Breakable : MonoBehaviour {
         if(scaleUp)
         {
             
-            transform.localScale = Vector3.Slerp(transform.localScale, originalScale, .001f);
+            transform.localScale = Vector3.Slerp(transform.localScale, originalScale, .01f);
             if(transform.localScale == originalScale)
             {
                 scaleUp = false;
             }
         }
+      
+	}
 
-        int spritesDeactivated = 0;
 
+    public bool isDead()
+    {
+        GetComponent<AudioSource>().PlayOneShot(hit);
 
+        //HIT
 
-        for (int i = 0; i < layers.Length; i++)
+        if (layers.Length > 0)
         {
-            if(!layers[i].activeSelf)
+            if (layers.Length > timesHit)
             {
-                spritesDeactivated++;
+                layers[timesHit].SetActive(false);
             }
         }
-        if(spritesDeactivated == layers.Length)
+        timesHit++;
+
+        if (timesHit > layers.Length - 1)
         {
-
-            Destroy(this.gameObject);
-        }
-	}
-
-
-	public void Crumble() {
-		if (!isDying) {
-			Destroy (this.gameObject, 1f);
-		}
-		isDying = true;
-	}
-
-	public void SwitchOff() {
-	
-	}
-
-	public bool LightUp(GameObject b) {
-        GetComponent<AudioSource>().PlayOneShot(hit);
-        //HIT
-        Instantiate(explosion, transform.position, Quaternion.identity, transform.parent);
-        //0 <= 2 - 1
-        //0 <= 1
-
-        // 1 <= 2 - 1
-
-        // 1 < 1
-        layers[timesHit].SetActive(false);
-
-        if (timesHit < layers.Length - 1 ) {
-            Debug.Log("TIMES HIT: " + timesHit + " LAYERS LENGTH: " + layers.Length);
-            timesHit++;
+            Instantiate(explosion, transform.position, Quaternion.identity, transform.parent);
             return true;
         }
-    return false;
+        else
+        {
+            return false;
+        }
+
+
     }
 }

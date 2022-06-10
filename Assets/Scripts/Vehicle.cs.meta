@@ -3,7 +3,15 @@ guid: 8cc3f778eb7936e43bbe5a524e758f03
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - energyCollection: {instanceID: 0}
+  - energyOverlay: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - touchPoint: {instanceID: 0}
+  - shield: {instanceID: 0}
+  - energyTransfer: {fileID: 2567590292593330884, guid: 1a11f71de3c2111468d5dd16627224ce,
+      type: 3}
+  - set: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

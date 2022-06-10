@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct ObjectRespawn
+{
+    public GameObject respawnedObject;
+    public float timeUntilActive;
+}
 public class SetInfo : MonoBehaviour
 {
 
     public GameObject spawnLocations;
     public GameObject platforms;
     public GameObject[] breakables;
+    public List<ObjectRespawn> objectsToRespawn;
     public int numberOfObjectsToPlace;
     public int sets = 5;
     public ProceduralInfo currentSet;
@@ -35,13 +41,15 @@ public class SetInfo : MonoBehaviour
         {
             if(platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
             {
-                platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                platformsToMove[i].gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
+            if (platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>())
+            {
             }
 
             movingOnScreenInProgress = true;
         }
         currentSet = gameObject.GetComponent<ProceduralInfo>();
+        objectsToRespawn = new List<ObjectRespawn>();
     }
 
     public void SetVehicle(Vehicle v)
@@ -88,7 +96,7 @@ public class SetInfo : MonoBehaviour
     {
 
     }
-    // Update is called once per frame
+
     public void MovePlatformsOffScreen()
     {
         platformsToMove = platforms.GetComponentsInChildren<Transform>();
@@ -107,6 +115,20 @@ public class SetInfo : MonoBehaviour
 
         movingOnScreenInProgress = false;
         transform.position = Vector3.zero;
+        platformsToMove = platforms.GetComponentsInChildren<Transform>();
+        for (int i = 0; i < platformsToMove.Length; i++)
+        {
+            if (platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
+            {
+                platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            if (platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>())
+            {
+                platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+            }
+
+        }
+
 
     }
     private void PlatformsFinishedMovingOffScreen()
@@ -139,9 +161,20 @@ public class SetInfo : MonoBehaviour
             platforms.transform.position = nextPosition;
             if (platforms.transform.position.y <= 0)
             {
+                Debug.Log("Platforms Finished Moving On Screen");
                 PlatformsFinishedMovingOnScreen();
             }
 
+        }
+
+        for(int i = 0; i < objectsToRespawn.Count; i++)
+        {
+            if(objectsToRespawn[i].timeUntilActive <= Time.time)
+            {
+                objectsToRespawn[i].respawnedObject.SetActive(true);
+                objectsToRespawn.RemoveAt(i);
+                break;
+            }
         }
 
     }

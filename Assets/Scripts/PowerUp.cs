@@ -15,5 +15,9 @@ public class PowerUp : MonoBehaviour
     };
 
     public Reward reward;
-    
+
+    void Update()
+    {
+    }
+
 }
