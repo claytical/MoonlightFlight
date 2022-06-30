@@ -5,7 +5,7 @@ using UnityEngine;
 public class Explode : MonoBehaviour
 {
     public GameObject explosion;
-    public float respawnTimer;
+    public float respawnTimer = 10f;
     public float lifetime;
     private float explosionTimer;
 
@@ -38,9 +38,19 @@ public class Explode : MonoBehaviour
             ObjectRespawn respawn = new ObjectRespawn();
             respawn.respawnedObject = go;
             respawn.timeUntilActive = respawnTimer + Time.time;
-            transform.parent.parent.GetComponent<SetInfo>().objectsToRespawn.Add(respawn);
+            Debug.Log("ADDING TO RESPAWN POOL:" + transform.parent.parent.name);
+            if(transform.parent.parent.GetComponent<SetInfo>())
+            {
+                transform.parent.parent.GetComponent<SetInfo>().objectsToRespawn.Add(respawn);
 
+            }
+            if (transform.parent.parent.parent.GetComponent<SetInfo>())
+            {
+                transform.parent.parent.parent.GetComponent<SetInfo>().objectsToRespawn.Add(respawn);
+
+            }
         }
+
         if (GetComponent<Moving>())
         {
             GetComponent<Moving>().speed = 0;

@@ -149,6 +149,8 @@ public class ProceduralLevel : MonoBehaviour {
             GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
             energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
             energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
+            //hard destroy when location can't lerp
+            Destroy(energyTransfer, 2f);
             lootDropLocation = obj.transform.position;
         /*    
     }

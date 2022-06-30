@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public struct ObjectRespawn
 {
     public GameObject respawnedObject;
@@ -29,6 +30,8 @@ public class SetInfo : MonoBehaviour
 
     void Start()
     {
+        objectsToRespawn = new List<ObjectRespawn>();
+
         Vector3 topOfScreen = platforms.transform.position;
         topOfScreen.y = 10f;
         platforms.transform.position = topOfScreen;
@@ -50,7 +53,6 @@ public class SetInfo : MonoBehaviour
             movingOnScreenInProgress = true;
         }
         currentSet = gameObject.GetComponent<ProceduralInfo>();
-        objectsToRespawn = new List<ObjectRespawn>();
     }
 
     public void SetVehicle(Vehicle v)
@@ -181,7 +183,6 @@ public class SetInfo : MonoBehaviour
             }
 
         }
-
         for(int i = 0; i < objectsToRespawn.Count; i++)
         {
             if(objectsToRespawn[i].timeUntilActive <= Time.time)

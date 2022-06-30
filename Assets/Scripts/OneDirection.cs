@@ -24,6 +24,7 @@ public class OneDirection : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().AddForce(direction * 10f,ForceMode2D.Force);
 

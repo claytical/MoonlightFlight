@@ -27,6 +27,8 @@ public class Vehicle : MonoBehaviour
     private bool canPassThroughObjects;
     private bool isDead;
     private bool deadShip;
+    private bool hyperBrake = false;
+    private float hyperBrakeTimer;
     private bool hasPowerup = false;
     public SetInfo set;
     private ProceduralLevel track;
@@ -103,16 +105,38 @@ public class Vehicle : MonoBehaviour
         shield.Setup();
     }
 
+    public void ApplyHyperBreak()
+    {
+        hyperBrake = true;
+        hyperBrakeTimer = Time.time + 1f;
+    }
     void FixedUpdate()
     {
         CheckControl();
 
-        if (force > maxForce)
+        if (hyperBrake)
         {
-            force = maxForce;
+            if(hyperBrakeTimer > Time.time)
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GetComponent<Rigidbody2D>().rotation = 0;
+            }
+            else
+            {
+                hyperBrake = false;
+            }
+
+        }
+        else
+        {
+            if (force > maxForce)
+            {
+                force = maxForce;
+            }
+
         }
 
-        if(timeStuck > 1)
+        if (timeStuck > 1)
         {
             Debug.Log("SHIP STUCK: " + timeStuck);
         }
@@ -126,6 +150,7 @@ public class Vehicle : MonoBehaviour
             this.gameObject.SetActive(false);
             deadShip = true;
         }
+
 
 
     }
@@ -216,8 +241,8 @@ public class Vehicle : MonoBehaviour
                         PlayerPrefs.SetInt("consciousness", consciousness);
                         break;
                     case PowerUp.Reward.Stop:
+                        ApplyHyperBreak();
                         GetComponentInParent<ParkingLot>().GiveFeedback("Hyper Brake Activated!");
-                        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                         break;
 
                 }

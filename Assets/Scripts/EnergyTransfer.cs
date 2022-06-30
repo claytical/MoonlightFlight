@@ -21,10 +21,11 @@ public class EnergyTransfer : MonoBehaviour
             transform.position = currentPosition;
             Debug.Log("CURRENT POSITION:" +currentPosition);
             progress += speed;
-            if (progress >= 1)
-            {
-                Destroy(this.gameObject);
-            }
+        }
+
+        if (progress >= 1)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

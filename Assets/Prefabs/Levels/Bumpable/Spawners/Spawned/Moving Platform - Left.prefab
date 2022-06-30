@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 825634876606434678}
   - component: {fileID: 4894721032992188015}
   - component: {fileID: 4399617449068616423}
+  - component: {fileID: 6640921121755108692}
   m_Layer: 0
   m_Name: Moving Platform - Left
   m_TagString: Bumpable
@@ -218,7 +219,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781116594832268}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 415ecc6da8717c44ebe99619d447393f, type: 2}
   m_CullingMode: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e097fd62730ca469772eff2435b326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 0}
   border: {fileID: 212375929196836916}
   identifier: {fileID: 212053718670736404}
   subidentifier: {fileID: 0}
@@ -275,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d325a0251fc01ee41a1c8caaad1bf290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: -0.1, y: 0}
+  direction: {x: -0.01, y: 0}
   moveAutomatically: 1
 --- !u!114 &5510188679965985198
 MonoBehaviour:
@@ -349,3 +351,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f66173978ef044d46bc779cca6c973dd, type: 3}
+--- !u!114 &6640921121755108692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781116594832268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122eefa4bd3eb454091fd47e9c289d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentCollider: {fileID: 0}

@@ -10,6 +10,7 @@ public class SpawnsObjects : MonoBehaviour
     public float spawnedObjectLifetime;
     public int numberOfSpawnsBeforeSelfDestruct;
     public GameObject[] objectsToSpawn;
+    public GameObject spawnPoint;
 
     private Color originalIdentifierColor;
     private List<GameObject> spawnedObjects;
@@ -17,10 +18,14 @@ public class SpawnsObjects : MonoBehaviour
     private int spawnedObjectIndex = 0;
     private int numberOfObjectsSpawned = 0;
     private Vector3 spawnTimerSpawnPosition;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!spawnPoint)
+        {
+            spawnPoint = this.gameObject;
+        }
         spawnedObjects = new List<GameObject>();
         if (objectsToSpawn.Length > 0 && timeBetweenSpawns > 0)
         {
@@ -93,10 +98,11 @@ public class SpawnsObjects : MonoBehaviour
             if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
             {
             
-                GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], transform.position, objectsToSpawn[spawnedObjectIndex].transform.rotation, transform.parent);
+                GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], spawnPoint.transform.position, objectsToSpawn[spawnedObjectIndex].transform.rotation, transform.parent);
                 go.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.down);
                 spawnedObjects.Add(go);
                 SpawnedObject so = go.AddComponent<SpawnedObject>();
+                so.parentCollider = GetComponent<Collider2D>();
                 if (spawnedObjectLifetime > 0)
                 {
                     so.SetLifeTime(spawnedObjectLifetime);
