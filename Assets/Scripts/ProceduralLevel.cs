@@ -23,7 +23,7 @@ public class ProceduralLevel : MonoBehaviour {
     public Color energyColor;
 
     public Loot[] availableLoot;
-
+    public Vector3 lastEnergyCollectionPosition;
     public SceneControl scene;
 
 	public GameObject LevelFailPanel;
@@ -50,6 +50,7 @@ public class ProceduralLevel : MonoBehaviour {
     public bool useAnimationForPlatforms = false;
     public float waitTimeForGameOver;
     private float gameOverTime = 9999;
+    private 
 
     // Use this for initialization
     static System.Random rnd = new System.Random();
@@ -137,19 +138,24 @@ public class ProceduralLevel : MonoBehaviour {
             selectedLoot = 0;
         }
 
-        Transform[] locations = set.spawnLocations.GetComponentsInChildren<Transform>();
+        
+
+        /*Transform[] locations = set.spawnLocations.GetComponentsInChildren<Transform>();
         if (!locations[powerUpIndex].GetComponent<PowerUp>())
         {
-            GameObject obj = Instantiate(availableLoot[selectedLoot].item, locations[powerUpIndex].position, Quaternion.identity, transform);
+        */
+            GameObject obj = Instantiate(availableLoot[selectedLoot].item, lastEnergyCollectionPosition, Quaternion.identity, transform);
             GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
             energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
             energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
-        }
+    /*    
+    }
 
         else
         {
             Debug.Log("No loot dropped, location already had loot...");
         }
+    */
     }
 
     public void MaxEnergyReached()
@@ -242,6 +248,7 @@ public class ProceduralLevel : MonoBehaviour {
         int numberOfFinishedPlatforms = 0;
         for (int i = 0; i < numberOfPlatforms; i++) {
             if(set.platforms.GetComponentsInChildren<Platform>()[i].finished) {
+                set.platforms.GetComponentsInChildren<Platform>()[i].TurnOffCollision();
                 numberOfFinishedPlatforms++;
             }
         }

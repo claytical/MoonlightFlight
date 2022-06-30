@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GooglePlayGames;
+//using GooglePlayGames;
 
 public class GameState : MonoBehaviour {
 
@@ -53,8 +53,6 @@ public class GameState : MonoBehaviour {
         if(resetKeys)
         {
             PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetInt(selectedVehicle.ToString(), 0);
-
         }
     }
 	

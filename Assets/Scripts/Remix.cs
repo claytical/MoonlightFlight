@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Remix : MonoBehaviour
 {
-    private ProceduralLevel level;
+    public ProceduralLevel level;
     public SpriteRenderer border;
     public SpriteRenderer identifier;
     public SpriteRenderer subidentifier;

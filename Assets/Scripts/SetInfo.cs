@@ -41,6 +41,7 @@ public class SetInfo : MonoBehaviour
         {
             if(platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
             {
+//                platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
             if (platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>())
             {
@@ -106,6 +107,16 @@ public class SetInfo : MonoBehaviour
             {
                 platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
+
+            if (platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>()) {
+                platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            }
+
+            if (platformsToMove[i].gameObject.GetComponent<CircleCollider2D>())
+            {
+                platformsToMove[i].gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            }
+
         }
         movingOffScreenInProgress = true;
     }
@@ -127,6 +138,10 @@ public class SetInfo : MonoBehaviour
                 platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>().enabled = true;
             }
 
+        }
+        if(GetComponent<OnboardComputer>())
+        {
+            GetComponent<OnboardComputer>().tutorial.SetActive(true);
         }
 
 

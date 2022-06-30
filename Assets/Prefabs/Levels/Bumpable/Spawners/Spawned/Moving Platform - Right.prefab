@@ -335,6 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeDestroyed: 1
   canBreakOtherItems: 1
+  canSpawnItems: 1
 --- !u!114 &1918567333546457929
 MonoBehaviour:
   m_ObjectHideFlags: 0

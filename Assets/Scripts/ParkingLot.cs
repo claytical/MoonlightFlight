@@ -33,6 +33,11 @@ public class ParkingLot : MonoBehaviour
        
     }
 
+    public void SelfDestruct()
+    {
+        vehicle.GetComponentInChildren<Vehicle>().SelfDestruct();
+
+    }
     public void PlanetCollected()
     {
         planetsCollected++;

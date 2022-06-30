@@ -12,18 +12,26 @@ public class Release : MonoBehaviour
     public Galaxy galaxy;
     public Text instructions;
     private bool startedCreation = false;
+    private int galaxyState = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        galaxy.SetRelease(this);   
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(galaxyState < 2)
+        {
             CheckControl();
+        }
     }
 
+    public void StopCheckingControls()
+    {
+        galaxyState = 2;
+    }
     void CheckMouse()
     {
         if (Input.GetMouseButtonDown(0) && !galaxy.letsMakePlanets)
@@ -33,23 +41,33 @@ public class Release : MonoBehaviour
 
             // place object where the player touched
 
-            if (!startedCreation)
+            if (galaxyState == 0)
             {
-                currentTouchObject = (GameObject)Instantiate(touchObject, touchPosition, transform.rotation);
-                currentTouchObject.transform.parent = transform.parent;
-                //          lightGenerator.creatingObjects = true;
-                galaxy.letsMakePlanets = true;
-                galaxy.ui.enabled = false;
-                instructions.enabled = false;
-                Camera.main.gameObject.GetComponent<AudioSource>().Stop();
+                CreateEnergyPointAndMakePlanets(Input.mousePosition);
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
-            startedCreation = true;
-
+            galaxyState = 1;
+            HideText();
             Destroy(currentTouchObject,2f);
         }
+
+    }
+
+    void HideText()
+    {
+        galaxy.ui.enabled = false;
+        instructions.enabled = false;
+
+    }
+
+    void CreateEnergyPointAndMakePlanets(Vector3 position)
+    {
+        currentTouchObject = (GameObject)Instantiate(touchObject, position, transform.rotation);
+        currentTouchObject.transform.parent = transform.parent;
+        galaxy.letsMakePlanets = true;
+        Camera.main.gameObject.GetComponent<AudioSource>().Stop();
 
     }
 
@@ -60,38 +78,30 @@ public class Release : MonoBehaviour
         for (int i = 0; i < Input.touchCount; i++)
         {
             touch = Input.GetTouch(i);
+
             if (touch.phase == TouchPhase.Began)
             {
                 GetComponentInParent<AudioSource>().Play();
                 Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                touchPosition.z = 10;
-                GameObject go = (GameObject)Instantiate(touchObject, touchPosition, transform.rotation);
-                go.transform.parent = transform.parent;
-            }
-            if (touch.phase == TouchPhase.Moved)
-            {
-                //                touchPoints[i].transform.position = touch.position;
+                touchPosition.z = gameObject.transform.position.z;
+
+                if (galaxyState == 0)
+                {
+                    CreateEnergyPointAndMakePlanets(touch.position);
+                    HideText();
+                }
+
+
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
-                //       GameObject tP = touchPoints[i];
-                //       touchPoints.RemoveAt(i);
-                //       Destroy(tP, 5);
+                galaxyState = 1;
+                Destroy(currentTouchObject, 2f);
             }
 
         }
 
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            //apply physics
-/*
-            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-            Vector2 direction = (Vector2)touchPosition - (Vector2)transform.position;
-            direction.Normalize();
-            GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
-  */
-            }
 
     }
 

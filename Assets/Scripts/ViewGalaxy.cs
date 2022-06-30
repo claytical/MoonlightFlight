@@ -40,17 +40,12 @@ public class ViewGalaxy : MonoBehaviour
 
         }
         lightYearsBetweenGalaxies.AddRange(galaxyLightyears);
+
         for(int i = 0; i < lightYearsBetweenGalaxies.Count; i++)
         {
             totalLightYearsTraveled += lightYearsBetweenGalaxies[i];
         }
 
-/*        if (galaxies > 0)
-        {
-            SetupGalaxies();
-        }
-  */
-        galaxyDescription.text = galaxyNames[0].ToString() + "\n(home)";
 
         if(galaxyNames.Length == 0)
         {
@@ -59,8 +54,19 @@ public class ViewGalaxy : MonoBehaviour
         else
         {
             noGalaxiesPresent.SetActive(false);
+            galaxyDescription.text = galaxyNames[0].ToString() + "\n(home)";
         }
+        for(int i = 0; i < galaxyLightyears.Length; i++)
+        {
+            Debug.Log("GALAXY LIGHTYEARS: " + galaxyLightyears[i]);
 
+        }
+        for (int i = 0; i < lightYearsBetweenGalaxies.Count; i++) {
+            Debug.Log("LIGHTYEARS BETWEEN GALAXIES: " + lightYearsBetweenGalaxies[i]);
+
+        }
+        Debug.Log("TOTAL LIGHT YEARS TRAVELED: " + totalLightYearsTraveled.ToString());
+        coordinatesToMoveTo = new Vector3(0, 0, -250);
     }
 
     public void SetupGalaxies()
@@ -99,9 +105,6 @@ public class ViewGalaxy : MonoBehaviour
     {
         Vector3[] coordinates = PlayerPrefsX.GetVector3Array("galaxy " + galaxyNumber);
             
-        Debug.Log(coordinates.Length + " stars in galaxy #" + galaxyNumber);
-
-
             for (int i = 0; i < coordinates.Length; i++)
             {
 
@@ -121,7 +124,8 @@ public class ViewGalaxy : MonoBehaviour
 
         if (moveThere)
         {
-            coordinatesToMoveTo = new Vector3(0, 0, calculateLightYearsAway(galaxyNumber) + galaxyLightyears[galaxyNumber]);
+            coordinatesToMoveTo = new Vector3(0, 0, calculateLightYearsAway(galaxyNumber));// + galaxyLightyears[galaxyNumber]);
+            Debug.Log("MOVING TO: " + coordinatesToMoveTo);
         }
 
         if (galaxyNumber < galaxies - 1)
@@ -187,11 +191,6 @@ public class ViewGalaxy : MonoBehaviour
     {
         currentGalaxy--;
 
-        //CHECK IF ALREADY ON FIRST GALAXY
-
-        //IF NOT TE FIRST, CHECK IF ALREADY CREATED
-
-        //IF NOT CREATED, CREAT WITH OFFSET
         if (currentGalaxy > 0)
         {
             showGalaxy(currentGalaxy, true);
@@ -202,7 +201,7 @@ public class ViewGalaxy : MonoBehaviour
         {
             currentGalaxy = 0;
             galaxyDescription.text = galaxyNames[0].ToString() + " galaxy\n(home)";
-            coordinatesToMoveTo = new Vector3(0, 1, -10);
+            coordinatesToMoveTo = new Vector3(0, 1, -250);
             Debug.Log("Edge of the galaxy (back)");
         }
 
@@ -214,7 +213,7 @@ public class ViewGalaxy : MonoBehaviour
         }
         else
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, coordinatesToMoveTo, Time.deltaTime);
+             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, coordinatesToMoveTo, Time.deltaTime);
         }
     }
 }

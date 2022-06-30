@@ -22,7 +22,6 @@ public class Vehicle : MonoBehaviour
 
 
     private int currentEnergyLevel;
-//    private Energy[] meter;
     private List<GameObject> touchPoints;
     private bool canPassThroughObjects;
     private bool isDead;
@@ -73,6 +72,11 @@ public class Vehicle : MonoBehaviour
         }
     }
 
+    public void SelfDestruct()
+    {
+        isDead = true;
+    }
+
     
     public void SetTrack(ProceduralLevel t)
     {
@@ -84,17 +88,6 @@ public class Vehicle : MonoBehaviour
         currentEnergyLevel = amount;
 
     }
-
-    /*
-    void CheckEnergy()
-    {
-        //TODO: 
-        int energySpaces = meter.Count;
-
-
-
-    }
-    */
    
     public void LinkSet(SetInfo s)
     {
@@ -112,6 +105,7 @@ public class Vehicle : MonoBehaviour
     void FixedUpdate()
     {
         CheckControl();
+
         if (force > maxForce)
         {
             force = maxForce;
@@ -325,7 +319,7 @@ public class Vehicle : MonoBehaviour
             {
                 GameObject tP = touchPoints[0];
                 touchPoints.RemoveAt(0);
-                Destroy(tP, 5);
+                Destroy(tP, 1);
             }
         }
 

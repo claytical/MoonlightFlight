@@ -7,6 +7,7 @@ public class PlaysWithOthers : MonoBehaviour
 
     public bool canBeDestroyed = false;
     public bool canBreakOtherItems = false;
+    public bool canSpawnItems = false;
 
     void OnCollisionEnter2D(Collision2D coll)
     {
@@ -23,7 +24,11 @@ public class PlaysWithOthers : MonoBehaviour
         {
             if (coll.gameObject.GetComponent<SpawnsObjects>().collisionCausesSpawn)
             {
-                coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
+                if(canSpawnItems)
+                {
+                    coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
+
+                }
 
             }
         }

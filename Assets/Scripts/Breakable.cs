@@ -15,7 +15,7 @@ public class Breakable : MonoBehaviour {
 	private int timesHit = 0;
     public bool shrinksIntruder;
     public bool enlargesIntruder;
-   public GameObject[] layers;
+    public GameObject[] layers;
     public GameObject explosion;
 	public AudioClip hit;
 	private float lightUpTime;
@@ -27,14 +27,23 @@ public class Breakable : MonoBehaviour {
 	void Start () {
         originalScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        layers = new GameObject[GetComponentsInChildren<SpriteRenderer>().Length];
-        for(int i = 0; i < GetComponentsInChildren<SpriteRenderer>().Length; i++)
+        layers = new GameObject[GetComponentsInChildren<Collider2D>().Length];
+        for(int i = 0; i < GetComponentsInChildren<Collider2D>().Length; i++)
         {
-            layers[i] = GetComponentsInChildren<SpriteRenderer>()[i].gameObject;
+            layers[i] = GetComponentsInChildren<Collider2D>()[i].gameObject;
         }
     }
 
     void OnDestroy() {
+        if(transform.parent.GetComponent<ProceduralLevel>())
+        {
+            transform.parent.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform.position;
+
+        }
+        else
+        {
+            Debug.Log("Can't find level during energy destruction");
+        }
 
     }
 	

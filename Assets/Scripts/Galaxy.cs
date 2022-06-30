@@ -15,17 +15,25 @@ public class Galaxy : MonoBehaviour
     public GameObject planet;
     public List<Vector3> coordinates;
     public Text ui;
+    public Text galaxyNameUI;
+    public Text lightyearsUI;
+    public Text numberOfPlanetsUI;
     public float timeSpentCreatingGalaxy = 0;
     public bool letsMakePlanets = false;
     private bool readyToLoadMain = false;
     private bool travelThroughGalaxy = false;
     private bool notEnoughEnergy = false;
     public GameObject backToMainButton;
+    public GameObject newGalaxyPanel;
+    public GameObject spawningArea;
     public AudioClip galaxyCreated;
+
+    public InputField galaxyNameInput;
 
     public bool GenerateCleanGalaxy = false;
     public bool GenerateRandomGalaxy = false;
     private bool skipSavingGalaxy = false;
+    private Release releaseObject;
 
 
     private string galaxyName;
@@ -33,6 +41,11 @@ public class Galaxy : MonoBehaviour
     void Awake()
     {
 
+    }
+
+    public void SetRelease(Release r)
+    {
+        releaseObject = r;
     }
 
     void Start()
@@ -58,15 +71,17 @@ public class Galaxy : MonoBehaviour
 
         }
         coordinates = new List<Vector3>();
-        if(maxPlanets > 0)
+/*        if(maxPlanets > 0)
         {
             galaxyName = newGalaxyName();
         }
+ */
         calculateLightYearsAway();
         Vector3 newCameraPosition = Camera.main.transform.position;
         newCameraPosition.z += lightYearsAway;
         Camera.main.transform.position = newCameraPosition;
-
+        galaxyName = newGalaxyName();
+        Debug.Log("GAALXY: " + galaxyName);
     }
 
     private string newGalaxyName ()
@@ -134,6 +149,11 @@ public class Galaxy : MonoBehaviour
         Debug.Log("Current System is " + lightYearsAway + " light-years away");
     }
 
+    public void SetGalaxyName()
+    {
+        galaxyName = galaxyNameInput.text;
+    }
+
     void Update()
     {
         if (letsMakePlanets)
@@ -150,6 +170,9 @@ public class Galaxy : MonoBehaviour
                 backToMainButton.SetActive(true);
                 notEnoughEnergy = true;
                 letsMakePlanets = false;
+
+                //notify release script
+                releaseObject.StopCheckingControls();
             }
         }
 
@@ -177,7 +200,7 @@ public class Galaxy : MonoBehaviour
     // Update is called once per frame
     private void CreatingSystem()
     {
-            if (Time.frameCount % 25 == 0)
+            if (Time.frameCount % 5 == 0)
             {
 
                 if (currentPlanet < maxPlanets)
@@ -190,7 +213,6 @@ public class Galaxy : MonoBehaviour
                 {
                     ShowGalaxyName();
                     letsMakePlanets = false;
-                    Debug.Log("Saving Galaxy....");
                     travelThroughGalaxy = true;
                 }
             }
@@ -229,10 +251,9 @@ public class Galaxy : MonoBehaviour
             List<string> galaxyList = new List<string>();
             galaxyList.AddRange(galaxyArray);
             Debug.Log("GALAXY RANGE: " + galaxyArray.ToString());
-            galaxyList.Add(galaxyName);
-            Debug.Log("GALAXY ADDED RANGE: " + galaxyList);
+            galaxyList.Add(galaxyNameUI.text);
             PlayerPrefsX.SetStringArray("galaxy names", galaxyList.ToArray());
-            Debug.Log("Saving Galaxy Name:" + galaxyName);
+            Debug.Log("Saving Galaxy Name:" + galaxyNameUI.text);
             galaxyCount++;
             PlayerPrefs.SetInt("galaxies", galaxyCount);
 
@@ -247,8 +268,13 @@ public class Galaxy : MonoBehaviour
 
     private void ShowGalaxyName()
     {
-        ui.text = galaxyName + " has been born.\nThe galaxy spans " + lightYearsTraveled + " light-years and has " + maxPlanets + " stars!";
-        ui.enabled = true;
+        spawningArea.SetActive(false);
+        galaxyNameInput.text = galaxyName;
+//        galaxyNameUI.text = galaxyName;
+        lightyearsUI.text = lightYearsTraveled.ToString("0 Light Years Away");
+        numberOfPlanetsUI.text = maxPlanets.ToString("0 Planets"); 
+        ui.text = "A new galaxy has been born.";
+        newGalaxyPanel.SetActive(true);
         readyToLoadMain = true;
 
     }

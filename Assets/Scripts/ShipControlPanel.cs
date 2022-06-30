@@ -21,7 +21,11 @@ public class ShipControlPanel : MonoBehaviour
     {
         FillSlots();
         string[] vehicles = System.Enum.GetNames(typeof(VehicleType));
+        if(!PlayerPrefs.HasKey(VehicleType.Boomerang.ToString()))
+        {
+            PlayerPrefs.SetInt(VehicleType.Boomerang.ToString(), 0);
 
+        }
 
         for (int i = 0; i < vehicles.Length; i++)
         {
@@ -46,6 +50,7 @@ public class ShipControlPanel : MonoBehaviour
 
             }
         }
+        
         HighlightSelectedShip();
 
     }

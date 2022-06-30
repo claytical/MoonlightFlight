@@ -19,7 +19,7 @@ public class Platform : MonoBehaviour
     }
 
 
-    void TurnOffCollision()
+    public void TurnOffCollision()
     {
         if (GetComponent<BoxCollider2D>())
         {
@@ -43,13 +43,36 @@ public class Platform : MonoBehaviour
 
         if (coll.otherRigidbody.velocity.magnitude > .2f)
         {
-            if(coll.gameObject.GetComponent<Platform>())
+            if (coll.gameObject.GetComponent<Platform>())
             {
                 Debug.Log("Big Hit, Triggering Animation");
 
                 coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
 
             }
+        }
+
+        if (coll.gameObject.GetComponent<Breakable>())
+        {
+            GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
+            //energyCollection.Play();
+
+
+            if (coll.gameObject.GetComponent<Breakable>().isDead())
+            {
+                //EVENT #1 - BROKE OBJECT
+
+                GetComponent<Remix>().level.lot.PlanetCollected();
+                Destroy(coll.gameObject);
+
+            }
+            else
+            {
+                Debug.Log("Just hitting an object, not destroyed.");
+
+            }
+
+
         }
     }
   

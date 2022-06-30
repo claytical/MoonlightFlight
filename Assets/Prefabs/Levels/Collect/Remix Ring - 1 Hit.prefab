@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4204267129982818}
   - component: {fileID: 212503362928707232}
   - component: {fileID: 5415873443710432480}
+  - component: {fileID: 1357069976219588200}
   m_Layer: 0
   m_Name: Middle
   m_TagString: Bumpable
@@ -100,6 +101,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3750001
+--- !u!114 &1357069976219588200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282962054544746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad4f98b6b9d39b4baa92b0dfd6598b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 0.25
 --- !u!1 &1316711709889716
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +126,6 @@ GameObject:
   - component: {fileID: 50894000096380302}
   - component: {fileID: 82428433568437518}
   - component: {fileID: 114415122960677814}
-  - component: {fileID: 1808556739664358020}
   - component: {fileID: 6829879192205348174}
   m_Layer: 0
   m_Name: Remix Ring - 1 Hit
@@ -272,19 +285,6 @@ MonoBehaviour:
   explosion: {fileID: 8455937364993888704, guid: a7bca7ddf5071004ab12b90503aebe5b,
     type: 3}
   hit: {fileID: 8300000, guid: 664d9d8e8f8740945a1e4b4c6d430394, type: 3}
---- !u!114 &1808556739664358020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316711709889716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cad4f98b6b9d39b4baa92b0dfd6598b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 0.25
 --- !u!114 &6829879192205348174
 MonoBehaviour:
   m_ObjectHideFlags: 0
