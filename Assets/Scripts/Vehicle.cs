@@ -19,6 +19,7 @@ public class Vehicle : MonoBehaviour
     public Shield shield;
     public float timeStuck;
     public GameObject energyTransfer;
+    public bool lootAvailable = false;
 
 
     private int currentEnergyLevel;
@@ -179,15 +180,16 @@ public class Vehicle : MonoBehaviour
 
         if (coll.gameObject.tag == "Power Up")
         {
-        
+            
 
             if (coll.gameObject.GetComponent<PowerUp>())
             {
+                lootAvailable = false;
                 GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
                 switch (coll.gameObject.GetComponent<PowerUp>().reward)
                 {
                     case PowerUp.Reward.Shield:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Shield Activated!");
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Shields Up!");
                         ToggleShield();
                         break;
                     case PowerUp.Reward.Boundary:
@@ -196,7 +198,7 @@ public class Vehicle : MonoBehaviour
 
                         break;
                     case PowerUp.Reward.Part:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Part of New Ship Located!");
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Ship Part Located!");
                         int parts = PlayerPrefs.GetInt("parts", 0);
                         parts++;
                         PlayerPrefs.SetInt("parts", parts);
@@ -208,7 +210,7 @@ public class Vehicle : MonoBehaviour
                         break;
 
                     case PowerUp.Reward.Consciousness:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Consciousness Elevated!");
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Consciousness Elevated");
                         int consciousness = PlayerPrefs.GetInt("consciousness", 0);
                         consciousness++;
                         PlayerPrefs.SetInt("consciousness", consciousness);

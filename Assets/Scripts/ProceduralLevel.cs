@@ -24,6 +24,7 @@ public class ProceduralLevel : MonoBehaviour {
 
     public Loot[] availableLoot;
     public Vector3 lastEnergyCollectionPosition;
+    public Vector3 lootDropLocation;
     public SceneControl scene;
 
 	public GameObject LevelFailPanel;
@@ -75,7 +76,7 @@ public class ProceduralLevel : MonoBehaviour {
         {
             vehicle = lot.DefaultVehicle();
         }
-      
+        lootDropLocation = Vector3.zero;      
         Debug.Log("Nerfing Vehicle Force");
 
 
@@ -109,7 +110,7 @@ public class ProceduralLevel : MonoBehaviour {
 
     void LootDrop()
     {
-
+        lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable = true;
 
 
         int total = 0;
@@ -148,7 +149,8 @@ public class ProceduralLevel : MonoBehaviour {
             GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
             energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
             energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
-    /*    
+            lootDropLocation = obj.transform.position;
+        /*    
     }
 
         else
@@ -385,28 +387,32 @@ public class ProceduralLevel : MonoBehaviour {
 
             for (int i = 0; i < n; i++)
                 {
-                Debug.Log("I: " + i);
                 if (locations[series[i]].position != Vector3.zero)
                     {
-                    if (i == series.Length - 1)
-                    {
-
-                        //using a series, set position for recall later
-                            if(series.Length > 0)
+                        if(lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable && locations[series[i]].position == lootDropLocation)
                         {
-                            powerUpIndex = i;
+                            Debug.Log("Loot in spawn space...");
+                        }
+                        else
+                        {
+                            if (i == series.Length - 1)
+                            {
+
+                            //using a series, set position for recall later
+                                if (series.Length > 0)
+                                {
+                                    powerUpIndex = i;
+                                }
+
+                                GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
+
+                            }
+                        else
+                            {
+                                GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
+                            }
                         }
 
-                        GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
-                        Debug.Log("ELSE I == SERIES " + i + "OBJECT:" + locations[series[i]].name);
-
-                    }
-                    else
-                    {
-                        GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
-                        Debug.Log("ELSE " + i + "OBJECT:" + locations[series[i]].name);
-
-                    }
                 } else
                 {
                     Debug.Log("position was vector zero");

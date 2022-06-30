@@ -27,7 +27,6 @@ Transform:
   m_LocalPosition: {x: 2, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3965759343089680202}
   - {fileID: 5709588019797184522}
   - {fileID: 2482429648070803592}
   m_Father: {fileID: 0}
@@ -46,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213040972611002, guid: 8b4fa906d119ad64c8cdccf61fc36307, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4213040972611002, guid: 8b4fa906d119ad64c8cdccf61fc36307, type: 3}
       propertyPath: m_LocalPosition.x
@@ -96,74 +95,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2485330730883759410}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3965351995397849840
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3965351994332437132}
-    m_Modifications:
-    - target: {fileID: 1781116594832268, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_Name
-      value: Remix Square Platform (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8143086062404273585, guid: 9ab20dd8deadbc543ba122106aa70443,
-        type: 3}
-      propertyPath: level
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
---- !u!4 &3965759343089680202 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443,
-    type: 3}
-  m_PrefabInstance: {fileID: 3965351995397849840}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5706764074663996848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,7 +108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213040972611002, guid: 8b4fa906d119ad64c8cdccf61fc36307, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4213040972611002, guid: 8b4fa906d119ad64c8cdccf61fc36307, type: 3}
       propertyPath: m_LocalPosition.x
