@@ -11,7 +11,8 @@ public class PowerUp : MonoBehaviour
         Boundary,
         PassThrough,
         Part,
-        Consciousness
+        Consciousness,
+        Stop
     };
 
     public Reward reward;

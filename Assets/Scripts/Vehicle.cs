@@ -215,6 +215,10 @@ public class Vehicle : MonoBehaviour
                         consciousness++;
                         PlayerPrefs.SetInt("consciousness", consciousness);
                         break;
+                    case PowerUp.Reward.Stop:
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Hyper Brake Activated!");
+                        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                        break;
 
                 }
                 Destroy(coll.gameObject);

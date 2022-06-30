@@ -28,9 +28,10 @@ public class ProceduralInfo : MonoBehaviour
         }
         else { 
 
-            Debug.Log("List of sets not available, using non arrayed value");
+            Debug.Log("List of sets not available, using first of array");
             //default to assigened next set if array of options isn't filled in
-            return this.nextSet;            
+            nextSet = nextSets[0];
+            return nextSets[0];            
         }
     }
 

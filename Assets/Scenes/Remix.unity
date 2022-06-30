@@ -7684,6 +7684,8 @@ MonoBehaviour:
     weight: 10
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
     weight: 30
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 100
   lastEnergyCollectionPosition: {x: 0, y: 0, z: 0}
   lootDropLocation: {x: 0, y: 0, z: 0}
   scene: {fileID: 504469124}
