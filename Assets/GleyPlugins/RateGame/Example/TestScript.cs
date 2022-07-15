@@ -7,7 +7,7 @@ public class TestScript : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        RateGame.Instance.ShowRatePopup(PopupClosedMethod);
+        RateGame.Instance.ShowRatePopupWithCallback(PopupClosedMethod);
     }
 
     /// <summary>
@@ -24,15 +24,15 @@ public class TestScript : MonoBehaviour
     /// </summary>
     public void ForceShowPopup()
     {
-        RateGame.Instance.ForceShowRatePopup();
+        RateGame.Instance.ForceShowRatePopupWithCallback(PopupClosedMethod);
     }
 
 
     /// <summary>
     /// Triggered when Rate Popup is closed
     /// </summary>
-    private void PopupClosedMethod()
+    private void PopupClosedMethod(GleyRateGame.PopupOptions result)
     {
-        Debug.Log("Popup Closed -> Resume Game");
+        Debug.Log("Popup Closed-> ButtonPresed: " + result + " -> Resume Game");
     }
 }

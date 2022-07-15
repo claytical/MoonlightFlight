@@ -1,20 +1,20 @@
-﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon
+﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon || GleyIAPMacOS || GleyIAPWindows
 #define GleyIAPEnabled
 #endif
 
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System;
 
 #if GleyIAPEnabled
 using UnityEngine;
 using UnityEngine.Purchasing;
 using GleyEasyIAP;
-using System;
 using UnityEngine.Purchasing.Security;
 using System.Linq;
+using System.Collections;
 
-
-public class IAPManager : IStoreListener
+public class IAPManager :MonoBehaviour, IStoreListener
 {
     internal bool debug;
 
@@ -24,6 +24,7 @@ public class IAPManager : IStoreListener
     private ConfigurationBuilder builder;
     private UnityAction<IAPOperationStatus, string, List<StoreProduct>> OnInitComplete;
     private UnityAction<IAPOperationStatus, string, StoreProduct> OnCompleteMethod;
+    private UnityAction RestoreDone;
 
 
     /// <summary>
@@ -36,7 +37,9 @@ public class IAPManager : IStoreListener
         {
             if (instance == null)
             {
-                instance = new IAPManager();
+                GameObject go = new GameObject("GleyIAPManager");
+                instance = go.AddComponent<IAPManager>();
+                DontDestroyOnLoad(go);
             }
             return instance;
         }
@@ -49,6 +52,9 @@ public class IAPManager : IStoreListener
     /// <param name="InitComplete">callback method, returns a list of all store products, use this method for initializations</param>
     public void InitializeIAPManager(UnityAction<IAPOperationStatus, string, List<StoreProduct>> InitComplete)
     {
+        if (IsInitialized())
+            return;
+
         IAPSettings settings = Resources.Load<IAPSettings>("IAPData");
         if (settings == null)
         {
@@ -119,6 +125,10 @@ public class IAPManager : IStoreListener
                 Debug.Log(this + "RestorePurchases FAIL. Not initialized.");
                 ScreenWriter.Write(this + "RestorePurchases FAIL. Not initialized.");
             }
+            if (RestoreDone != null)
+            {
+                RestoreDone();
+            }
             return;
         }
 
@@ -140,6 +150,10 @@ public class IAPManager : IStoreListener
                     Debug.Log(this + "RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
                     ScreenWriter.Write(this + "RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
                 }
+                if(RestoreDone!=null)
+                {
+                    RestoreDone();
+                }
             });
         }
         else
@@ -149,7 +163,27 @@ public class IAPManager : IStoreListener
                 Debug.Log(this + "RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
                 ScreenWriter.Write(this + "RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
             }
+            if (RestoreDone != null)
+            {
+                RestoreDone();
+            }
+            if(OnCompleteMethod!=null)
+            {
+                OnCompleteMethod(IAPOperationStatus.Fail, "Not supported on this platform.Current = " + Application.platform, null);
+            }
         }
+    }
+
+
+    /// <summary>
+    /// Restore previously bought products (Only required on iOS)
+    /// </summary>
+    /// <param name="OnCompleteMethod">called when a product needs to be restored/param>
+    /// <param name="RestoreDone">called when restore process is done/param>
+    public void RestorePurchases(UnityAction<IAPOperationStatus, string, StoreProduct> OnCompleteMethod, UnityAction RestoreDone)
+    {
+        this.RestoreDone = RestoreDone;
+        RestorePurchases(OnCompleteMethod);
     }
 
 
@@ -313,6 +347,25 @@ public class IAPManager : IStoreListener
 
 
     /// <summary>
+    /// Get additional info for subscription
+    /// </summary>
+    /// <param name="product">the subscription product</param>
+    /// <returns>all infos available for the subscription</returns>
+    public SubscriptionInfo GetSubscriptionInfo(ShopProductNames product)
+    {
+        if (IsInitialized())
+        {
+            return shopProducts.First(cond => String.Equals(cond.productName, product.ToString())).subscriptionInfo;
+        }
+        else
+        {
+            Debug.LogError("Not Initialized -> Call IAPManager.Instance.InitializeIAPManager() before anything else");
+            return null;
+        }
+    }
+
+
+    /// <summary>
     /// Converts a given name into enum member 
     /// </summary>
     /// <param name="name">string to convert</param>
@@ -390,6 +443,12 @@ public class IAPManager : IStoreListener
             builder.AddProduct(shopProducts[i].GetStoreID(), shopProducts[i].GetProductType());
         }
 
+        if (debug)
+        {
+            Debug.Log("InitializePurchasing");
+            ScreenWriter.Write("InitializePurchasing");
+        }
+
         UnityPurchasing.Initialize(this, builder);
     }
 
@@ -401,8 +460,20 @@ public class IAPManager : IStoreListener
     /// <param name="extensions"></param>
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
+        if (debug)
+        {
+            Debug.Log("OnInitialized");
+            ScreenWriter.Write("OnInitialized");
+        }
         m_StoreController = controller;
         m_StoreExtensionProvider = extensions;
+
+        StartCoroutine(InitializeProducts());
+    }
+
+    IEnumerator InitializeProducts()
+    {
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < shopProducts.Count; i++)
         {
             Product product = m_StoreController.products.WithID(shopProducts[i].GetStoreID());
@@ -421,6 +492,9 @@ public class IAPManager : IStoreListener
                     if (ReceiptIsValid(shopProducts[i].productName, product.receipt, out exception))
                     {
                         shopProducts[i].active = true;
+                        string introJson = null;
+                        SubscriptionManager p = new SubscriptionManager(product, introJson);
+                        shopProducts[i].subscriptionInfo = p.getSubscriptionInfo();
                     }
                 }
             }
@@ -456,6 +530,11 @@ public class IAPManager : IStoreListener
     /// <param name="error"></param>
     public void OnInitializeFailed(InitializationFailureReason error)
     {
+        if (debug)
+        {
+            Debug.Log("OnInitializeFailed");
+            ScreenWriter.Write("OnInitializeFailed");
+        }
         OnInitComplete(IAPOperationStatus.Fail, error.ToString(), null);
     }
 
@@ -523,17 +602,17 @@ public class IAPManager : IStoreListener
         return PurchaseProcessingResult.Complete;
     }
 
-        /// <summary>
-        /// Receipt validation method
-        /// </summary>
-        /// <param name="productName"></param>
-        /// <param name="receipt"></param>
-        /// <param name="exception"></param>
-        /// <returns>true if receipt is valid</returns>
-        bool ReceiptIsValid(string productName, string receipt, out IAPSecurityException exception)
-        {
-            exception = null;
-            bool validPurchase = true;
+    /// <summary>
+    /// Receipt validation method
+    /// </summary>
+    /// <param name="productName"></param>
+    /// <param name="receipt"></param>
+    /// <param name="exception"></param>
+    /// <returns>true if receipt is valid</returns>
+    bool ReceiptIsValid(string productName, string receipt, out IAPSecurityException exception)
+    {
+        exception = null;
+        bool validPurchase = true;
 #if GleyUseValidation
 #if UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE_OSX
     
@@ -562,8 +641,8 @@ public class IAPManager : IStoreListener
 #endif
 #endif
         return validPurchase;
-        }
     }
+}
 #else
 
 public class IAPManager
@@ -602,6 +681,9 @@ public class IAPManager
 
     }
 
+    public void RestorePurchases(UnityAction<IAPOperationStatus, string, StoreProduct> OnCompleteMethod, UnityAction RestoreDone)
+    {
+    }
     public int GetValue(ShopProductNames product)
     {
         return 0;
@@ -630,6 +712,16 @@ public class IAPManager
     internal string GetLocalizedTitle(ShopProductNames productToCheck)
     {
         return "";
+    }
+
+    internal string GetIsoCurrencyCode(ShopProductNames productToCheck)
+    {
+        return "";
+    }
+
+    internal SubscriptionInfo GetSubscriptionInfo(ShopProductNames productToCheck)
+    {
+        return null;
     }
 }
 #endif

@@ -33,9 +33,10 @@
         {
             string path = "Assets//GleyPlugins/RateGame/Scripts/Version.txt";
             StreamReader reader = new StreamReader(path);
-            string longVersion = JsonUtility.FromJson<GleyPlugins.AssetVersion>(reader.ReadToEnd()).longVersion;
+            string longVersion = JsonUtility.FromJson<Gley.About.AssetVersion>(reader.ReadToEnd()).longVersion;
 
-            SettingsWindow window = (SettingsWindow)GetWindow(typeof(SettingsWindow), true, "Rate Game Settings Window - v." + longVersion);
+            SettingsWindow window = (SettingsWindow)GetWindow(typeof(SettingsWindow));
+            window.titleContent = new GUIContent("Rate Game - v." + longVersion);
             window.minSize = new Vector2(520, 520);
             window.Show();
         }

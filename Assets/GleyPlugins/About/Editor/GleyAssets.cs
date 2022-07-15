@@ -10,6 +10,8 @@
         GameServices = 5,
         JumpyCompleteGame = 6,
         Notifications = 7,
-        RateGame = 8
+        RateGame = 8,
+        DailyRewards = 9,
+        Localization = 10
     }
 }

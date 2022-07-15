@@ -9,6 +9,7 @@
         public Text yesButtonText;
         public Text noButtonText;
         public Text laterButtonText;
+        private PopupOptions result;
 
         /// <summary>
         /// Set popup texts from Settings Window
@@ -48,6 +49,7 @@
         /// </summary>
         public void YesButtonClick()
         {
+            result = PopupOptions.Rated;
             ClosePopup();
             RateGame.Instance.NeverShowPopup();
             RateGame.Instance.OpenUrl();
@@ -59,6 +61,7 @@
         /// </summary>
         public void NoButtonClick()
         {
+            result = PopupOptions.Never;
             ClosePopup();
             RateGame.Instance.NeverShowPopup();
         }
@@ -69,6 +72,7 @@
         /// </summary>
         public void LaterButtonClick()
         {
+            result = PopupOptions.NotNow;
             ClosePopup();
         }
 
@@ -90,7 +94,7 @@
         /// </summary>
         private void CloseEvent()
         {
-            RateGame.Instance.RatePopupWasClosed();
+            RateGame.Instance.RatePopupWasClosed(result);
         }
     }
 }

@@ -1,4 +1,4 @@
 public enum LeaderboardNames
 {
-HighestJumpers,
+MostEpicJourney,
 }

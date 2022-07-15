@@ -1,8 +1,7 @@
 public enum AchievementNames
 {
-LowJumper,
-MediumJumper,
-HighJumper,
-KingOfJumps,
-Freedom,
+FullCircle,
+FullFleet,
+ExpandedConsciousness,
+TheBeautifulNightSky,
 }

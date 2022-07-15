@@ -51,15 +51,16 @@ using UnityEngine.SocialPlatforms.GameCenter;
             });
         }
 
-        /// <summary>
-        /// Sign out from Google play
-        /// </summary>
-        internal void LogOut()
-        {
-#if UseGooglePlayGamesPlugin
-            PlayGamesPlatform.Instance.SignOut();
-#endif
-        }
+//        /// <summary>
+//        /// Sign out from Google play
+//        /// </summary>
+//        internal void LogOut()
+//        {
+////            login = false;
+////#if UseGooglePlayGamesPlugin
+////            PlayGamesPlatform.Instance.();
+////#endif
+//        }
 
         /// <summary>
         /// check if user is logged in

@@ -48,17 +48,6 @@
     //     Apple's tvOS target.
     tvOS = 25,
 #endif
-
-#if UNITY_5_6_OR_NEWER
-    //
-    // Summary:
-    //     Facebook target.
-    Facebook = 26,
-    //
-    // Summary:
-    //     Nintendo Switch target.
-    Switch = 27
-#endif
     }
 
     public class SaveSettings : ScriptableObject

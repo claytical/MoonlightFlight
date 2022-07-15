@@ -1,10 +1,10 @@
-﻿#if USE_PLAYMAKER_SUPPORT
-using System;
+﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon || GleyIAPMacOS || GleyIAPWindows
+#if USE_PLAYMAKER_SUPPORT
 using System.Collections.Generic;
 
 namespace HutongGames.PlayMaker.Actions
 {
-    [HelpUrl("http://gley.mobi/documentation/Gley-EasyIAP-Documentation.pdf")]
+    [HelpUrl("http://gleygames.com/documentation/Gley-EasyIAP-Documentation.pdf")]
     [ActionCategory(ActionCategory.ScriptControl)]
     [Tooltip("Initialize Gley IAP")]
     public class InitializeIAP : FsmStateAction
@@ -55,4 +55,5 @@ namespace HutongGames.PlayMaker.Actions
         }
     }
 }
+#endif
 #endif

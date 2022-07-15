@@ -120,7 +120,7 @@ public class TestSave : MonoBehaviour
         }
         if (GUI.Button(new Rect(margin, 2*margin + 7 * buttonHeight, half, buttonHeight), "Remove Coins"))
         {
-            AddCoins();
+            RemoveCoins();
         }
         if (GUI.Button(new Rect(margin, 3 * margin + 8 * buttonHeight, half, buttonHeight), "Load"))
         {

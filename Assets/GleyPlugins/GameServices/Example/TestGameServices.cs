@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -147,6 +148,7 @@ public class TestGameServices : MonoBehaviour
                     //it also can be done like this:
                     //GameServices.Instance.SubmitScore(score, LeaderboardNames.Leaderboard1);
                     GameServices.Instance.SubmitScore(score, allLeaderboards[indexNumberLeaderboards], ScoreSubmitted);
+                    //GameServices.Instance.GetPlayerScore(LeaderboardNames.Leaderboard1, ScoreLoaded);
                 }
 
                 if (Button("Show Leaderboards UI"))
@@ -163,13 +165,18 @@ public class TestGameServices : MonoBehaviour
         }
     }
 
+    private void ScoreLoaded(long score)
+    {
+        GleyGameServices.ScreenWriter.Write("Score: " + score);
+    }
+
 
     //Automatically called when Login is complete 
     private void LoginResult(bool success)
     {
         if (success == true)
         {
-            //Login was succesful
+            //Login was successful
         }
         else
         {

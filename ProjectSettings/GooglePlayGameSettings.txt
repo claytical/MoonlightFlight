@@ -1,2 +1,9 @@
-lastUpgrade=01008
-proj.pluginVersion=0.10.08
+lastUpgrade=01101
+proj.pluginVersion=0.11.01
+proj.AppId=531333708955
+and.BundleId=edu.nerdlab.moonlightflight
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--app_id--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e531333708955%3c%2fstring%3e%0d%0a++%3c%21--package_name--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3eedu.nerdlab.moonlightflight%3c%2fstring%3e%0d%0a++%3c%21--achievement+Full+Circle--%3e%0d%0a++%3cstring+name%3d%22achievement_full_circle%22+translatable%3d%22false%22%3eCgkIm_nTr7sPEAIQBA%3c%2fstring%3e%0d%0a++%3c%21--achievement+Full+Fleet--%3e%0d%0a++%3cstring+name%3d%22achievement_full_fleet%22+translatable%3d%22false%22%3eCgkIm_nTr7sPEAIQBQ%3c%2fstring%3e%0d%0a++%3c%21--achievement+Expanded+Consciousness--%3e%0d%0a++%3cstring+name%3d%22achievement_expanded_consciousness%22+translatable%3d%22false%22%3eCgkIm_nTr7sPEAIQBg%3c%2fstring%3e%0d%0a++%3c%21--achievement+The+Beautiful+Night+Sky--%3e%0d%0a++%3cstring+name%3d%22achievement_the_beautiful_night_sky%22+translatable%3d%22false%22%3eCgkIm_nTr7sPEAIQBw%3c%2fstring%3e%0d%0a++%3c%21--event+Full+Circle--%3e%0d%0a++%3cstring+name%3d%22event_full_circle%22+translatable%3d%22false%22%3eCgkIm_nTr7sPEAIQAw%3c%2fstring%3e%0d%0a++%3c%21--leaderboard+Most+Epic+Journey--%3e%0d%0a++%3cstring+name%3d%22leaderboard_most_epic_journey%22+translatable%3d%22false%22%3eCgkIm_nTr7sPEAIQAg%3c%2fstring%3e%0d%0a%3c%2fresources%3e
+and.ClientId=
+android.SetupDone=true

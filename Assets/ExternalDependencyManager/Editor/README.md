@@ -172,7 +172,8 @@ package:
       you add the `-gvh_disable` option.
    1. Export your plugin by [running Unity from the command line](https://docs.unity3d.com/Manual/CommandLineArguments.html), ensuring that
       you:
-      - Include the contents of the `Assets/PlayServicesResolver` directory.
+      - Include the contents of the `Assets/PlayServicesResolver` and
+        `Assets/ExternalDependencyManager` directory.
       - Add the `-gvh_disable` option.
 
 You **must** specify the `-gvh_disable` option in order for the Version
@@ -431,7 +432,7 @@ For example, to add the AdMob pod, version 7.0 or greater with bitcode enabled:
 <dependencies>
   <iosPods>
     <iosPod name="Google-Mobile-Ads-SDK" version="~> 7.0" bitcodeEnabled="true"
-            minTargetSdk="6.0" />
+            minTargetSdk="6.0" addToAllTargets="false" />
   </iosPods>
 </dependencies>
 ```

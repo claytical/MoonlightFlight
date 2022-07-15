@@ -16,7 +16,8 @@
         public bool useForGooglePlay;
         public bool useForAmazon;
         public bool useForIos;
+        public bool useForMac;
+        public bool useForWindows;
         public List<StoreProduct> shopProducts = new List<StoreProduct>();
-        
     }
 }

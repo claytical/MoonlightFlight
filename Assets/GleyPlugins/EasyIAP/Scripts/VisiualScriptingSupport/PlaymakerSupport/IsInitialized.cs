@@ -1,7 +1,8 @@
-﻿#if USE_PLAYMAKER_SUPPORT
+﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon || GleyIAPMacOS || GleyIAPWindows
+#if USE_PLAYMAKER_SUPPORT
 namespace HutongGames.PlayMaker.Actions
 {
-    [HelpUrl("http://gley.mobi/documentation/Gley-EasyIAP-Documentation.pdf")]
+    [HelpUrl("http://gleygames.com/documentation/Gley-EasyIAP-Documentation.pdf")]
     [ActionCategory(ActionCategory.ScriptControl)]
     [Tooltip("Check if IAP is initialized")]
     public class IsInitialized : FsmStateAction
@@ -28,4 +29,4 @@ namespace HutongGames.PlayMaker.Actions
     }
 }
 #endif
-
+#endif

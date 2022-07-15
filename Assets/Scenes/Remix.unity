@@ -4173,7 +4173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &151801131
 Transform:
   m_ObjectHideFlags: 0
@@ -10994,8 +10994,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 450267283}
-  - {fileID: 1062727970}
   - {fileID: 714127495}
+  - {fileID: 1062727970}
   - {fileID: 521371514}
   - {fileID: 1186135699}
   m_Father: {fileID: 100699311}
@@ -12227,7 +12227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &435192664
 Transform:
   m_ObjectHideFlags: 0
@@ -58308,9 +58308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   computer: {fileID: 680270985}
   messages:
-  - text: Mapping fingers for gravitational pull...
-    animationTrigger: 
-    objectToAnimate: {fileID: 0}
   - text: Energy detected!
     animationTrigger: highlight
     objectToAnimate: {fileID: 0}
@@ -58318,7 +58315,7 @@ MonoBehaviour:
     animationTrigger: 
     objectToAnimate: {fileID: 0}
   level: {fileID: 312963208}
-  timeBetweenMesssages: 4
+  timeBetweenMesssages: 3
 --- !u!4 &1943237046 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4213040972611002, guid: 896f407a33c04c240813c3e52340aefb,

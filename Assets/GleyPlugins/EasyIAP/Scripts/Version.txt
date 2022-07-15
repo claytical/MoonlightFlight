@@ -1,5 +1,5 @@
 {
-    "assetName": 4,
-    "longVersion": "1.5.1",
-    "shortVersion": 1
+    "folderName": "EasyIAP",
+    "longVersion": "1.6.4",
+    "shortVersion": 6
 }

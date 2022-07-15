@@ -20,9 +20,10 @@
         {
             string path = "Assets//GleyPlugins/AllPlatformsSave/Scripts/Version.txt";
             StreamReader reader = new StreamReader(path);
-            string longVersion = JsonUtility.FromJson<GleyPlugins.AssetVersion>(reader.ReadToEnd()).longVersion;
+            string longVersion = JsonUtility.FromJson<Gley.About.AssetVersion>(reader.ReadToEnd()).longVersion;
 
-            SaveSettingsWindow window = (SaveSettingsWindow)GetWindow(typeof(SaveSettingsWindow), true, "Save Settings - v." + longVersion);
+            SaveSettingsWindow window = (SaveSettingsWindow)GetWindow(typeof(SaveSettingsWindow));
+            window.titleContent = new GUIContent("Save - v." + longVersion);
             window.minSize = new Vector2(520, 520);
             window.Show();
         }

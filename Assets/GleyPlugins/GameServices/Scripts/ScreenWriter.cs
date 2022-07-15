@@ -20,16 +20,16 @@
             logMessage += "\n" + message.ToString();
         }
 
-        void OnGUI()
-        {
-            if (logMessage != null)
-            {
-                GUI.Label(new Rect(0, 0, Screen.width, Screen.height), logMessage);
-                if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 100, 100, 100), "Clear"))
-                {
-                    logMessage = null;
-                }
-            }
-        }
+        //void OnGUI()
+        //{
+        //    if (logMessage != null)
+        //    {
+        //        GUI.Label(new Rect(0, 0, Screen.width, Screen.height), logMessage);
+        //        if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 100, 100, 100), "Clear"))
+        //        {
+        //            logMessage = null;
+        //        }
+        //    }
+        //}
     }
 }

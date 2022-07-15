@@ -1,7 +1,12 @@
-﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon
+﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon || GleyIAPMacOS || GleyIAPWindows
 #define GleyIAPEnabled
 #endif
 
+#if GleyIAPEnabled
+using UnityEngine.Purchasing;
+#endif
+
+using UnityEngine;
 
 public enum ProductType
 {
@@ -24,6 +29,8 @@ public class StoreProduct
     public string idGooglePlay;
     public string idAmazon;
     public string idIOS;
+    public string idMac;
+    public string idWindows;
     public int value;
     public string localizedPriceString = "-";
     public int price;
@@ -31,9 +38,10 @@ public class StoreProduct
     internal string localizedDescription;
     internal string localizedTitle;
     internal bool active;
+    internal SubscriptionInfo subscriptionInfo;
 
 
-    public StoreProduct(string productName, ProductType productType, int value, string idGooglePlay, string idIOS, string idAmazon)
+    public StoreProduct(string productName, ProductType productType, int value, string idGooglePlay, string idIOS, string idAmazon, string idMac, string idWindows)
     {
         this.productName = productName;
         this.productType = productType;
@@ -41,6 +49,8 @@ public class StoreProduct
         this.idGooglePlay = idGooglePlay;
         this.idIOS = idIOS;
         this.idAmazon = idAmazon;
+        this.idMac = idMac;
+        this.idWindows = idWindows;
     }
 
 
@@ -50,6 +60,8 @@ public class StoreProduct
         idGooglePlay = "";
         idIOS = "";
         idAmazon = "";
+        idMac = "";
+        idWindows = "";
         productType = ProductType.Consumable;
     }
 
@@ -62,14 +74,24 @@ public class StoreProduct
 
     internal string GetStoreID()
     {
-#if GleyIAPiOS
+#if GleyIAPMacOS
+        return idMac;
+#elif GleyIAPiOS
         return idIOS;
 #elif GleyIAPGooglePlay
         return idGooglePlay;
 #elif GleyIAPAmazon
         return idAmazon;
+#elif GleyIAPWindows
+        return idWindows;
 #else
         return "";
 #endif
     }
 }
+
+#if !GleyIAPEnabled
+internal class SubscriptionInfo
+{
+}
+#endif

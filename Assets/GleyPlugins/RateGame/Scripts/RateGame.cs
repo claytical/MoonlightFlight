@@ -55,6 +55,7 @@ public class RateGame : MonoBehaviour
     }
 
     private UnityAction PopupClosed;
+    private UnityAction<PopupOptions> PopupClosedWithParams;
 
 
     /// <summary>
@@ -63,13 +64,32 @@ public class RateGame : MonoBehaviour
     /// <param name="PopupClosed">callback called when Rate Game Popup was closed</param>
     public void ShowRatePopup(UnityAction PopupClosed = null)
     {
-        Debug.Log("ShowRatePopup");
-        Debug.Log(RateGameSettings);
+        //Debug.Log("ShowRatePopup");
+        //Debug.Log(RateGameSettings);
         if (RateGameSettings == null)
         {
             return;
         }
         this.PopupClosed = PopupClosed;
+        if (CanShowRate())
+        {
+            DisplayPopup();
+        }
+    }
+
+    /// <summary>
+    /// When all conditions from Settings Window are met the rate popup is shown. If not this method does nothing.
+    /// </summary>
+    /// <param name="PopupClosed">callback called when Rate Game Popup was closed</param>
+    public void ShowRatePopupWithCallback(UnityAction<PopupOptions> PopupClosed = null)
+    {
+        //Debug.Log("ShowRatePopup");
+        //Debug.Log(RateGameSettings);
+        if (RateGameSettings == null)
+        {
+            return;
+        }
+        PopupClosedWithParams = PopupClosed;
         if (CanShowRate())
         {
             DisplayPopup();
@@ -88,6 +108,20 @@ public class RateGame : MonoBehaviour
             return;
         }
         this.PopupClosed = PopupClosed;
+        DisplayPopup();
+    }
+
+    /// <summary>
+    /// Shows the rate popup even if not all conditions from Settings Window ware met
+    /// </summary>
+    /// <param name="PopupClosed">callback called when Rate Game Popup was closed</param>
+    public void ForceShowRatePopupWithCallback(UnityAction<PopupOptions> PopupClosed = null)
+    {
+        if (RateGameSettings == null)
+        {
+            return;
+        }
+        PopupClosedWithParams = PopupClosed;
         DisplayPopup();
     }
 
@@ -132,12 +166,18 @@ public class RateGame : MonoBehaviour
     /// <summary>
     /// Called by the popup when closes and if there is an active callback it will be triggered
     /// </summary>
-    public void RatePopupWasClosed()
+    public void RatePopupWasClosed(PopupOptions result)
     {
         if (PopupClosed != null)
         {
             PopupClosed();
             PopupClosed = null;
+        }
+
+        if (PopupClosedWithParams != null)
+        {
+            PopupClosedWithParams(result);
+            PopupClosedWithParams = null;
         }
     }
 
@@ -156,14 +196,13 @@ public class RateGame : MonoBehaviour
     /// Checks all conditions from Settings Window and determines it they are met or not
     /// </summary>
     /// <returns></returns>
-    private bool CanShowRate()
+    public bool CanShowRate()
     {
         bool sessionCountReached;
         bool customEventsReached;
         bool timeSinceStartReached;
         bool timeSinceOpenReached;
         int fisrtShow = SaveValues.IsFirstShow();
-        Debug.Log(fisrtShow);
         if (fisrtShow > 1)
         {
             return false;
@@ -184,7 +223,7 @@ public class RateGame : MonoBehaviour
             timeSinceOpenReached = IsTimeSinceOpenReached(RateGameSettings.postponeSettings);
         }
 
-        Debug.Log(sessionCountReached + " " + customEventsReached + " " + timeSinceStartReached + " " + timeSinceOpenReached);
+        //Debug.Log(sessionCountReached + " " + customEventsReached + " " + timeSinceStartReached + " " + timeSinceOpenReached);
 
         if (sessionCountReached && customEventsReached && timeSinceStartReached && timeSinceOpenReached)
         {

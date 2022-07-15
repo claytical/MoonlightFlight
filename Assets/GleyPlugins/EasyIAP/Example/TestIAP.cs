@@ -45,7 +45,7 @@ public class TestIAP : MonoBehaviour
 
     void OnGUI()
     {
-        buttonHeight = Screen.height / (12+nonCOnsumableProducts.Count+subscriptions.Count);
+        buttonHeight = Screen.height / (12 + nonCOnsumableProducts.Count + subscriptions.Count);
         GUI.skin.button.fontSize = 20;
         GUI.skin.label.fontSize = 25;
         GUI.skin.label.alignment = TextAnchor.LowerCenter;
@@ -61,7 +61,7 @@ public class TestIAP : MonoBehaviour
                 {
                     if (Button("Initialize"))
                     {
-                        
+
                         initializationInProgress = true;
                         //Initialize IAP
                         IAPManager.Instance.InitializeIAPManager(InitializeResult);
@@ -185,7 +185,7 @@ public class TestIAP : MonoBehaviour
 
                     if (Button("Restore Purchases"))
                     {
-                        IAPManager.Instance.RestorePurchases(ProductBought);
+                        IAPManager.Instance.RestorePurchases(ProductBought, RestoreDone);
                     }
 
 
@@ -208,6 +208,16 @@ public class TestIAP : MonoBehaviour
         if (GUI.Button(new Rect(0, Screen.height - buttonHeight, Screen.width / 3, buttonHeight), "Hide/Show Buttons"))
         {
             showButtons = !showButtons;
+        }
+    }
+
+    private void RestoreDone()
+    {
+        if (IAPManager.Instance.debug)
+        {
+            Debug.Log("Restore done");
+            GleyEasyIAP.ScreenWriter.Write("Restore done");
+
         }
     }
 
@@ -252,7 +262,7 @@ public class TestIAP : MonoBehaviour
                 //subscription = true;
             }
 
-            if(product.productType == ProductType.NonConsumable)
+            if (product.productType == ProductType.NonConsumable)
             {
                 if (product.active)
                 {
@@ -335,6 +345,13 @@ public class TestIAP : MonoBehaviour
                         break;
                 }
             }
+
+            //UnityEngine.Purchasing.SubscriptionInfo info = IAPManager.Instance.GetSubscriptionInfo(ShopProductNames.Subscription);
+            //GleyEasyIAP.ScreenWriter.Write("GET INFO:");
+            //if (info != null)
+            //{
+            //    GleyEasyIAP.ScreenWriter.Write(info.getExpireDate());
+            //}
         }
         else
         {

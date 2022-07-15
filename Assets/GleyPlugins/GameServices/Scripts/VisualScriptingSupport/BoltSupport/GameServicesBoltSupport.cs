@@ -1,9 +1,9 @@
 ﻿#if USE_BOLT_SUPPORT
 namespace GleyGameServices
 {
-    using System;
-    using Bolt;
-    using Ludiq;
+    using Unity.VisualScripting;
+    //using Bolt;
+    //using Ludiq;
     using UnityEngine;
 
     [IncludeInSettings(true)]
@@ -12,6 +12,8 @@ namespace GleyGameServices
         static GameObject logInEventTarget;
         static GameObject achievementEventTarget;
         static GameObject leaderboardEventTarget;
+        static GameObject playerScoreEventTarget;
+        static GameObject playerRankEventTarget;
         public static void LogIn(GameObject _eventTarget)
         {
             logInEventTarget = _eventTarget;
@@ -58,6 +60,28 @@ namespace GleyGameServices
         private static void SubmitScoreComplete(bool success, GameServicesError error)
         {
             CustomEvent.Trigger(leaderboardEventTarget, "SubmitScoreComplete", success);
+        }
+
+        public static void GetPlayerScore(LeaderboardNames leaderboardName, GameObject _eventTarget)
+        {
+            playerScoreEventTarget = _eventTarget;
+            GameServices.Instance.GetPlayerScore(leaderboardName, GetScoreComplete);
+        }
+
+        private static void GetScoreComplete(long score)
+        {
+            CustomEvent.Trigger(playerScoreEventTarget, "GetScoreComplete", score);
+        }
+
+        public static void GetPlayerRank(LeaderboardNames leaderboardName, GameObject _eventTarget)
+        {
+            playerRankEventTarget = _eventTarget;
+            GameServices.Instance.GetPlayerRank(leaderboardName, GetRankComplete);
+        }
+
+        private static void GetRankComplete(long rank)
+        {
+            CustomEvent.Trigger(playerRankEventTarget, "GetRankComplete", rank);
         }
     }
 }

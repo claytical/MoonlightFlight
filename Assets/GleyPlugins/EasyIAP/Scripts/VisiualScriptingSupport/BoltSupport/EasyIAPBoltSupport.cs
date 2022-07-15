@@ -3,14 +3,16 @@ namespace GleyEasyIAP
 {
     using Bolt;
     using Ludiq;
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
 
     [IncludeInSettings(true)]
     public class EasyIAPBoltSupport
     {
-        static GameObject initializeEventTarget;
+        private static GameObject initializeEventTarget;
         private static GameObject buyEventTarget;
+        private static GameObject restoreEventTarget;
 
         public static void InitializeIAP(GameObject _eventTarget)
         {
@@ -30,6 +32,22 @@ namespace GleyEasyIAP
             {
                 CustomEvent.Trigger(initializeEventTarget, "InitComplete", true);
             }
+        }
+
+        public static void RestorePurchases(GameObject _restoreEventTarget)
+        {
+            restoreEventTarget = _restoreEventTarget;
+            IAPManager.Instance.RestorePurchases(ProductBought, RestoreDone);
+        }
+
+        private static void RestoreDone()
+        {
+            CustomEvent.Trigger(restoreEventTarget, "RestoreDone");
+        }
+
+        private static void ProductBought(IAPOperationStatus status, string error, StoreProduct product)
+        {
+            Debug.Log("Product Restored");
         }
 
         public static bool CheckIfBought(ShopProductNames productToCheck)
@@ -75,6 +93,15 @@ namespace GleyEasyIAP
             return "-";
         }
 
+        public static string GetIsoCurrencyCode(ShopProductNames productToCheck)
+        {
+            if(IAPManager.Instance.IsInitialized())
+            {
+                return IAPManager.Instance.GetIsoCurrencyCode(productToCheck);
+            }
+            return "-";
+        }
+
         public static void BuyProduct(GameObject _eventTarget, ShopProductNames productToBuy)
         {
             buyEventTarget = _eventTarget;
@@ -87,6 +114,8 @@ namespace GleyEasyIAP
                 CustomEvent.Trigger(buyEventTarget, "BuyComplete", false);
             }
         }
+
+       
 
         private static void BuyComplete(IAPOperationStatus status, string message, StoreProduct product)
         {

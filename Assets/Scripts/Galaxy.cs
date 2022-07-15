@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Services.Analytics;
 
 
 
@@ -68,6 +69,13 @@ public class Galaxy : MonoBehaviour
         {
             lightYearsTraveled = PlayerPrefs.GetFloat("light years traveled", 0);
             maxPlanets = PlayerPrefs.GetInt("planets collected", 0);
+            // Send custom event
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "planetsCreated", maxPlanets },
+            };
+            // Send event to queue to be sent in the next minute
+            AnalyticsService.Instance.CustomData("planetsCreated", parameters);
 
         }
         coordinates = new List<Vector3>();

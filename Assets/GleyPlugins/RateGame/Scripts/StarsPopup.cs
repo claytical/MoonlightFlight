@@ -1,5 +1,6 @@
 ﻿namespace GleyRateGame
 {
+    using System.Collections;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -13,7 +14,7 @@
         public Button send;
 
         private bool openUrl;
-
+        private PopupOptions result;
 
         /// <summary>
         /// Set popup texts from Settings Window
@@ -58,6 +59,7 @@
         /// </summary>
         public void SendButtonClick()
         {
+            result = PopupOptions.Rated;
             ClosePopup();
             RateGame.Instance.NeverShowPopup();
             if (openUrl)
@@ -72,6 +74,7 @@
         /// </summary>
         public void NotNowButton()
         {
+            result = PopupOptions.NotNow;
             ClosePopup();
         }
 
@@ -81,6 +84,7 @@
         /// </summary>
         public void NeverButton()
         {
+            result = PopupOptions.Never;
             ClosePopup();
             RateGame.Instance.NeverShowPopup();
         }
@@ -124,16 +128,17 @@
             GetComponent<Animator>().SetTrigger("Close");
             AnimatorStateInfo info = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
             Destroy(gameObject.transform.parent.gameObject, info.length + 0.1f);
-            Invoke("CloseEvent", info.length);
+            StartCoroutine(CloseEvent(info.length));
         }
 
 
         /// <summary>
         /// Trigger close popup event
         /// </summary>
-        private void CloseEvent()
+        private IEnumerator CloseEvent(float time)
         {
-            RateGame.Instance.RatePopupWasClosed();
+            yield return new WaitForSecondsRealtime(time);
+            RateGame.Instance.RatePopupWasClosed(result);
         }
     }
 }

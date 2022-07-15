@@ -1,10 +1,9 @@
-﻿#if USE_PLAYMAKER_SUPPORT
-using System;
-using System.Collections.Generic;
+﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon || GleyIAPMacOS || GleyIAPWindows
+#if USE_PLAYMAKER_SUPPORT
 
 namespace HutongGames.PlayMaker.Actions
 {
-    [HelpUrl("http://gley.mobi/documentation/Gley-EasyIAP-Documentation.pdf")]
+    [HelpUrl("http://gleygames.com/documentation/Gley-EasyIAP-Documentation.pdf")]
     [ActionCategory(ActionCategory.ScriptControl)]
     [Tooltip("Get localized product name")]
     public class GetLocalizedTitle : FsmStateAction
@@ -39,4 +38,5 @@ namespace HutongGames.PlayMaker.Actions
         }
     }
 }
+#endif
 #endif

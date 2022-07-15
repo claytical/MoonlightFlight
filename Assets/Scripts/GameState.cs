@@ -1,7 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using GooglePlayGames;
+using UnityEngine.UDP;
+using GleyGameServices;
+using UnityEngine.Events;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
+
+public class InitListener : IInitListener
+{
+    public void OnInitialized(UserInfo userInfo)
+    {
+        Debug.Log("Initialization succeeded");
+        // You can call the QueryInventory method here
+        // to check whether there are purchases that haven’t been consumed.       
+    }
+
+    public void OnInitializeFailed(string message)
+    {
+        Debug.Log("Initialization failed: " + message);
+    }
+}
+
+public class InitWithDefault : MonoBehaviour
+{
+    async void Start()
+    {
+        try
+        {
+            await UnityServices.InitializeAsync();
+            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        }
+        catch (ConsentCheckException e)
+        {
+            // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        }
+    }
+}
 
 public class GameState : MonoBehaviour {
 
@@ -14,6 +49,9 @@ public class GameState : MonoBehaviour {
     //    public Ship ship;
 
 
+
+
+    
     public void SetShip(ShipType _shipType)
     {
         selectedShip = _shipType;
@@ -54,8 +92,35 @@ public class GameState : MonoBehaviour {
         {
             PlayerPrefs.DeleteAll();
         }
+/*        IInitListener listener = new InitListener();
+        StoreService.Initialize(listener);
+*/
     }
-	
+
+    public void UseGameServices()
+    {
+        if (!GameServices.Instance.IsLoggedIn())
+        {
+            GameServices.Instance.LogIn(LoginResult);
+        }
+        else
+        {
+            GameServices.Instance.ShowAchievementsUI();
+        }
+
+    }
+
+    private void LoginResult(bool success)
+    {
+        if(success == true)
+        {
+            Debug.Log("Login Successful");
+        }
+        else
+        {
+            Debug.Log("Login failed");
+        }
+    }
 
     public void Login()
     {

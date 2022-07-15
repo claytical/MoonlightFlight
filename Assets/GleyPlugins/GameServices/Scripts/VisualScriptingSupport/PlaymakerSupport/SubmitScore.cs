@@ -1,7 +1,7 @@
 ﻿#if USE_PLAYMAKER_SUPPORT
 namespace HutongGames.PlayMaker.Actions
 {
-    [HelpUrl("http://gley.mobi/documentation/Gley-GameServices-Documentation.pdf")]
+    [HelpUrl("http://gleygames.com/documentation/Gley-GameServices-Documentation.pdf")]
     [ActionCategory(ActionCategory.ScriptControl)]
     [Tooltip("Submit score into a leaderboard")]
     public class SubmitScore : FsmStateAction

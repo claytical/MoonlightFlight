@@ -9,14 +9,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4588eceb5b29b458e9ab7b094be6dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4af6f08b732e00140ab2362ae378e2ec, type: 3}
   m_Name: GameServicesData
   m_EditorClassIdentifier: 
-  useForAndroid: 0
-  useForIos: 0
+  useForAndroid: 1
+  useForIos: 1
   usePlaymaker: 0
-  googleAppId: 
-  allGameAchievements: []
-  allGameLeaderboards: []
+  googleAppId: edu.nerdlab.moonlightflight
+  allGameAchievements:
+  - name: FullCircle
+    idGoogle: CgkIm_nTr7sPEAIQBA
+    idIos: a
+    achivementComplete: 0
+  - name: FullFleet
+    idGoogle: CgkIm_nTr7sPEAIQBQ
+    idIos: a
+    achivementComplete: 0
+  - name: ExpandedConsciousness
+    idGoogle: CgkIm_nTr7sPEAIQBg
+    idIos: a
+    achivementComplete: 0
+  - name: TheBeautifulNightSky
+    idGoogle: CgkIm_nTr7sPEAIQBw
+    idIos: a
+    achivementComplete: 0
+  allGameLeaderboards:
+  - name: MostEpicJourney
+    idGoogle: CgkIm_nTr7sPEAIQAg
+    idIos: a
   useGameFlow: 0
   useBolt: 0

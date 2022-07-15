@@ -5,7 +5,7 @@
     using UnityEngine.Events;
 
 #if UseGameCenterPlugin
-using UnityEngine.SocialPlatforms.GameCenter;
+    using UnityEngine.SocialPlatforms.GameCenter;
 #endif
 
 #if UseGooglePlayGamesPlugin
@@ -47,7 +47,7 @@ using UnityEngine.SocialPlatforms.GameCenter;
                     if (gameAchievements[i].achivementComplete == false)
                     {
 #if UseGameCenterPlugin
-                    GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
+                        GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
 #endif
                         gameAchievements[i].achivementComplete = true;
                         string id = "";
@@ -55,7 +55,7 @@ using UnityEngine.SocialPlatforms.GameCenter;
                         id = gameAchievements[i].idGoogle;
 #endif
 #if UseGameCenterPlugin
-                    id = gameAchievements[i].idIos;                
+                        id = gameAchievements[i].idIos;
 #endif
                         Social.ReportProgress(id, 100.0f, (bool success) =>
                         {
@@ -124,6 +124,34 @@ using UnityEngine.SocialPlatforms.GameCenter;
                             else
                             {
                                 SubmitComplete(success, GameServicesError.AchievementSubmitFailed);
+                            }
+                        }
+                    });
+                }
+            }
+#endif
+#if UseGameCenterPlugin
+            for (int i = 0; i < gameAchievements.Count; i++)
+            {
+                if (gameAchievements[i].name == name.ToString())
+                {
+                    Social.ReportProgress(gameAchievements[i].idIos, steps, (bool success) =>
+                    {
+                        if (SubmitComplete != null)
+                        {
+                            if (success)
+                            {
+                                if (SubmitComplete != null)
+                                {
+                                    SubmitComplete(success, GameServicesError.Success);
+                                }
+                            }
+                            else
+                            {
+                                if (SubmitComplete != null)
+                                {
+                                    SubmitComplete(success, GameServicesError.AchievementSubmitFailed);
+                                }
                             }
                         }
                     });

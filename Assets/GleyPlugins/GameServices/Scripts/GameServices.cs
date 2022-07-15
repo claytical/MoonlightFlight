@@ -48,11 +48,10 @@ public class GameServices
     /// <summary>
     /// Sign out from Google Play Services
     /// </summary>
-    public void LogOut()
-    {
-        logInManager.LogOut();
-    }
-
+    //public void LogOut()
+    //{
+    //    logInManager.LogOut();
+    //}
 
     /// <summary>
     /// Used to submit an achievement
@@ -151,6 +150,43 @@ public class GameServices
         leaderboardManager.ShowSingleLeaderboard(leaderboardName);
     }
 
+
+    /// <summary>
+    /// Get the highest score from Leaderboard for the current user  
+    /// </summary>
+    /// <param name="leaderboardName">name of the leaderboard</param>
+    /// <param name="CompleteMethod">method to call after score is read</param>
+    public void GetPlayerScore(LeaderboardNames leaderboardName, UnityAction<long> CompleteMethod)
+    {
+        leaderboardManager.GetPlayerScore(leaderboardName,
+            (long score) =>
+            {
+                if (CompleteMethod != null)
+                {
+                    CompleteMethod(score);
+                }
+            }
+            );
+    }
+
+
+    /// <summary>
+    /// Get rank from Leaderboard for the current user  
+    /// </summary>
+    /// <param name="leaderboardName">name of the leaderboard</param>
+    /// <param name="CompleteMethod">method to call after score is read</param>
+    public void GetPlayerRank(LeaderboardNames leaderboardName, UnityAction<long> CompleteMethod)
+    {
+        leaderboardManager.GetPlayerRank(leaderboardName,
+            (long rank) =>
+            {
+                if (CompleteMethod != null)
+                {
+                    CompleteMethod(rank);
+                }
+            }
+            );
+    }
 
     /// <summary>
     /// Used to check if user is logged in

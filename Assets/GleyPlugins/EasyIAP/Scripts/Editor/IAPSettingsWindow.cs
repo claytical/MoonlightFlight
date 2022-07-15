@@ -1,4 +1,4 @@
-﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon
+﻿#if GleyIAPiOS || GleyIAPGooglePlay || GleyIAPAmazon || GleyIAPMacOS || GleyIAPWindows
 #define GleyIAPEnabled
 #endif
 namespace GleyEasyIAP
@@ -22,6 +22,8 @@ namespace GleyEasyIAP
         private bool useForGooglePlay;
         private bool useForAmazon;
         private bool useForIos;
+        private bool useForMac;
+        private bool useForWindows;
         private bool debug;
         private bool useReceiptValidation;
         private bool usePlaymaker;
@@ -34,10 +36,11 @@ namespace GleyEasyIAP
         {
             string path = "Assets//GleyPlugins/EasyIAP/Scripts/Version.txt";
             StreamReader reader = new StreamReader(path);
-            string longVersion = JsonUtility.FromJson<GleyPlugins.AssetVersion>(reader.ReadToEnd()).longVersion;
+            string longVersion = JsonUtility.FromJson<Gley.About.AssetVersion>(reader.ReadToEnd()).longVersion;
 
             // Get existing open window or if none, make a new one:
-            IAPSettingsWindow window = (IAPSettingsWindow)GetWindow(typeof(IAPSettingsWindow), true, "Easy IAP Settings Window - v." + longVersion);
+            IAPSettingsWindow window = (IAPSettingsWindow)GetWindow(typeof(IAPSettingsWindow));
+            window.titleContent = new GUIContent("Easy IAP - v." + longVersion);
             window.minSize = new Vector2(520, 520);
             window.Show();
         }
@@ -65,6 +68,8 @@ namespace GleyEasyIAP
             useForGooglePlay = iapSettings.useForGooglePlay;
             useForAmazon = iapSettings.useForAmazon;
             useForIos = iapSettings.useForIos;
+            useForMac = iapSettings.useForMac;
+            useForWindows = iapSettings.useForWindows;
 
             localShopProducts = new List<StoreProduct>();
             for (int i = 0; i < iapSettings.shopProducts.Count; i++)
@@ -78,79 +83,92 @@ namespace GleyEasyIAP
         {
             if (useForGooglePlay)
             {
-                AddPreprocessorDirective("GleyIAPGooglePlay", false, BuildTargetGroup.Android);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPGooglePlay, false, BuildTargetGroup.Android);
 #if GleyIAPEnabled
                 UnityEditor.Purchasing.UnityPurchasingEditor.TargetAndroidStore(UnityEngine.Purchasing.AppStore.GooglePlay);
 #endif
             }
             else
             {
-                AddPreprocessorDirective("GleyIAPGooglePlay", true, BuildTargetGroup.Android);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPGooglePlay, true, BuildTargetGroup.Android);
             }
 
             if (useForAmazon)
             {
-                AddPreprocessorDirective("GleyIAPAmazon", false, BuildTargetGroup.Android);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPAmazon, false, BuildTargetGroup.Android);
 #if GleyIAPEnabled
                 UnityEditor.Purchasing.UnityPurchasingEditor.TargetAndroidStore(UnityEngine.Purchasing.AppStore.AmazonAppStore);
 #endif
             }
             else
             {
-                AddPreprocessorDirective("GleyIAPAmazon", true, BuildTargetGroup.Android);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPAmazon, true, BuildTargetGroup.Android);
             }
 
             if (useForIos)
             {
-                AddPreprocessorDirective("GleyIAPiOS", false, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPiOS, false, BuildTargetGroup.iOS);
             }
             else
             {
-                AddPreprocessorDirective("GleyIAPiOS", true, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPiOS, true, BuildTargetGroup.iOS);
             }
+
+            if (useForMac)
+            {
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPMacOS, false, BuildTargetGroup.Standalone);
+            }
+            else
+            {
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPMacOS, true, BuildTargetGroup.Standalone);
+            }
+
+            if (useForWindows)
+            {
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPWindows, false, BuildTargetGroup.WSA);
+            }
+            else
+            {
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyIAPWindows, true, BuildTargetGroup.WSA);
+            }
+
 
             if (useReceiptValidation)
             {
-                AddPreprocessorDirective("GleyUseValidation", false, BuildTargetGroup.Android);
-                AddPreprocessorDirective("GleyUseValidation", false, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyUseValidation, false, BuildTargetGroup.Android);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyUseValidation, false, BuildTargetGroup.iOS);
             }
             else
             {
-                AddPreprocessorDirective("GleyUseValidation", true, BuildTargetGroup.Android);
-                AddPreprocessorDirective("GleyUseValidation", true, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyUseValidation, true, BuildTargetGroup.Android);
+                Gley.Common.PreprocessorDirective.AddToPlatform(Gley.Common.Constants.GleyUseValidation, true, BuildTargetGroup.iOS);
             }
 
             if (usePlaymaker)
             {
-                AddPreprocessorDirective("USE_PLAYMAKER_SUPPORT", false, BuildTargetGroup.Android);
-                AddPreprocessorDirective("USE_PLAYMAKER_SUPPORT", false, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToCurrent(Gley.Common.Constants.USE_PLAYMAKER_SUPPORT, false);
             }
             else
             {
-                AddPreprocessorDirective("USE_PLAYMAKER_SUPPORT", true, BuildTargetGroup.Android);
-                AddPreprocessorDirective("USE_PLAYMAKER_SUPPORT", true, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToCurrent(Gley.Common.Constants.USE_PLAYMAKER_SUPPORT, true);
             }
 
             if (useBolt)
             {
-                AddPreprocessorDirective("USE_BOLT_SUPPORT", false, BuildTargetGroup.Android);
-                AddPreprocessorDirective("USE_BOLT_SUPPORT", false, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToCurrent(Gley.Common.Constants.USE_BOLT_SUPPORT, false);
             }
             else
             {
-                AddPreprocessorDirective("USE_BOLT_SUPPORT", true, BuildTargetGroup.Android);
-                AddPreprocessorDirective("USE_BOLT_SUPPORT", true, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToCurrent(Gley.Common.Constants.USE_BOLT_SUPPORT, true);
             }
 
             if (useGameFlow)
             {
-                AddPreprocessorDirective("USE_GAMEFLOW_SUPPORT", false, BuildTargetGroup.Android);
-                AddPreprocessorDirective("USE_GAMEFLOW_SUPPORT", false, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToCurrent(Gley.Common.Constants.USE_GAMEFLOW_SUPPORT, false);
             }
             else
             {
-                AddPreprocessorDirective("USE_GAMEFLOW_SUPPORT", true, BuildTargetGroup.Android);
-                AddPreprocessorDirective("USE_GAMEFLOW_SUPPORT", true, BuildTargetGroup.iOS);
+                Gley.Common.PreprocessorDirective.AddToCurrent(Gley.Common.Constants.USE_GAMEFLOW_SUPPORT, true);
             }
 
             iapSettings.debug = debug;
@@ -161,6 +179,8 @@ namespace GleyEasyIAP
             iapSettings.useForGooglePlay = useForGooglePlay;
             iapSettings.useForIos = useForIos;
             iapSettings.useForAmazon = useForAmazon;
+            iapSettings.useForMac = useForMac;
+            iapSettings.useForWindows = useForWindows;
 
             iapSettings.shopProducts = new List<StoreProduct>();
             for (int i = 0; i < localShopProducts.Count; i++)
@@ -203,15 +223,17 @@ namespace GleyEasyIAP
                 useForGooglePlay = false;
             }
             useForIos = EditorGUILayout.Toggle("iOS", useForIos);
+            useForMac = EditorGUILayout.Toggle("MacOS", useForMac);
+            useForWindows = EditorGUILayout.Toggle("Windows Store", useForWindows);
             EditorGUILayout.Space();
 
-            if (GUILayout.Button("Download Unity IAP SDK"))
+            if (GUILayout.Button("Import Unity IAP SDK"))
             {
-                Application.OpenURL("https://assetstore.unity.com/packages/add-ons/services/billing/unity-iap-68207");
+                Gley.Common.ImportRequiredPackages.ImportPackage("com.unity.purchasing", CompleteMethod);
             }
             EditorGUILayout.Space();
 
-            if (useForGooglePlay || useForIos || useForAmazon)
+            if (useForGooglePlay || useForIos || useForAmazon || useForMac || useForWindows)
             {
                 GUILayout.Label("In App Products Setup", EditorStyles.boldLabel);
 
@@ -241,6 +263,16 @@ namespace GleyEasyIAP
                     if (useForIos)
                     {
                         localShopProducts[i].idIOS = EditorGUILayout.TextField("App Store (iOS) ID:", localShopProducts[i].idIOS);
+                    }
+
+                    if (useForMac)
+                    {
+                        localShopProducts[i].idMac = EditorGUILayout.TextField("Mac Store ID:", localShopProducts[i].idMac);
+                    }
+
+                    if (useForWindows)
+                    {
+                        localShopProducts[i].idWindows = EditorGUILayout.TextField("Windows Store ID:", localShopProducts[i].idWindows);
                     }
 
                     if (GUILayout.Button("Remove Product"))
@@ -275,6 +307,10 @@ namespace GleyEasyIAP
             GUILayout.EndScrollView();
         }
 
+        private void CompleteMethod(string message)
+        {
+            Debug.Log(message);
+        }
 
         private bool CheckForNull()
         {
@@ -316,6 +352,26 @@ namespace GleyEasyIAP
                         return true;
                     }
                 }
+
+                if (useForMac)
+                {
+                    if (String.IsNullOrEmpty(localShopProducts[i].idMac))
+                    {
+                        labelColor = Color.red;
+                        errorText = "Mac Store ID cannot be empty! Please fill all of them";
+                        return true;
+                    }
+                }
+
+                if (useForWindows)
+                {
+                    if (String.IsNullOrEmpty(localShopProducts[i].idWindows))
+                    {
+                        labelColor = Color.red;
+                        errorText = "Windows Store ID cannot be empty! Please fill all of them";
+                        return true;
+                    }
+                }
             }
             return false;
         }
@@ -346,35 +402,6 @@ namespace GleyEasyIAP
             }
             text += "}";
             File.WriteAllText(Application.dataPath + "/GleyPlugins/EasyIAP/Scripts/ShopProductNames.cs", text);
-        }
-
-        private void AddPreprocessorDirective(string directive, bool remove, BuildTargetGroup target)
-        {
-            string textToWrite = PlayerSettings.GetScriptingDefineSymbolsForGroup(target);
-
-            if (remove)
-            {
-                if (textToWrite.Contains(directive))
-                {
-                    textToWrite = textToWrite.Replace(directive, "");
-                }
-            }
-            else
-            {
-                if (!textToWrite.Contains(directive))
-                {
-                    if (textToWrite == "")
-                    {
-                        textToWrite += directive;
-                    }
-                    else
-                    {
-                        textToWrite += "," + directive;
-                    }
-                }
-            }
-
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(target, textToWrite);
         }
     }
 }

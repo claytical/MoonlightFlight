@@ -28,7 +28,6 @@ public class ProceduralLevel : MonoBehaviour {
     public SceneControl scene;
 
 	public GameObject LevelFailPanel;
-    public GameObject vehicleUnlockedPanel;
     private SetInfo[] sets;
     public GameObject patterns;
     public Text failureMessage;
@@ -308,37 +307,6 @@ public class ProceduralLevel : MonoBehaviour {
     }
 
     
-    private bool unlockedNewVehicles()
-    {
-        //TODO: instantiate new unlocked item screen
-        for(int i = 0; i < lot.vehicles.Length; i++)
-        {
-            if (lot.vehicles[i].GetComponentInChildren<Vehicle>())
-            {
-                Debug.Log("Has Ship Script");
-                if (PlayerPrefs.HasKey(lot.vehicles[i].GetComponentInChildren<Vehicle>().type.ToString()))
-                {
-                    //ship was locked before playing
-                    int energyRequired = PlayerPrefs.GetInt(lot.vehicles[i].GetComponentInChildren<Vehicle>().type.ToString());
-                    Debug.Log("energy REQUIRED: " + energyRequired);
-                    if (energyRequired <= PlayerPrefs.GetInt("energy"))
-                    {
-                        Debug.Log("UNLOCKED " + lot.vehicles[i].GetComponentInChildren<Vehicle>().type.ToString());
-                        //UNLOCKED NEW SHIP!
-                        vehicleUnlockedPanel.SetActive(true);
-                        vehicleUnlockedPanel.GetComponent<VehicleUnlockPanel>().UnlockVehicle(lot.vehicles[i].GetComponentInChildren<Vehicle>().type);
-                            
-                           //lot.vehicles[i].GetComponentInChildren<Vehicle>().type);
-                        return true;
-                    }
-
-                }
-            }
-
-        }
-
-        return false;
-    }
 
     public void GameOver()
     {

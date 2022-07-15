@@ -27,10 +27,11 @@
         {
             string path = "Assets//GleyPlugins/GameServices/Scripts/Version.txt";
             StreamReader reader = new StreamReader(path);
-            string longVersion = JsonUtility.FromJson<GleyPlugins.AssetVersion>(reader.ReadToEnd()).longVersion;
+            string longVersion = JsonUtility.FromJson<Gley.About.AssetVersion>(reader.ReadToEnd()).longVersion;
 
             // Get existing open window or if none, make a new one:
-            GameServicesSettingsWindow window = (GameServicesSettingsWindow)GetWindow(typeof(GameServicesSettingsWindow), true, "Game Services Settings Window - v." + longVersion);
+            GameServicesSettingsWindow window = (GameServicesSettingsWindow)GetWindow(typeof(GameServicesSettingsWindow));
+            window.titleContent = new GUIContent("Game Services - v." + longVersion);
             window.minSize = new Vector2(520, 520);
             window.Show();
         }
@@ -462,11 +463,7 @@
                 "<manifest xmlns:android = \"http://schemas.android.com/apk/res/android\"\n" +
                 "package=\"com.google.example.games.mainlibproj\">\n" +
                 "<application>\n" +
-#if UNITY_2017 || UNITY_2018 || UNITY_2019
                 "<meta-data android:name=\"com.google.android.gms.games.APP_ID\" android:value = \"\\" + googleAppId + "\" />\n" +
-#else
-                "<meta-data android:name=\"com.google.android.gms.games.APP_ID\" android:value = \"\\ " + googleAppId + "\" />\n" +
-#endif
                 "<activity android:name=\"com.google.games.bridge.NativeBridgeActivity\" android:theme = \"@android:style/Theme.Translucent.NoTitleBar.Fullscreen\" />\n" +
                 "</application>\n" +
                 "</manifest>";
@@ -482,8 +479,8 @@
             {
                 ((PluginImporter)PluginImporter.GetAtPath("Assets/GleyPlugins/GameServices/Plugins/Android/GameServicesManifest.plugin")).SetCompatibleWithAnyPlatform(false);
                 ((PluginImporter)PluginImporter.GetAtPath("Assets/GleyPlugins/GameServices/Plugins/Android/GameServicesManifest.plugin")).SetCompatibleWithPlatform(BuildTarget.Android, true);
-                ((PluginImporter)PluginImporter.GetAtPath("Assets/GooglePlayGames/Plugins/Android/GooglePlayGamesManifest.plugin")).SetCompatibleWithAnyPlatform(false);
-                ((PluginImporter)PluginImporter.GetAtPath("Assets/GooglePlayGames/Plugins/Android/GooglePlayGamesManifest.plugin")).SetCompatibleWithPlatform(BuildTarget.Android, false);
+                //((PluginImporter)PluginImporter.GetAtPath("Assets/GooglePlayGames/Plugins/Android/GooglePlayGamesManifest.androidlib")).SetCompatibleWithAnyPlatform(false);
+                //((PluginImporter)PluginImporter.GetAtPath("Assets/GooglePlayGames/Plugins/Android/GooglePlayGamesManifest.androidlib")).SetCompatibleWithPlatform(BuildTarget.Android, false);
             }
             else
             {
