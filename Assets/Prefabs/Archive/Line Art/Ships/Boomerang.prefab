@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413110513335350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.842775, y: 0.842775, z: 0.842775}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4133419368621827541}
   m_RootOrder: 0
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556315624568502}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -273,8 +273,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164112970017375899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4028836604485478}
   m_RootOrder: 0
@@ -337,7 +337,7 @@ ParticleSystem:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164112970017375899}
-  serializedVersion: 6
+  serializedVersion: 7
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
@@ -3909,19 +3909,20 @@ ParticleSystem:
     range: {x: 0, y: 1}
   CollisionModule:
     enabled: 0
-    serializedVersion: 3
+    serializedVersion: 4
     type: 0
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    plane0: {fileID: 0}
-    plane1: {fileID: 0}
-    plane2: {fileID: 0}
-    plane3: {fileID: 0}
-    plane4: {fileID: 0}
-    plane5: {fileID: 0}
+    m_Planes:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -4095,17 +4096,20 @@ ParticleSystem:
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
-    collisionShape0: {fileID: 0}
-    collisionShape1: {fileID: 0}
-    collisionShape2: {fileID: 0}
-    collisionShape3: {fileID: 0}
-    collisionShape4: {fileID: 0}
-    collisionShape5: {fileID: 0}
+    serializedVersion: 2
     inside: 1
     outside: 0
     enter: 0
     exit: 0
+    colliderQueryMode: 0
     radiusScale: 1
+    primitives:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -5123,7 +5127,7 @@ GameObject:
   - component: {fileID: 185344236071491729}
   - component: {fileID: 2848173238256156949}
   - component: {fileID: 3530592543543999823}
-  - component: {fileID: 785405958682035591}
+  - component: {fileID: 8734259281160756459}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -5140,7 +5144,7 @@ Transform:
   m_GameObject: {fileID: 8830957389563538630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8947, y: 0.8947, z: 0.8947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4059443732488408}
   m_Father: {fileID: 4028836604485478}
@@ -5238,7 +5242,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &785405958682035591
+--- !u!60 &8734259281160756459
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5247,7 +5251,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 8830957389563538630}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 21a56d891a7055e41a66d7f4ff4d8470, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -5255,7 +5259,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.03}
+    oldSize: {x: 0.75, y: 0.75}
     newSize: {x: 1.5, y: 1.03}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5263,51 +5267,42 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.02, y: -0.055}
-      - {x: -0.03, y: -0.024999999}
-      - {x: -0.08, y: -0.024999999}
-      - {x: -0.26999998, y: -0.145}
-      - {x: -0.61, y: -0.36499998}
-      - {x: -0.53, y: -0.24499999}
-      - {x: -0.29999998, y: 0.145}
-      - {x: -0.29, y: 0.185}
-      - {x: -0.32, y: 0.205}
-      - {x: -0.35999998, y: 0.175}
-      - {x: -0.48, y: -0.005}
-      - {x: -0.5, y: -0.055}
-      - {x: -0.72999996, y: -0.435}
-      - {x: -0.75, y: -0.49499997}
-      - {x: -0.72999996, y: -0.515}
-      - {x: -0.71999997, y: -0.515}
-      - {x: -0.63, y: -0.465}
-      - {x: -0.32, y: -0.265}
-      - {x: -0.04, y: -0.085}
-    - - {x: 0.32999998, y: 0.205}
-      - {x: 0.31, y: 0.205}
-      - {x: 0.28, y: 0.185}
-      - {x: 0.32999998, y: 0.074999996}
-      - {x: 0.53999996, y: -0.255}
-      - {x: 0.59999996, y: -0.355}
-      - {x: 0.45999998, y: -0.265}
-      - {x: 0.13, y: -0.044999998}
-      - {x: 0.049999997, y: -0.015}
-      - {x: 0.03, y: -0.035}
-      - {x: 0.03, y: -0.065}
-      - {x: 0.11, y: -0.13499999}
-      - {x: 0.37, y: -0.295}
-      - {x: 0.51, y: -0.385}
-      - {x: 0.57, y: -0.415}
-      - {x: 0.69, y: -0.505}
-      - {x: 0.72999996, y: -0.505}
-      - {x: 0.75, y: -0.49499997}
-      - {x: 0.75, y: -0.45499998}
-      - {x: 0.71999997, y: -0.39499998}
-      - {x: 0.59, y: -0.195}
-      - {x: 0.37, y: 0.155}
-    - - {x: -0.26, y: 0.255}
-      - {x: 0.22999999, y: 0.255}
-      - {x: 0.26, y: 0.265}
-      - {x: 0.26, y: 0.305}
-      - {x: 0.089999996, y: 0.515}
-      - {x: -0.06, y: 0.515}
-      - {x: -0.26, y: 0.355}
+    - - {x: 0.13499999, y: 0.105}
+      - {x: 0.125, y: 0.074999996}
+      - {x: 0.1334267, y: 0.07249796}
+      - {x: 0.035, y: -0.005}
+      - {x: 0.015, y: -0.024999999}
+      - {x: 0.024999999, y: -0.055}
+      - {x: 0.315, y: -0.24499999}
+      - {x: 0.33499998, y: -0.24499999}
+      - {x: 0.355, y: -0.235}
+      - {x: 0.355, y: -0.21499999}
+      - {x: 0.315, y: -0.114999995}
+      - {x: 0.195, y: 0.055}
+      - {x: 0.155, y: 0.105}
+    - - {x: -0.035, y: 0.015}
+      - {x: -0.13499999, y: 0.105}
+      - {x: -0.175, y: 0.105}
+      - {x: -0.325, y: -0.145}
+      - {x: -0.355, y: -0.21499999}
+      - {x: -0.33499998, y: -0.235}
+      - {x: -0.305, y: -0.235}
+      - {x: -0.085, y: -0.095}
+      - {x: -0.005, y: -0.024999999}
+      - {x: -0.005, y: -0.005}
+    - - {x: 0.0005651843, y: 0.21617097}
+      - {x: 0.119057864, y: 0.10922609}
+      - {x: 0.13654804, y: 0.10671592}
+      - {x: 0.15386915, y: 0.10667385}
+      - {x: 0.120060846, y: 0.1403161}
+      - {x: 0.016189478, y: 0.25265738}
+    - - {x: -0.095, y: 0.175}
+      - {x: -0.17487192, y: 0.10446179}
+      - {x: -0.13445494, y: 0.105921775}
+      - {x: -0.12792748, y: 0.088223234}
+      - {x: 0.00022896007, y: 0.21621145}
+      - {x: 0.001478672, y: 0.2170769}
+      - {x: 0.1409359, y: 0.08529246}
+      - {x: 0.15530863, y: 0.10248968}
+      - {x: 0.015, y: 0.255}
+      - {x: -0.015, y: 0.255}

@@ -52,6 +52,21 @@ public class PlaysWithOthers : MonoBehaviour
             }
         }
 
+        if(gameObject.GetComponentInParent<OneDirection>())
+        {
+            if (gameObject.GetComponent<Rigidbody2D>())
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                if (gameObject.GetComponentInParent<OneDirection>().reverseDirection)
+                {
+                    gameObject.GetComponentInParent<OneDirection>().direction.x *= -1;
+                }
+                Debug.Log("game object:" + gameObject.name);
+                gameObject.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponentInParent<OneDirection>().direction * 100f, ForceMode2D.Force);
+            }
+
+        }
+
     }
 
 
