@@ -95,11 +95,11 @@ GameObject:
   - component: {fileID: 50193904785117360}
   - component: {fileID: 114443874050580884}
   - component: {fileID: 95000926235985850}
-  - component: {fileID: 9820157716094619}
   - component: {fileID: 8143086062404273585}
   - component: {fileID: -2106651990605077177}
   - component: {fileID: 3058427313702186389}
   - component: {fileID: 5554655276532109239}
+  - component: {fileID: 2840197439160412644}
   m_Layer: 0
   m_Name: Remix Square
   m_TagString: Bumpable
@@ -227,22 +227,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9820157716094619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781116594832268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 457100d3c1e46a8449c70feacf404f4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finished: 0
-  canBePushed: 0
-  constraints: 0
-  gravity: 0
 --- !u!114 &8143086062404273585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,3 +303,22 @@ MonoBehaviour:
   canBeDestroyed: 0
   canBreakOtherItems: 0
   canSpawnItems: 0
+--- !u!114 &2840197439160412644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781116594832268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457100d3c1e46a8449c70feacf404f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finished: 0
+  canBePushed: 0
+  constraints: 0
+  gravity: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  scaledDown: 0
+  scaledUp: 0

@@ -33,8 +33,8 @@ public class SetInfo : MonoBehaviour
         objectsToRespawn = new List<ObjectRespawn>();
 
         Vector3 topOfScreen = platforms.transform.position;
-        topOfScreen.y = 10f;
-        platforms.transform.position = topOfScreen;
+//        topOfScreen.y = 10f;
+//        platforms.transform.position = topOfScreen;
         platforms.SetActive(true);
         //add platforms to descending objects
         platformsToMove = platforms.GetComponentsInChildren<Transform>();
@@ -42,6 +42,7 @@ public class SetInfo : MonoBehaviour
 
         for (int i = 0; i < platformsToMove.Length; i++)
         {
+
             if(platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
             {
 //                platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -51,6 +52,7 @@ public class SetInfo : MonoBehaviour
             }
 
             movingOnScreenInProgress = true;
+//            platformsToMove[i].transform.localScale = Vector3.zero;          
         }
         currentSet = gameObject.GetComponent<ProceduralInfo>();
     }
@@ -102,6 +104,8 @@ public class SetInfo : MonoBehaviour
 
     public void MovePlatformsOffScreen()
     {
+
+
         platformsToMove = platforms.GetComponentsInChildren<Transform>();
         for (int i = 0; i < platformsToMove.Length; i++)
         {
@@ -151,38 +155,56 @@ public class SetInfo : MonoBehaviour
     private void PlatformsFinishedMovingOffScreen()
     {
         movingOffScreenInProgress = false;
-        transform.position = Vector3.zero;
+//shouldn't need this a nymore
+//        transform.position = Vector3.zero;
         gameObject.SetActive(false);
 
     }
 
     void Update()
     {
-        if(movingOffScreenInProgress)
+        int currentNumberOfPlatformsToScale = 0;
+        Vector3 velocity = Vector3.one;
+        if (movingOffScreenInProgress)
         {
-            Vector3 nextPosition = platforms.transform.position;
-            nextPosition.y -= movingSpeed;
 
-            platforms.transform.position = nextPosition;
-            if(platforms.transform.position.y <= -10f)
+            Platform[] platformsToScaleDown = platforms.GetComponentsInChildren<Platform>();
+//            int numberOfPlatformsToScaleDown = platformsToScaleDown.Length;
+            for (int i = 0; i < platformsToScaleDown.Length; i++)
             {
-
-                PlatformsFinishedMovingOffScreen();
+                if(platformsToScaleDown[i].GetComponent<Explode>())
+                {
+                    platformsToScaleDown[i].GetComponent<Explode>().Temporary();
+                }
             }
+            PlatformsFinishedMovingOffScreen();
+
         }
 
-        if(movingOnScreenInProgress) {
-            Vector3 nextPosition = platforms.transform.position;
-            nextPosition.y -= movingSpeed;
+        if (movingOnScreenInProgress) {
+            Platform[] platformsToScaleUp = platforms.GetComponentsInChildren<Platform>();
+                int numberOfPlatformsToScaleUp = platformsToScaleUp.Length;
 
-            platforms.transform.position = nextPosition;
-            if (platforms.transform.position.y <= 0)
-            {
-                Debug.Log("Platforms Finished Moving On Screen");
-                PlatformsFinishedMovingOnScreen();
-            }
+                currentNumberOfPlatformsToScale++;
+                for (int i = 0; i < platformsToScaleUp.Length; i++) {
+                    Debug.Log("Scaling Platform " + platformsToScaleUp[i].name);
+                    platformsToScaleUp[i].transform.localScale = Vector3.Lerp(platformsToScaleUp[i].transform.localScale, platformsToScaleUp[i].originalScale, Time.deltaTime);
+                    if(platformsToScaleUp[i].transform.localScale == platformsToScaleUp[i].originalScale)
+                    {
+                        //finished scaling up
+                        platformsToScaleUp[i].scaledUp = true;
+                        platformsToScaleUp[i].scaledDown = false;
+                        currentNumberOfPlatformsToScale++;
+                    }
+                }
 
+                if (currentNumberOfPlatformsToScale >= numberOfPlatformsToScaleUp)
+                {
+                    Debug.Log("Platforms Finished Moving On Screen");
+                    PlatformsFinishedMovingOnScreen();
+                }
         }
+
         for(int i = 0; i < objectsToRespawn.Count; i++)
         {
             if(objectsToRespawn[i].timeUntilActive <= Time.time)

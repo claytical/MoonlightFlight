@@ -8,11 +8,14 @@ public class Platform : MonoBehaviour
     public bool canBePushed = false;
     public RigidbodyConstraints2D constraints;
     public float gravity;
+    public Vector3 originalScale;
+    public bool scaledDown = false;
+    public bool scaledUp = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        originalScale = transform.localScale;
         TurnOffCollision();
         //SetConstraints();
         

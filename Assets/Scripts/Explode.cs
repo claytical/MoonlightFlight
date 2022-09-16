@@ -8,12 +8,12 @@ public class Explode : MonoBehaviour
     public float respawnTimer = 10f;
     public float lifetime;
     private float explosionTimer;
-
+    private Vector3 originalPosition;
 
     void Start()
     {
         explosionTimer = Time.time + lifetime;
-        
+        originalPosition = transform.position;
     }
 
     void Update()
@@ -27,6 +27,20 @@ public class Explode : MonoBehaviour
             }
         }    
     }
+    
+    public void BackToPosition()
+    {
+        transform.position = originalPosition;
+    }
+
+    public void Temporary()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        transform.position = new Vector3(0, 0, 1000);
+        Invoke("BackToPosition", 1);
+    }
+
     public void Go()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);

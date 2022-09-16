@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d325a0251fc01ee41a1c8caaad1bf290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 1, y: 0}
+  direction: {x: 0.01, y: 0}
   moveAutomatically: 1
-  reverseDirection: 0
+  reverseDirection: 1
 --- !u!1001 &247857581263407126
 PrefabInstance:
   m_ObjectHideFlags: 0
