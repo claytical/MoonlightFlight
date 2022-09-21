@@ -5280,6 +5280,9 @@ MonoBehaviour:
   timeStuck: 0
   energyTransfer: {fileID: 2567590292593330884, guid: 1a11f71de3c2111468d5dd16627224ce,
     type: 3}
+  lootAvailable: 0
+  maxHP: 20
+  currentHP: 2
   set: {fileID: 0}
 --- !u!60 &3132316157305801126
 PolygonCollider2D:
@@ -5298,7 +5301,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.76}
+    oldSize: {x: 0.75, y: 0.75}
     newSize: {x: 1.5, y: 1.03}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

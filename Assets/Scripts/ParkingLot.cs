@@ -14,6 +14,7 @@ public class ParkingLot : MonoBehaviour
     public int planetsCollected;
     public AudioClip energyFx;
     public BoundaryPowerUp boundaries;
+    public Damage HP;
     public int lightYearIncrement = 10;
 //REMOVE?
     public Text lightyearUI;
@@ -100,6 +101,8 @@ public class ParkingLot : MonoBehaviour
         Vector3 newPosition = vehicle.transform.position;
         newPosition.z = 10f;
         vehicle.transform.position = newPosition;
+        HP.SetHP(vehicle.GetComponentInChildren<Vehicle>());
+
         return vehicle.GetComponentInChildren<Vehicle>();
     }
     public Vehicle SelectVehicle(VehicleType v)
@@ -134,6 +137,7 @@ public class ParkingLot : MonoBehaviour
         Vector3 newPosition = vehicle.transform.position;
         newPosition.z = 10f;
         vehicle.transform.position = newPosition;
+        HP.SetHP(vehicle.GetComponentInChildren<Vehicle>());
         return vehicle.GetComponentInChildren<Vehicle>();
     }
 

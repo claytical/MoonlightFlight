@@ -20,6 +20,8 @@ public class Vehicle : MonoBehaviour
     public float timeStuck;
     public GameObject energyTransfer;
     public bool lootAvailable = false;
+    public int maxHP;
+    public int currentHP;
 
 
     private int currentEnergyLevel;
@@ -287,30 +289,23 @@ public class Vehicle : MonoBehaviour
 
         if (coll.gameObject.tag == "Boundary")
         {
-            if (shield.isActiveAndEnabled)
-            {
-                Debug.Log("Using Shield!");
-                shield.Hit(1);
-            }
-            else
-            {
 
-                isDead = coll.gameObject.GetComponentInParent<BoundaryPowerUp>().Hit();
-            }
-        }
-
-        if (coll.gameObject.tag == "Avoid")
-        {
-            //TODO: CHECK FOR SHIELD
-            if (shield.isActiveAndEnabled)
-            {
-                Debug.Log("Using Shield!");
-                shield.Hit(1);
-            }
-            else
+            if(coll.gameObject.GetComponent<Hull>().gauge.TakeDamage())
             {
                 isDead = true;
             }
+            }
+
+        if (coll.gameObject.tag == "Avoid")
+        {
+
+            if (coll.gameObject.GetComponent<Remix>().level.lot.HP.TakeDamage())
+            {
+                isDead = true;
+            }
+
+
+            //TODO: CHECK FOR SHIELD
         }
 
         gameObject.GetComponentInParent<AudioSource>().Play();
