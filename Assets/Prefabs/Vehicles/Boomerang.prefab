@@ -5264,6 +5264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc3f778eb7936e43bbe5a524e758f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starColor: {r: 1, g: 0.73324853, b: 0, a: 1}
   maxEnergy: 10
   energyCollection: {fileID: 1649709521674055389}
   energyOverlay: {fileID: 4165142786326640517}

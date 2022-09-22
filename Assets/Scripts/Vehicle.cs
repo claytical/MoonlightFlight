@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
+    public Color starColor;
     public int maxEnergy;
     public ParticleSystem energyCollection;
     public SpriteRenderer energyOverlay;
@@ -43,6 +44,7 @@ public class Vehicle : MonoBehaviour
         touchPoints = new List<GameObject>();
         currentEnergyLevel = 0;
         energyUnit = (float) maxEnergy / 100;
+        GetComponent<SpriteRenderer>().color = starColor;
     }
 
     void OnCollisionStay(Collision collisionInfo)
