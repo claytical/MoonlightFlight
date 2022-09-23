@@ -65,7 +65,7 @@ public class Platform : MonoBehaviour
             {
                 //EVENT #1 - BROKE OBJECT
 
-                GetComponent<Remix>().level.lot.PlanetCollected();
+                GetComponent<Remix>().level.lot.EnergyCollected();
                 Destroy(coll.gameObject);
 
             }

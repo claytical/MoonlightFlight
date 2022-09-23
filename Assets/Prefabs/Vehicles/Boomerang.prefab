@@ -5265,25 +5265,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starColor: {r: 1, g: 0.73324853, b: 0, a: 1}
-  maxEnergy: 10
   energyCollection: {fileID: 1649709521674055389}
-  energyOverlay: {fileID: 4165142786326640517}
-  energyUnit: 0
   explosion: {fileID: 2567590292593330884, guid: 24a07d73c693a3e44b073e4e6534b58d,
     type: 3}
-  poweredUp: 0
+  lootDropped: 0
   force: 5
   maxForce: 5
   touchPoint: {fileID: 8455937364993888704, guid: 08a87ae8892458741b1a98e7dba483ec,
     type: 3}
   type: 0
-  shield: {fileID: 6495682009358169607}
   timeStuck: 0
-  energyTransfer: {fileID: 2567590292593330884, guid: 1a11f71de3c2111468d5dd16627224ce,
-    type: 3}
   lootAvailable: 0
   maxHP: 20
   currentHP: 2
+  lootDropFrequency: 2
   set: {fileID: 0}
 --- !u!60 &3132316157305801126
 PolygonCollider2D:

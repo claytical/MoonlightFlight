@@ -107,7 +107,7 @@ public class ProceduralLevel : MonoBehaviour {
 
     }
 
-    void LootDrop()
+    public void LootDrop()
     {
         lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable = true;
 
@@ -145,11 +145,11 @@ public class ProceduralLevel : MonoBehaviour {
         {
         */
             GameObject obj = Instantiate(availableLoot[selectedLoot].item, lastEnergyCollectionPosition, Quaternion.identity, transform);
-            GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
-            energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
-            energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
+//            GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
+//            energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
+//            energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
             //hard destroy when location can't lerp
-            Destroy(energyTransfer, 2f);
+//            Destroy(energyTransfer, 2f);
             lootDropLocation = obj.transform.position;
         /*    
     }
@@ -361,7 +361,7 @@ public class ProceduralLevel : MonoBehaviour {
                     {
                         if(lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable && locations[series[i]].position == lootDropLocation)
                         {
-                            Debug.Log("Loot in spawn space...");
+                            Debug.Log("Loot in spawn space... don't spawn here again until its collected");
                         }
                         else
                         {

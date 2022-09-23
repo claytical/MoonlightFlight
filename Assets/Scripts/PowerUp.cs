@@ -12,7 +12,8 @@ public class PowerUp : MonoBehaviour
         PassThrough,
         Part,
         Consciousness,
-        Stop
+        Stop,
+        Nuke
     };
 
     public Reward reward;

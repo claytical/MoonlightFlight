@@ -7,32 +7,26 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour
 {
     public Color starColor;
-    public int maxEnergy;
     public ParticleSystem energyCollection;
-    public SpriteRenderer energyOverlay;
-    public float energyUnit;
     public GameObject explosion;
-    public bool poweredUp = false;
+    public bool lootDropped = false;
     public float force;
     public float maxForce;
     public GameObject touchPoint;
     public VehicleType type;
-    public Shield shield;
     public float timeStuck;
-    public GameObject energyTransfer;
     public bool lootAvailable = false;
     public int maxHP;
     public int currentHP;
+    public int lootDropFrequency;
+    private int energyCollected;
 
-
-    private int currentEnergyLevel;
     private List<GameObject> touchPoints;
     private bool canPassThroughObjects;
     private bool isDead;
     private bool deadShip;
     private bool hyperBrake = false;
     private float hyperBrakeTimer;
-    private bool hasPowerup = false;
     public SetInfo set;
     private ProceduralLevel track;
     private float yOffset;
@@ -42,9 +36,8 @@ public class Vehicle : MonoBehaviour
     void Start()
     {
         touchPoints = new List<GameObject>();
-        currentEnergyLevel = 0;
-        energyUnit = (float) maxEnergy / 100;
         GetComponent<SpriteRenderer>().color = starColor;
+        energyCollected = 0;
     }
 
     void OnCollisionStay(Collision collisionInfo)
@@ -52,31 +45,21 @@ public class Vehicle : MonoBehaviour
         timeStuck += Time.deltaTime;
     }
 
-
-    public void powerDown()
-    {
-        currentEnergyLevel = 0;
-        Debug.Log("POWERING DOWN!");
-        SetPassThrough(false);
-        set.PlatformTransparency(false);
-        hasPowerup = false;
-    }
-
     public void addEnergy(int amount)
     {
-        currentEnergyLevel += amount;
-        Color energyColor = energyOverlay.color;
-        energyColor.a = (energyUnit * currentEnergyLevel);
-        energyOverlay.color = energyColor;
-        if (HasFullEnergy() && !hasPowerup) {
+//        currentEnergyLevel += amount;
+ //       Color energyColor = energyOverlay.color;
+ //       energyColor.a = (energyUnit * currentEnergyLevel);
+ //       energyOverlay.color = energyColor;
+//        if (HasFullEnergy() && !hasPowerup) {
             //EVENT #3
-            track.MaxEnergyReached();
-            hasPowerup = true;
-            currentEnergyLevel = 0;
-            energyColor.a = 0;
-            energyOverlay.color = energyColor;
+ //           track.LootDrop();
+ //           hasPowerup = true;
+ //           currentEnergyLevel = 0;
+//            energyColor.a = 0;
+//         energyOverlay.color = energyColor;
 
-        }
+//        }
     }
 
     public void SelfDestruct()
@@ -89,12 +72,13 @@ public class Vehicle : MonoBehaviour
     {
         track = t;
     }
-
+    /*
     public void SetEnergyLevel(int amount)
     {
         currentEnergyLevel = amount;
 
     }
+    */
    
     public void LinkSet(SetInfo s)
     {
@@ -102,13 +86,13 @@ public class Vehicle : MonoBehaviour
         set.SetVehicle(this);
     }
 
-
+    /*
     private void ToggleShield()
     {
         shield.gameObject.SetActive(true);
         shield.Setup();
     }
-
+    */
     public void ApplyHyperBreak()
     {
         hyperBrake = true;
@@ -175,9 +159,10 @@ public class Vehicle : MonoBehaviour
 
         if (coll.gameObject.tag == "Disappearing")
         {
-            if (!HasFullEnergy())
+            energyCollected++;
+            if(energyCollected%lootDropFrequency == 0)
             {
-                addEnergy(1);
+                track.LootDrop();
             }
 
             if (coll.gameObject.GetComponent<Breakable>())
@@ -189,7 +174,7 @@ public class Vehicle : MonoBehaviour
                 if (coll.gameObject.GetComponent<Breakable>().isDead())
                 {
                     //EVENT #1 - BROKE OBJECT
-                    GetComponentInParent<ParkingLot>().PlanetCollected();
+                    GetComponentInParent<ParkingLot>().EnergyCollected();
                     Destroy(coll.gameObject);
 
                 }
@@ -218,14 +203,18 @@ public class Vehicle : MonoBehaviour
                 switch (coll.gameObject.GetComponent<PowerUp>().reward)
                 {
                     case PowerUp.Reward.Shield:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Shields Up!");
-                        ToggleShield();
-                        break;
-                    case PowerUp.Reward.Boundary:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Perimeter Fortified!");
-                        GetComponentInParent<ParkingLot>().boundaries.AddBorders(2);
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Armor Collected!");
+                        int armor = PlayerPrefs.GetInt("armor", 0);
+                        armor++;
+                        PlayerPrefs.SetInt("armor", armor);
 
+                        //                        ToggleShield();
                         break;
+//                    case PowerUp.Reward.Boundary:
+//                        GetComponentInParent<ParkingLot>().GiveFeedback("Perimeter Fortified!");
+//                       GetComponentInParent<ParkingLot>().boundaries.AddBorders(2);
+
+//                        break;
                     case PowerUp.Reward.Part:
                         GetComponentInParent<ParkingLot>().GiveFeedback("Ship Part Located!");
                         int parts = PlayerPrefs.GetInt("parts", 0);
@@ -233,26 +222,33 @@ public class Vehicle : MonoBehaviour
                         PlayerPrefs.SetInt("parts", parts);
                         break;
 
-                    case PowerUp.Reward.PassThrough:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Ship Phasing Enabled!");
-                        SetPassThrough(true);
-                        break;
+//                    case PowerUp.Reward.PassThrough:
+//                        GetComponentInParent<ParkingLot>().GiveFeedback("Ship Phasing Enabled!");
+//                        SetPassThrough(true);
+//                        break;
 
                     case PowerUp.Reward.Consciousness:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Consciousness Elevated");
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Consciousness Elevated!");
                         int consciousness = PlayerPrefs.GetInt("consciousness", 0);
                         consciousness++;
                         PlayerPrefs.SetInt("consciousness", consciousness);
                         break;
                     case PowerUp.Reward.Stop:
-                        ApplyHyperBreak();
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Hyper Brake Activated!");
+                        //                        ApplyHyperBreak();
+                        int brake = PlayerPrefs.GetInt("brake", 0);
+                        brake++;
+                        PlayerPrefs.SetInt("brake", brake);
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Hyper Brake Collected!");
                         break;
-
+                    case PowerUp.Reward.Nuke:
+                        int nukes = PlayerPrefs.GetInt("nukes", 0);
+                        nukes++;
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Nuke Collected!");
+                        break;
                 }
                 Destroy(coll.gameObject);
-                SetEnergyLevel(0);
-                hasPowerup = false;
+//                SetEnergyLevel(0);
+//hasPowerup = false;
             }
 
         }
@@ -312,7 +308,7 @@ public class Vehicle : MonoBehaviour
 
         gameObject.GetComponentInParent<AudioSource>().Play();
     }
-
+    /*
     public bool HasFullEnergy() {
         if(currentEnergyLevel >= maxEnergy)
         {
@@ -320,7 +316,7 @@ public class Vehicle : MonoBehaviour
         }
         return false;
     }
-
+    */
     public void SetPassThrough(bool active)
     {
         Debug.Log("Settting Transparency to " + active);

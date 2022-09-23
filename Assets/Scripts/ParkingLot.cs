@@ -39,7 +39,7 @@ public class ParkingLot : MonoBehaviour
         vehicle.GetComponentInChildren<Vehicle>().SelfDestruct();
 
     }
-    public void PlanetCollected()
+    public void EnergyCollected()
     {
         planetsCollected++;
         GetComponent<AudioSource>().PlayOneShot(energyFx);

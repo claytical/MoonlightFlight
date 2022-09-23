@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: -4515002413601841222}
   - component: {fileID: 68640172745444914}
   m_Layer: 0
-  m_Name: Stop
+  m_Name: Nuke
   m_TagString: Power Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d8b9214f85c4144926062a0bcb2265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 5
+  reward: 6
 --- !u!95 &68640172745444914
 Animator:
   serializedVersion: 3
@@ -483,7 +483,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a7b1c9fb6c37420469d5bd3a235c9dca, type: 3}
-  m_Color: {r: 0.92941177, g: 0.8156863, b: 0.16078432, a: 1}
+  m_Color: {r: 0.92941177, g: 0.16078429, b: 0.2561121, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
