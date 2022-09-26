@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3243015970509696121}
   - component: {fileID: 1728068746}
   - component: {fileID: 3798977711553124710}
+  - component: {fileID: 2302276178744435505}
   m_Layer: 0
   m_Name: Remix Hazard Spinner
   m_TagString: Avoid
@@ -171,7 +172,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 1.92}
+    oldSize: {x: 0.2, y: 0.5}
     newSize: {x: 6.06, y: 6.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -200,3 +201,19 @@ PolygonCollider2D:
       - {x: 0.024999999, y: -0.95}
       - {x: 0.044999998, y: -0.9}
       - {x: 0.065, y: -0.83}
+--- !u!114 &2302276178744435505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660095881296426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5ee3188eaa9874d9195c450cd16cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 2567590292593330884, guid: 7cfef40c3fd6cc44c87f04196a734800,
+    type: 3}
+  respawnTimer: 10
+  lifetime: 0

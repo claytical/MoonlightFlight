@@ -45,12 +45,12 @@ public class ProceduralLevel : MonoBehaviour {
     private int powerUpIndex = 0;
     private int setIndex;
     private Vehicle vehicle;
-    private SetInfo set;
+    public SetInfo set;
     private bool buildingNewSet = false;
     public bool useAnimationForPlatforms = false;
     public float waitTimeForGameOver;
     private float gameOverTime = 9999;
-    private 
+    public RectTransform offLimitTouchPoint; 
 
     // Use this for initialization
     static System.Random rnd = new System.Random();
@@ -75,6 +75,7 @@ public class ProceduralLevel : MonoBehaviour {
         {
             vehicle = lot.DefaultVehicle();
         }
+        vehicle.offLimitTouchPoint = offLimitTouchPoint;
         lootDropLocation = Vector3.zero;      
         Debug.Log("Nerfing Vehicle Force");
 
@@ -243,6 +244,17 @@ public class ProceduralLevel : MonoBehaviour {
 //        fullEnergyLoops.LimitLoopsPlaying(grid);
 
 
+    }
+
+
+    public void DropNuke()
+    {
+        Hazard[] hazards = set.platforms.GetComponentsInChildren<Hazard>();
+        for(int i = 0; i < hazards.Length; i++)
+        {
+            //should 10 second delay be controlled through powerup?
+            hazards[i].gameObject.GetComponent<Explode>().Temporary(10);
+        }
     }
 
     public bool HavePlatformsDisappeared()

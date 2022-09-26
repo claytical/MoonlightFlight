@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3243015970509696121}
   - component: {fileID: 1728068746}
   - component: {fileID: 7641721968901054877}
+  - component: {fileID: 6027128693813527754}
   m_Layer: 0
   m_Name: Remix Avoid
   m_TagString: Avoid
@@ -187,3 +188,19 @@ PolygonCollider2D:
       - {x: 0.07, y: -0.14999999}
       - {x: 0.099999994, y: -0.04}
       - {x: 0.099999994, y: 0.11}
+--- !u!114 &6027128693813527754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660095881296426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5ee3188eaa9874d9195c450cd16cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 2567590292593330884, guid: 7cfef40c3fd6cc44c87f04196a734800,
+    type: 3}
+  respawnTimer: 10
+  lifetime: 0

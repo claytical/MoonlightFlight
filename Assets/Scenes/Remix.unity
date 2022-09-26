@@ -8108,8 +8108,10 @@ MonoBehaviour:
   music: {fileID: 2074439981}
   ProgressPanel: {fileID: 1326047718}
   effectsAudio: {fileID: 312963207}
+  set: {fileID: 0}
   useAnimationForPlatforms: 0
   waitTimeForGameOver: 1
+  offLimitTouchPoint: {fileID: 2051338598}
 --- !u!1001 &313922914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18708,8 +18710,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 751561179}
-  - {fileID: 2051338598}
   - {fileID: 1407815083}
+  - {fileID: 2051338598}
   m_Father: {fileID: 48689788}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18730,7 +18732,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78815e2f9e685a4dbe57dccc8c9fb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 312963208}
   lot: {fileID: 54880737}
+  cargo:
+  - amount: 2
+    cargo: {fileID: 1259161090}
+  - amount: 2
+    cargo: {fileID: 2002728922}
+  powerUpInUse: 0
+  powerUpIndex: 0
+  cargoInUse: {fileID: 1664645457}
 --- !u!4 &741678354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443,
@@ -21647,10 +21658,10 @@ RectTransform:
   m_Father: {fileID: 1259161086}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 10}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &825271451
 MonoBehaviour:
@@ -22558,10 +22569,10 @@ RectTransform:
   m_Father: {fileID: 2002728918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 10}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &849237205
 MonoBehaviour:
@@ -35874,6 +35885,7 @@ GameObject:
   - component: {fileID: 1259161089}
   - component: {fileID: 1259161088}
   - component: {fileID: 1259161087}
+  - component: {fileID: 1259161090}
   m_Layer: 5
   m_Name: Nuke Power Up Equip
   m_TagString: Untagged
@@ -35899,7 +35911,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -250, y: 0}
-  m_SizeDelta: {x: 50, y: 44}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1259161087
 MonoBehaviour:
@@ -35945,9 +35957,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 741082117}
-        m_TargetAssemblyTypeName: UsePowerUps, Assembly-CSharp
-        m_MethodName: SetNukes
+      - m_Target: {fileID: 1259161090}
+        m_TargetAssemblyTypeName: Cargo, Assembly-CSharp
+        m_MethodName: Use
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35970,14 +35982,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.9004603, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cc95a4039c160241951a711854a4c46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b75ade90cf747fe4bbef9405e006fd52, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -35995,6 +36007,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259161085}
   m_CullTransparentMesh: 1
+--- !u!114 &1259161090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259161085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309865a3404e90542b92bf5fd8009e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: 6
+  powerUpControl: {fileID: 741082117}
+  icon: {fileID: 1259161088}
 --- !u!1 &1259719382
 GameObject:
   m_ObjectHideFlags: 0
@@ -41832,7 +41859,7 @@ GameObject:
   - component: {fileID: 1407815085}
   - component: {fileID: 1407815084}
   m_Layer: 5
-  m_Name: Ship Menu
+  m_Name: Ship Controls Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41851,7 +41878,7 @@ RectTransform:
   m_Children:
   - {fileID: 496054029}
   m_Father: {fileID: 741082116}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -59104,6 +59131,7 @@ GameObject:
   - component: {fileID: 2002728921}
   - component: {fileID: 2002728920}
   - component: {fileID: 2002728919}
+  - component: {fileID: 2002728922}
   m_Layer: 5
   m_Name: Brake Power Up Equip
   m_TagString: Untagged
@@ -59129,7 +59157,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -175, y: 0}
-  m_SizeDelta: {x: 50, y: 44}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2002728919
 MonoBehaviour:
@@ -59175,9 +59203,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 741082117}
-        m_TargetAssemblyTypeName: UsePowerUps, Assembly-CSharp
-        m_MethodName: SetBrakes
+      - m_Target: {fileID: 2002728922}
+        m_TargetAssemblyTypeName: Cargo, Assembly-CSharp
+        m_MethodName: Use
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -59200,14 +59228,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8377491, b: 0, a: 1}
+  m_Color: {r: 0.754717, g: 0, b: 0.013190935, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cc95a4039c160241951a711854a4c46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ded52339fb51c04a8f7b4cef30304a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -59225,6 +59253,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002728917}
   m_CullTransparentMesh: 1
+--- !u!114 &2002728922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002728917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309865a3404e90542b92bf5fd8009e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: 5
+  powerUpControl: {fileID: 741082117}
+  icon: {fileID: 2002728920}
 --- !u!1 &2003046158
 GameObject:
   m_ObjectHideFlags: 0
@@ -59956,13 +59999,14 @@ RectTransform:
   - {fileID: 2098939076}
   - {fileID: 2002728918}
   - {fileID: 1259161086}
+  - {fileID: 2116662429}
   m_Father: {fileID: 741082116}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -25, y: 25}
-  m_SizeDelta: {x: 1000, y: 200}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &2058000571
 GameObject:
@@ -61589,6 +61633,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09bee9b77a9f204b99aeaf31dadad81, type: 3}
+--- !u!1 &2116662428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116662429}
+  m_Layer: 5
+  m_Name: Equipped Powerups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2116662429
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116662428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2051338598}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &2120922660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4213040972611002, guid: 3907c2899871bd04991844bb31a506a8,

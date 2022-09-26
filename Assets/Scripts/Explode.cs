@@ -33,12 +33,12 @@ public class Explode : MonoBehaviour
         transform.position = originalPosition;
     }
 
-    public void Temporary()
+    public void Temporary(int spawnDelay)
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         Instantiate(explosion, transform.position, Quaternion.identity);
         transform.position = new Vector3(0, 0, 1000);
-        Invoke("BackToPosition", 1);
+        Invoke("BackToPosition", spawnDelay);
     }
 
     public void Go()

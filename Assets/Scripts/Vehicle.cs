@@ -30,6 +30,7 @@ public class Vehicle : MonoBehaviour
     public SetInfo set;
     private ProceduralLevel track;
     private float yOffset;
+    public RectTransform offLimitTouchPoint;
 
 
     // Start is called before the first frame update
@@ -350,12 +351,26 @@ public class Vehicle : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
 
-            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (Vector2)touchPosition - (Vector2) transform.position;
-            direction.Normalize();
 
-            GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = (Vector2)touchPosition - (Vector2)transform.position;
+            direction.Normalize();
+            
+            if (Input.mousePosition.x > offLimitTouchPoint.offsetMin.x && Input.mousePosition.y < offLimitTouchPoint.offsetMax.y)
+            {
+                //no touch zone
+                Debug.Log("Touch Not Allowed");
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+            }
+            Debug.Log("TOUCH POINT: " + Input.mousePosition + " OFFLIMIT: " + offLimitTouchPoint.position);
+
         }
+
+
+
     }
 
     void CheckTouches()

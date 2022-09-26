@@ -174,7 +174,7 @@ public class SetInfo : MonoBehaviour
             {
                 if(platformsToScaleDown[i].GetComponent<Explode>())
                 {
-                    platformsToScaleDown[i].GetComponent<Explode>().Temporary();
+                    platformsToScaleDown[i].GetComponent<Explode>().Temporary(1);
                 }
             }
             PlatformsFinishedMovingOffScreen();
