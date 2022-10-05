@@ -53,13 +53,21 @@ public class SpawnsObjects : MonoBehaviour
             Debug.Log("Has hazard component...");
             GetComponent<Remix>().identifier.color = GetComponent<Remix>().GetHazardColor();
         }
-        else
+        else 
         {
             GetComponent<Remix>().identifier.color = GetComponent<Remix>().GetOriginalIdentifierColor();
         }
-        GetComponent<Remix>().identifier.gameObject.transform.rotation = Quaternion.identity;
-        GetComponent<Remix>().identifier.flipY = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipY;
-        GetComponent<Remix>().identifier.flipX = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipX;
+        if(GetComponent<Remix>())
+        {
+            GetComponent<Remix>().identifier.gameObject.transform.rotation = Quaternion.identity;
+         if(objectsToSpawn.Length < spawnedObjectIndex)
+            {
+                GetComponent<Remix>().identifier.flipY = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipY;
+                GetComponent<Remix>().identifier.flipX = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipX;
+
+            }
+
+        }
 
 
     }

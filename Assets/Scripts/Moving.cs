@@ -53,6 +53,12 @@ public class Moving : MonoBehaviour {
 		}
 	}
 
+	public Vector2 GetCurrentDirection()
+    {
+		float x = transformToMove.position.x - points[currentPoint].position.x;
+		float y = transformToMove.position.y - points[currentPoint].position.y;
+		return new Vector2(x, y);
+    }
 	
 	// Update is called once per frame
 	void Update () {

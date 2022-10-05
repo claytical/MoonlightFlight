@@ -33,22 +33,24 @@ public class Hazard : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<OneDirection>())
-        {
- //           Debug.Log("Rotating Hazard 90 degrees...");
-//            transform.Rotate(90, 0, 90);
-        }
+
 
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Bumpable")
         {
-            Debug.Log("Hazard Colliding with Bumpable, let's destroy it.");
+            if(transform.parent.GetComponentInChildren<Moving>())
+            {
+                GetComponent<Rigidbody2D>().velocity = transform.parent.GetComponentInChildren<Moving>().GetCurrentDirection();
+            }
+//            GetComponent<Rigidbody2D>().velocity = coll.rigidbody.velocity;
+/*
             if(coll.gameObject.GetComponent<Explode>())
             {
                 coll.gameObject.GetComponent<Explode>().Go();
             }
+*/
         }
         if(coll.gameObject.tag == "Disappearing")
         {

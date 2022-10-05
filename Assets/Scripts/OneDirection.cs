@@ -8,10 +8,19 @@ public class OneDirection : MonoBehaviour
     public bool moveAutomatically;
     public bool reverseDirection = false;
     public Transform[] movementPoints;
+    public RigidbodyConstraints2D movementConstraints;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(movementPoints.Length <= 0)
+        {
+            //moves on its own, needs constraints
+            for(int i = 0; i < GetComponentsInChildren<Platform>().Length; i++)
+            {
+                GetComponentsInChildren<Platform>()[i].constraints = movementConstraints;
+                GetComponentsInChildren<Platform>()[i].SetConstraints();
+            }
+        }
     }
 
     // Update is called once per frame

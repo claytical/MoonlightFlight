@@ -6,6 +6,7 @@ public class Platform : MonoBehaviour
 {
     public bool finished = false;
     public bool canBePushed = false;
+    public bool causesGlitch = false;
     public RigidbodyConstraints2D constraints;
     public float gravity;
     public Vector3 originalScale;
@@ -49,8 +50,11 @@ public class Platform : MonoBehaviour
             if (coll.gameObject.GetComponent<Platform>())
             {
                 Debug.Log("Big Hit, Triggering Animation");
+                if(coll.gameObject.GetComponent<Animator>())
+                {
+                    coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
 
-                coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
+                }
 
             }
         }

@@ -32,7 +32,6 @@ public class Vehicle : MonoBehaviour
     private float yOffset;
     public RectTransform offLimitTouchPoint;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -144,11 +143,32 @@ public class Vehicle : MonoBehaviour
 
     }
 
+    void ResetGlitch()
+    {
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift= 0f;
+
+    }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if(coll.gameObject.GetComponent<Platform>())
+        {
+            Debug.Log("Hitting platform");
+            if(coll.gameObject.GetComponent<Platform>().causesGlitch) {
+                Debug.Log("Causes glitch");
+                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = .75f;
+                Invoke("ResetGlitch", .15f);
 
+            }
 
+        }
+        /*
+         * if(GetComponentInParent<Animator>())
+                {
+
+                    GetComponentInParent<Animator>().SetTrigger("glitch");
+                }
+        */
         if (coll.gameObject.GetComponent<SpawnsObjects>())
         {
             if (coll.gameObject.GetComponent<SpawnsObjects>().collisionCausesSpawn)
