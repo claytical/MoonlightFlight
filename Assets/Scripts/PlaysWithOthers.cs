@@ -14,7 +14,7 @@ public class PlaysWithOthers : MonoBehaviour
 
         if (canBeDestroyed)
         {
-            if (coll.gameObject.GetComponent<Hazard>())
+            if(gameObject.GetComponent<Explode>())
             {
                 GetComponent<Explode>().Go();
             }

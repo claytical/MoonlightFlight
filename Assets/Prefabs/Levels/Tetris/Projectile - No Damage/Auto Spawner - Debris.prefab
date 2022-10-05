@@ -121,6 +121,7 @@ Transform:
   - {fileID: 4470546073009318}
   - {fileID: 1287173609133936399}
   - {fileID: 6682483232278231785}
+  - {fileID: 5168340295679172862}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -243,9 +244,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finished: 0
   canBePushed: 0
-  canTurnHazardous: 0
+  causesGlitch: 0
   constraints: 0
   gravity: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  scaledDown: 0
+  scaledUp: 0
 --- !u!114 &8143086062404273585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e097fd62730ca469772eff2435b326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 0}
   border: {fileID: 212375929196836916}
   identifier: {fileID: 212053718670736404}
   subidentifier: {fileID: 4912759026394618453}
@@ -299,6 +304,7 @@ MonoBehaviour:
   numberOfSpawnsBeforeSelfDestruct: 5
   objectsToSpawn:
   - {fileID: 1781116594832268, guid: 80d99f2ce10a37648be60d7e78e732e9, type: 3}
+  spawnPoint: {fileID: 4978159151083276947}
 --- !u!58 &4096955615138707857
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -314,7 +320,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.5
 --- !u!1 &20066180494138630
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,3 +486,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4978159151083276947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5168340295679172862}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5168340295679172862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978159151083276947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4213040972611002}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

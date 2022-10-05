@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
@@ -158,9 +158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
-  border: {fileID: 212375929196836916}
+  border: {fileID: 0}
   identifier: {fileID: 0}
-  subidentifier: {fileID: 0}
+  subidentifier: {fileID: 212375929196836916}
   box: {fileID: 0}
   energy: {fileID: 0}
   ship: {fileID: 0}
@@ -246,14 +246,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781116594832268}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 457100d3c1e46a8449c70feacf404f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   finished: 0
   canBePushed: 0
-  causesGlitch: 0
+  causesGlitch: 1
   constraints: 0
   gravity: 0
   originalScale: {x: 0, y: 0, z: 0}

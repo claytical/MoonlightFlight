@@ -18,10 +18,14 @@ public class SpawnsObjects : MonoBehaviour
     private int spawnedObjectIndex = 0;
     private int numberOfObjectsSpawned = 0;
     private Vector3 spawnTimerSpawnPosition;
+    private Color flashColor;
+    private Color standardColor;
 
     // Start is called before the first frame update
     void Start()
     {
+
+
         if (!spawnPoint)
         {
             spawnPoint = this.gameObject;
@@ -38,6 +42,7 @@ public class SpawnsObjects : MonoBehaviour
             spawnTimerSpawnPosition = timeCircle.transform.position;
         }
 
+
     }
     public GameObject NextSpawnedObject()
     {
@@ -47,7 +52,6 @@ public class SpawnsObjects : MonoBehaviour
     void SetNextSpawnedItem()
     {
         GetComponent<Remix>().identifier.sprite = objectsToSpawn[spawnedObjectIndex].GetComponent<Standard>().icon;
-
         if (objectsToSpawn[spawnedObjectIndex].GetComponent<Hazard>())
         {
             Debug.Log("Has hazard component...");
@@ -80,8 +84,15 @@ public class SpawnsObjects : MonoBehaviour
             float timeLeft = nextSpawnTime - Time.time;
 
             Vector3 circlePos = transform.position;
+            //Spawning Up
+            /*
             circlePos.y = circlePos.y + ( (Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI / 2)) * .7f));
             circlePos.x = circlePos.x + ( (Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI / 2)) * .7f));
+            */
+            //Spawning Down?
+            circlePos.y = circlePos.y + ((Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
+            circlePos.x = circlePos.x + ((Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
+
 
             float distance = Vector3.Distance(circlePos, spawnTimerSpawnPosition);
             timeCircle.transform.position = circlePos;
@@ -100,12 +111,24 @@ public class SpawnsObjects : MonoBehaviour
 
     }
 
+    private void turnOnCollision()
+    {
+        GetComponent<Platform>().TurnOnCollision();
+    }
+
     public void SpawnObject()
     {
-
-            if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
+        if(GetComponent<Animator>())
+        {
+            GetComponent<Animator>().SetTrigger("hit");
+        }
+        if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
             {
-            
+                if(GetComponent<Platform>())
+            {
+                GetComponent<Platform>().TurnOffCollision();
+                Invoke("turnOnCollision", 1);
+            }
                 GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], spawnPoint.transform.position, objectsToSpawn[spawnedObjectIndex].transform.rotation, transform.parent);
                 go.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.down);
                 spawnedObjects.Add(go);
