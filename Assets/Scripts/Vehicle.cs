@@ -76,6 +76,7 @@ public class Vehicle : MonoBehaviour
             if(GetComponent<Rigidbody2D>())
             {
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GetComponent<Rigidbody2D>().isKinematic = true;
                 TurnOffCollision();                
             }
         }
@@ -84,6 +85,8 @@ public class Vehicle : MonoBehaviour
             if(GetComponent<Rigidbody2D>())
             {
                 TurnOnCollision();
+                GetComponent<Rigidbody2D>().isKinematic = false;
+
             }
         }
     }
@@ -186,6 +189,8 @@ public class Vehicle : MonoBehaviour
             if(coll.gameObject.GetComponent<Platform>().causesGlitch) {
                 Debug.Log("Causes glitch");
                 Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = .75f;
+//                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = .5f;
+
                 Invoke("ResetGlitch", .15f);
 
             }

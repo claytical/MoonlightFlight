@@ -35,6 +35,7 @@ public class ProceduralLevel : MonoBehaviour {
     public ProceduralMusic music;
     public GameObject warpMenu;
     public GameObject outpostLocation;
+    private Vector3 originalPosition;
     private bool warping = false;
     private bool warpingBack = false;
 
@@ -115,6 +116,7 @@ public class ProceduralLevel : MonoBehaviour {
     public void Warp()
     {
         lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(true);
+        originalPosition = Camera.main.transform.position;
         warping = true;
         warpingBack = false;
     }
@@ -193,7 +195,7 @@ public class ProceduralLevel : MonoBehaviour {
 
         if(warpingBack)
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, Vector3.zero, Time.deltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, originalPosition, Time.deltaTime);
         }
 
         ScanForCompletion();
