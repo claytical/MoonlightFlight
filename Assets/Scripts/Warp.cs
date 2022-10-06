@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class Warp : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public ProceduralLevel level;
+    
+
     void Start()
     {
-        ParticleSystem exp = GetComponent<ParticleSystem>();
-        exp.Play();
-        Destroy(gameObject, exp.main.duration * 2f);
+        Time.timeScale = 0;    
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+    }
+    public void Disengage()
+    {
+        Time.timeScale = 1f;
+        gameObject.SetActive(false);
+    }
+
+    public void Outpost()
+    {
+        //activate cosmic
+        //move camera away from game space
+        level.Warp();
+        //turn off menu
+        gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

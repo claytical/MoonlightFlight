@@ -13,7 +13,8 @@ public class PowerUp : MonoBehaviour
         Part,
         Consciousness,
         Stop,
-        Nuke
+        Nuke,
+        Warp
     };
 
     public Reward reward;

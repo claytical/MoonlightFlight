@@ -33,6 +33,11 @@ public class ProceduralLevel : MonoBehaviour {
     public Text failureMessage;
     public ParkingLot lot;
     public ProceduralMusic music;
+    public GameObject warpMenu;
+    public GameObject outpostLocation;
+    private bool warping = false;
+    private bool warpingBack = false;
+
 
     public GameObject ProgressPanel;
 
@@ -107,7 +112,19 @@ public class ProceduralLevel : MonoBehaviour {
 //        set.GetComponent<ProceduralInfo>().start.TransitionTo(0);
 
     }
+    public void Warp()
+    {
+        lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(true);
+        warping = true;
+        warpingBack = false;
+    }
 
+    public void WarpBack()
+    {
+        warping = false;
+        warpingBack = true;
+        lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(false);
+    }
     public void LootDrop()
     {
         lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable = true;
@@ -168,7 +185,18 @@ public class ProceduralLevel : MonoBehaviour {
     }
 
     void Update () {
-            ScanForCompletion();
+        if (warping)
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, outpostLocation.transform.position, Time.deltaTime);
+            Debug.Log("Warping to outpost...");
+        }
+
+        if(warpingBack)
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, Vector3.zero, Time.deltaTime);
+        }
+
+        ScanForCompletion();
             if(useAnimationForPlatforms)
             {
                 if (buildingNewSet)

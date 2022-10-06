@@ -45,22 +45,6 @@ public class Vehicle : MonoBehaviour
         timeStuck += Time.deltaTime;
     }
 
-    public void addEnergy(int amount)
-    {
-//        currentEnergyLevel += amount;
- //       Color energyColor = energyOverlay.color;
- //       energyColor.a = (energyUnit * currentEnergyLevel);
- //       energyOverlay.color = energyColor;
-//        if (HasFullEnergy() && !hasPowerup) {
-            //EVENT #3
- //           track.LootDrop();
- //           hasPowerup = true;
- //           currentEnergyLevel = 0;
-//            energyColor.a = 0;
-//         energyOverlay.color = energyColor;
-
-//        }
-    }
 
     public void SelfDestruct()
     {
@@ -72,13 +56,6 @@ public class Vehicle : MonoBehaviour
     {
         track = t;
     }
-    /*
-    public void SetEnergyLevel(int amount)
-    {
-        currentEnergyLevel = amount;
-
-    }
-    */
    
     public void LinkSet(SetInfo s)
     {
@@ -86,18 +63,70 @@ public class Vehicle : MonoBehaviour
         set.SetVehicle(this);
     }
 
-    /*
-    private void ToggleShield()
-    {
-        shield.gameObject.SetActive(true);
-        shield.Setup();
-    }
-    */
     public void ApplyHyperBreak()
     {
         hyperBrake = true;
         hyperBrakeTimer = Time.time + 1f;
     }
+
+    public void Stasis(bool active)
+    {
+        if(active)
+        {
+            if(GetComponent<Rigidbody2D>())
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                TurnOffCollision();                
+            }
+        }
+        else
+        {
+            if(GetComponent<Rigidbody2D>())
+            {
+                TurnOnCollision();
+            }
+        }
+    }
+
+    public void TurnOffCollision()
+    {
+        if (GetComponent<BoxCollider2D>())
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+
+        }
+        if (GetComponent<CircleCollider2D>())
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+        }
+
+        if (GetComponent<PolygonCollider2D>())
+        {
+            GetComponent<PolygonCollider2D>().enabled = false;
+        }
+
+    }
+
+    public void TurnOnCollision()
+    {
+        if (GetComponent<BoxCollider2D>())
+        {
+            GetComponent<BoxCollider2D>().enabled = true;
+
+        }
+
+        if (GetComponent<CircleCollider2D>())
+        {
+            GetComponent<CircleCollider2D>().enabled = true;
+        }
+
+        if (GetComponent<PolygonCollider2D>())
+        {
+            GetComponent<PolygonCollider2D>().enabled = true;
+        }
+
+    }
+
     void FixedUpdate()
     {
         CheckControl();
@@ -265,6 +294,11 @@ public class Vehicle : MonoBehaviour
                         int nukes = PlayerPrefs.GetInt("nukes", 0);
                         nukes++;
                         GetComponentInParent<ParkingLot>().GiveFeedback("Nuke Collected!");
+                        break;
+                    case PowerUp.Reward.Warp:
+                        //activate warp menu
+                        track.warpMenu.SetActive(true);
+                        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                         break;
                 }
                 Destroy(coll.gameObject);
