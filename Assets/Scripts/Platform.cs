@@ -122,6 +122,7 @@ public class Platform : MonoBehaviour
     {
         //CALLED IN INITIAL ANIMATION
         finished = true;
+        TurnOnCollision();
 
     }
 

@@ -17,8 +17,10 @@ GameObject:
   - component: {fileID: 7641721968901054877}
   - component: {fileID: 6027128693813527754}
   - component: {fileID: 7755691972133965818}
+  - component: {fileID: 9075981024634378453}
+  - component: {fileID: 8052657577761218681}
   m_Layer: 0
-  m_Name: Remix Avoid
+  m_Name: Remix Avoid Projectile
   m_TagString: Avoid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,8 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 2567590292593330884, guid: 7cfef40c3fd6cc44c87f04196a734800,
     type: 3}
-  respawnTimer: 10
-  lifetime: 0
+  respawnTimer: 0
+  lifetime: 10
 --- !u!114 &7755691972133965818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +223,39 @@ MonoBehaviour:
   canBePushed: 0
   causesGlitch: 1
   constraints: 0
-  gravity: 0
+  gravity: 1
   originalScale: {x: 0, y: 0, z: 0}
   scaledDown: 0
   scaledUp: 0
+--- !u!114 &9075981024634378453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660095881296426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476e46ed1c21ae946806f3b695278ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: c34eb8ee04629924a99d709325d2a0a3, type: 3}
+--- !u!95 &8052657577761218681
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660095881296426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ca6cad7eb4002d498eb4fbf854145f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

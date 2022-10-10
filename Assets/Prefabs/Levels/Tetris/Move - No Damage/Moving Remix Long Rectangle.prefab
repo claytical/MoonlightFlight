@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0.1}
-  moveAutomatically: 1
+  moveAutomatically: 0
   reverseDirection: 1
   movementPoints: []
-  movementConstraints: 0
+  movementConstraints: 6
 --- !u!1001 &247857581263407126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +130,11 @@ PrefabInstance:
     - target: {fileID: 212375929196836916, guid: 9ab20dd8deadbc543ba122106aa70443,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554655276532109239, guid: 9ab20dd8deadbc543ba122106aa70443,
+        type: 3}
+      propertyPath: canSpawnItems
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -221,6 +226,11 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5554655276532109239, guid: 9ab20dd8deadbc543ba122106aa70443,
+        type: 3}
+      propertyPath: canSpawnItems
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ab20dd8deadbc543ba122106aa70443, type: 3}
 --- !u!4 &2727698310262788154 stripped
@@ -308,6 +318,11 @@ PrefabInstance:
     - target: {fileID: 212375929196836916, guid: 9ab20dd8deadbc543ba122106aa70443,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554655276532109239, guid: 9ab20dd8deadbc543ba122106aa70443,
+        type: 3}
+      propertyPath: canSpawnItems
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

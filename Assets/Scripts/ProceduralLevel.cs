@@ -187,6 +187,7 @@ public class ProceduralLevel : MonoBehaviour {
     }
 
     void Update () {
+        Debug.Log("Building Next Set: " + buildingNewSet);
         if (warping)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, outpostLocation.transform.position, Time.deltaTime);
@@ -201,10 +202,12 @@ public class ProceduralLevel : MonoBehaviour {
         ScanForCompletion();
             if(useAnimationForPlatforms)
             {
+            Debug.Log("Using Animation For Platforms...");
                 if (buildingNewSet)
                 {
                     if (HavePlatformsDisappeared())
                     {
+                    Debug.Log("Platforms have disappeared!");
                         BuildNextSet();
                     }
                 }
@@ -334,10 +337,12 @@ public class ProceduralLevel : MonoBehaviour {
             {
                 if (gos.Length == 0 && setCount >= set.sets)
                 {
+                    Debug.Log("CALLING BUILD NEXT SET!");
                     BuildNextSet();
                 }
                 else if(gos.Length == 0 && setCount < set.sets)
                 {
+                    Debug.Log("MORE SETS!");
                     setCount++;
                     CreateRandomSetOfBreakables(set.numberOfObjectsToPlace);
 

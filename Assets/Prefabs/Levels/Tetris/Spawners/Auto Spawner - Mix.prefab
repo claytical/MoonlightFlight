@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2126857193436466695}
   - component: {fileID: 6949826718333170755}
   m_Layer: 0
-  m_Name: Auto Spawner - Hazard Square Mix
+  m_Name: Auto Spawner - Mix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -92,22 +92,19 @@ public class ProceduralMusic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if(shake > 0)
         {
             Vector3 newCameraPosition = Random.insideUnitSphere * shakeAmount;
             newCameraPosition.z = Camera.main.transform.localPosition.z;
             Camera.main.transform.localPosition = newCameraPosition;
-            shake -= Time.deltaTime * decreaseFactor;
+            shake -= .01f * decreaseFactor;
         }
         else
         {
             shake = 0;
         }
-
         if(transitioning)
         {
-
             if(!loops[previousLoopIndex].isPlaying) {
                 Debug.Log("STARTING NEW TRACK! #" + loopIndex);
                 //track 1 stopped (previousLoopIndex = 0)
@@ -147,6 +144,6 @@ public class ProceduralMusic : MonoBehaviour
                 //   Debug.Log("PREVIOUS TRACK STILL PLAYING");
             }
         }
-        
+
     }
 }
