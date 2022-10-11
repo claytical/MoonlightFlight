@@ -191,10 +191,24 @@ public class Vehicle : MonoBehaviour
             Debug.Log("Hitting platform");
             if(coll.gameObject.GetComponent<Platform>().causesGlitch) {
                 Debug.Log("Causes glitch");
-                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = glitchAmount;
-//                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = .5f;
+                if(coll.gameObject.GetComponent<Hazard>())
+                {
+                    //hazard glitch
+                    Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = glitchAmount * 2f;
+                    Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = glitchAmount;
+                    Invoke("ResetGlitch", .1f);
 
-                Invoke("ResetGlitch", .01f);
+                }
+                else
+                {
+                    //standard bump glitch
+                    Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = glitchAmount;
+                    Invoke("ResetGlitch", .05f);
+
+                }
+
+                //                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = .5f;
+
 
             }
 
@@ -435,7 +449,6 @@ public class Vehicle : MonoBehaviour
             {
                 GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
             }
-            Debug.Log("TOUCH POINT: " + Input.mousePosition + " OFFLIMIT: " + offLimitTouchPoint.position);
 
         }
 

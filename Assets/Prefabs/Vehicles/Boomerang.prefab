@@ -5277,8 +5277,9 @@ MonoBehaviour:
   timeStuck: 0
   lootAvailable: 0
   maxHP: 20
+  glitchAmount: 0.1
   currentHP: 2
-  lootDropFrequency: 2
+  lootDropFrequency: 20
   set: {fileID: 0}
   offLimitTouchPoint: {fileID: 0}
 --- !u!60 &3132316157305801126

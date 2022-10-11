@@ -7,6 +7,7 @@ public class Hazard : MonoBehaviour
     public bool randomGravity;
     public int timeUntilDestroy;
     private float timeCreated;
+    private Color color;
 
     // Use this for initialization
     void Start()
@@ -36,8 +37,24 @@ public class Hazard : MonoBehaviour
 
 
     }
+
+    void ResetColor()
+    {
+        color.a = 1;
+        GetComponent<SpriteRenderer>().color = color;
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if(GetComponent<SpriteRenderer>())
+        {
+            color = GetComponent<SpriteRenderer>().color;
+            Color newColor = color;
+            newColor.a = color.a * .5f;
+            GetComponent<SpriteRenderer>().color = newColor;
+            Invoke("ResetColor", .1f);
+        }
+
         if (coll.gameObject.tag == "Bumpable")
         {
             if(transform.parent.GetComponentInChildren<Moving>())

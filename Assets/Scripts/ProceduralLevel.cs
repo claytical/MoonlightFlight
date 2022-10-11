@@ -133,12 +133,24 @@ public class ProceduralLevel : MonoBehaviour {
 
 
         int total = 0;
-        int[] lootRange = new int[availableLoot.Length];
+        Loot[] drop;
 
-
-        for(int i = 0; i < availableLoot.Length; i++)
+        if(set.availableLoot.Length > 0)
         {
-            total += availableLoot[i].weight;
+            Debug.Log("This pattern has special loot");
+            drop = set.availableLoot;
+        }
+        else
+        {
+            Debug.Log("No pattern loot found, using generics");
+            drop = availableLoot;
+        }
+
+        int[] lootRange = new int[drop.Length];
+
+        for (int i = 0; i < drop.Length; i++)
+        {
+            total += drop[i].weight;
             lootRange[i] = total;
         }
 
@@ -164,7 +176,7 @@ public class ProceduralLevel : MonoBehaviour {
         if (!locations[powerUpIndex].GetComponent<PowerUp>())
         {
         */
-            GameObject obj = Instantiate(availableLoot[selectedLoot].item, lastEnergyCollectionPosition, Quaternion.identity, transform);
+            GameObject obj = Instantiate(drop[selectedLoot].item, lastEnergyCollectionPosition, Quaternion.identity, transform);
 //            GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
 //            energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
 //            energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
@@ -187,7 +199,6 @@ public class ProceduralLevel : MonoBehaviour {
     }
 
     void Update () {
-        Debug.Log("Building Next Set: " + buildingNewSet);
         if (warping)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, outpostLocation.transform.position, Time.deltaTime);

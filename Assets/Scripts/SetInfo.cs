@@ -13,6 +13,7 @@ public class SetInfo : MonoBehaviour
 
     public GameObject spawnLocations;
     public GameObject platforms;
+    public Loot[] availableLoot;
     public GameObject[] breakables;
     public List<ObjectRespawn> objectsToRespawn;
     public int numberOfObjectsToPlace;
@@ -188,7 +189,6 @@ public class SetInfo : MonoBehaviour
                 currentNumberOfPlatformsToScale++;
                 for (int i = 0; i < platformsToScaleUp.Length; i++) {
                     platformsToScaleUp[i].transform.localScale = Vector3.Lerp(platformsToScaleUp[i].transform.localScale, platformsToScaleUp[i].originalScale, .1f);
-                    Debug.Log("Scaling Platform " + platformsToScaleUp[i].name + platformsToScaleUp[i].transform.localScale + " / " + platformsToScaleUp[i].originalScale + " LERP: " + Vector3.Lerp(platformsToScaleUp[i].transform.localScale, platformsToScaleUp[i].originalScale, Time.deltaTime));
 
                 if (platformsToScaleUp[i].transform.localScale == platformsToScaleUp[i].originalScale)
                     {
