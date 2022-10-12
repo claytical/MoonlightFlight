@@ -61,29 +61,8 @@ public class Hazard : MonoBehaviour
             {
                 GetComponent<Rigidbody2D>().velocity = transform.parent.GetComponentInChildren<Moving>().GetCurrentDirection();
             }
-//            GetComponent<Rigidbody2D>().velocity = coll.rigidbody.velocity;
-/*
-            if(coll.gameObject.GetComponent<Explode>())
-            {
-                coll.gameObject.GetComponent<Explode>().Go();
-            }
-*/
         }
-        if(coll.gameObject.tag == "Disappearing")
-        {
 
-            //SELF DESTRUCTING HAZARDS?
-/*
-            if(gameObject.tag == "Avoid")
-            {
-                GetComponent<Animator>().SetTrigger("destroy");
-            }
-*/
-            if (coll.gameObject.GetComponent<Breakable>())
-            {
-
-            }
-        }
     }
 
     public void TurnOffCollider()
@@ -94,11 +73,6 @@ public class Hazard : MonoBehaviour
     public void TurnOnCollider()
     {
         GetComponent<PolygonCollider2D>().enabled = true;
-    }
-
-    public void Disappear()
-    {
-        Destroy(gameObject);
     }
 }
 

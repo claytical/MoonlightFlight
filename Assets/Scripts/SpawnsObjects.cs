@@ -11,6 +11,7 @@ public class SpawnsObjects : MonoBehaviour
     public int numberOfSpawnsBeforeSelfDestruct;
     public GameObject[] objectsToSpawn;
     public GameObject spawnPoint;
+    public Vector2 velocity;
 
     private Color originalIdentifierColor;
     private List<GameObject> spawnedObjects;
@@ -84,17 +85,26 @@ public class SpawnsObjects : MonoBehaviour
             float timeLeft = nextSpawnTime - Time.time;
 
             Vector3 circlePos = transform.position;
+            float rotatedAngle = Mathf.Deg2Rad * 90;// -Mathf.PI;// * 1.5f;
+            rotatedAngle += Mathf.Deg2Rad * transform.rotation.eulerAngles.z;
+            float scalar = .7f;
+
             //Spawning Up
             /*
             circlePos.y = circlePos.y + ( (Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI / 2)) * .7f));
             circlePos.x = circlePos.x + ( (Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI / 2)) * .7f));
             */
             //Spawning Down?
-            circlePos.y = circlePos.y + ((Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
-            circlePos.x = circlePos.x + ((Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
+//            circlePos.y = circlePos.y + ( (Mathf.Sin (2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
+//            circlePos.x = circlePos.x + ( (Mathf.Cos (2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
+
+            circlePos.y = circlePos.y + ((Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (rotatedAngle)) * .7f));
+
+            circlePos.x = circlePos.x + ((Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (rotatedAngle)) * scalar));
 
 
-            float distance = Vector3.Distance(circlePos, spawnTimerSpawnPosition);
+
+            //            float distance = Vector3.Distance(circlePos, spawnTimerSpawnPosition);
             timeCircle.transform.position = circlePos;
 
         }
@@ -151,9 +161,13 @@ public class SpawnsObjects : MonoBehaviour
                     Debug.Log("Blowing up platform...");
                     GetComponent<Explode>().Go();
                 }
-
+                else
+            {
                 Destroy(gameObject);
+
             }
+
+        }
 
 
             spawnedObjectIndex++;

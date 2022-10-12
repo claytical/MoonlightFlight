@@ -116,7 +116,7 @@ public class Platform : MonoBehaviour
     }
 
     public void Disappear() {
-        Destroy(this.gameObject);
+            Destroy(this.gameObject);
     }
     public void Finished()
     {

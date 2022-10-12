@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -4763407499782392751}
   - component: {fileID: 4725627676587874216}
   m_Layer: 0
-  m_Name: Debris - Standard Gravity
+  m_Name: Debris - Reverse Gravity
   m_TagString: Bumpable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 0.35
+  m_GravityScale: -0.35
   m_Material: {fileID: 6200000, guid: a1e5fc4448022ad489823a76a757baf2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1

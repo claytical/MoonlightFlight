@@ -23,7 +23,14 @@ public class SpawnedObject : MonoBehaviour
 
         if (Time.time >= lifeTime && lifeTime != 9999)
         {
-            Destroy(this.gameObject);
+            if(GetComponent<Explode>())
+            {
+                GetComponent<Explode>().Go();
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 
