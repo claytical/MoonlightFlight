@@ -63,16 +63,20 @@ public class Moving : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (points.Count > 1) {
-			transformToMove.position = Vector2.MoveTowards (transformToMove.position, points [currentPoint].position, speed * Time.deltaTime);
-            if (Vector2.Distance(transformToMove.position, points[currentPoint].position) < 0.001f)
+			if(transformToMove)
             {
-                currentPoint++;
-                if (currentPoint == points.Count)
-                {
-                    currentPoint = 0;
-                }
-				//				transform.right = points[currentPoint].position - transform.position;
-				SetMovementDirection();
+				transformToMove.position = Vector2.MoveTowards(transformToMove.position, points[currentPoint].position, speed * Time.deltaTime);
+				if (Vector2.Distance(transformToMove.position, points[currentPoint].position) < 0.001f)
+				{
+					currentPoint++;
+					if (currentPoint == points.Count)
+					{
+						currentPoint = 0;
+					}
+					//				transform.right = points[currentPoint].position - transform.position;
+					SetMovementDirection();
+				}
+
 			}
 		}
 	}

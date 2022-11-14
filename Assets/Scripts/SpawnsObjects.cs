@@ -166,8 +166,9 @@ public class SpawnsObjects : MonoBehaviour
                 Destroy(gameObject);
 
             }
-
+                
         }
+
 
 
             spawnedObjectIndex++;
@@ -177,7 +178,6 @@ public class SpawnsObjects : MonoBehaviour
                 spawnedObjectIndex = 0;
             }
             SetNextSpawnedItem();
-
         }
 
 }

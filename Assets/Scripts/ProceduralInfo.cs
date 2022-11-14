@@ -16,11 +16,10 @@ public class ProceduralInfo : MonoBehaviour
 
     public SetInfo SetNextSet()
     {
-        Debug.Log("SET COUNT: " + nextSets.Length);
 
         if (nextSets.Length > 1)
         {
-            selectedSetIndex = Random.Range(0, nextSets.Length);
+            selectedSetIndex = PickWeightedSet();
             SetInfo _nextSet = nextSets[selectedSetIndex];
             //in case the next set hasn't been set on this object
             nextSet = _nextSet;
@@ -33,6 +32,43 @@ public class ProceduralInfo : MonoBehaviour
             nextSet = nextSets[0];
             return nextSets[0];            
         }
+    }
+
+
+    public int PickWeightedSet()
+    {
+        int[] setRange = new int[nextSets.Length];
+        int total = 0;
+        for (int i = 0; i < nextSets.Length; i++)
+        {
+            if(nextSets[i].weight <= 0)
+            {
+                //don't let the value go less than 1
+                nextSets[i].weight = 1;
+            }
+            total += nextSets[i].weight;
+            setRange[i] = total;
+        }
+
+        int roll = Random.Range(0, total);
+        int selectedSet = -1;
+
+        for (int i = 1; i <= setRange.Length; i++)
+        {
+            if (roll > setRange[i - 1] && roll < setRange[i])
+            {
+                selectedSet = i;
+            }
+        }
+
+        if (selectedSet == -1)
+        {
+            selectedSet = 0;
+        }
+
+        //decrease the chance of the next set being chosen
+        nextSets[selectedSet].weight--;
+        return selectedSet;
     }
 
     // Update is called once per frame

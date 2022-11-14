@@ -8,10 +8,14 @@ public class Hazard : MonoBehaviour
     public int timeUntilDestroy;
     private float timeCreated;
     private Color color;
-
+    public float scaleSpeed = .1f;
+    private float scaleDirection = -1;
+    private bool scaling = false;
+    private Vector3 originalScale;
     // Use this for initialization
     void Start()
     {
+        originalScale = transform.localScale;
         timeCreated = Time.time;
         if(randomGravity)
         {
@@ -34,7 +38,28 @@ public class Hazard : MonoBehaviour
 
     void Update()
     {
+        if(scaling)
+        {
+            Debug.Log("Scaling: " + scaleDirection);
+            Vector3 newScale = new Vector3();
 
+            newScale.x = transform.localScale.x + (scaleSpeed * scaleDirection);
+            newScale.y = transform.localScale.y + (scaleSpeed * scaleDirection);
+            newScale.z = transform.localScale.z + (scaleSpeed * scaleDirection);
+            transform.localScale = newScale;
+            Debug.Log("Scaling: " + scaleDirection + " SCALE: " + newScale + "T SCALE: " + transform.localScale);
+
+            if (newScale.x <= 0)
+            {
+                scaleDirection *= -1;
+            }
+            if(newScale.x >= originalScale.x)
+            {
+                scaleDirection *= -1;
+                scaling = false;
+                transform.localScale = originalScale;
+            }
+        }
 
     }
 
@@ -46,14 +71,22 @@ public class Hazard : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if(GetComponent<Animator>())
+        {
+            GetComponent<Animator>().enabled = false;
+
+        }
+        scaling = true;
         if(GetComponent<SpriteRenderer>())
         {
+            /*
             color = GetComponent<SpriteRenderer>().color;
             Color newColor = color;
             newColor.a = color.a * .5f;
             GetComponent<SpriteRenderer>().color = newColor;
             Invoke("ResetColor", .1f);
-        }
+        */
+            }
 
         if (coll.gameObject.tag == "Bumpable")
         {

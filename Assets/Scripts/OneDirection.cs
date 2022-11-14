@@ -9,6 +9,7 @@ public class OneDirection : MonoBehaviour
     public bool reverseDirection = false;
     public Transform[] movementPoints;
     public RigidbodyConstraints2D movementConstraints;
+    public SpriteRenderer directionIcon;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,10 @@ public class OneDirection : MonoBehaviour
             {
                 GetComponentsInChildren<Platform>()[i].constraints = movementConstraints;
                 GetComponentsInChildren<Platform>()[i].SetConstraints();
+                if(GetComponentsInChildren<Platform>()[i].constraints.HasFlag(RigidbodyConstraints2D.FreezePositionY))
+                {
+                    directionIcon.transform.Rotate(0,0,90);
+                }
             }
         }
     }
@@ -52,15 +57,15 @@ public class OneDirection : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(GetComponent<Rigidbody2D>())
-        {
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            if (reverseDirection)
+            if (GetComponent<Rigidbody2D>())
             {
-                direction *= -1;
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                if (reverseDirection)
+                {
+                    direction *= -1;
+                }
+                GetComponent<Rigidbody2D>().AddForce(direction * 10f, ForceMode2D.Force);
             }
-            GetComponent<Rigidbody2D>().AddForce(direction * 10f, ForceMode2D.Force);
-        }
 
     }
 

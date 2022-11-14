@@ -25,9 +25,15 @@ public class SetInfo : MonoBehaviour
     private bool movingOffScreenInProgress = false;
     private bool movingOnScreenInProgress = false;
 
+    //TODO: Set Weight
+
+    public int weight = 10;
+
+
     //remaining spaces to populate
 
     // Start is called before the first frame update
+
 
     void Start()
     {

@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomGravity: 0
   timeUntilDestroy: 1
+  scaleSpeed: 0.075
 --- !u!50 &6484304613994706768
 Rigidbody2D:
   serializedVersion: 4

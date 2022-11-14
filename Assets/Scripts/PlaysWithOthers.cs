@@ -21,7 +21,8 @@ public static class Rigidbody2DExt
             explosionDir.y += upwardsModifier;
             explosionDir.Normalize();
         }
-
+        Debug.Log("EXPLOSION FORCE: " + explosionForce);
+ 
         rb.AddForce(Mathf.Lerp(0, explosionForce, (1 - explosionDistance)) * explosionDir, mode);
     }
 }
@@ -52,7 +53,6 @@ public class PlaysWithOthers : MonoBehaviour
             {
                 if(canSpawnItems)
                 {
-
                     coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
 
                 }
@@ -92,6 +92,7 @@ public class PlaysWithOthers : MonoBehaviour
                 if (gameObject.GetComponentInParent<OneDirection>().reverseDirection)
                 {
                     gameObject.GetComponentInParent<OneDirection>().direction.x *= -1;
+                    gameObject.GetComponentInParent<OneDirection>().direction.y *= -1;
                 }
                 Debug.Log("game object:" + gameObject.name);
                 gameObject.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponentInParent<OneDirection>().direction * 100f, ForceMode2D.Force);

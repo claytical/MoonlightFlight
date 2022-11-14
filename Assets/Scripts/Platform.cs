@@ -91,9 +91,12 @@ public class Platform : MonoBehaviour
 
             if (coll.gameObject.GetComponent<Breakable>().isDead())
             {
-                //EVENT #1 - BROKE OBJECT
 
-                GetComponent<Remix>().level.lot.EnergyCollected();
+                //NO REWARD FOR DEBRIS / HAZARD COLLECTING ENERGY
+                //EVENT #1 - BROKE OBJECT
+/*
+                    GetComponent<Remix>().level.lot.EnergyCollected();
+*/
                 Destroy(coll.gameObject);
 
             }
