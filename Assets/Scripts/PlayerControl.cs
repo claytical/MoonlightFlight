@@ -50,9 +50,7 @@ public class PlayerControl : MonoBehaviour {
             level.failureMessage.text = "You didn't collect any seeds of light on your journey.";
 
         }
-        //check for high score
-        //		ProcGenMusic.MusicGenerator.Instance.Stop ();
-        //  endOfInk = false;
+
     }
     public void Pause()
     {

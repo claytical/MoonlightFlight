@@ -49,6 +49,7 @@ public class Vehicle : MonoBehaviour
 
     public void SelfDestruct()
     {
+        Debug.Log("Self Destruct Activated");
         isDead = true;
     }
 
@@ -413,15 +414,40 @@ public class Vehicle : MonoBehaviour
 
     void CheckMouse()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            touchPosition.z = 0;
-            GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
-            go.transform.parent = transform.parent;
 
-            touchPoints.Add(go);
-        }
+        if (Input.GetMouseButton(0))
+        {
+
+
+            Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = (Vector2)touchPosition - (Vector2)transform.position;
+            
+            direction.Normalize();
+
+            Debug.Log("RECT X:" + offLimitTouchPoint.rect.x + " Y: " + offLimitTouchPoint.rect.y + " W: " + offLimitTouchPoint.rect.width);
+            //Camera.main.ViewportToWorldPoint(offLimitTouchPoint.position).;
+            
+            if ((RectTransformUtility.RectangleContainsScreenPoint(offLimitTouchPoint, Input.mousePosition))) { 
+//            if (offLimitTouchPoint.rect.Contains(Input.mousePosition))
+            //            if (IsPointInRT(point, offLimitTouchPoint))
+                //UI Area
+                Debug.Log("Touched UI Area!");
+
+                }
+            
+            else
+                {
+                Debug.Log("Not touching UI Area");
+                Debug.Log("TOUCH: " + Input.mousePosition);
+                Debug.Log("OFFLIMIT: " + offLimitTouchPoint);
+                GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
+                    go.transform.parent = transform.parent;
+                    touchPoints.Add(go);
+                    GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+                }
+
+         }
+
         if (Input.GetMouseButtonUp(0))
         {
             if (touchPoints.Count > 0)
@@ -432,29 +458,11 @@ public class Vehicle : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0))
-        {
-
-
-            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (Vector2)touchPosition - (Vector2)transform.position;
-            direction.Normalize();
-            
-            if (Input.mousePosition.x > offLimitTouchPoint.offsetMin.x && Input.mousePosition.y < offLimitTouchPoint.offsetMax.y)
-            {
-                //no touch zone
-                Debug.Log("Touch Not Allowed");
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
-            }
-
-        }
-
-
-
     }
+
+
+
+
 
     void CheckTouches()
     {
@@ -465,17 +473,28 @@ public class Vehicle : MonoBehaviour
             touch = Input.GetTouch(i);
             if (touch.phase == TouchPhase.Began)
             {
-                GetComponentInParent<AudioSource>().Play();
-                Debug.Log("Touch Began! " + touch.fingerId);
                 Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                 touchPosition.z = 10;
-                GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
-                go.transform.parent = transform.parent;
-                touchPoints.Add(go);
+                if ((RectTransformUtility.RectangleContainsScreenPoint(offLimitTouchPoint, touch.position)))
+                {
+
+
+                }
+                else
+                {
+                    GetComponentInParent<AudioSource>().Play();
+                    GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
+                    go.transform.parent = transform.parent;
+                    touchPoints.Add(go);
+                    Vector2 direction = (Vector2)touchPosition - (Vector2)transform.position;
+                    direction.Normalize();
+                    GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+
+                }
             }
-
         }
-
+//TODO? Should player be able to drag finger?
+/*
         for (int i = 0; i < Input.touchCount; i++)
         {
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
@@ -483,7 +502,7 @@ public class Vehicle : MonoBehaviour
             direction.Normalize();
             GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
         }
-
+*/
     }
 
 

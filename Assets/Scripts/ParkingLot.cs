@@ -36,6 +36,7 @@ public class ParkingLot : MonoBehaviour
 
     public void SelfDestruct()
     {
+        Time.timeScale = 1f;
         vehicle.GetComponentInChildren<Vehicle>().SelfDestruct();
 
     }

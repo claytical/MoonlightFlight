@@ -90,17 +90,17 @@ public class ProceduralLevel : MonoBehaviour {
 
         //EACH GRID REPEATS A GIVEN NUMBER, RESET TO ZERO
         setCount = 0;
-        
+
         //PICK A STARTING GRID
-        setIndex = Random.Range(0, sets.Length);
+        //setIndex = Random.Range(0, sets.Length);
 
         //ASSIGN THAT GRID TO START
-        set = sets[setIndex];
+        //set = sets[setIndex];
 
         //ASSIGN NEXT SETS
 
-//        set.currentSet.SetNextSet();
-        
+        //        set.currentSet.SetNextSet();
+        set.gameObject.SetActive(true);
         //PASS GRID INFO TO SHIP
         vehicle.LinkSet(set);
 
@@ -109,7 +109,7 @@ public class ProceduralLevel : MonoBehaviour {
 
 
         //CREATE BREAKABLES IN GRID
-        CreateRandomSetOfBreakables(sets[setIndex].numberOfObjectsToPlace);
+        CreateRandomSetOfBreakables(set.numberOfObjectsToPlace);
 //        set.GetComponent<ProceduralInfo>().start.TransitionTo(0);
 
     }
@@ -346,17 +346,25 @@ public class ProceduralLevel : MonoBehaviour {
             }
             else
             {
-                if (gos.Length == 0 && setCount >= set.sets)
+                if(set)
                 {
-                    Debug.Log("CALLING BUILD NEXT SET!");
-                    BuildNextSet();
-                }
-                else if(gos.Length == 0 && setCount < set.sets)
-                {
-                    Debug.Log("MORE SETS!");
-                    setCount++;
-                    CreateRandomSetOfBreakables(set.numberOfObjectsToPlace);
+                    if (gos.Length == 0 && setCount >= set.sets)
+                    {
+                        Debug.Log("CALLING BUILD NEXT SET!");
+                        BuildNextSet();
+                    }
+                    else if (gos.Length == 0 && setCount < set.sets)
+                    {
+                        Debug.Log("MORE SETS!");
+                        setCount++;
+                        CreateRandomSetOfBreakables(set.numberOfObjectsToPlace);
 
+                    }
+
+                }
+                else
+                {
+                    Debug.Log("No Set!");
                 }
 
             }
