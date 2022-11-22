@@ -243,7 +243,7 @@ public class Vehicle : MonoBehaviour
             energyCollected++;
             if(energyCollected%lootDropFrequency == 0)
             {
-                track.LootDrop();
+                track.LootDrop(coll.gameObject.transform);
             }
 
             if (coll.gameObject.GetComponent<Breakable>())
@@ -284,6 +284,12 @@ public class Vehicle : MonoBehaviour
                 switch (coll.gameObject.GetComponent<PowerUp>().reward)
                 {
                     case PowerUp.Reward.Shield:
+                        if(GetComponentInParent<ParkingLot>())
+                        {
+                            GetComponentInParent<ParkingLot>().HP.IncreaseHP();
+
+                        }
+
                         GetComponentInParent<ParkingLot>().GiveFeedback("Armor Collected!");
                         int armor = PlayerPrefs.GetInt("armor", 0);
                         armor++;
@@ -341,7 +347,6 @@ public class Vehicle : MonoBehaviour
 
         if (coll.gameObject.tag == "Bumpable" && canPassThroughObjects)
         {
-            Debug.Log("I'm going through a bumpable object");
         }
 
         if (coll.gameObject.tag == "Bumpable" && !canPassThroughObjects)
@@ -424,22 +429,17 @@ public class Vehicle : MonoBehaviour
             
             direction.Normalize();
 
-            Debug.Log("RECT X:" + offLimitTouchPoint.rect.x + " Y: " + offLimitTouchPoint.rect.y + " W: " + offLimitTouchPoint.rect.width);
             //Camera.main.ViewportToWorldPoint(offLimitTouchPoint.position).;
             
             if ((RectTransformUtility.RectangleContainsScreenPoint(offLimitTouchPoint, Input.mousePosition))) { 
 //            if (offLimitTouchPoint.rect.Contains(Input.mousePosition))
             //            if (IsPointInRT(point, offLimitTouchPoint))
                 //UI Area
-                Debug.Log("Touched UI Area!");
 
                 }
             
             else
                 {
-                Debug.Log("Not touching UI Area");
-                Debug.Log("TOUCH: " + Input.mousePosition);
-                Debug.Log("OFFLIMIT: " + offLimitTouchPoint);
                 GameObject go = (GameObject)Instantiate(touchPoint, touchPosition, transform.rotation);
                     go.transform.parent = transform.parent;
                     touchPoints.Add(go);

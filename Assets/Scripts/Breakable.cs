@@ -37,7 +37,7 @@ public class Breakable : MonoBehaviour {
     void OnDestroy() {
         if(transform.parent.GetComponent<ProceduralLevel>())
         {
-            transform.parent.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform.position;
+            transform.parent.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform;
 
         }
         else

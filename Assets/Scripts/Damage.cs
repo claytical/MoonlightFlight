@@ -19,6 +19,8 @@ public class Damage : MonoBehaviour
 
     private float hitDamageTime;
     private Vector3 originalPosition;
+    private int maxHP;
+
 
     // Use this for initialization
     void Start()
@@ -29,6 +31,7 @@ public class Damage : MonoBehaviour
     public void SetHP(Vehicle vehicle)
     {
         Debug.Log("Setting HP for " + vehicle.name);
+        maxHP = vehicle.maxHP;
         for (int i = 0; i < vehicle.maxHP; i++)
         {
             GameObject container = Instantiate(unitForGauge, gauge);
@@ -39,6 +42,19 @@ public class Damage : MonoBehaviour
             GameObject hpUnit = Instantiate(hp, hpLeft);
         }
 
+    }
+
+    public void IncreaseHP()
+    {
+        if(hpLeft.GetComponentsInChildren<Transform>().Length < maxHP)
+        {
+            GameObject hpUnit = Instantiate(hp, hpLeft);
+
+        }
+        else
+        {
+            Debug.Log("Max Armor Hit");
+        }
     }
 
     public bool TakeDamage()

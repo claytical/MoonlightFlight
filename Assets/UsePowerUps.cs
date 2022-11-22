@@ -31,13 +31,27 @@ public class UsePowerUps : MonoBehaviour
 
             if(cargo[i].amount > 0)
             {
-                cargo[i].cargo.gameObject.SetActive(true);
                 //setting default, last one available on list will be used.
-                cargo[i].cargo.Use();
+                if(cargo[i].cargo.GetComponent<Button>())
+                {
+                    cargo[i].cargo.GetComponent<Button>().enabled = true;
+
+                }
+                if (cargo[i].cargo.GetComponentInChildren<Text>())
+                {
+
+                    cargo[i].cargo.GetComponentInChildren<Text>().text = cargo[i].amount.ToString("0");
+                }
+                                
+                //                cargo[i].cargo.Use();
             }
             else
             {
-                cargo[i].cargo.gameObject.SetActive(false);
+                if (cargo[i].cargo.GetComponent<Button>())
+                {
+                    cargo[i].cargo.GetComponent<Button>().enabled = false;
+                }
+
             }
         }
 
@@ -69,11 +83,16 @@ public class UsePowerUps : MonoBehaviour
                     }
 
                     cargo[i].amount--;
+                    cargo[i].cargo.GetComponentInChildren<Text>().text = cargo[i].amount.ToString("0");
+
                 }
 
                 if (cargo[i].amount <= 0)
                 {
-                    cargo[i].cargo.gameObject.SetActive(false);
+                    if (cargo[i].cargo.GetComponent<Button>())
+                    {
+                        cargo[i].cargo.GetComponent<Button>().enabled = false;
+                    }
                 }
             }
         }

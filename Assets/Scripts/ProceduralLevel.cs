@@ -23,7 +23,7 @@ public class ProceduralLevel : MonoBehaviour {
     public Color energyColor;
 
     public Loot[] availableLoot;
-    public Vector3 lastEnergyCollectionPosition;
+    public Transform lastEnergyCollectionPosition;
     public Vector3 lootDropLocation;
     public SceneControl scene;
 
@@ -127,8 +127,9 @@ public class ProceduralLevel : MonoBehaviour {
         warpingBack = true;
         lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(false);
     }
-    public void LootDrop()
+    public void LootDrop(Transform t)
     {
+        lastEnergyCollectionPosition = t;
         lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable = true;
 
 
@@ -176,7 +177,7 @@ public class ProceduralLevel : MonoBehaviour {
         if (!locations[powerUpIndex].GetComponent<PowerUp>())
         {
         */
-            GameObject obj = Instantiate(drop[selectedLoot].item, lastEnergyCollectionPosition, Quaternion.identity, transform);
+            GameObject obj = Instantiate(drop[selectedLoot].item, lastEnergyCollectionPosition.position, Quaternion.identity, transform);
 //            GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
 //            energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
 //            energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
@@ -195,7 +196,7 @@ public class ProceduralLevel : MonoBehaviour {
 
     public void MaxEnergyReached()
     {
-        LootDrop();
+        LootDrop(lastEnergyCollectionPosition);
     }
 
     void Update () {
@@ -451,7 +452,7 @@ public class ProceduralLevel : MonoBehaviour {
 
                 } else
                 {
-                    Debug.Log("position was vector zero");
+                    Debug.Log("position was vector zero. series#: " + series[i] + " i: " + i);
                 }
             }
         }

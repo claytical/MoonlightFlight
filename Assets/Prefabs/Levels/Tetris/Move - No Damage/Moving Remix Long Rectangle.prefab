@@ -51,6 +51,7 @@ MonoBehaviour:
   reverseDirection: 1
   movementPoints: []
   movementConstraints: 6
+  directionIcon: {fileID: 8352958718892649579}
 --- !u!1001 &247857581263407126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -330,6 +331,12 @@ PrefabInstance:
 --- !u!4 &8148139499150044613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4213040972611002, guid: 9ab20dd8deadbc543ba122106aa70443,
+    type: 3}
+  m_PrefabInstance: {fileID: 8150096994760806527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8352958718892649579 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212053718670736404, guid: 9ab20dd8deadbc543ba122106aa70443,
     type: 3}
   m_PrefabInstance: {fileID: 8150096994760806527}
   m_PrefabAsset: {fileID: 0}
