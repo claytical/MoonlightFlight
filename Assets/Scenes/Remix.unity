@@ -1666,6 +1666,8 @@ MonoBehaviour:
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
     weight: 10
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 50
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -4965,7 +4967,7 @@ MonoBehaviour:
   spawnLocations: {fileID: 11665874}
   platforms: {fileID: 935860737}
   availableLoot:
-  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -24864,9 +24866,9 @@ MonoBehaviour:
   level: {fileID: 312963208}
   lot: {fileID: 54880737}
   cargo:
-  - amount: 3
+  - amount: 0
     cargo: {fileID: 1259161090}
-  - amount: 2
+  - amount: 0
     cargo: {fileID: 2002728922}
   powerUpInUse: 0
   powerUpIndex: 0
@@ -29249,6 +29251,8 @@ MonoBehaviour:
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
     weight: 10
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 50
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -45037,7 +45041,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -68626,7 +68630,7 @@ MonoBehaviour:
   spawnLocations: {fileID: 1555492761}
   platforms: {fileID: 1020213168}
   availableLoot:
-  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -74537,7 +74541,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

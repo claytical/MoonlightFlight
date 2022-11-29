@@ -34,7 +34,7 @@ public class UsePowerUps : MonoBehaviour
                 //setting default, last one available on list will be used.
                 if(cargo[i].cargo.GetComponent<Button>())
                 {
-                    cargo[i].cargo.GetComponent<Button>().enabled = true;
+                    cargo[i].cargo.GetComponent<Button>().interactable = true;
 
                 }
                 if (cargo[i].cargo.GetComponentInChildren<Text>())
@@ -49,7 +49,7 @@ public class UsePowerUps : MonoBehaviour
             {
                 if (cargo[i].cargo.GetComponent<Button>())
                 {
-                    cargo[i].cargo.GetComponent<Button>().enabled = false;
+                    cargo[i].cargo.GetComponent<Button>().interactable = false;
                 }
 
             }
@@ -91,7 +91,7 @@ public class UsePowerUps : MonoBehaviour
                 {
                     if (cargo[i].cargo.GetComponent<Button>())
                     {
-                        cargo[i].cargo.GetComponent<Button>().enabled = false;
+                        cargo[i].cargo.GetComponent<Button>().interactable = false;
                     }
                 }
             }
