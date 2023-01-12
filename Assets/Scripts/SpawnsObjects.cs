@@ -89,22 +89,9 @@ public class SpawnsObjects : MonoBehaviour
             rotatedAngle += Mathf.Deg2Rad * transform.rotation.eulerAngles.z;
             float scalar = .7f;
 
-            //Spawning Up
-            /*
-            circlePos.y = circlePos.y + ( (Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI / 2)) * .7f));
-            circlePos.x = circlePos.x + ( (Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI / 2)) * .7f));
-            */
-            //Spawning Down?
-//            circlePos.y = circlePos.y + ( (Mathf.Sin (2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
-//            circlePos.x = circlePos.x + ( (Mathf.Cos (2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (Mathf.PI * 1.5f)) * .7f));
-
             circlePos.y = circlePos.y + ((Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (rotatedAngle)) * .7f));
 
             circlePos.x = circlePos.x + ((Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (rotatedAngle)) * scalar));
-
-
-
-            //            float distance = Vector3.Distance(circlePos, spawnTimerSpawnPosition);
             timeCircle.transform.position = circlePos;
 
         }

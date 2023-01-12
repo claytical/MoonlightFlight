@@ -19,7 +19,7 @@ public class Vehicle : MonoBehaviour
     public int maxHP;
     public float glitchAmount = .1f;
     public int currentHP;
-    public int lootDropFrequency;
+    public int energyCollectedBeforeLootDrop;
     private int energyCollected;
 
     private List<GameObject> touchPoints;
@@ -32,6 +32,8 @@ public class Vehicle : MonoBehaviour
     private ProceduralLevel track;
     private float yOffset;
     public RectTransform offLimitTouchPoint;
+    private string shipName;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,8 @@ public class Vehicle : MonoBehaviour
         touchPoints = new List<GameObject>();
         GetComponent<SpriteRenderer>().color = starColor;
         energyCollected = 0;
+
+        //TODO: get ship name to append to cargo holds, also need to specify selected ship in the hangar
     }
 
     void OnCollisionStay(Collision collisionInfo)
@@ -189,9 +193,7 @@ public class Vehicle : MonoBehaviour
         Debug.Log("Collision!");
         if(coll.gameObject.GetComponent<Platform>())
         {
-            Debug.Log("Hitting platform");
             if(coll.gameObject.GetComponent<Platform>().causesGlitch) {
-                Debug.Log("Causes glitch");
                 if(coll.gameObject.GetComponent<Hazard>())
                 {
                     //hazard glitch
@@ -207,10 +209,6 @@ public class Vehicle : MonoBehaviour
                     Invoke("ResetGlitch", .05f);
 
                 }
-
-                //                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = .5f;
-
-
             }
 
         }
@@ -222,13 +220,7 @@ public class Vehicle : MonoBehaviour
             Invoke("ResetGlitch", .05f);
 
         }
-        /*
-         * if(GetComponentInParent<Animator>())
-                {
 
-                    GetComponentInParent<Animator>().SetTrigger("glitch");
-                }
-        */
         if (coll.gameObject.GetComponent<SpawnsObjects>())
         {
             if (coll.gameObject.GetComponent<SpawnsObjects>().collisionCausesSpawn)
@@ -241,7 +233,7 @@ public class Vehicle : MonoBehaviour
         if (coll.gameObject.tag == "Disappearing")
         {
             energyCollected++;
-            if(energyCollected%lootDropFrequency == 0)
+            if(energyCollected%energyCollectedBeforeLootDrop == 0)
             {
                 track.LootDrop(coll.gameObject.transform);
             }
@@ -290,46 +282,37 @@ public class Vehicle : MonoBehaviour
 
                         }
 
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Armor Collected!");
+                        
+                        GetComponentInParent<ParkingLot>().GiveFeedback("Reinforcing Shields!");
+                        //TODO: HP for current ship will always go down to 0 for destruction, but is it possible at the outpost
+                        //to remove HP from one ship and give it to another? or does it come from using parts?
                         int armor = PlayerPrefs.GetInt("armor", 0);
                         armor++;
                         PlayerPrefs.SetInt("armor", armor);
-
-                        //                        ToggleShield();
                         break;
-//                    case PowerUp.Reward.Boundary:
-//                        GetComponentInParent<ParkingLot>().GiveFeedback("Perimeter Fortified!");
-//                       GetComponentInParent<ParkingLot>().boundaries.AddBorders(2);
-
-//                        break;
-                    case PowerUp.Reward.Part:
+                                           
+                        case PowerUp.Reward.Part:
                         GetComponentInParent<ParkingLot>().GiveFeedback("Ship Part Located!");
                         int parts = PlayerPrefs.GetInt("parts", 0);
                         parts++;
                         PlayerPrefs.SetInt("parts", parts);
                         break;
-
-//                    case PowerUp.Reward.PassThrough:
-//                        GetComponentInParent<ParkingLot>().GiveFeedback("Ship Phasing Enabled!");
-//                        SetPassThrough(true);
-//                        break;
-
+//Removing Consciousness / The run is the building of consciousness.
+/*
                     case PowerUp.Reward.Consciousness:
                         GetComponentInParent<ParkingLot>().GiveFeedback("Consciousness Elevated!");
                         int consciousness = PlayerPrefs.GetInt("consciousness", 0);
                         consciousness++;
                         PlayerPrefs.SetInt("consciousness", consciousness);
                         break;
+
+*/
                     case PowerUp.Reward.Stop:
-                        //                        ApplyHyperBreak();
-                        int brake = PlayerPrefs.GetInt("brake", 0);
-                        brake++;
-                        PlayerPrefs.SetInt("brake", brake);
+                        GetComponentInParent<ParkingLot>().PowerUps.AddPowerUp(PowerUp.Reward.Stop, 1);
                         GetComponentInParent<ParkingLot>().GiveFeedback("Hyper Brake Collected!");
                         break;
                     case PowerUp.Reward.Nuke:
-                        int nukes = PlayerPrefs.GetInt("nukes", 0);
-                        nukes++;
+                        GetComponentInParent<ParkingLot>().PowerUps.AddPowerUp(PowerUp.Reward.Nuke, 1);
                         GetComponentInParent<ParkingLot>().GiveFeedback("Nuke Collected!");
                         break;
                     case PowerUp.Reward.Warp:
@@ -339,8 +322,6 @@ public class Vehicle : MonoBehaviour
                         break;
                 }
                 Destroy(coll.gameObject);
-//                SetEnergyLevel(0);
-//hasPowerup = false;
             }
 
         }
@@ -366,10 +347,6 @@ public class Vehicle : MonoBehaviour
             //THIS DOESN'T GO ANYWHERE?
             set.currentSet.BroadcastMessage("BumpedPlatform", SendMessageOptions.DontRequireReceiver);
 
-            //CHECK TO SEE IF INSIDE?
-
-            //Check for polygon shenanigans
-            //frameCountAtBump = Time.frameCount + framesUntilTilt;
             if (coll.gameObject.GetComponent<Animator>())
             {
                 coll.gameObject.GetComponent<Animator>().SetTrigger("hit");
@@ -399,22 +376,6 @@ public class Vehicle : MonoBehaviour
 
         gameObject.GetComponentInParent<AudioSource>().Play();
     }
-    /*
-    public bool HasFullEnergy() {
-        if(currentEnergyLevel >= maxEnergy)
-        {
-            return true;
-        }
-        return false;
-    }
-    */
-    public void SetPassThrough(bool active)
-    {
-        Debug.Log("Settting Transparency to " + active);
-        canPassThroughObjects = active;
-        set.PlatformTransparency(active);
-    }
-
 
 
     void CheckMouse()
@@ -428,12 +389,9 @@ public class Vehicle : MonoBehaviour
             Vector2 direction = (Vector2)touchPosition - (Vector2)transform.position;
             
             direction.Normalize();
-
-            //Camera.main.ViewportToWorldPoint(offLimitTouchPoint.position).;
             
             if ((RectTransformUtility.RectangleContainsScreenPoint(offLimitTouchPoint, Input.mousePosition))) { 
-//            if (offLimitTouchPoint.rect.Contains(Input.mousePosition))
-            //            if (IsPointInRT(point, offLimitTouchPoint))
+
                 //UI Area
 
                 }
@@ -471,7 +429,7 @@ public class Vehicle : MonoBehaviour
         for (int i = 0; i < Input.touchCount; i++)
         {
             touch = Input.GetTouch(i);
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Stationary)
             {
                 Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                 touchPosition.z = 10;

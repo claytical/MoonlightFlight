@@ -255,8 +255,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: Documents/claytical.keystore'
-  AndroidKeyaliasName: moonlight
+  AndroidKeystoreName: '{dedicated}: Documents/user.beast.keystore'
+  AndroidKeyaliasName: moon
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

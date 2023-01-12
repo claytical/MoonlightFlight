@@ -39,6 +39,14 @@ public class Galaxy : MonoBehaviour
 
     private string galaxyName;
 
+    private GameState gameState;
+    public Color[] starColors;
+    private int selectedStarColorIndex = 0;
+    public int starSize;
+    private int energyAvailable;
+
+
+
     void Awake()
     {
 
@@ -54,8 +62,9 @@ public class Galaxy : MonoBehaviour
         int timesPlayed = PlayerPrefs.GetInt("times played", 0);
         timesPlayed++;
         PlayerPrefs.SetInt("times played", timesPlayed);
+        gameState = (GameState)FindObjectOfType(typeof(GameState));
 
-        if(GenerateRandomGalaxy)
+        if (GenerateRandomGalaxy)
         {
             if(GenerateCleanGalaxy)
             {
@@ -68,7 +77,7 @@ public class Galaxy : MonoBehaviour
         else
         {
             lightYearsTraveled = PlayerPrefs.GetFloat("light years traveled", 0);
-            maxPlanets = PlayerPrefs.GetInt("planets collected", 0);
+            energyAvailable = PlayerPrefs.GetInt("energy collected", 0);
             // Send custom event
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
@@ -79,17 +88,36 @@ public class Galaxy : MonoBehaviour
 
         }
         coordinates = new List<Vector3>();
-/*        if(maxPlanets > 0)
-        {
-            galaxyName = newGalaxyName();
-        }
- */
         calculateLightYearsAway();
         Vector3 newCameraPosition = Camera.main.transform.position;
         newCameraPosition.z += lightYearsAway;
         Camera.main.transform.position = newCameraPosition;
         galaxyName = newGalaxyName();
         Debug.Log("GAALXY: " + galaxyName);
+    }
+
+    private void SetGalaxyParameters()
+    {
+        if (gameState != null)
+        {
+            VehicleType vehicle = gameState.GetVehicle();
+            if (((int)vehicle) < starColors.Length)
+            {
+                //color match exists
+                selectedStarColorIndex = ((int)vehicle);
+            }
+            else
+            {
+                //default galaxy creation
+            }
+        }
+        else
+        {
+            //No game state present, default galaxy creation values
+
+        }
+
+
     }
 
     private string newGalaxyName ()

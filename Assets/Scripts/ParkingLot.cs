@@ -11,10 +11,10 @@ public class ParkingLot : MonoBehaviour
     public Feedback feedback;
     public int energyCollected;
     public float lightYearsTraveled;
-    public int planetsCollected;
     public AudioClip energyFx;
     public BoundaryPowerUp boundaries;
     public Damage HP;
+    public UsePowerUps PowerUps;
     public int lightYearIncrement = 10;
 //REMOVE?
     public Text lightyearUI;
@@ -42,7 +42,7 @@ public class ParkingLot : MonoBehaviour
     }
     public void EnergyCollected()
     {
-        planetsCollected++;
+        energyCollected++;
         GetComponent<AudioSource>().PlayOneShot(energyFx);
 
     }
@@ -58,7 +58,7 @@ public class ParkingLot : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot(energyFx);
 
     }
-
+    /*
     public void AddEnergy(int e)
     {
         energyCollected += e;
@@ -67,7 +67,7 @@ public class ParkingLot : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot(energyFx);
 
     }
-
+    */
     public void GiveFeedback(string message)
     {
         feedback.gameObject.SetActive(true);

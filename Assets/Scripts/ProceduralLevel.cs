@@ -230,7 +230,7 @@ public class ProceduralLevel : MonoBehaviour {
         {
             lot.SetEnergy();
             PlayerPrefs.SetFloat("light years traveled", lot.lightYearsTraveled);
-            PlayerPrefs.SetInt("planets collected", lot.planetsCollected);
+            PlayerPrefs.SetInt("energy collected", lot.energyCollected);
             scene.SetSceneToLoad("End");
             scene.SelectScene();
             gameOverTime = 9999;
@@ -261,10 +261,14 @@ public class ProceduralLevel : MonoBehaviour {
             //MOVE PLATFORMS OFF SCREEN
         }
 
+        /*
+        //TODO: Should progress to next set be shown? 
+
         ProgressPanel.SetActive(true);
         ProgressPanel.GetComponent<ProgressPanel>().ResetTimer();
         ProgressPanel.GetComponentInChildren<Text>().text = lot.lightYearsTraveled.ToString("0") + " Light-years traveled\n" + lot.planetsCollected + " units of energy collected";
 
+        */
         SetInfo previousSet = set;
         //set current grid to whatever grid is next (set 2) -> NEXT GRID SELECTED
         set = set.currentSet.SetNextSet();

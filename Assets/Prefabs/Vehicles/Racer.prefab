@@ -5360,21 +5360,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starColor: {r: 0.7328801, g: 0.8584906, b: 0, a: 1}
-  maxEnergy: 0
-  energyCollection: {fileID: 0}
-  energyOverlay: {fileID: 0}
-  energyUnit: 0
-  explosion: {fileID: 0}
-  poweredUp: 0
-  force: 14
-  maxForce: 29
+  energyCollection: {fileID: 5318722366147438331}
+  explosion: {fileID: 3761711924487079176}
+  lootDropped: 0
+  force: 30
+  maxForce: 50
   touchPoint: {fileID: 8455937364993888704, guid: 08a87ae8892458741b1a98e7dba483ec,
     type: 3}
   type: 2
-  shield: {fileID: 481348398569877011}
   timeStuck: 0
-  energyTransfer: {fileID: 0}
   lootAvailable: 0
-  maxHP: 0
-  currentHP: 0
+  maxHP: 13
+  glitchAmount: 0.1
+  currentHP: 2
+  energyCollectedBeforeLootDrop: 30
   set: {fileID: 0}
+  offLimitTouchPoint: {fileID: 0}
