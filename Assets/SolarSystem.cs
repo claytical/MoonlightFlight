@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 [System.Serializable]
 public enum PlanetType
@@ -37,11 +37,12 @@ public class SolarSystem : MonoBehaviour
     
     public Planet[] planets;
 
+    public Text energyToExpend; 
+
     private int[] planetAllocations;
    
-    public NumberButton[] planetButtons; //initialize with max amount?
 
-    private int energyAvailable;
+    public int energyAvailable;
     private int energySpent = 0;
     private int selectedStarColorIndex = 0;
     private int numberOfExistingSolarSystems;
@@ -52,6 +53,7 @@ public class SolarSystem : MonoBehaviour
     void Start()
     {
         energyAvailable = PlayerPrefs.GetInt("energy collected", 100);
+        SetEnergyText();
 
         planetAllocations = new int[planetRequirements.Length];
 
@@ -82,6 +84,11 @@ public class SolarSystem : MonoBehaviour
         
         Debug.Log("Number of systems: " + numberOfExistingSolarSystems);
     }
+
+    public void SetEnergyText()
+    {
+        energyToExpend.text = EnergyAvailableToSpend().ToString("0");
+    }
     private List<Vector3> ShuffleList(List<Vector3> ActualList)
     {
 
@@ -109,20 +116,20 @@ public class SolarSystem : MonoBehaviour
 
     public void Create(int starSize)
     {
-        //COLOR DETERMINED BY VEHICLE
-        //STAR
-        /* Star Size
+        /*
+         * STAR COLOR DETERMINED BY VEHICLE
          * 
-         * ENERGY * SCALAR
-
-        /* Number of Possible Planets
-
-         * 5 REQUIRED ENERGY FOR EACH PLANET
          * 
-         * SIZE EQUAL
-         * RING RANDOM
+         * TODO: Star is named after ship
+         * Place this solar system within a galaxy: Stacked on an axis?
+         * 
+         * Stacked on Z Axis
+         * All Player Mapped universe would show each "stacked" galaxy
 
-        */
+         */
+
+
+
         for(int i = 0; i < planetRequirements.Length; i++)
         {
             planetAllocations[i] = planetRequirements[i].button.currentAmount;
@@ -212,19 +219,14 @@ public class SolarSystem : MonoBehaviour
     }
 
 
-    public bool EnergyAvailableToSpend()
+    public int EnergyAvailableToSpend()
     {
         int cost = 0;
         for(int i = 0; i < planetRequirements.Length; i++)
         {
             cost += planetRequirements[i].button.currentAmount * planetRequirements[i].energyRequired;
         }
-        if(energyAvailable >= cost)
-        {
-            return true;
-
-        }
-        return false;
+        return energyAvailable - cost;
     }
 
 }
