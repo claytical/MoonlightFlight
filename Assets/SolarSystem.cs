@@ -37,8 +37,10 @@ public class SolarSystem : MonoBehaviour
     
     public Planet[] planets;
 
-    public Text energyToExpend; 
+    public Text energyToExpend;
 
+    public ParticleSystem solarFlares;
+    public MeshRenderer core;
     private int[] planetAllocations;
    
 
@@ -49,10 +51,23 @@ public class SolarSystem : MonoBehaviour
 
     private List<Vector3> planetCoordinates;
 
+    public Transform newStar;
+    public float transitionDuration = 2.0f;
+    public Vector3 targetOffset = new Vector3(0, 5, 0);
+
+    private Vector3 startPosition;
+    private Vector3 targetPosition;
+    private float transitionStartTime;
+
+    public bool admiringNewSystem = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        energyAvailable = PlayerPrefs.GetInt("energy collected", 100);
+        energyAvailable = 400;
+//        energyAvailable = PlayerPrefs.GetInt("energy collected", 100);
+        
+
         SetEnergyText();
 
         planetAllocations = new int[planetRequirements.Length];
@@ -81,8 +96,23 @@ public class SolarSystem : MonoBehaviour
             //No game state present, default galaxy creation values
 
         }
-        
+        ParticleSystem.MainModule main = solarFlares.main;
+        main.startColor = starColors[selectedStarColorIndex];
+        core.material.color = starColors[selectedStarColorIndex];
+
+
         Debug.Log("Number of systems: " + numberOfExistingSolarSystems);
+        Debug.Log("Star Color Index: " + selectedStarColorIndex);
+    }
+
+    private void Update()
+    {
+        if(admiringNewSystem)
+        {
+            float transitionProgress = (Time.time - transitionStartTime) / transitionDuration;
+            Camera.main.transform.position = Vector3.Lerp(startPosition, targetPosition, transitionProgress);
+        }
+
     }
 
     public void SetEnergyText()
@@ -162,6 +192,7 @@ public class SolarSystem : MonoBehaviour
             planetDistance.y = Random.Range(-10, 10);
             planetCoordinates.Add(planetDistance);
             distanceToStar += padding + starScale.x + Random.Range(30,50);
+            Debug.Log(i + ": PLANET DISTANCE: " + planetDistance + " DISTANCE TO STAR: " + distanceToStar);
         }
         //SHUFFLE UP ORDER COORDINATES FOR PLANET LIST
         planetCoordinates = ShuffleList(planetCoordinates);
@@ -199,6 +230,18 @@ public class SolarSystem : MonoBehaviour
 
     }
 
+
+    public void Admire()
+    {
+        newStar = GetComponentInChildren<ParticleSystem>().gameObject.transform;
+        Camera.main.transform.Rotate(new Vector3(30, 0, 0));
+        startPosition = transform.position;
+        targetPosition = newStar.position + targetOffset;
+        transitionStartTime = Time.time;
+        admiringNewSystem = true;
+    }
+
+
     public void LoadSystem(int index) 
     {
         Vector2[] solarSystemInfo = PlayerPrefsX.GetVector2Array("solar_system_" + index + "_info");
@@ -210,11 +253,13 @@ public class SolarSystem : MonoBehaviour
         {
 
             GameObject planet = Instantiate(planets[(int)solarSystemInfo[i].x].template, transform);
+            Debug.Log("PLANET X: " + solarSystemCoordinates[i].x);
             planet.transform.position = solarSystemCoordinates[i];
             float planetSize = solarSystemInfo[i].y;
             Vector3 planetScale = new Vector3(planetSize, planetSize, planetSize);
             planet.transform.localScale = planetScale;
             planet.GetComponent<Orbit>().AssignStartingOrbitPosition();
+            Debug.Log("PLANET X LAST: " + planet.transform.position.x);
         }
     }
 

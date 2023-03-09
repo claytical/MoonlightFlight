@@ -537,90 +537,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2110665174}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1605739902 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3169313119756067865, guid: 859de1e4796b84440934f88d237f3533,
-    type: 3}
-  m_PrefabInstance: {fileID: 8117920036416418733}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1605739905 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3272685634204795172, guid: 859de1e4796b84440934f88d237f3533,
-    type: 3}
-  m_PrefabInstance: {fileID: 8117920036416418733}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1605739906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605739902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 16
-  condition:
-    luaConditions: []
-    questConditions: []
-    acceptedTags: []
-    acceptedGameObjects: []
-    luaWizardIndex: -1
-    lastEvaluationValue: 0
-  setQuestState: 1
-  questName: 
-  questState: 0
-  setQuestEntryState: 0
-  questEntryNumber: 1
-  questEntryState: 0
-  setAnotherQuestEntryState: 0
-  anotherQuestEntryNumber: 1
-  anotherQuestEntryState: 0
-  luaCode: 
-  sequence: 
-  sequenceSpeaker: {fileID: 0}
-  sequenceListener: {fileID: 0}
-  waitOneFrameOnStartOrEnable: 1
-  alertMessage: 
-  textTable: {fileID: 0}
-  alertDuration: 0
-  sendMessages: []
-  barkSource: 0
-  barkConversation: 
-  barkText: 
-  barkTextSequence: 
-  barker: {fileID: 0}
-  barkTarget: {fileID: 0}
-  barkOrder: 0
-  allowBarksDuringConversations: 0
-  skipBarkIfNoValidEntries: 0
-  cacheBarkLines: 0
-  conversation: New Conversation 1
-  conversationConversant: {fileID: 1605739905}
-  conversationActor: {fileID: 1535030375}
-  startConversationEntryID: -1
-  exclusive: 0
-  replace: 0
-  skipIfNoValidEntries: 0
-  preventRestartOnSameFrameEnded: 0
-  stopConversationOnTriggerExit: 0
-  stopConversationIfTooFar: 0
-  maxConversationDistance: 5
-  monitorConversationDistanceFrequency: 1
-  showCursorDuringConversation: 0
-  pauseGameDuringConversation: 0
-  setActiveActions: []
-  setEnabledActions: []
-  setAnimatorStateActions: []
-  onExecute:
-    m_PersistentCalls:
-      m_Calls: []
-  useConversationTitlePicker: 1
-  useBarkTitlePicker: 1
-  useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
 --- !u!1 &1827299400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 125852, guid: 58ac37417e60e534f91138088a3e6f70,
@@ -753,7 +669,8 @@ PrefabInstance:
     - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: displaySettings.dialogueUI
       value: 
-      objectReference: {fileID: 190722, guid: 166502153ad6c7145bb014c52b623ba1, type: 3}
+      objectReference: {fileID: 1024589797444566, guid: db4da29b5fafa634585027c8c4bc8e68,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
 --- !u!1001 &8117920036416418733
@@ -763,6 +680,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: conversationActor
+      value: 
+      objectReference: {fileID: 1535030375}
     - target: {fileID: 3169313119756067865, guid: 859de1e4796b84440934f88d237f3533,
         type: 3}
       propertyPath: m_Name
@@ -822,26 +743,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722278159422779537, guid: 859de1e4796b84440934f88d237f3533,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722278159422779537, guid: 859de1e4796b84440934f88d237f3533,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722278159422779537, guid: 859de1e4796b84440934f88d237f3533,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9082430071774084166, guid: 859de1e4796b84440934f88d237f3533,
-        type: 3}
-      propertyPath: isoLevel
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 859de1e4796b84440934f88d237f3533, type: 3}
