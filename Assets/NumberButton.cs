@@ -9,7 +9,7 @@ public class NumberButton : MonoBehaviour
     public Text displayNumber;
     public int currentAmount = 0;
     private int cost;
-    public SolarSystem solarSystem;
+    public CreateSolarSystem solarSystem;
 
     // Start is called before the first frame update
     void Start()

@@ -28,14 +28,14 @@ public struct Planet
 }
 
 
-public class SolarSystem : MonoBehaviour
+public class CreateSolarSystem : MonoBehaviour
 {
     private GameState gameState;
     public Color[] starColors;
     public GameObject starTemplate;
     public PlanetRequirement[] planetRequirements;
     
-    public Planet[] planets;
+//    public Planet[] planets;
 
     public Text energyToExpend;
 
@@ -60,6 +60,8 @@ public class SolarSystem : MonoBehaviour
     private float transitionStartTime;
 
     public bool admiringNewSystem = false;
+
+    public SolarSystemAttributes systemAttributes;
 
     // Start is called before the first frame update
     void Start()
@@ -141,7 +143,7 @@ public class SolarSystem : MonoBehaviour
     }
     public void ShowLastCreatedSystem()
     {
-        LoadSystem(numberOfExistingSolarSystems-1);
+        systemAttributes.LoadSystem(numberOfExistingSolarSystems-1, transform);
     }
 
     public void Create(int starSize)
@@ -214,7 +216,7 @@ public class SolarSystem : MonoBehaviour
                 planetInfo[currentIndex + j].y = planetRequirements[i].diameter;
                 Debug.Log("PLANET DIAMETER " + (currentIndex + j) + ":" + planetRequirements[i].diameter);
                 //random planet type
-                planetInfo[currentIndex + j].x = (int)Random.Range(0, planets.Length);
+                planetInfo[currentIndex + j].x = (int)Random.Range(0, systemAttributes.planets.Length);
             }
             Debug.Log("CURRENT INDEX: " + currentIndex);
             currentIndex += planetAllocations[i];
@@ -224,6 +226,7 @@ public class SolarSystem : MonoBehaviour
 
         PlayerPrefsX.SetVector2Array("solar_system_" + numberOfExistingSolarSystems + "_info", planetInfo);
         PlayerPrefsX.SetVector3Array("solar_system_" + numberOfExistingSolarSystems + "_coordinates", planetCoordinates.ToArray());
+        PlayerPrefs.SetFloat("solar_system_" + numberOfExistingSolarSystems + "_size", distanceToStar);
 
         numberOfExistingSolarSystems++;
         PlayerPrefs.SetInt("number of solar systems", numberOfExistingSolarSystems);
@@ -240,29 +243,6 @@ public class SolarSystem : MonoBehaviour
         transitionStartTime = Time.time;
         admiringNewSystem = true;
     }
-
-
-    public void LoadSystem(int index) 
-    {
-        Vector2[] solarSystemInfo = PlayerPrefsX.GetVector2Array("solar_system_" + index + "_info");
-        Vector3[] solarSystemCoordinates = PlayerPrefsX.GetVector3Array("solar_system_" + index + "_coordinates");
-
-
-
-        for(int i = 0; i < solarSystemCoordinates.Length; i++)
-        {
-
-            GameObject planet = Instantiate(planets[(int)solarSystemInfo[i].x].template, transform);
-            Debug.Log("PLANET X: " + solarSystemCoordinates[i].x);
-            planet.transform.position = solarSystemCoordinates[i];
-            float planetSize = solarSystemInfo[i].y;
-            Vector3 planetScale = new Vector3(planetSize, planetSize, planetSize);
-            planet.transform.localScale = planetScale;
-            planet.GetComponent<Orbit>().AssignStartingOrbitPosition();
-            Debug.Log("PLANET X LAST: " + planet.transform.position.x);
-        }
-    }
-
 
     public int EnergyAvailableToSpend()
     {
