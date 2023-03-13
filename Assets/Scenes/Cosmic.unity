@@ -681,6 +681,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: luaCode
+      value: 'Variable["First_System"] = true;
+
+        Variable["First_Run"] = true'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
       propertyPath: conversationActor
       value: 
       objectReference: {fileID: 1535030375}

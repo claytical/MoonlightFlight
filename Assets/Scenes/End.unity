@@ -1188,16 +1188,56 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: luaCode
+      value: Variable["First_System"] = true
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
       propertyPath: questName
-      value: Create
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
       propertyPath: questState
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
       propertyPath: conversation
-      value: Cosmic Entity/End of First Run
+      value: End of Run/First Time Introduction
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: setQuestEntryState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: stopConversationOnTriggerExit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: condition.luaConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: condition.questConditions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: condition.luaConditions.Array.data[0]
+      value: Variable["First_Run"] == true
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: condition.luaConditions.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: condition.questConditions.Array.data[0].questName
+      value: First Run
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: condition.questConditions.Array.data[0].questState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: condition.questConditions.Array.data[0].checkQuestEntry
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3169313119756067865, guid: 859de1e4796b84440934f88d237f3533,
         type: 3}
@@ -2269,92 +2309,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 2
+  trigger: 16
   condition:
-    luaConditions: []
-    questConditions:
-    - questName: Create
-      questState: 2
-      checkQuestEntry: 0
-      entryNumber: 0
-      questEntryState: 0
-    acceptedTags: []
-    acceptedGameObjects: []
-    luaWizardIndex: -1
-    lastEvaluationValue: 0
-  setQuestState: 1
-  questName: Create
-  questState: 4
-  setQuestEntryState: 1
-  questEntryNumber: 0
-  questEntryState: 1
-  setAnotherQuestEntryState: 0
-  anotherQuestEntryNumber: 1
-  anotherQuestEntryState: 0
-  luaCode: 
-  sequence: 
-  sequenceSpeaker: {fileID: 0}
-  sequenceListener: {fileID: 0}
-  waitOneFrameOnStartOrEnable: 1
-  alertMessage: 
-  textTable: {fileID: 0}
-  alertDuration: 0
-  sendMessages: []
-  barkSource: 0
-  barkConversation: 
-  barkText: 
-  barkTextSequence: 
-  barker: {fileID: 0}
-  barkTarget: {fileID: 0}
-  barkOrder: 0
-  allowBarksDuringConversations: 0
-  skipBarkIfNoValidEntries: 0
-  cacheBarkLines: 0
-  conversation: Cosmic Entity/End of Run
-  conversationConversant: {fileID: 1086533192}
-  conversationActor: {fileID: 0}
-  startConversationEntryID: -1
-  exclusive: 0
-  replace: 0
-  skipIfNoValidEntries: 0
-  preventRestartOnSameFrameEnded: 0
-  stopConversationOnTriggerExit: 1
-  stopConversationIfTooFar: 0
-  maxConversationDistance: 5
-  monitorConversationDistanceFrequency: 1
-  showCursorDuringConversation: 0
-  pauseGameDuringConversation: 0
-  setActiveActions: []
-  setEnabledActions: []
-  setAnimatorStateActions: []
-  onExecute:
-    m_PersistentCalls:
-      m_Calls: []
-  useConversationTitlePicker: 1
-  useBarkTitlePicker: 1
-  useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
---- !u!114 &1086533191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086533189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 2
-  condition:
-    luaConditions: []
-    questConditions:
-    - questName: Create
-      questState: 4
-      checkQuestEntry: 0
-      entryNumber: 0
-      questEntryState: 0
+    luaConditions:
+    - Variable["First_System"] == false
+    questConditions: []
     acceptedTags: []
     acceptedGameObjects: []
     luaWizardIndex: -1
@@ -2387,15 +2346,15 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Cosmic Entity/Solar System First Creation
-  conversationConversant: {fileID: 1086533192}
+  conversation: End of Run/Introduction
+  conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
   exclusive: 0
   replace: 0
   skipIfNoValidEntries: 0
   preventRestartOnSameFrameEnded: 0
-  stopConversationOnTriggerExit: 0
+  stopConversationOnTriggerExit: 1
   stopConversationIfTooFar: 0
   maxConversationDistance: 5
   monitorConversationDistanceFrequency: 1
@@ -2411,12 +2370,6 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
---- !u!4 &1086533192 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3272685634204795172, guid: 859de1e4796b84440934f88d237f3533,
-    type: 3}
-  m_PrefabInstance: {fileID: 623838154}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1086533193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2434,9 +2387,14 @@ MonoBehaviour:
   coordinatesToMoveObjectTo:
   - {x: -9, y: 245, z: -390}
   objectToHide: []
-  objectToShow:
-  - {fileID: 1481019514}
+  objectToShow: []
   cleanUpOnStart: 0
+--- !u!4 &1086533195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3272685634204795172, guid: 859de1e4796b84440934f88d237f3533,
+    type: 3}
+  m_PrefabInstance: {fileID: 623838154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1193028856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2707,6 +2665,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1684163924}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Created
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1215324741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,6 +2924,184 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -190}
   m_SizeDelta: {x: 1920, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1684163924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684163927}
+  - component: {fileID: 1684163926}
+  - component: {fileID: 1684163925}
+  m_Layer: 0
+  m_Name: Post Creation Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1684163925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684163924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 64
+  condition:
+    luaConditions:
+    - Variable["First_System"] == true
+    questConditions: []
+    acceptedTags: []
+    acceptedGameObjects: []
+    luaWizardIndex: -1
+    lastEvaluationValue: 0
+  setQuestState: 1
+  questName: 
+  questState: 0
+  setQuestEntryState: 0
+  questEntryNumber: 1
+  questEntryState: 0
+  setAnotherQuestEntryState: 0
+  anotherQuestEntryNumber: 1
+  anotherQuestEntryState: 0
+  luaCode: 
+  sequence: 
+  sequenceSpeaker: {fileID: 0}
+  sequenceListener: {fileID: 0}
+  waitOneFrameOnStartOrEnable: 1
+  alertMessage: 
+  textTable: {fileID: 0}
+  alertDuration: 0
+  sendMessages: []
+  barkSource: 0
+  barkConversation: 
+  barkText: 
+  barkTextSequence: 
+  barker: {fileID: 0}
+  barkTarget: {fileID: 0}
+  barkOrder: 0
+  allowBarksDuringConversations: 0
+  skipBarkIfNoValidEntries: 0
+  cacheBarkLines: 0
+  conversation: Solar System/First Creation
+  conversationConversant: {fileID: 1086533195}
+  conversationActor: {fileID: 0}
+  startConversationEntryID: -1
+  exclusive: 0
+  replace: 1
+  skipIfNoValidEntries: 0
+  preventRestartOnSameFrameEnded: 0
+  stopConversationOnTriggerExit: 0
+  stopConversationIfTooFar: 0
+  maxConversationDistance: 5
+  monitorConversationDistanceFrequency: 1
+  showCursorDuringConversation: 0
+  pauseGameDuringConversation: 0
+  setActiveActions: []
+  setEnabledActions: []
+  setAnimatorStateActions: []
+  onExecute:
+    m_PersistentCalls:
+      m_Calls: []
+  useConversationTitlePicker: 1
+  useBarkTitlePicker: 1
+  useQuestNamePicker: 1
+  selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
+--- !u!114 &1684163926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684163924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 64
+  condition:
+    luaConditions:
+    - Variable["First_System"] == false
+    questConditions: []
+    acceptedTags: []
+    acceptedGameObjects: []
+    luaWizardIndex: -1
+    lastEvaluationValue: 0
+  setQuestState: 1
+  questName: 
+  questState: 0
+  setQuestEntryState: 0
+  questEntryNumber: 1
+  questEntryState: 0
+  setAnotherQuestEntryState: 0
+  anotherQuestEntryNumber: 1
+  anotherQuestEntryState: 0
+  luaCode: 
+  sequence: 
+  sequenceSpeaker: {fileID: 0}
+  sequenceListener: {fileID: 0}
+  waitOneFrameOnStartOrEnable: 1
+  alertMessage: 
+  textTable: {fileID: 0}
+  alertDuration: 0
+  sendMessages: []
+  barkSource: 0
+  barkConversation: 
+  barkText: 
+  barkTextSequence: 
+  barker: {fileID: 0}
+  barkTarget: {fileID: 0}
+  barkOrder: 0
+  allowBarksDuringConversations: 0
+  skipBarkIfNoValidEntries: 0
+  cacheBarkLines: 0
+  conversation: Solar System/Creation
+  conversationConversant: {fileID: 1086533195}
+  conversationActor: {fileID: 0}
+  startConversationEntryID: -1
+  exclusive: 0
+  replace: 1
+  skipIfNoValidEntries: 0
+  preventRestartOnSameFrameEnded: 0
+  stopConversationOnTriggerExit: 0
+  stopConversationIfTooFar: 0
+  maxConversationDistance: 5
+  monitorConversationDistanceFrequency: 1
+  showCursorDuringConversation: 0
+  pauseGameDuringConversation: 0
+  setActiveActions: []
+  setEnabledActions: []
+  setAnimatorStateActions: []
+  onExecute:
+    m_PersistentCalls:
+      m_Calls: []
+  useConversationTitlePicker: 1
+  useBarkTitlePicker: 1
+  useQuestNamePicker: 1
+  selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
+--- !u!4 &1684163927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684163924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749210935
 GameObject:
   m_ObjectHideFlags: 0

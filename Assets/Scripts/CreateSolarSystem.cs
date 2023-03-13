@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PixelCrushers.DialogueSystem;
 
 [System.Serializable]
 public enum PlanetType
@@ -66,9 +67,26 @@ public class CreateSolarSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        energyAvailable = 400;
-//        energyAvailable = PlayerPrefs.GetInt("energy collected", 100);
+        energyAvailable = PlayerPrefs.GetInt("energy collected", 100);
+        DialogueLua.SetVariable("Energy_Available", energyAvailable);
+/*
+        int createdSolarSystemBefore = PlayerPrefs.GetInt("First Solar System Created", 0);
+
         
+        Debug.Log("First Solar System Created: " + PlayerPrefs.GetInt("First Solar System Created", 0));
+ 
+        if(createdSolarSystemBefore == 0)
+        {
+            DialogueLua.SetVariable("First Run", true);
+        }
+        else
+        {
+            DialogueLua.SetVariable("First Run", false);
+        }
+*/
+        DialogueLua.RefreshRelationshipTableFromLua();
+
+//        energyAvailable = 400;
 
         SetEnergyText();
 
@@ -159,10 +177,9 @@ public class CreateSolarSystem : MonoBehaviour
          * All Player Mapped universe would show each "stacked" galaxy
 
          */
+        PlayerPrefs.SetInt("First Solar System Created", 1);
 
-
-
-        for(int i = 0; i < planetRequirements.Length; i++)
+        for (int i = 0; i < planetRequirements.Length; i++)
         {
             planetAllocations[i] = planetRequirements[i].button.currentAmount;
         }
