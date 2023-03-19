@@ -6,6 +6,7 @@ using GleyGameServices;
 using UnityEngine.Events;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+using PixelCrushers.DialogueSystem;
 
 public class InitListener : IInitListener
 {
@@ -35,7 +36,7 @@ public class InitWithDefault : MonoBehaviour
         {
             // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
         }
-    }
+            }
 }
 
 public class GameState : MonoBehaviour {
@@ -62,6 +63,10 @@ public class GameState : MonoBehaviour {
         return selectedShip;
     }
 
+    public int GetVehicleTypeID ()
+    {
+        return ((int)selectedVehicle);
+    }
 
     public void SetVehicle(VehicleType _vehicleType)
     {
@@ -88,9 +93,10 @@ public class GameState : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if(resetKeys)
+        if (resetKeys)
         {
             PlayerPrefs.DeleteAll();
+//            DialogueManager.ResetDatabase(DatabaseResetOptions.KeepAllLoaded); // Reset state to initial values.
         }
 /*        IInitListener listener = new InitListener();
         StoreService.Initialize(listener);

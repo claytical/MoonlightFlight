@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using PixelCrushers.DialogueSystem;
 
 [System.Serializable] public struct Loot
 {
@@ -63,6 +64,9 @@ public class ProceduralLevel : MonoBehaviour {
 
     void Start () {
         //SETUP SHIP NAME AND CREATE IT
+
+
+        /*
         gameState = (GameState)FindObjectOfType(typeof(GameState));
         if (gameState != null)
         {
@@ -81,6 +85,14 @@ public class ProceduralLevel : MonoBehaviour {
         {
             vehicle = lot.DefaultVehicle();
         }
+
+        */
+        VehicleType vehicleId = (VehicleType)DialogueLua.GetVariable("Vehicle Type").AsInt;
+        vehicle = lot.SelectVehicle(vehicleId);
+        vehicle.force += PlayerPrefs.GetInt(vehicleId.ToString() + "_" + "MaxForce", 0) * .2f;
+        vehicle.maxForce += PlayerPrefs.GetInt(vehicleId.ToString() + "_" + "Force", 0) * .2f;
+
+
         vehicle.offLimitTouchPoint = offLimitTouchPoint;
         lootDropLocation = Vector3.zero;      
         Debug.Log("Nerfing Vehicle Force");

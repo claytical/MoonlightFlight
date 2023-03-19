@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: 3
-  partsRequired: 500
+  partsRequired: 5
 --- !u!1 &6695043660725513539
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,4 +169,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 300
+  m_Text: 5

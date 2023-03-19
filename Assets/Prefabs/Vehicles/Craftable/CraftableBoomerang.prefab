@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6238440008889754188}
   - component: {fileID: 8769352739064111071}
   m_Layer: 5
-  m_Name: CraftableUFO
+  m_Name: CraftableBoomerang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d65eb0852b3347d40960e5fc30932d50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68ab4a1ef408d0142bf7a4cd0280a6ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -89,8 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acfcaed073fa0b438d5855dddf50109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicle: 5
-  partsRequired: 25
+  vehicle: 0
+  partsRequired: 0
 --- !u!1 &6695043660725513539
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,4 +169,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 300
+  m_Text: 5

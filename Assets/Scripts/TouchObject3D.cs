@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 
 [System.Serializable]
 
@@ -16,6 +17,7 @@ public class TouchObject3D : MonoBehaviour
     public Vector3 focusCoordinates;
     public Quaternion focusRotation;
     public MovingEntity[] movingEntities;
+    public string conversation;
 
     // Start is called before the first frame update
     void Start()
@@ -90,11 +92,17 @@ public class TouchObject3D : MonoBehaviour
 
     public void Focus()
     {
+        Debug.Log("FOCUSING ON " + gameObject.name);
+        
         Camera.main.transform.position = focusCoordinates;
         Camera.main.transform.rotation = focusRotation;
         for(int i = 0; i < movingEntities.Length; i++)
         {
             movingEntities[i].gameObject.transform.position = movingEntities[i].coordinates;
         }
+
+        DialogueManager.StopConversation();
+        DialogueManager.StartConversation(conversation);
+        DialogueManager.SetDialoguePanel(true);
     }
 }

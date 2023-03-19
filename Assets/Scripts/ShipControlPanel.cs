@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using PixelCrushers.DialogueSystem;
 
 public class ShipControlPanel : MonoBehaviour
 {
@@ -13,9 +15,35 @@ public class ShipControlPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CheckGarage();
+//        CheckGarage();
     }
+
+
     
+    public void CreateShip() {
+        int totalShips = PlayerPrefs.GetInt("Ships", 0);
+        int[] fleetTypeArray = PlayerPrefsX.GetIntArray("Fleet Ship Types");
+        string[] fleetNameArray = PlayerPrefsX.GetStringArray("Fleet Ship Names");
+        totalShips++; 
+
+        DialogueLua.SetVariable("Ships", totalShips);
+        PlayerPrefs.SetInt("Ships", totalShips);
+        List<int> fleetTypes = fleetTypeArray.ToList();
+        List<string> fleetNames = fleetNameArray.ToList();
+        fleetTypes.Add(DialogueLua.GetVariable("Vehicle Type").asInt);
+        fleetNames.Add(DialogueLua.GetVariable("Ship Name").asString);
+        PlayerPrefsX.SetIntArray("Fleet Ship Types", fleetTypes.ToArray());
+        PlayerPrefsX.SetStringArray("Fleet Ship Names", fleetNames.ToArray());
+        PlayerPrefs.SetInt(DialogueLua.GetVariable("Ship Name").asString + PowerUp.Reward.Nuke.ToString(), 0);
+        PlayerPrefs.SetInt(DialogueLua.GetVariable("Ship Name").asString + PowerUp.Reward.Stop.ToString(), 0);
+        PlayerPrefsX.SetIntArray("Fleet Ship Types", fleetTypes.ToArray());
+        PlayerPrefsX.SetStringArray("Fleet Ship Names", fleetNames.ToArray());
+
+
+        Debug.Log("Ran Create Ship with ID " + fleetTypes[totalShips - 1] + " named " + fleetNames[totalShips - 1]);
+        string s = PersistentDataManager.GetSaveData(); // Save state.
+
+    }
 
     public void CheckGarage()
     {
