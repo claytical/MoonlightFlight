@@ -399,7 +399,7 @@ PrefabInstance:
     - target: {fileID: 114937748117785014, guid: d4353500a4689e444a5a0ed100a259e5,
         type: 3}
       propertyPath: debugLevel
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114937748117785014, guid: d4353500a4689e444a5a0ed100a259e5,
         type: 3}
@@ -6361,7 +6361,6 @@ GameObject:
   - component: {fileID: 1750892035}
   - component: {fileID: 1750892039}
   - component: {fileID: 1750892040}
-  - component: {fileID: 1750892041}
   m_Layer: 0
   m_Name: Save System
   m_TagString: Untagged
@@ -6464,18 +6463,6 @@ MonoBehaviour:
   m_restoreStateOnStart: 0
   skipApplyDataAfterFramesIfApplyImmediate: 1
   saveRawData: 0
---- !u!114 &1750892041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750892034}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841aa858cfb131e43b4d1377622c0f7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1778125114
 GameObject:
   m_ObjectHideFlags: 0
@@ -7947,7 +7934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectedWorld: 
   SelectedLevel: 
-  resetKeys: 1
+  resetKeys: 0
   selectedVehicle: 0
 --- !u!4 &2106965640
 Transform:

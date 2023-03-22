@@ -198,6 +198,20 @@ MonoBehaviour:
       type: 0
       typeString: 
   variables:
+  - id: 12
+    fields:
+    - title: Name
+      value: Selected Ship
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: 0
+      type: 1
+      typeString: CustomFieldType_Number
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 1
     fields:
     - title: Name
@@ -1264,8 +1278,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 717.1428, y: 0}
-    canvasZoom: 1.0500001
+    canvasScrollPosition: {x: 175.39641, y: 21.296247}
+    canvasZoom: 0.63000035
   - id: 2
     fields:
     - title: Title
@@ -3107,7 +3121,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: LoadLevel(Garage);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -4183,8 +4197,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 48.247402, y: 91.88226}
-    canvasZoom: 0.99999976
+    canvasScrollPosition: {x: 0, y: 74.46676}
+    canvasZoom: 0.8499999
   - id: 6
     fields:
     - title: Title

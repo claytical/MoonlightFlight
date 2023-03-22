@@ -12,11 +12,7 @@ GameObject:
   - component: {fileID: 114937748117785014}
   - component: {fileID: 114041376378916948}
   - component: {fileID: 114877596569806122}
-  - component: {fileID: 114889499020232316}
   - component: {fileID: 114418064281648646}
-  - component: {fileID: 114160787819640068}
-  - component: {fileID: 114791677188177214}
-  - component: {fileID: 114974341299790918}
   m_Layer: 0
   m_Name: Dialogue Manager
   m_TagString: Untagged
@@ -219,22 +215,6 @@ MonoBehaviour:
   onUseTouch:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &114889499020232316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003643122459378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc03036aad05c334eab057a96938959a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_version: 0
-  m_saveCurrentScene: 1
-  m_framesToWaitBeforeApplyData: 1
-  m_debug: 1
 --- !u!114 &114418064281648646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,53 +251,6 @@ MonoBehaviour:
     onTransitionEnd:
       m_PersistentCalls:
         m_Calls: []
---- !u!114 &114160787819640068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003643122459378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4d3f2fce70b2441bd76f6c5777e8ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerPrefsKeyBase: Save
-  encrypt: 0
-  encryptionPassword: My Password
-  m_debug: 0
---- !u!114 &114791677188177214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003643122459378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fbafe64f40b0694b8d4ec9c082f8bf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_prettyPrint: 0
---- !u!114 &114974341299790918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003643122459378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 689b4b1238e337d4590a91183947bcd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_key: 
-  m_appendSaverTypeToKey: 0
-  m_saveAcrossSceneChanges: 1
-  m_restoreStateOnStart: 0
-  skipApplyDataAfterFramesIfApplyImmediate: 1
-  saveRawData: 0
 --- !u!1 &1172956102938826
 GameObject:
   m_ObjectHideFlags: 0

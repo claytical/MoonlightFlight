@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PixelCrushers.DialogueSystem;
 
 public class Crafting : MonoBehaviour
 {
     public Text partsAvailable;
+    public Text shipNameInput;
     public GameObject vehicleToCraft;
     public CraftableVehicle[] allVehicles;
-    public List<CraftableVehicle> vehiclesAvailable;
     private int vehicleIndex = 0;
     public Button craftButton;
     public GameObject SelectShipSlot;
+    public Fleet fleet;
 
     // Start is called before the first frame update
     void Start()
     {
-        PopulateAvailableVehicles();
+        int parts = DialogueLua.GetVariable("Parts").asInt;
+        partsAvailable.text = parts.ToString("0");
+        partsAvailable.text = "666";
         ShowCraftableVehicle();
 
         
@@ -31,7 +35,7 @@ public class Crafting : MonoBehaviour
     public void NextCraftableVehicle()
     {
         vehicleIndex++;
-        if(vehicleIndex == vehiclesAvailable.Count)
+        if(vehicleIndex == allVehicles.Length)
         {
             vehicleIndex = 0;
         }
@@ -43,7 +47,7 @@ public class Crafting : MonoBehaviour
         vehicleIndex--;
         if (vehicleIndex < 0)
         {
-            vehicleIndex = vehiclesAvailable.Count - 1;
+            vehicleIndex = allVehicles.Length - 1;
         }
         ShowCraftableVehicle();
     }
@@ -54,7 +58,8 @@ public class Crafting : MonoBehaviour
         {
             Destroy(vehicleToCraft);
         }
-        vehicleToCraft = Instantiate(vehiclesAvailable[vehicleIndex].gameObject, SelectShipSlot.transform);
+
+        vehicleToCraft = Instantiate(allVehicles[vehicleIndex].gameObject, SelectShipSlot.transform);
         if(System.Int32.Parse(partsAvailable.text) < vehicleToCraft.GetComponent<CraftableVehicle>().partsRequired)
         {
             craftButton.interactable = false;
@@ -65,23 +70,11 @@ public class Crafting : MonoBehaviour
         }
     }
 
+
     public void CraftVehicle()
     {
-        int parts = PlayerPrefs.GetInt("parts", 0);
-        parts = parts - vehicleToCraft.GetComponent<CraftableVehicle>().partsRequired;
-        PlayerPrefs.SetInt("parts", parts);
-        PlayerPrefs.SetInt(vehicleToCraft.GetComponent<CraftableVehicle>().vehicle.ToString(), 0);
-    }
-    public void PopulateAvailableVehicles()
-    {
-        partsAvailable.text = PlayerPrefs.GetInt("parts", 0).ToString();
-        vehiclesAvailable.Clear();
-        for (int i = 0; i < allVehicles.Length; i++)
-        {
-            if (!PlayerPrefs.HasKey(allVehicles[i].vehicle.ToString()))
-            {
-                vehiclesAvailable.Add(allVehicles[i]);
-            }
+        fleet.CreateShip(vehicleToCraft.GetComponent<CraftableVehicle>(), shipNameInput.text);
+
         }
-    }
+
 }
