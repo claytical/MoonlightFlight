@@ -16,9 +16,6 @@ public class ParkingLot : MonoBehaviour
     public Damage HP;
     public UsePowerUps PowerUps;
     public int lightYearIncrement = 10;
-//REMOVE?
-    public Text lightyearUI;
-    public Text planetUI;
 
 
     // Start is called before the first frame update
@@ -47,27 +44,6 @@ public class ParkingLot : MonoBehaviour
 
     }
 
-    public void LightYearTraveled()
-    {
-        lightYearsTraveled += lightYearIncrement;
-
-        if (lightYearsTraveled%100 == 0)
-        {
-            lightYearIncrement += 10;
-        }
-        GetComponent<AudioSource>().PlayOneShot(energyFx);
-
-    }
-    /*
-    public void AddEnergy(int e)
-    {
-        energyCollected += e;
-       // energyUI.text = energyCollected.ToString();
-       // energyUI.gameObject.GetComponent<Animator>().SetTrigger("add");
-        GetComponent<AudioSource>().PlayOneShot(energyFx);
-
-    }
-    */
     public void GiveFeedback(string message)
     {
         feedback.gameObject.SetActive(true);
@@ -92,8 +68,6 @@ public class ParkingLot : MonoBehaviour
                 }
             });
         }
-        PlayerPrefs.SetInt("energy", energyCollected + PlayerPrefs.GetInt("energy"));
-
     }
 
     public Vehicle DefaultVehicle()

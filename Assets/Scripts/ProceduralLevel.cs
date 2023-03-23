@@ -29,100 +29,59 @@ public class ProceduralLevel : MonoBehaviour {
     public SceneControl scene;
 
 	public GameObject LevelFailPanel;
-    private SetInfo[] sets;
     public GameObject patterns;
     public Text failureMessage;
     public ParkingLot lot;
     public ProceduralMusic music;
     public GameObject warpMenu;
     public GameObject outpostLocation;
-    private Vector3 originalPosition;
-    private bool warping = false;
-    private bool warpingBack = false;
-
 
     public GameObject ProgressPanel;
-
     public AudioSource effectsAudio;
+
+    public SetInfo set;
+    public bool useAnimationForPlatforms = false;
+    public float waitTimeForGameOver;
+    public RectTransform offLimitTouchPoint;
+
+    private Vector3 originalPosition;
+    private SetInfo[] sets;
+    private bool warping = false;
+    private bool warpingBack = false;
     private string selectedScene;
 	private AsyncOperation AO;
 	private GameState gameState;
-
     private int setCount;
-    private int powerUpIndex = 0;
-    private int setIndex;
     private Vehicle vehicle;
-    public SetInfo set;
     private bool buildingNewSet = false;
-    public bool useAnimationForPlatforms = false;
-    public float waitTimeForGameOver;
     private float gameOverTime = 9999;
-    public RectTransform offLimitTouchPoint; 
 
     // Use this for initialization
     static System.Random rnd = new System.Random();
 
     void Start () {
-        //SETUP SHIP NAME AND CREATE IT
 
-
-        /*
-        gameState = (GameState)FindObjectOfType(typeof(GameState));
-        if (gameState != null)
-        {
-            vehicle = lot.SelectVehicle(gameState.GetVehicle());
-            //using .2f for nerfing forces to balance overdoing it. using .1f to balance bounciness.
-            vehicle.force += PlayerPrefs.GetInt(gameState.GetVehicle().ToString() + "_" + "MaxForce", 0) * .2f;
-            vehicle.maxForce += PlayerPrefs.GetInt(gameState.GetVehicle().ToString() + "_" + "Force", 0) * .2f;
-            if (vehicle.GetComponent<Rigidbody2D>())
-            {
-//                vehicle.GetComponent<Rigidbody2D>().sharedMaterial.bounciness = PlayerPrefs.GetInt(gameState.GetVehicle().ToString() + "_" + "Bounce", 0) * .1f;
-
-            }
-
-        }
-        else
-        {
-            vehicle = lot.DefaultVehicle();
-        }
-
-        */
         VehicleType vehicleId = (VehicleType)DialogueLua.GetVariable("Vehicle Type").AsInt;
         vehicle = lot.SelectVehicle(vehicleId);
-        vehicle.force += PlayerPrefs.GetInt(vehicleId.ToString() + "_" + "MaxForce", 0) * .2f;
-        vehicle.maxForce += PlayerPrefs.GetInt(vehicleId.ToString() + "_" + "Force", 0) * .2f;
-
-
         vehicle.offLimitTouchPoint = offLimitTouchPoint;
         lootDropLocation = Vector3.zero;      
-        Debug.Log("Nerfing Vehicle Force");
-
-
         sets = patterns.GetComponentsInChildren<SetInfo>();
 
         //EACH GRID REPEATS A GIVEN NUMBER, RESET TO ZERO
         setCount = 0;
 
-        //PICK A STARTING GRID
-        //setIndex = Random.Range(0, sets.Length);
-
-        //ASSIGN THAT GRID TO START
-        //set = sets[setIndex];
-
         //ASSIGN NEXT SETS
 
-        //        set.currentSet.SetNextSet();
         set.gameObject.SetActive(true);
+
         //PASS GRID INFO TO SHIP
         vehicle.LinkSet(set);
 
         //SET TRACK FOR THE SHIP
         vehicle.SetTrack(this);
 
-
         //CREATE BREAKABLES IN GRID
         CreateRandomSetOfBreakables(set.numberOfObjectsToPlace);
-//        set.GetComponent<ProceduralInfo>().start.TransitionTo(0);
 
     }
     public void Warp()
@@ -183,27 +142,8 @@ public class ProceduralLevel : MonoBehaviour {
             selectedLoot = 0;
         }
 
-        
-
-        /*Transform[] locations = set.spawnLocations.GetComponentsInChildren<Transform>();
-        if (!locations[powerUpIndex].GetComponent<PowerUp>())
-        {
-        */
-            GameObject obj = Instantiate(drop[selectedLoot].item, lastEnergyCollectionPosition.position, Quaternion.identity, transform);
-//            GameObject energyTransfer = Instantiate(vehicle.energyTransfer, vehicle.transform);
-//            energyTransfer.GetComponent<EnergyTransfer>().startingPoint = vehicle.transform;
-//            energyTransfer.GetComponent<EnergyTransfer>().endingPoint = obj.transform;
-            //hard destroy when location can't lerp
-//            Destroy(energyTransfer, 2f);
-            lootDropLocation = obj.transform.position;
-        /*    
-    }
-
-        else
-        {
-            Debug.Log("No loot dropped, location already had loot...");
-        }
-    */
+        GameObject obj = Instantiate(drop[selectedLoot].item, lastEnergyCollectionPosition.position, Quaternion.identity, transform);
+        lootDropLocation = obj.transform.position;
     }
 
     public void MaxEnergyReached()
@@ -241,10 +181,8 @@ public class ProceduralLevel : MonoBehaviour {
         if (gameOverTime <= Time.time && gameOverTime != 9999)
         {
             lot.SetEnergy();
-            PlayerPrefs.SetFloat("light years traveled", lot.lightYearsTraveled);
-            PlayerPrefs.SetInt("energy collected", lot.energyCollected);
-            scene.SetSceneToLoad("End");
-            scene.SelectScene();
+            DialogueLua.SetVariable("Energy Available", lot.energyCollected);
+            DialogueManager.PlaySequence("LoadLevel(End)");
             gameOverTime = 9999;
         }
 
@@ -263,7 +201,6 @@ public class ProceduralLevel : MonoBehaviour {
     public void BuildNextSet()
     {
         music.ChangeTrack();
-        lot.LightYearTraveled();
         if (useAnimationForPlatforms)
         {
             ResetPlatforms();
@@ -273,14 +210,6 @@ public class ProceduralLevel : MonoBehaviour {
             //MOVE PLATFORMS OFF SCREEN
         }
 
-        /*
-        //TODO: Should progress to next set be shown? 
-
-        ProgressPanel.SetActive(true);
-        ProgressPanel.GetComponent<ProgressPanel>().ResetTimer();
-        ProgressPanel.GetComponentInChildren<Text>().text = lot.lightYearsTraveled.ToString("0") + " Light-years traveled\n" + lot.planetsCollected + " units of energy collected";
-
-        */
         SetInfo previousSet = set;
         //set current grid to whatever grid is next (set 2) -> NEXT GRID SELECTED
         set = set.currentSet.SetNextSet();
@@ -302,9 +231,6 @@ public class ProceduralLevel : MonoBehaviour {
         previousSet.MovePlatformsOffScreen();
 
         buildingNewSet = false;
-//        fullEnergyLoops.LimitLoopsPlaying(grid);
-
-
     }
 
 
@@ -450,12 +376,6 @@ public class ProceduralLevel : MonoBehaviour {
                         {
                             if (i == series.Length - 1)
                             {
-
-                            //using a series, set position for recall later
-                                if (series.Length > 0)
-                                {
-                                    powerUpIndex = i;
-                                }
 
                                 GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
 

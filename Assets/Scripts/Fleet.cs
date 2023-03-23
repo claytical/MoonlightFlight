@@ -19,6 +19,7 @@ public class Fleet : MonoBehaviour
     public Button cargoButton;
     public Button salvageButton;
     public Button createButton;
+    public Button flyButton;
 
     public Text currentShip;
 
@@ -93,6 +94,7 @@ public class Fleet : MonoBehaviour
         if(fleetNameArray.Length >= selectedShip)
         {
             DialogueLua.SetVariable("Ship Name", fleetNameArray[selectedShip]);
+            DialogueLua.SetVariable("Selected Ship", selectedShip);
             DialogueLua.SetVariable("Vehicle Type", fleetTypeArray[selectedShip]);
         }
         else
@@ -102,6 +104,12 @@ public class Fleet : MonoBehaviour
 
         string s = PersistentDataManager.GetSaveData(); // Save state.
 
+    }
+
+    public void Fly()
+    {
+        UseShip(selectedSlotIndex);
+        DialogueManager.PlaySequence("LoadLevel(Remix)");
     }
 
     public void CreateShip(CraftableVehicle vehicle, string shipName)
@@ -229,6 +237,7 @@ public class Fleet : MonoBehaviour
             DisplayShipName(fleetNameArray[selectedSlotIndex]);
             salvageButton.gameObject.SetActive(true);
             cargoButton.gameObject.SetActive(true);
+            flyButton.gameObject.SetActive(true);
             createButton.gameObject.SetActive(false);
             slots[selectedSlotNumber].GetComponentInChildren<Text>().enabled = false;
 
@@ -237,9 +246,10 @@ public class Fleet : MonoBehaviour
         {
             //empty
             DisplayShipName("Empty");
+            createButton.gameObject.SetActive(true);
             salvageButton.gameObject.SetActive(false);
             cargoButton.gameObject.SetActive(false);
-            createButton.gameObject.SetActive(true);
+            flyButton.gameObject.SetActive(false);
 
         }
 

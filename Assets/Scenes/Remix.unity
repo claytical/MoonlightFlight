@@ -2028,8 +2028,6 @@ MonoBehaviour:
   HP: {fileID: 1113077678}
   PowerUps: {fileID: 741082117}
   lightYearIncrement: 10
-  lightyearUI: {fileID: 0}
-  planetUI: {fileID: 0}
 --- !u!82 &54880738
 AudioSource:
   m_ObjectHideFlags: 0

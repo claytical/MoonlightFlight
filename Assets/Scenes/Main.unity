@@ -3502,7 +3502,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2106965639}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameState, Assembly-CSharp
         m_MethodName: UseGameServices
         m_Mode: 1
@@ -3636,7 +3636,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2106965639}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: UseTouchControls
         m_Mode: 1
@@ -4217,6 +4217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsAvailable: {fileID: 247420653}
+  shipNameInput: {fileID: 0}
   vehicleToCraft: {fileID: 0}
   allVehicles:
   - {fileID: 8769352739064111071, guid: 002d8f7e0ba4f204da04e76e82ec783e, type: 3}
@@ -4224,9 +4225,9 @@ MonoBehaviour:
   - {fileID: 8769352739064111071, guid: 1ad07874749f00e4485dec0435e08372, type: 3}
   - {fileID: 8769352739064111071, guid: 4a547f9ff990f244f9225e80065374f1, type: 3}
   - {fileID: 8769352739064111071, guid: dd113e5d26bf3484b9160e141fac9237, type: 3}
-  vehiclesAvailable: []
   craftButton: {fileID: 710094259}
   SelectShipSlot: {fileID: 807720372}
+  fleet: {fileID: 0}
 --- !u!1 &1205689427
 GameObject:
   m_ObjectHideFlags: 0
@@ -7912,7 +7913,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106965640}
-  - component: {fileID: 2106965639}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -7920,22 +7920,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2106965639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106965638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6198efff875ce3c47a5e67adae7e6068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedWorld: 
-  SelectedLevel: 
-  resetKeys: 0
-  selectedVehicle: 0
 --- !u!4 &2106965640
 Transform:
   m_ObjectHideFlags: 0

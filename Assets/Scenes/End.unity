@@ -1225,7 +1225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
       propertyPath: condition.luaConditions.Array.data[0]
-      value: Variable["First_Run"] == true
+      value: Variable["First_System"] == true
       objectReference: {fileID: 0}
     - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
       propertyPath: condition.luaConditions.Array.data[1]
@@ -2374,7 +2374,7 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
---- !u!114 &1086533193
+--- !u!114 &1086533191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2386,10 +2386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c3f1f3f798f50449261c6906fb921b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToMove:
-  - {fileID: 1086533189}
-  coordinatesToMoveObjectTo:
-  - {x: -9, y: 245, z: -390}
+  objectToMove: []
+  coordinatesToMoveObjectTo: []
   objectToHide: []
   objectToShow: []
   cleanUpOnStart: 0
@@ -2657,7 +2655,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1086533193}
+      - m_Target: {fileID: 1086533191}
         m_TargetAssemblyTypeName: CleanUpDialogue, Assembly-CSharp
         m_MethodName: Clean
         m_Mode: 1
@@ -3943,6 +3941,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4294603378156293541, guid: 3af757e4d5219aa409ed884d753497b3,
+        type: 3}
+      propertyPath: objectToHide.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4294603378156293541, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: objectToHide.Array.data[0]

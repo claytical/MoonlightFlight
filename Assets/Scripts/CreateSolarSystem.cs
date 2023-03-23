@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PixelCrushers.DialogueSystem;
+using System.Linq;
 
 [System.Serializable]
 public enum PlanetType
@@ -35,8 +36,6 @@ public class CreateSolarSystem : MonoBehaviour
     public Color[] starColors;
     public GameObject starTemplate;
     public PlanetRequirement[] planetRequirements;
-    
-//    public Planet[] planets;
 
     public Text energyToExpend;
 
@@ -46,7 +45,6 @@ public class CreateSolarSystem : MonoBehaviour
    
 
     public int energyAvailable;
-    private int energySpent = 0;
     private int selectedStarColorIndex = 0;
     private int numberOfExistingSolarSystems;
 
@@ -67,26 +65,8 @@ public class CreateSolarSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        energyAvailable = PlayerPrefs.GetInt("energy collected", 100);
-        DialogueLua.SetVariable("Energy_Available", energyAvailable);
-/*
-        int createdSolarSystemBefore = PlayerPrefs.GetInt("First Solar System Created", 0);
 
-        
-        Debug.Log("First Solar System Created: " + PlayerPrefs.GetInt("First Solar System Created", 0));
- 
-        if(createdSolarSystemBefore == 0)
-        {
-            DialogueLua.SetVariable("First Run", true);
-        }
-        else
-        {
-            DialogueLua.SetVariable("First Run", false);
-        }
-*/
-        DialogueLua.RefreshRelationshipTableFromLua();
-
-//        energyAvailable = 400;
+        energyAvailable = DialogueLua.GetVariable("Energy Available").asInt;
 
         SetEnergyText();
 
@@ -98,6 +78,9 @@ public class CreateSolarSystem : MonoBehaviour
         }
 
         numberOfExistingSolarSystems = PlayerPrefs.GetInt("number of solar systems", 0);
+
+        selectedStarColorIndex = DialogueLua.GetVariable("Vehicle Type").asInt;
+        /*
         if (gameState != null)
         {
             VehicleType vehicle = gameState.GetVehicle();
@@ -116,6 +99,7 @@ public class CreateSolarSystem : MonoBehaviour
             //No game state present, default galaxy creation values
 
         }
+        */
         ParticleSystem.MainModule main = solarFlares.main;
         main.startColor = starColors[selectedStarColorIndex];
         core.material.color = starColors[selectedStarColorIndex];
@@ -177,7 +161,11 @@ public class CreateSolarSystem : MonoBehaviour
          * All Player Mapped universe would show each "stacked" galaxy
 
          */
+        int remainingEnergy = EnergyAvailableToSpend();
+        DialogueLua.SetVariable("Energy Available", remainingEnergy);
+
         PlayerPrefs.SetInt("First Solar System Created", 1);
+        
 
         for (int i = 0; i < planetRequirements.Length; i++)
         {
@@ -247,6 +235,54 @@ public class CreateSolarSystem : MonoBehaviour
 
         numberOfExistingSolarSystems++;
         PlayerPrefs.SetInt("number of solar systems", numberOfExistingSolarSystems);
+
+        //DESTROY SHIP FROM FLEET
+
+        
+
+        int[] fleetTypeArray = PlayerPrefsX.GetIntArray("Fleet Ship Types");
+        string[] fleetNameArray = PlayerPrefsX.GetStringArray("Fleet Ship Names");
+
+        List<int> fleetTypes = fleetTypeArray.ToList();
+        List<string> fleetNames = fleetNameArray.ToList();
+        int totalShips = DialogueLua.GetVariable("Ships").asInt;
+        
+
+        if (fleetNameArray.Length >= DialogueLua.GetVariable("Selected Ship").asInt)
+        {
+
+            fleetNames.RemoveAt(DialogueLua.GetVariable("Selected Ship").asInt);
+            fleetTypes.RemoveAt(DialogueLua.GetVariable("Selected Ship").asInt);
+            totalShips--;
+            PlayerPrefsX.SetStringArray("Fleet Ship Names", fleetNames.ToArray());
+            PlayerPrefsX.SetIntArray("Fleet Ship Types", fleetTypes.ToArray());
+
+        }
+        else
+        {
+            Debug.Log("Selected Ship ID not valid.");
+        }
+
+        DialogueLua.SetVariable("Ships", totalShips);
+        PlayerPrefs.SetInt("Ships", totalShips);
+ 
+        string s = PersistentDataManager.GetSaveData(); // Save state.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
