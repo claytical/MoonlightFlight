@@ -5,7 +5,7 @@ using UnityEngine;
 public class Orbit : MonoBehaviour
 {
     float radius = 0;
-    float distanceToStar = 0;
+ //   float distanceToStar = 0;
     float angle = 0;
     float speed;
 

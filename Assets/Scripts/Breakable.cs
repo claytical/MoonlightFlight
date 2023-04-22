@@ -18,8 +18,8 @@ public class Breakable : MonoBehaviour {
     public GameObject[] layers;
     public GameObject explosion;
 	public AudioClip hit;
-	private float lightUpTime;
-	private bool isDying = false;
+//	private float lightUpTime;
+//	private bool isDying = false;
     private bool scaleUp = true;
     private Vector3 originalScale;
 

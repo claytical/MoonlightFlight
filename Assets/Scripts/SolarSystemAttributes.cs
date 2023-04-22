@@ -7,7 +7,7 @@ public class SolarSystemAttributes : MonoBehaviour
     public bool LoadAllSystems = false;
     public bool removeAllSolarSystems = false;
     public int numberOfExistingSolarSystems;
-
+    public float starPadding = 0;
     public GameObject starTemplate;
     public Color[] starColors;
     [SerializeField]
@@ -50,14 +50,19 @@ public class SolarSystemAttributes : MonoBehaviour
         if(index > 0)
         {
             float distanceBetweenSystems = PlayerPrefs.GetFloat("solar_system_" + (index - 1) + "_size", 0) + PlayerPrefs.GetFloat("solar_system_" + index + "_size", 0);
-            coordinates.x += distanceBetweenSystems *.01f;
+            coordinates.x += (distanceBetweenSystems *.01f) + starPadding;
         }
-        Vector3 info = PlayerPrefsX.GetVector3("solar_system_" + index + "_star_info");
+        Vector2 info = PlayerPrefsX.GetVector2("solar_system_" + index + "_star_info", new Vector2(1,0));
         GameObject go = Instantiate(starTemplate, transform);
         go.transform.localPosition = coordinates;
         go.GetComponent<Renderer>().material.SetColor("_Color", starColors[(int)info.y]);
-        Vector3 starScale = new Vector3(.01f, .01f, .01f);
-        go.transform.localScale = starScale;
+        go.transform.localScale = new Vector3(info.x * .01f, info.x * .01f, info.x * .01f);
+        Debug.Log(go.transform.name + " NEW SCALE: " + go.transform.localScale);
+        Debug.Log("INFO X: " + info.x);
+        if(go.GetComponentInChildren<Core>())
+        {
+            go.GetComponentInChildren<Core>().SetScale();
+        }
         return go;
     }
 

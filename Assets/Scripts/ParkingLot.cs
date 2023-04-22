@@ -9,6 +9,8 @@ public class ParkingLot : MonoBehaviour
     public GameObject[] vehicles;
     public GameObject vehicle;
     public Feedback feedback;
+    public Text energyUI;
+    public Text partsUI;
     public int energyCollected;
     public float lightYearsTraveled;
     public AudioClip energyFx;

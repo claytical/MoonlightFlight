@@ -14,10 +14,10 @@ public class Damage : MonoBehaviour
     public BoundaryPowerUp boundaries;
     public GameObject hull;
 
-    private float speed = .01f;
-    private float amount = .01f;
+//    private float speed = .01f;
+//    private float amount = .01f;
 
-    private float hitDamageTime;
+//    private float hitDamageTime;
     private Vector3 originalPosition;
     private int maxHP;
 
@@ -87,24 +87,6 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        Vector3 newPosition = hull.transform.localPosition;
-        newPosition.x = Mathf.Sin(Time.time * speed) * amount + newPosition.x;
-        hull.transform.localPosition = newPosition;
-
-
-        if (hitDamageTime > Time.time)
-            {
-            Debug.Log("taking damage!");
-//                Vector3 newPosition = hull.transform.position;
-                newPosition.x = Mathf.Sin(Time.time * speed) * amount;
-                hull.transform.position = newPosition;
-            }
-        else
-        {
-            hull.transform.position = originalPosition;
-        }
-        */
     }
 
 

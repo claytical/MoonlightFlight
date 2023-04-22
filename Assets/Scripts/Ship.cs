@@ -194,11 +194,6 @@ public class Ship : MonoBehaviour
                         GetComponentInParent<Dock>().GiveFeedback("Shield Activated!");
                         ToggleShield();
                         break;
-                    case PowerUp.Reward.Boundary:
-                        GetComponentInParent<Dock>().GiveFeedback("Borders Strengthened!");
-                        GetComponentInParent<Dock>().boundaries.AddBorders(2);
-
-                        break;
                         /*
                     case PowerUp.Reward.Part:
                         GetComponentInParent<Dock>().GiveFeedback("Adding Ship Part to Inventory");
@@ -206,10 +201,6 @@ public class Ship : MonoBehaviour
                         force *= .5f;
                         break;
                         */
-                    case PowerUp.Reward.PassThrough:
-                        GetComponentInParent<Dock>().GiveFeedback("Ship Phasing Enabled!");
-                        SetPassThrough(true);
-                        break;
 
                 }
                 Destroy(coll.gameObject);

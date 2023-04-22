@@ -148,8 +148,13 @@ public class CreateSolarSystem : MonoBehaviour
         systemAttributes.LoadSystem(numberOfExistingSolarSystems-1, transform);
     }
 
-    public void Create(int starSize)
+    public void Create()
     {
+        solarFlares.GetComponent<SolarFlare>().SetScale();
+
+        //local scale should be 210
+        float starSize = solarFlares.transform.localScale.x;
+        Debug.Log("STAR SIZE: " + starSize);
         /*
          * STAR COLOR DETERMINED BY VEHICLE
          * 
@@ -162,10 +167,10 @@ public class CreateSolarSystem : MonoBehaviour
 
          */
         int remainingEnergy = EnergyAvailableToSpend();
-        DialogueLua.SetVariable("Energy Available", remainingEnergy);
 
+        DialogueLua.SetVariable("Energy Available", remainingEnergy);
         PlayerPrefs.SetInt("First Solar System Created", 1);
-        
+        DialogueLua.SetVariable("Stars Created", DialogueLua.GetVariable("Stars Created").asInt + 1);
 
         for (int i = 0; i < planetRequirements.Length; i++)
         {
@@ -176,8 +181,10 @@ public class CreateSolarSystem : MonoBehaviour
         go.GetComponent<Renderer>().material.SetColor("_Color", starColors[selectedStarColorIndex]);
         Vector3 starScale = new Vector3(starSize, starSize, starSize);
         go.transform.localScale = starScale;
-        PlayerPrefsX.SetVector3("solar_system_" + numberOfExistingSolarSystems + 1 + "_star_coordinates", new Vector3(0, 0, 0));
-        PlayerPrefsX.SetVector3("solar_system_" + numberOfExistingSolarSystems + 1 + "_star_info", new Vector2(starSize, selectedStarColorIndex));
+        Vector2 starInfo = new Vector2(starSize, selectedStarColorIndex);
+        Vector3 starCoordinates = new Vector3(0, 0, 0);
+        PlayerPrefsX.SetVector3("solar_system_" + numberOfExistingSolarSystems + 1 + "_star_coordinates", starCoordinates);
+        PlayerPrefsX.SetVector2("solar_system_" + numberOfExistingSolarSystems + 1 + "_star_info", starInfo);
 
         float distanceToStar = starScale.x;
         float padding = 5;
@@ -199,7 +206,6 @@ public class CreateSolarSystem : MonoBehaviour
             planetDistance.y = Random.Range(-10, 10);
             planetCoordinates.Add(planetDistance);
             distanceToStar += padding + starScale.x + Random.Range(30,50);
-            Debug.Log(i + ": PLANET DISTANCE: " + planetDistance + " DISTANCE TO STAR: " + distanceToStar);
         }
         //SHUFFLE UP ORDER COORDINATES FOR PLANET LIST
         planetCoordinates = ShuffleList(planetCoordinates);
@@ -219,11 +225,9 @@ public class CreateSolarSystem : MonoBehaviour
             {
                 //size
                 planetInfo[currentIndex + j].y = planetRequirements[i].diameter;
-                Debug.Log("PLANET DIAMETER " + (currentIndex + j) + ":" + planetRequirements[i].diameter);
                 //random planet type
                 planetInfo[currentIndex + j].x = (int)Random.Range(0, systemAttributes.planets.Length);
             }
-            Debug.Log("CURRENT INDEX: " + currentIndex);
             currentIndex += planetAllocations[i];
 
         }
@@ -236,53 +240,51 @@ public class CreateSolarSystem : MonoBehaviour
         numberOfExistingSolarSystems++;
         PlayerPrefs.SetInt("number of solar systems", numberOfExistingSolarSystems);
 
+        Debug.Log("New Solar System Created: " + DialogueLua.GetVariable("Ship Name").asString);
+
         //DESTROY SHIP FROM FLEET
+        DestroyShip(DialogueLua.GetVariable("Selected Ship").asInt);
 
-        
+        string s = PersistentDataManager.GetSaveData(); // Save state.
 
-        int[] fleetTypeArray = PlayerPrefsX.GetIntArray("Fleet Ship Types");
-        string[] fleetNameArray = PlayerPrefsX.GetStringArray("Fleet Ship Names");
+    }
 
-        List<int> fleetTypes = fleetTypeArray.ToList();
-        List<string> fleetNames = fleetNameArray.ToList();
+    public void DestroyShip(int shipId)
+    {
+        List<int> fleetTypes = PlayerPrefsX.GetIntArray("Fleet Ship Types").ToList();
+        List<string> fleetNames = PlayerPrefsX.GetStringArray("Fleet Ship Names").ToList();
+        string shipToDestroy = fleetNames[shipId];
+        int destroyedShipType = fleetTypes[shipId];
         int totalShips = DialogueLua.GetVariable("Ships").asInt;
-        
 
-        if (fleetNameArray.Length >= DialogueLua.GetVariable("Selected Ship").asInt)
+        if (totalShips > 0)
         {
-
-            fleetNames.RemoveAt(DialogueLua.GetVariable("Selected Ship").asInt);
-            fleetTypes.RemoveAt(DialogueLua.GetVariable("Selected Ship").asInt);
+            fleetNames.RemoveAt(shipId);
+            fleetTypes.RemoveAt(shipId);
             totalShips--;
+            
+            //save current fleet
             PlayerPrefsX.SetStringArray("Fleet Ship Names", fleetNames.ToArray());
             PlayerPrefsX.SetIntArray("Fleet Ship Types", fleetTypes.ToArray());
+            DialogueLua.SetVariable("Ships", totalShips);
 
+            //add ship to graveyard
+            List<string> destroyedShipNames = PlayerPrefsX.GetStringArray("Destroyed Ship Names").ToList();
+            List<int> destroyedShipTypes = PlayerPrefsX.GetIntArray("Destroyed Ship Types").ToList();
+            List<int> destroyedShipEnergy = PlayerPrefsX.GetIntArray("Destroyed Ship Energy").ToList();
+
+            destroyedShipNames.Add(shipToDestroy);
+            destroyedShipTypes.Add(destroyedShipType);
+            destroyedShipEnergy.Add(energyAvailable);
+
+            PlayerPrefsX.SetStringArray("Destroyed Ship Names", destroyedShipNames.ToArray());
+            PlayerPrefsX.SetIntArray("Destroyed Ship Types", destroyedShipTypes.ToArray());
+            PlayerPrefsX.SetIntArray("Destroyed Ship Energy", destroyedShipEnergy.ToArray());
         }
         else
         {
-            Debug.Log("Selected Ship ID not valid.");
+            Debug.Log("No ships available to destroy!");
         }
-
-        DialogueLua.SetVariable("Ships", totalShips);
-        PlayerPrefs.SetInt("Ships", totalShips);
- 
-        string s = PersistentDataManager.GetSaveData(); // Save state.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

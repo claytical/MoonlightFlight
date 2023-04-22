@@ -67,8 +67,8 @@ public class ProceduralLevel : MonoBehaviour {
         lootDropLocation = Vector3.zero;      
         sets = patterns.GetComponentsInChildren<SetInfo>();
 
-        //EACH GRID REPEATS A GIVEN NUMBER, RESET TO ZERO
-        setCount = 0;
+        //EACH GRID PLAYS HAS SETS OF BREAKABLES
+        setCount = 1;
 
         //ASSIGN NEXT SETS
 
@@ -182,6 +182,8 @@ public class ProceduralLevel : MonoBehaviour {
         {
             lot.SetEnergy();
             DialogueLua.SetVariable("Energy Available", lot.energyCollected);
+            DialogueLua.SetVariable("Nukes", 0);
+            DialogueLua.SetVariable("Brakes", 0);
             DialogueManager.PlaySequence("LoadLevel(End)");
             gameOverTime = 9999;
         }
@@ -213,8 +215,8 @@ public class ProceduralLevel : MonoBehaviour {
         SetInfo previousSet = set;
         //set current grid to whatever grid is next (set 2) -> NEXT GRID SELECTED
         set = set.currentSet.SetNextSet();
-        //BROKE ALL RINGS, CLEARED ALL SETS                    
-        setCount = 0;
+        //BROKE ALL RINGS, CLEARED ALL SETS, RETURN BACK TO FIRST SET OF NEXT SET OF SETS 
+        setCount = 1;
 
         //start new music, set procedural set's current next grid active -> NEW GRID SHOWN
         previousSet.currentSet.FinishedSet();
@@ -291,6 +293,7 @@ public class ProceduralLevel : MonoBehaviour {
             {
                 if(set)
                 {
+                    Debug.Log("SETS: " + set.sets + " SET COUNT: " + setCount);
                     if (gos.Length == 0 && setCount >= set.sets)
                     {
                         Debug.Log("CALLING BUILD NEXT SET!");

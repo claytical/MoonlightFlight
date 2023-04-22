@@ -23,10 +23,13 @@ public class InitListener : IInitListener
     }
 }
 
+
+/*
 public class InitWithDefault : MonoBehaviour
 {
     async void Start()
     {
+
         try
         {
             await UnityServices.InitializeAsync();
@@ -37,8 +40,9 @@ public class InitWithDefault : MonoBehaviour
             // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
         }
             }
-}
 
+}
+*/
 public class GameState : MonoBehaviour {
 
 

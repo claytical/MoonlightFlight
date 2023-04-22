@@ -262,6 +262,39 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-1964059779075146900
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2621fbcea7375b0459360a2e491621fd
+  m_EffectName: Attenuation
+  m_MixLevel: 343f030b69822ae4492650bbeaaf997e
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-1288484661713814712
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Transitions
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: bb9019e928011b849bb6caf204a82a60
+  m_Children: []
+  m_Volume: 98ca5ab8957d39649bdbc41399300c19
+  m_Pitch: 81de9b280e9f3bf4e8ff47668712b0c7
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -1964059779075146900}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!245 &-1181568778027203756
 AudioMixerSnapshotController:
   m_ObjectHideFlags: 0
@@ -379,9 +412,10 @@ AudioMixerController:
     - 05d1865e19c047146a0cd08bfc31680e
     - 009991410a19dd74f954144d2c62105e
     - bb0ffa9e7c23c7e4b9afed7ec053e7d4
+    - bb9019e928011b849bb6caf204a82a60
     name: Bumped
   m_CurrentViewIndex: 1
-  m_TargetSnapshot: {fileID: 5641658885544326574}
+  m_TargetSnapshot: {fileID: 401184682714251971}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -402,6 +436,7 @@ AudioMixerGroupController:
   - {fileID: -2985076480812092319}
   - {fileID: 8370236621952876920}
   - {fileID: -854998193656957392}
+  - {fileID: -1288484661713814712}
   m_Volume: 813148c1baf32264a90c49ab493051ad
   m_Pitch: 2ecf46c12b84f844b94edbbc8e23373f
   m_Send: 00000000000000000000000000000000
@@ -442,8 +477,10 @@ AudioMixerSnapshotController:
     3b3417155e1eea941aeb11542814018a: -80
     81a05ed6fef6bbc46ba0468b9ca7c1ce: 0.10800299
     53dc56a739c68f74492065333f000dfb: -80
+    98ca5ab8957d39649bdbc41399300c19: -9.833286
     c4fb84a922271964fa0d0f0e70a86870: -80
     a39c128ba1c20004787070cff94087bc: -80
+    548d80ac6f5cccd4495061899e5d0424: -5.034154
     5dc016df9e23bed43be8a8ad9c4206aa: -80
   m_TransitionOverrides: {}
 --- !u!244 &944849946728362444

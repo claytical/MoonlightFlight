@@ -10,6 +10,7 @@ public class PrototypeVehicle : MonoBehaviour
     public CargoHold brakes;
     public int nukesInStorage;
     public int brakesInStorage;
+    public int cargoCapacity = 8;
     
     // Start is called before the first frame update
     void Start()

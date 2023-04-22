@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomGravity: 0
-  timeUntilDestroy: 1
+  timeUntilDestroy: 0.1
+  scaleSpeed: 0.1
 --- !u!50 &6484304613994706768
 Rigidbody2D:
   serializedVersion: 4
@@ -155,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 1
+  accelerate: {x: 0, y: 0, z: 0}
 --- !u!60 &3798977711553124710
 PolygonCollider2D:
   m_ObjectHideFlags: 0

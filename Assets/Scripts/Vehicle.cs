@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 
 
 
@@ -41,6 +42,8 @@ public class Vehicle : MonoBehaviour
         touchPoints = new List<GameObject>();
         GetComponent<SpriteRenderer>().color = starColor;
         energyCollected = 0;
+        int parts = PlayerPrefs.GetInt("parts", 0);
+        GetComponentInParent<ParkingLot>().partsUI.text = parts.ToString("0");
 
         //TODO: get ship name to append to cargo holds, also need to specify selected ship in the hangar
     }
@@ -185,7 +188,12 @@ public class Vehicle : MonoBehaviour
     {
         Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift= 0f;
         Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = 0f;
-
+        //add randomness to loot drop
+        energyCollectedBeforeLootDrop = Random.Range(energyCollectedBeforeLootDrop - 1, energyCollectedBeforeLootDrop + 1);
+        if (energyCollectedBeforeLootDrop < 2)
+        {
+            energyCollectedBeforeLootDrop = 2;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -212,7 +220,7 @@ public class Vehicle : MonoBehaviour
             }
 
         }
-        if(coll.gameObject.GetComponent<Hull>())
+        if(coll.transform.parent.GetComponent<Hull>())
         {
             Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = glitchAmount * .5f;
             //                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = .5f;
@@ -233,7 +241,12 @@ public class Vehicle : MonoBehaviour
         if (coll.gameObject.tag == "Disappearing")
         {
             energyCollected++;
-            if(energyCollected%energyCollectedBeforeLootDrop == 0)
+            GetComponentInParent<ParkingLot>().energyUI.text = energyCollected.ToString("0");
+            if(GetComponentInParent<ParkingLot>())
+            {
+                GetComponentInParent<ParkingLot>().energyUI.GetComponentInParent<Animator>().SetTrigger("collect");
+            }
+            if (energyCollected%energyCollectedBeforeLootDrop == 0)
             {
                 track.LootDrop(coll.gameObject.transform);
             }
@@ -291,27 +304,28 @@ public class Vehicle : MonoBehaviour
                         PlayerPrefs.SetInt("armor", armor);
                         break;
                                            
-                        case PowerUp.Reward.Part:
+                    case PowerUp.Reward.Part:
+
                         GetComponentInParent<ParkingLot>().GiveFeedback("Ship Part Located!");
+                        DialogueLua.SetVariable("Parts", DialogueLua.GetVariable("Parts").asInt + 1);
                         int parts = PlayerPrefs.GetInt("parts", 0);
                         parts++;
                         PlayerPrefs.SetInt("parts", parts);
-                        break;
-//Removing Consciousness / The run is the building of consciousness.
-/*
-                    case PowerUp.Reward.Consciousness:
-                        GetComponentInParent<ParkingLot>().GiveFeedback("Consciousness Elevated!");
-                        int consciousness = PlayerPrefs.GetInt("consciousness", 0);
-                        consciousness++;
-                        PlayerPrefs.SetInt("consciousness", consciousness);
+                        GetComponentInParent<ParkingLot>().partsUI.text = parts.ToString("0");
+                        if (GetComponentInParent<ParkingLot>())
+                        {
+                            GetComponentInParent<ParkingLot>().partsUI.GetComponentInParent<Animator>().SetTrigger("collect");
+                        }
+
                         break;
 
-*/
                     case PowerUp.Reward.Stop:
+                        DialogueLua.SetVariable("Brakes", DialogueLua.GetVariable("Brakes").asInt + 1);
                         GetComponentInParent<ParkingLot>().PowerUps.AddPowerUp(PowerUp.Reward.Stop, 1);
                         GetComponentInParent<ParkingLot>().GiveFeedback("Hyper Brake Collected!");
                         break;
                     case PowerUp.Reward.Nuke:
+                        DialogueLua.SetVariable("Nukes", DialogueLua.GetVariable("Nukes").asInt + 1);
                         GetComponentInParent<ParkingLot>().PowerUps.AddPowerUp(PowerUp.Reward.Nuke, 1);
                         GetComponentInParent<ParkingLot>().GiveFeedback("Nuke Collected!");
                         break;
@@ -355,12 +369,19 @@ public class Vehicle : MonoBehaviour
 
         if (coll.gameObject.tag == "Boundary")
         {
-
-            if(coll.gameObject.GetComponent<Hull>().gauge.TakeDamage())
+            if(coll.transform.parent.GetComponent<Hull>())
             {
-                isDead = true;
+                if (coll.transform.parent.GetComponent<Hull>().gauge.TakeDamage())
+                {
+                    isDead = true;
+                }
+
             }
+            else
+            {
+                Debug.Log("Hit non destructive boundary...");
             }
+        }
 
         if (coll.gameObject.tag == "Avoid")
         {

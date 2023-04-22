@@ -8,10 +8,7 @@ public class PowerUp : MonoBehaviour
     public enum Reward
     {
         Shield,
-        Boundary,
-        PassThrough,
         Part,
-        Consciousness,
         Stop,
         Nuke,
         Warp

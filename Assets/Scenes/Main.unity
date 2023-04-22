@@ -1011,7 +1011,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 2386beeef947dad45b3332117b558052,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: d93780dce9db8b945810def59cdae0c5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 27040cb93870a034e8b5141eedcd7f44, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.68
   m_Pitch: 1
@@ -7415,9 +7415,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 976951842}
     m_Modifications:
     - target: {fileID: 1353133647, guid: 3af757e4d5219aa409ed884d753497b3, type: 3}
+      propertyPath: starPadding
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353133647, guid: 3af757e4d5219aa409ed884d753497b3, type: 3}
       propertyPath: starTemplate
       value: 
-      objectReference: {fileID: 6385566628541026382, guid: 535671b8d55b9b443af24f815672fc95,
+      objectReference: {fileID: 6385566628541026382, guid: 824a3a4ac4a4a8e4782a7a254d2d2e4d,
         type: 3}
     - target: {fileID: 1353133647, guid: 3af757e4d5219aa409ed884d753497b3, type: 3}
       propertyPath: LoadAllSystems
@@ -7523,17 +7527,17 @@ PrefabInstance:
     - target: {fileID: 4294603378213670052, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4294603378213670052, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4294603378213670052, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4294603378213670052, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
@@ -7589,6 +7593,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Solar System Display
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945865571802008367, guid: 3af757e4d5219aa409ed884d753497b3,
+        type: 3}
+      propertyPath: setScaleOnStart
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7135786487772837917, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}

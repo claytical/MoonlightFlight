@@ -5429,6 +5429,7 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
     m_ColorMin: {r: 0, g: 0, b: 0, a: 0}
     m_ColorMax: {r: 0.37254903, g: 0, b: 1, a: 0}
+  setScaleOnStart: 1
 --- !u!1001 &1177544908821805736
 PrefabInstance:
   m_ObjectHideFlags: 0

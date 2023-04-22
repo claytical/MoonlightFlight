@@ -85,7 +85,7 @@ SpriteRenderer:
   m_Size: {x: 6.06, y: 6.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &114967761790412470
@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomGravity: 0
-  timeUntilDestroy: 1
+  timeUntilDestroy: 0.1
+  scaleSpeed: 0.1
 --- !u!60 &60671552599392776
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -216,6 +217,7 @@ MonoBehaviour:
   border: {fileID: 0}
   identifier: {fileID: 212153469563071436}
   subidentifier: {fileID: 0}
+  box: {fileID: 0}
   energy: {fileID: 0}
   ship: {fileID: 0}
 --- !u!114 &1728068746
@@ -231,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 1
+  accelerate: {x: 0, y: 0, z: 0}
 --- !u!114 &4672183083768684409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,4 +248,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 2567590292593330884, guid: 7cfef40c3fd6cc44c87f04196a734800,
     type: 3}
+  respawnTimer: 10
   lifetime: 10

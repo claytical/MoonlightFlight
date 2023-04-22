@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hazard : MonoBehaviour
 {
     public bool randomGravity;
-    public int timeUntilDestroy;
+    public float timeUntilDestroy;
     private float timeCreated;
     private Color color;
     public float scaleSpeed = .1f;

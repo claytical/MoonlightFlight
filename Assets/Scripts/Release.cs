@@ -11,7 +11,7 @@ public class Release : MonoBehaviour
 //    public GenerateObjects lightGenerator;
     public Galaxy galaxy;
     public Text instructions;
-    private bool startedCreation = false;
+ //   private bool startedCreation = false;
     private int galaxyState = 0;
     // Start is called before the first frame update
     void Start()

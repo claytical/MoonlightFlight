@@ -22,14 +22,13 @@ public class ShipControlPanel : MonoBehaviour
     
     public void CreateShip() {
         int totalShips = PlayerPrefs.GetInt("Ships", 0);
-        int[] fleetTypeArray = PlayerPrefsX.GetIntArray("Fleet Ship Types");
-        string[] fleetNameArray = PlayerPrefsX.GetStringArray("Fleet Ship Names");
+        List<int> fleetTypes = PlayerPrefsX.GetIntArray("Fleet Ship Types").ToList();
+        List<string> fleetNames = PlayerPrefsX.GetStringArray("Fleet Ship Names").ToList();
         totalShips++; 
 
         DialogueLua.SetVariable("Ships", totalShips);
         PlayerPrefs.SetInt("Ships", totalShips);
-        List<int> fleetTypes = fleetTypeArray.ToList();
-        List<string> fleetNames = fleetNameArray.ToList();
+
         fleetTypes.Add(DialogueLua.GetVariable("Vehicle Type").asInt);
         fleetNames.Add(DialogueLua.GetVariable("Ship Name").asString);
         PlayerPrefsX.SetIntArray("Fleet Ship Types", fleetTypes.ToArray());
@@ -38,9 +37,15 @@ public class ShipControlPanel : MonoBehaviour
         PlayerPrefs.SetInt(DialogueLua.GetVariable("Ship Name").asString + PowerUp.Reward.Stop.ToString(), 0);
         PlayerPrefsX.SetIntArray("Fleet Ship Types", fleetTypes.ToArray());
         PlayerPrefsX.SetStringArray("Fleet Ship Names", fleetNames.ToArray());
+        if(totalShips - 1 < 0)
+        {
+            Debug.Log("Ran Create Ship with ID " + fleetTypes[totalShips - 1] + " named " + fleetNames[totalShips - 1]);
+        }
+        else
+        {
+            Debug.Log("total ships is zero...");
+        }
 
-
-        Debug.Log("Ran Create Ship with ID " + fleetTypes[totalShips - 1] + " named " + fleetNames[totalShips - 1]);
         string s = PersistentDataManager.GetSaveData(); // Save state.
 
     }

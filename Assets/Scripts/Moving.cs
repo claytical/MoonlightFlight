@@ -8,7 +8,7 @@ public class Moving : MonoBehaviour {
 	public List<Transform> points;
 	public Transform transformToMove;
 	private int currentPoint = 0;
-	private float originalRotation = 0;
+    private float originalRotation = 0;
 	// Use this for initialization
 	void Start () {
 		GetOriginalRotation();

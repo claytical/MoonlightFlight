@@ -37,6 +37,11 @@ public class Fleet : MonoBehaviour
 
     //ACTION FUNCTIONS
 
+    public void GotoOutpost()
+    {
+        DialogueManager.PlaySequence("LoadLevel(Main)");
+    }
+
     public void SalvageShip()
     {
         FleetLog();
@@ -200,7 +205,8 @@ public class Fleet : MonoBehaviour
     public void PopulateFleet()
     {
         FleetLog();
-        int totalShips = PlayerPrefs.GetInt("Ships", 0);
+        int totalShips = DialogueLua.GetVariable("Ships").asInt;
+
         ClearChildren(Slots.transform);
 
         for (int i = 0; i < availableSlots; i++)
@@ -284,5 +290,7 @@ public class Fleet : MonoBehaviour
     public void DisplayShipName(string shipName)
     {
         currentShip.text = shipName;
+        DialogueLua.SetVariable("Ship Name", shipName)
+
     }
 }
