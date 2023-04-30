@@ -10,10 +10,12 @@ public class CargoSupply : MonoBehaviour
     public ManageCargo cargoManager;
     public Sprite image;
     public Text count;
+    private int amount;
     // Start is called before the first frame update
     void Start()
     {
-        count.text = PlayerPrefs.GetInt(cargo.ToString() + "_Storage", 0).ToString("0");
+        amount = PlayerPrefs.GetInt(cargo.ToString() + "_Storage", 0);
+        count.text = amount.ToString("0");
     }
 
     // Update is called once per frame
@@ -28,4 +30,5 @@ public class CargoSupply : MonoBehaviour
         cargoManager.SetCargo(cargo);
 
     }
+
 }

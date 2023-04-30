@@ -5065,7 +5065,6 @@ GameObject:
   - component: {fileID: 151801134}
   - component: {fileID: 151801133}
   - component: {fileID: 151801132}
-  - component: {fileID: 151801136}
   m_Layer: 0
   m_Name: Pattern 1 - THE FIRST
   m_TagString: Untagged
@@ -5332,19 +5331,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &151801136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151801130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61972c471db3b3d4bb107f29b0d0aa39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutorial: {fileID: 1942330204}
 --- !u!1001 &152460720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9772,6 +9758,7 @@ GameObject:
   - component: {fileID: 312963205}
   - component: {fileID: 312963207}
   - component: {fileID: 312963208}
+  - component: {fileID: 312963206}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -9796,6 +9783,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &312963206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312963204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15f962c7b40a7a44b6df0b37f1d6bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipColor: {r: 1, g: 1, b: 1, a: 1}
+  gradients: []
+  borderColor: {r: 0, g: 0.909804, b: 1, a: 1}
+  itemColor: {r: 0.18431373, g: 0, b: 0.24705884, a: 1}
+  boxColor: {r: 0.09411766, g: 0.09411766, b: 0.09411766, a: 1}
+  secondaryColor: {r: 0, g: 0.4039216, b: 0.37647063, a: 1}
+  hazardColor: {r: 0.85098046, g: 0, b: 0.2392157, a: 1}
+  energyColor: {r: 0.42352945, g: 0.42352945, b: 0.42352945, a: 1}
 --- !u!82 &312963207
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9917,6 +9924,7 @@ MonoBehaviour:
   secondaryColor: {r: 0, g: 0.4056604, b: 0.37636268, a: 0.5882353}
   hazardColor: {r: 0.8490566, g: 0, b: 0.23796193, a: 0.9529412}
   energyColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 0.39215687}
+  remix: {fileID: 312963206}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
     weight: 50
@@ -9956,7 +9964,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -17591,7 +17599,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -23927,7 +23935,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -38152,7 +38160,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -40330,7 +40338,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -40807,7 +40815,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -46327,7 +46335,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -54043,7 +54051,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -54211,7 +54219,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -66992,7 +67000,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -72837,16 +72845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c2ab1207832124e91bc05f6886ba25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  computer: {fileID: 680270985}
-  messages:
-  - text: Energy detected!
-    animationTrigger: highlight
-    objectToAnimate: {fileID: 0}
-  - text: Collect energy to power planet creation!
-    animationTrigger: 
-    objectToAnimate: {fileID: 0}
-  level: {fileID: 312963208}
-  timeBetweenMesssages: 3
+  firstObject: {fileID: 0}
 --- !u!1001 &1943074488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74787,7 +74786,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
@@ -77688,7 +77687,7 @@ PrefabInstance:
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6736010134838998602, guid: d6023501038a6c045930509f3a4bc508,
         type: 3}

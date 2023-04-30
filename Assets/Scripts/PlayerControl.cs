@@ -28,30 +28,10 @@ public class PlayerControl : MonoBehaviour {
 				
 	// Update is called once per frame
 	void Update () {
-		if(!finished) {
-		}
-
 
     }
 
 
-    public void GameOver(int seedsCollected) {
-        Debug.Log("Collected SEEDS: " + seedsCollected);
-        PlayerPrefs.SetInt("seeds", seedsCollected + PlayerPrefs.GetInt("seeds"));
-        finished = true;
-        level.Wait();
-        level.LevelFailPanel.SetActive (true);
-        if (seedsCollected > 0)
-        {
-            level.failureMessage.text = "You collected " + seedsCollected + " seeds of light on your journey.";
-        }
-        else
-        {
-            level.failureMessage.text = "You didn't collect any seeds of light on your journey.";
-
-        }
-
-    }
     public void Pause()
     {
         Time.timeScale = 0f;    

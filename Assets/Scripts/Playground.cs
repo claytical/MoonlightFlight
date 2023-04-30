@@ -5,33 +5,26 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using PixelCrushers.DialogueSystem;
 
+[System.Serializable] public struct Loot
+{
+    public GameObject item;
+    public int weight;
+}
 
-public class ProceduralLevel : MonoBehaviour {
 
-    public Color shipColor;
-    public Color[] gradients;
-    public Color borderColor;
-    public Color itemColor;
-    public Color boxColor;
-    public Color secondaryColor;
-    public Color hazardColor;
-    public Color energyColor;
+public class Playground : MonoBehaviour {
 
-    public RemixManager remix;
-    public Loot[] availableLoot;
+//    public Loot[] availableLoot;
     public Transform lastEnergyCollectionPosition;
-    public Vector3 lootDropLocation;
-    public SceneControl scene;
+//    public Vector3 lootDropLocation;
+//    public SceneControl scene;
 
-	public GameObject LevelFailPanel;
     public GameObject patterns;
-    public Text failureMessage;
     public ParkingLot lot;
     public ProceduralMusic music;
     public GameObject warpMenu;
     public GameObject outpostLocation;
 
-    public GameObject ProgressPanel;
     public AudioSource effectsAudio;
 
     public SetInfo set;
@@ -59,7 +52,7 @@ public class ProceduralLevel : MonoBehaviour {
         VehicleType vehicleId = (VehicleType)DialogueLua.GetVariable("Vehicle Type").AsInt;
         vehicle = lot.SelectVehicle(vehicleId);
         vehicle.offLimitTouchPoint = offLimitTouchPoint;
-        lootDropLocation = Vector3.zero;      
+//        lootDropLocation = Vector3.zero;      
         sets = patterns.GetComponentsInChildren<SetInfo>();
 
         //EACH GRID PLAYS HAS SETS OF BREAKABLES
@@ -72,8 +65,7 @@ public class ProceduralLevel : MonoBehaviour {
         //PASS GRID INFO TO SHIP
         vehicle.LinkSet(set);
 
-        //SET Level FOR THE SHIP
-        vehicle.SetLevel(this);
+        vehicle.SetPlayground(this);
 
         //CREATE BREAKABLES IN GRID
         CreateRandomSetOfBreakables(set.numberOfObjectsToPlace);
@@ -93,58 +85,7 @@ public class ProceduralLevel : MonoBehaviour {
         warpingBack = true;
         lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(false);
     }
-    public void LootDrop(Transform t)
-    {
-        lastEnergyCollectionPosition = t;
-        lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable = true;
 
-
-        int total = 0;
-        Loot[] drop;
-
-        if(set.availableLoot.Length > 0)
-        {
-            Debug.Log("This pattern has special loot");
-            drop = set.availableLoot;
-        }
-        else
-        {
-            Debug.Log("No pattern loot found, using generics");
-            drop = availableLoot;
-        }
-
-        int[] lootRange = new int[drop.Length];
-
-        for (int i = 0; i < drop.Length; i++)
-        {
-            total += drop[i].weight;
-            lootRange[i] = total;
-        }
-
-        int roll = Random.Range(0, total);
-        int selectedLoot = -1;
-
-        for(int i = 1; i <= lootRange.Length; i++)
-        {
-            if(roll > lootRange[i -1] && roll < lootRange[i])
-            {
-                selectedLoot = i;
-            }
-        }
-        
-        if(selectedLoot == -1)
-        {
-            selectedLoot = 0;
-        }
-
-        GameObject obj = Instantiate(drop[selectedLoot].item, lastEnergyCollectionPosition.position, Quaternion.identity, transform);
-        lootDropLocation = obj.transform.position;
-    }
-
-    public void MaxEnergyReached()
-    {
-        LootDrop(lastEnergyCollectionPosition);
-    }
 
     void Update () {
         if (warping)
@@ -270,10 +211,6 @@ public class ProceduralLevel : MonoBehaviour {
 
                     Animator[] platforms = set.platforms.GetComponentsInChildren<Animator>();
 
-                    for (int i = 0; i < platforms.Length; i++)
-                    {
-//                        platforms[i].SetTrigger("done");
-                    }
                     buildingNewSet = true;
                 }
                 else if (gos == null && setCount < set.sets) //place more breakables
@@ -288,7 +225,6 @@ public class ProceduralLevel : MonoBehaviour {
             {
                 if(set)
                 {
-                    Debug.Log("SETS: " + set.sets + " SET COUNT: " + setCount);
                     if (gos.Length == 0 && setCount >= set.sets)
                     {
                         Debug.Log("CALLING BUILD NEXT SET!");
@@ -361,32 +297,9 @@ public class ProceduralLevel : MonoBehaviour {
         }
         else
         {
-
-            for (int i = 0; i < n; i++)
-                {
-                if (locations[series[i]].position != Vector3.zero)
-                    {
-                        if(lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable && locations[series[i]].position == lootDropLocation)
-                        {
-                            Debug.Log("Loot in spawn space... don't spawn here again until its collected");
-                        }
-                        else
-                        {
-                            if (i == series.Length - 1)
-                            {
-
-                                GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
-
-                            }
-                        else
-                            {
-                                GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
-                            }
-                        }
-
-                } else
-                {
-                    Debug.Log("position was vector zero. series#: " + series[i] + " i: " + i);
+            for (int i = 0; i < n; i++) {
+                if (locations[series[i]].position != Vector3.zero) {
+                    GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], locations[series[i]].position, Quaternion.identity, transform);
                 }
             }
         }

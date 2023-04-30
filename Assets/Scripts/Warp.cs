@@ -5,6 +5,7 @@ using UnityEngine;
 public class Warp : MonoBehaviour
 {
     public ProceduralLevel level;
+    public Playground playground;
     
 
     void Start()
@@ -25,7 +26,13 @@ public class Warp : MonoBehaviour
     {
         //activate cosmic
         //move camera away from game space
-        level.Warp();
+        if(level) {
+            level.Warp();
+        }
+        if(playground)
+        {
+            playground.Warp();
+        }
         //turn off menu
         gameObject.SetActive(false);
         Time.timeScale = 1f;

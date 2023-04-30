@@ -30,7 +30,8 @@ public class Vehicle : MonoBehaviour
     private bool hyperBrake = false;
     private float hyperBrakeTimer;
     public SetInfo set;
-    private ProceduralLevel track;
+    private ProceduralLevel level;
+    private Playground playground;
     private float yOffset;
     public RectTransform offLimitTouchPoint;
     private string shipName;
@@ -61,9 +62,14 @@ public class Vehicle : MonoBehaviour
     }
 
     
-    public void SetTrack(ProceduralLevel t)
+    public void SetLevel(ProceduralLevel t)
     {
-        track = t;
+        level = t;
+    }
+
+    public void SetPlayground(Playground p)
+    {
+        playground = p;
     }
    
     public void LinkSet(SetInfo s)
@@ -175,7 +181,10 @@ public class Vehicle : MonoBehaviour
             Debug.Log("DEAD SHIP. GAME OVER");
             Vector3 pos = transform.position;
             Instantiate(explosion,pos, Quaternion.identity);
-            track.GameOver();
+            if(level)
+            {
+                level.GameOver();
+            }
             this.gameObject.SetActive(false);
             deadShip = true;
         }
@@ -248,7 +257,9 @@ public class Vehicle : MonoBehaviour
             }
             if (energyCollected%energyCollectedBeforeLootDrop == 0)
             {
-                track.LootDrop(coll.gameObject.transform);
+                if(level) {
+                    level.LootDrop(coll.gameObject.transform);
+                }
             }
 
             if (coll.gameObject.GetComponent<Breakable>())
@@ -331,7 +342,14 @@ public class Vehicle : MonoBehaviour
                         break;
                     case PowerUp.Reward.Warp:
                         //activate warp menu
-                        track.warpMenu.SetActive(true);
+                        if(level)
+                        {
+                            level.warpMenu.SetActive(true);
+                        }
+                        if(playground)
+                        {
+                            playground.warpMenu.SetActive(true);
+                        }
                         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                         break;
                 }
@@ -385,14 +403,14 @@ public class Vehicle : MonoBehaviour
 
         if (coll.gameObject.tag == "Avoid")
         {
-
-            if (coll.gameObject.GetComponent<Remix>().level.lot.HP.TakeDamage())
+            if (coll.gameObject.GetComponent<Explode>())
             {
-                isDead = true;
+                coll.gameObject.GetComponent<Explode>().Go();
             }
-
-
-            //TODO: CHECK FOR SHIELD
+           if (coll.gameObject.GetComponent<Remix>().level.lot.HP.TakeDamage())  {
+                coll.gameObject.GetComponent<Explode>().Go();
+                isDead = true;
+           }
         }
 
         gameObject.GetComponentInParent<AudioSource>().Play();

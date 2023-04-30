@@ -5,6 +5,7 @@ using UnityEngine;
 public class Remix : MonoBehaviour
 {
     public ProceduralLevel level;
+    public RemixManager remix;
     public SpriteRenderer border;
     public SpriteRenderer identifier;
     public SpriteRenderer subidentifier;
@@ -16,16 +17,17 @@ public class Remix : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level = FindObjectOfType<ProceduralLevel>();
+        remix = FindObjectOfType<RemixManager>();
+//        level = FindObjectOfType<ProceduralLevel>();
 
         SetColors();        
     }
 
     public Color GetHazardColor()
     {
-        if(level)
+        if(remix)
         {
-            return level.hazardColor;
+            return remix.hazardColor;
 
         }
         else
@@ -40,51 +42,51 @@ public class Remix : MonoBehaviour
     }
     public void SetColors()
     {
-        if (!level)
+        if (!remix)
         {
-            level = GetComponentInParent<ProceduralLevel>();
+            remix = GetComponentInParent<RemixManager>();
         }
 
         if (border)
         {
             if (GetComponent<Breakable>())
             {
-                border.color = level.energyColor;
+                border.color = remix.energyColor;
             }
 
             else
             {
-                border.color = level.borderColor;
+                border.color = remix.borderColor;
 
             }
 
         }
         if(subidentifier)
         {
-            subidentifier.color = level.secondaryColor;
+            subidentifier.color = remix.secondaryColor;
             
 //            level.secondaryColor = subidentifier.color;
         }
         if(box)
         {
-            box.color = level.boxColor;
+            box.color = remix.boxColor;
         }
         if (identifier)
         {
 
             if (GetComponent<Hazard>())
             {
-                identifier.color = level.hazardColor;
+                identifier.color = remix.hazardColor;
             }
             else {
-                identifier.color = level.secondaryColor;
+                identifier.color = remix.secondaryColor;
                 originalIdentifierColor = identifier.color;
 
             }
             if (GetComponent<SpawnsObjects>()) {
                 if (GetComponent<SpawnsObjects>().NextSpawnedObject().GetComponent<Hazard>())
                 {
-                    identifier.color = level.hazardColor;
+                    identifier.color = remix.hazardColor;
                 }
 
             }
@@ -93,13 +95,13 @@ public class Remix : MonoBehaviour
 
         if (energy)
         {
-            energy.color = level.energyColor;
+            energy.color = remix.energyColor;
 
         }
 
         if (ship)
         {
-            ship.color = level.shipColor;
+            ship.color = remix.shipColor;
 
         }
 

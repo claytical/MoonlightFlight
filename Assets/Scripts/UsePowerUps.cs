@@ -17,6 +17,7 @@ public class CargoHold
 public class UsePowerUps : MonoBehaviour
 {
     public ProceduralLevel level;
+    public Playground playground;
     public ParkingLot lot;
     public CargoHold[] cargo;
     public PowerUp.Reward powerUpInUse;
@@ -73,6 +74,7 @@ public class UsePowerUps : MonoBehaviour
 
     }
 
+
     public void AddPowerUp(PowerUp.Reward reward, int amount)
     {
         Debug.Log("Adding " + reward.ToString());
@@ -90,6 +92,7 @@ public class UsePowerUps : MonoBehaviour
                 //                cargo[i].amount = currentAmount;
                 //                PlayerPrefs.SetInt(lot.vehicle.name + reward.ToString(), cargo[i].amount);
                 cargo[i].cargo.GetComponentInChildren<Text>().text = cargo[i].amount.ToString("0");
+                cargo[i].cargo.GetComponent<Button>().interactable = true;
                 break;
             }
         }
@@ -113,41 +116,65 @@ public class UsePowerUps : MonoBehaviour
 
     public void Use()
     {
-
         for (int i = 0; i < cargo.Length; i++)
         {
             if (powerUpInUse == cargo[i].cargo.powerUp)
             {
                 if (cargo[i].amount > 0)
                 {
-                    switch (powerUpInUse)
-                    {
-                        case PowerUp.Reward.Nuke:
-                            DialogueLua.SetVariable("Nukes", DialogueLua.GetVariable("Nukes").asInt - 1);
-                            level.DropNuke();
-                            break;
-                        case PowerUp.Reward.Stop:
-                            DialogueLua.SetVariable("Brakes", DialogueLua.GetVariable("Brakes").asInt - 1);
-                            lot.GetVehicle().ApplyHyperBreak();
-                            break;
-                    }
-
                     cargo[i].amount--;
-
-//                    PlayerPrefs.SetInt(lot.vehicle.name + cargo[i].cargo.powerUp.ToString(), cargo[i].amount);
-
                     cargo[i].cargo.GetComponentInChildren<Text>().text = cargo[i].amount.ToString("0");
-
-                }
-
-                if (cargo[i].amount <= 0)
-                {
-                    if (cargo[i].cargo.GetComponent<Button>())
+                    if(cargo[i].amount <= 0)
                     {
-                        cargo[i].cargo.GetComponent<Button>().interactable = false;
+                        if (cargo[i].cargo.GetComponent<Button>())
+                        {
+                            cargo[i].cargo.GetComponent<Button>().interactable = false;
+                        }
                     }
                 }
             }
         }
     }
-}
+
+            /*
+                public void Use()
+
+                /*
+                for (int i = 0; i < cargo.Length; i++)
+                {
+                    if (powerUpInUse == cargo[i].cargo.powerUp)
+                    {
+                        if (cargo[i].amount > 0)
+                        {
+                            switch (powerUpInUse)
+                            {
+                                case PowerUp.Reward.Nuke:
+                                    DialogueLua.SetVariable("Nukes", DialogueLua.GetVariable("Nukes").asInt - 1);
+                                    level.DropNuke();
+                                    break;
+                                case PowerUp.Reward.Stop:
+                                    DialogueLua.SetVariable("Brakes", DialogueLua.GetVariable("Brakes").asInt - 1);
+                                    lot.GetVehicle().ApplyHyperBreak();
+                                    break;
+                            }
+
+                            cargo[i].amount--;
+
+        //                    PlayerPrefs.SetInt(lot.vehicle.name + cargo[i].cargo.powerUp.ToString(), cargo[i].amount);
+
+                            cargo[i].cargo.GetComponentInChildren<Text>().text = cargo[i].amount.ToString("0");
+
+                        }
+
+                        if (cargo[i].amount <= 0)
+                        {
+                            if (cargo[i].cargo.GetComponent<Button>())
+                            {
+                                cargo[i].cargo.GetComponent<Button>().interactable = false;
+                            }
+                        }
+                    }
+                }
+            }
+                */
+        }

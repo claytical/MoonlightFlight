@@ -290,7 +290,7 @@ public class Fleet : MonoBehaviour
     public void DisplayShipName(string shipName)
     {
         currentShip.text = shipName;
-        DialogueLua.SetVariable("Ship Name", shipName)
+        DialogueLua.SetVariable("Ship Name", shipName);
 
     }
 }

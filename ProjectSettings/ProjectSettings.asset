@@ -987,7 +987,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Build: 1
-    Collab: 1
+    Collab: 0
     Purchasing: 1
     UNet: 1
   luminIcon:
