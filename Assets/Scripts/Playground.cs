@@ -24,13 +24,15 @@ public class Playground : MonoBehaviour {
     public ProceduralMusic music;
     public GameObject warpMenu;
     public GameObject outpostLocation;
-
+    public GameObject dialogueActor;
+    public Vector3 dialogueActorSecondPosition;
     public AudioSource effectsAudio;
 
     public SetInfo set;
     public bool useAnimationForPlatforms = false;
     public float waitTimeForGameOver;
     public RectTransform offLimitTouchPoint;
+    public RectTransform dialogueCanvas;
 
     private Vector3 originalPosition;
     private SetInfo[] sets;
@@ -43,12 +45,12 @@ public class Playground : MonoBehaviour {
     private Vehicle vehicle;
     private bool buildingNewSet = false;
     private float gameOverTime = 9999;
-
+    private Vector3 dialogueActorOriginalPosition;
     // Use this for initialization
     static System.Random rnd = new System.Random();
 
     void Start () {
-
+        dialogueActorOriginalPosition = dialogueActor.transform.position;
         VehicleType vehicleId = (VehicleType)DialogueLua.GetVariable("Vehicle Type").AsInt;
         vehicle = lot.SelectVehicle(vehicleId);
         vehicle.offLimitTouchPoint = offLimitTouchPoint;
@@ -73,6 +75,12 @@ public class Playground : MonoBehaviour {
     }
     public void Warp()
     {
+        dialogueActor.transform.position = dialogueActorSecondPosition;
+        vehicle.offLimitTouchPoint = dialogueCanvas;
+        foreach (Transform child in dialogueCanvas)
+        {
+            child.gameObject.SetActive(false);
+        }
         lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(true);
         originalPosition = Camera.main.transform.position;
         warping = true;
@@ -81,6 +89,14 @@ public class Playground : MonoBehaviour {
 
     public void WarpBack()
     {
+        dialogueActor.transform.position = dialogueActorOriginalPosition;
+
+        foreach (Transform child in dialogueCanvas)
+        {
+            child.gameObject.SetActive(true);
+        }
+
+        vehicle.offLimitTouchPoint = offLimitTouchPoint;
         warping = false;
         warpingBack = true;
         lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(false);

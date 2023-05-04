@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 0.25
+  accelerate: {x: 0, y: 0, z: 0}
 --- !u!1 &1316711709889716
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +128,7 @@ GameObject:
   - component: {fileID: 82428433568437518}
   - component: {fileID: 114415122960677814}
   - component: {fileID: 6829879192205348174}
+  - component: {fileID: -5657550142944615125}
   m_Layer: 0
   m_Name: Remix Ring - 1 Hit
   m_TagString: Disappearing
@@ -298,12 +300,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
+  remix: {fileID: 0}
   border: {fileID: 212503362928707232}
   identifier: {fileID: 0}
   subidentifier: {fileID: 0}
   box: {fileID: 0}
   energy: {fileID: 0}
   ship: {fileID: 0}
+--- !u!114 &-5657550142944615125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316711709889716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad4f98b6b9d39b4baa92b0dfd6598b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 0
+  accelerate: {x: 0, y: 0, z: 0.25}
 --- !u!1 &771955967820027406
 GameObject:
   m_ObjectHideFlags: 0

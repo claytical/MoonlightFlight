@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using PixelCrushers.DialogueSystem;
+using System.Linq;
 
 
 public class ProceduralLevel : MonoBehaviour {
@@ -98,7 +99,6 @@ public class ProceduralLevel : MonoBehaviour {
         lastEnergyCollectionPosition = t;
         lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable = true;
 
-
         int total = 0;
         Loot[] drop;
 
@@ -111,6 +111,14 @@ public class ProceduralLevel : MonoBehaviour {
         {
             Debug.Log("No pattern loot found, using generics");
             drop = availableLoot;
+        }
+        List<Sprite> powerUpSprites = new List<Sprite>();
+        for(int i = 0; i < drop.Length; i++)
+        {
+            if(drop[i].item.GetComponent<PowerUp>())
+            {
+                powerUpSprites.Add(drop[i].item.GetComponent<PowerUp>().icon.sprite);
+            }
         }
 
         int[] lootRange = new int[drop.Length];
@@ -130,20 +138,26 @@ public class ProceduralLevel : MonoBehaviour {
             {
                 selectedLoot = i;
             }
-        }
-        
+        }        
         if(selectedLoot == -1)
         {
             selectedLoot = 0;
         }
-
-        GameObject obj = Instantiate(drop[selectedLoot].item, lastEnergyCollectionPosition.position, Quaternion.identity, transform);
-        lootDropLocation = obj.transform.position;
+        StartCoroutine(DropLoot(powerUpSprites.ToArray(), drop, selectedLoot, 1f));
     }
 
-    public void MaxEnergyReached()
+    IEnumerator DropLoot(Sprite[] sprites, Loot[] loot, int index, float delayTime)
     {
-        LootDrop(lastEnergyCollectionPosition);
+        yield return new WaitForSeconds(delayTime);
+        // Now do your thing here
+        GameObject obj = Instantiate(loot[index].item, lastEnergyCollectionPosition.position, Quaternion.identity);
+        if (obj.GetComponent<PowerUp>())
+        {
+            obj.GetComponent<PowerUp>().Spin(sprites, .1f);
+        }
+
+        lootDropLocation = obj.transform.position;
+
     }
 
     void Update () {
@@ -288,7 +302,6 @@ public class ProceduralLevel : MonoBehaviour {
             {
                 if(set)
                 {
-                    Debug.Log("SETS: " + set.sets + " SET COUNT: " + setCount);
                     if (gos.Length == 0 && setCount >= set.sets)
                     {
                         Debug.Log("CALLING BUILD NEXT SET!");

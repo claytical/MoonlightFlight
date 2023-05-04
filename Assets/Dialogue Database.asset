@@ -9242,7 +9242,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 572.65735
-        y: 437.9452
+        y: 439.5077
         width: 160
         height: 30
     - id: 10
@@ -9839,7 +9839,7 @@ MonoBehaviour:
         destinationDialogueID: 21
         isConnector: 0
         priority: 2
-      conditionsString: '(Variable["Nukes"] > 0) or (Variable["Brakes"] > 0) or '
+      conditionsString: (Variable["Nukes"] > 0) or (Variable["Brakes"] > 0)
       userScript: 
       onExecute:
         m_PersistentCalls:

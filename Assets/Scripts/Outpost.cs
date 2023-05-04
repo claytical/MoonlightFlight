@@ -11,18 +11,24 @@ public class Outpost : MonoBehaviour
     }
     private void OnEnable()
     {
-        for (int i = 0; i < inTheWay.Length; i++)
+        if (!(inTheWay is null))
         {
-            inTheWay[i].SetActive(false);
+            for (int i = 0; i < inTheWay.Length; i++)
+            {
+                inTheWay[i].SetActive(false);
+            }
         }
-
     }
     private void OnDisable()
     {
         //NULL on self destruct?
-        for (int i = 0; i < inTheWay.Length; i++)
+        if(!(inTheWay is null))
         {
-            inTheWay[i].SetActive(true);
+            for (int i = 0; i < inTheWay.Length; i++)
+            {
+                inTheWay[i].SetActive(true);
+            }
+
         }
 
     }

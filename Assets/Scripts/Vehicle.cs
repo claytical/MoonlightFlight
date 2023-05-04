@@ -258,7 +258,7 @@ public class Vehicle : MonoBehaviour
             if (energyCollected%energyCollectedBeforeLootDrop == 0)
             {
                 if(level) {
-                    level.LootDrop(coll.gameObject.transform);
+                    level.LootDrop(coll.gameObject.transform.parent);
                 }
             }
 
@@ -407,10 +407,14 @@ public class Vehicle : MonoBehaviour
             {
                 coll.gameObject.GetComponent<Explode>().Go();
             }
-           if (coll.gameObject.GetComponent<Remix>().level.lot.HP.TakeDamage())  {
-                coll.gameObject.GetComponent<Explode>().Go();
-                isDead = true;
-           }
+            if (!(coll.gameObject.GetComponent<Remix>().level is null))
+            {
+                if (coll.gameObject.GetComponent<Remix>().level.lot.HP.TakeDamage())
+                {
+                    coll.gameObject.GetComponent<Explode>().Go();
+                    isDead = true;
+                }
+            }
         }
 
         gameObject.GetComponentInParent<AudioSource>().Play();
