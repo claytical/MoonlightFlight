@@ -30,10 +30,11 @@ public class CargoSlot : MonoBehaviour
         
     }
 
-    public void Fill()
+    public void Fill(PowerUp.Reward reward)
     {
 //        int cargoInStorage = PlayerPrefs.GetInt(DialogueLua.GetVariable("Ship Name").asString + GetComponentInParent<ManageCargo>().selectedCargo.ToString(), 0);
-        int cargoInStorage = PlayerPrefs.GetInt(GetComponentInParent<ManageCargo>().selectedCargo + "_Storage", 0);
+//        int cargoInStorage = PlayerPrefs.GetInt(GetComponentInParent<ManageCargo>().selectedCargo + "_Storage", 0);
+        int cargoInStorage = PlayerPrefs.GetInt(reward + "_Storage", 0);
 
         bool updateCargo = false;
 

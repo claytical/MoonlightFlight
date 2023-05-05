@@ -594,7 +594,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: So full of questions that its affecting your greeting, tragic.
+        value: So full of questions that you can't properly greet me...
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -612,7 +612,7 @@ MonoBehaviour:
       - originConversationID: 1
         originDialogueID: 3
         destinationConversationID: 1
-        destinationDialogueID: 4
+        destinationDialogueID: 65
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -856,7 +856,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: OK.
+        value: Okay...
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1481,7 +1481,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: And right now, I'd guess you're a spaceship.
+        value: And right now, I guess you think you're a spaceship.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1792,8 +1792,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 44.900032
-        y: 799.03345
+        x: 42.042885
+        y: 801.8906
         width: 160
         height: 30
     - id: 39
@@ -3005,7 +3005,14 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetVariable(Ship Name, Barfosaurus Rex);
+        value: 'SetVariable(Ship Name, Barfosaurus Rex);
+
+          SendMessage(CreateShip);
+
+          SetVariable(First
+          Run, false);
+
+          SendMessage(SaveProgress, ,Save System);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -3261,9 +3268,64 @@ MonoBehaviour:
         y: 1420.0841
         width: 160
         height: 30
+    - id: 65
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: Tragic.
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 65
+        destinationConversationID: 1
+        destinationDialogueID: 4
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 218.62997
+        y: 254.7944
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 179.99994, y: 581.5132}
-    canvasZoom: 0.7000004
+    canvasScrollPosition: {x: 0, y: 344.5765}
+    canvasZoom: 0.5800005
   - id: 2
     fields:
     - title: Title
@@ -4271,8 +4333,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1086.055
-        y: 566.97253
+        x: 1004.2368
+        y: 571.518
         width: 160
         height: 30
     - id: 18
@@ -4943,8 +5005,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 324.77063, y: 0}
-    canvasZoom: 1.0899999
+    canvasScrollPosition: {x: 254.08665, y: 0}
+    canvasZoom: 0.8800001
   - id: 3
     fields:
     - title: Title
@@ -5847,7 +5909,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'LoadLevel(Main);
+        value: 'LoadLevel(Outpost);
 
           SetDialoguePanel(false);'
         type: 0
@@ -7649,7 +7711,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetVariable(Ship_Name, "");
 
-          LoadLevel(Main)'
+          LoadLevel(Outpost)'
         type: 0
         typeString: CustomFieldType_Text
       - title: Response Menu Sequence
@@ -9773,7 +9835,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: LoadLevel(Garage)
+        value: 'SendMessage(SaveCargo);
+
+          LoadLevel(Garage);'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 11
@@ -9791,7 +9855,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 292.82465
+        x: 294.38715
         y: 978.74133
         width: 160
         height: 30
@@ -9839,7 +9903,7 @@ MonoBehaviour:
         destinationDialogueID: 21
         isConnector: 0
         priority: 2
-      conditionsString: (Variable["Nukes"] > 0) or (Variable["Brakes"] > 0)
+      conditionsString: "\t"
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -9949,7 +10013,7 @@ MonoBehaviour:
         destinationDialogueID: 19
         isConnector: 0
         priority: 2
-      conditionsString: '(Variable["Nukes"] > 0) or (Variable["Brakes"] > 0) or '
+      conditionsString: 
       userScript: 
       onExecute:
         m_PersistentCalls:

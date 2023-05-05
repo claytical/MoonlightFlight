@@ -35,16 +35,23 @@ public class Breakable : MonoBehaviour {
     }
 
     void OnDestroy() {
-        if(transform.parent.GetComponent<ProceduralLevel>())
+/*
+        if (transform.parent.gameObject.GetComponent<ProceduralLevel>())
         {
-            transform.parent.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform;
+            transform.parent.gameObject.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform.parent;
+
+        }
+        else if(transform.parent.parent.gameObject.GetComponent<ProceduralLevel>())
+        {
+            transform.parent.parent.gameObject.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform.parent.parent;
 
         }
         else
         {
             Debug.Log("Can't find level during energy destruction");
-        }
 
+        }
+*/
     }
 	
 	// Update is called once per frame

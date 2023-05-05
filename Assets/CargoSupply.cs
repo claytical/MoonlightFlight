@@ -14,6 +14,7 @@ public class CargoSupply : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         amount = PlayerPrefs.GetInt(cargo.ToString() + "_Storage", 0);
         count.text = amount.ToString("0");
     }

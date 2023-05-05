@@ -398,6 +398,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1635874882}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &197825166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197825165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947ecc6376695d945ab2df8573a7f8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &197825168
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1316,6 +1328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106965640}
+  - component: {fileID: 2106965639}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -1323,6 +1336,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2106965639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106965638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6198efff875ce3c47a5e67adae7e6068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedWorld: 
+  SelectedLevel: 
+  resetKeys: 1
+  selectedVehicle: 0
 --- !u!4 &2106965640
 Transform:
   m_ObjectHideFlags: 0

@@ -107,7 +107,7 @@ public class Playground : MonoBehaviour {
         if (warping)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, outpostLocation.transform.position, Time.deltaTime);
-            Debug.Log("Warping to outpost...");
+          
         }
 
         if(warpingBack)

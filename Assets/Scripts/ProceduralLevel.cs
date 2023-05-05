@@ -94,8 +94,9 @@ public class ProceduralLevel : MonoBehaviour {
         warpingBack = true;
         lot.vehicle.GetComponentInChildren<Vehicle>().Stasis(false);
     }
-    public void LootDrop(Transform t)
+    public void LootDrop()
     {
+        Transform t = set.lootLocations[Random.Range(0, set.lootLocations.Length)];
         lastEnergyCollectionPosition = t;
         lot.vehicle.GetComponentInChildren<Vehicle>().lootAvailable = true;
 
@@ -150,7 +151,7 @@ public class ProceduralLevel : MonoBehaviour {
     {
         yield return new WaitForSeconds(delayTime);
         // Now do your thing here
-        GameObject obj = Instantiate(loot[index].item, lastEnergyCollectionPosition.position, Quaternion.identity);
+        GameObject obj = Instantiate(loot[index].item, this.transform.position, Quaternion.identity);
         if (obj.GetComponent<PowerUp>())
         {
             obj.GetComponent<PowerUp>().Spin(sprites, .1f);

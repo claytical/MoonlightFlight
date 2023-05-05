@@ -12,6 +12,8 @@ public class SetInfo : MonoBehaviour
 {
 
     public GameObject spawnLocations;
+    public GameObject lootLocation;
+    public Transform[] lootLocations;
     public GameObject platforms;
     public Loot[] availableLoot;
     public GameObject[] breakables;
@@ -37,6 +39,10 @@ public class SetInfo : MonoBehaviour
 
     void Start()
     {
+        if(lootLocation)
+        {
+            lootLocations = lootLocation.GetComponentsInChildren<Transform>();
+        }
         objectsToRespawn = new List<ObjectRespawn>();
 
         Vector3 topOfScreen = platforms.transform.position;

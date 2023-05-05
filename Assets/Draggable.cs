@@ -28,7 +28,16 @@ public class Draggable : MonoBehaviour, IPointerClickHandler, IBeginDragHandler,
             RectTransform slot = slots[i].transform.GetComponent<RectTransform>();
             if(is_rectTransformsOverlap(Camera.main, slot, button)) { 
                 Debug.Log("BUTTON CONTAINS " + slots[i].gameObject.name);
-                slots[i].Fill();
+                if(GetComponent<CargoSupply>())
+                {
+                    slots[i].Fill(GetComponent<CargoSupply>().cargo);
+                }
+                else
+                {
+                    Debug.Log("No cargo supply to pull from...");
+                }
+
+
                 break;
             }
         }

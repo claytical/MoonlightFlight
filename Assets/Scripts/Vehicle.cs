@@ -229,6 +229,7 @@ public class Vehicle : MonoBehaviour
             }
 
         }
+        Debug.Log("COLLIDER: " + coll.gameObject.name);
         if(coll.transform.parent.GetComponent<Hull>())
         {
             Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = glitchAmount * .5f;
@@ -258,7 +259,7 @@ public class Vehicle : MonoBehaviour
             if (energyCollected%energyCollectedBeforeLootDrop == 0)
             {
                 if(level) {
-                    level.LootDrop(coll.gameObject.transform.parent);
+                    level.LootDrop();
                 }
             }
 
