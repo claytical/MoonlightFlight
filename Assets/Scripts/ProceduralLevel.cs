@@ -60,7 +60,7 @@ public class ProceduralLevel : MonoBehaviour {
         VehicleType vehicleId = (VehicleType)DialogueLua.GetVariable("Vehicle Type").AsInt;
         vehicle = lot.SelectVehicle(vehicleId);
         vehicle.offLimitTouchPoint = offLimitTouchPoint;
-        lootDropLocation = Vector3.zero;      
+//        lootDropLocation = Vector3.zero;      
         sets = patterns.GetComponentsInChildren<SetInfo>();
 
         //EACH GRID PLAYS HAS SETS OF BREAKABLES
@@ -144,20 +144,21 @@ public class ProceduralLevel : MonoBehaviour {
         {
             selectedLoot = 0;
         }
-        StartCoroutine(DropLoot(powerUpSprites.ToArray(), drop, selectedLoot, 1f));
+        StartCoroutine(DropLoot(powerUpSprites.ToArray(), drop, selectedLoot, .1f));
     }
 
     IEnumerator DropLoot(Sprite[] sprites, Loot[] loot, int index, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         // Now do your thing here
-        GameObject obj = Instantiate(loot[index].item, this.transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(loot[index].item, this.transform);
+        obj.transform.position = lastEnergyCollectionPosition.position;
+
         if (obj.GetComponent<PowerUp>())
         {
             obj.GetComponent<PowerUp>().Spin(sprites, .1f);
         }
 
-        lootDropLocation = obj.transform.position;
 
     }
 

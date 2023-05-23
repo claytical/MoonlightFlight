@@ -295,7 +295,7 @@ MonoBehaviour:
   reward: 3
   icon: {fileID: 4912322015271636640}
   border: {fileID: 212277544986381228}
-  timesAround: 15
+  timesAround: 4
   powerUpCollider: {fileID: 1180817152660987061}
 --- !u!95 &68640172745444914
 Animator:

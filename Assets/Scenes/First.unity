@@ -1350,7 +1350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectedWorld: 
   SelectedLevel: 
-  resetKeys: 1
+  resetKeys: 0
   selectedVehicle: 0
 --- !u!4 &2106965640
 Transform:

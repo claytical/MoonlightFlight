@@ -83,17 +83,6 @@ public class GameState : MonoBehaviour {
     }
 
 
-    void Awake() {
-		GameState[] gameStates = FindObjectsOfType (typeof(GameState)) as GameState[];	
-		if (gameStates.Length > 1) {
-			Debug.Log ("Getting rid of excess game states");
-			Destroy (gameObject);
-		} else {
-			DontDestroyOnLoad (gameObject);
-
-		}
-	}
-
 
     // Use this for initialization
     void Start () {

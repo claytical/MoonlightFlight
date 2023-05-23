@@ -8,9 +8,10 @@ public class ManageCargo : MonoBehaviour
 {
     public PrototypeVehicle prototype;
     public PowerUp.Reward selectedCargo;
-    public Button currentSelectedButton;
     public Fleet fleet;
     public Text shipName;
+    public CargoSupply[] supplies;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +50,14 @@ public class ManageCargo : MonoBehaviour
     public void SetCargo(PowerUp.Reward cargo)
     {
         selectedCargo = cargo;
-        currentSelectedButton.Select();
     }
     // Update is called once per frame
-    void Update()
+    
+    public void UpdateSupplyCount()
     {
-        
+        for(int i = 0; i < supplies.Length; i++)
+        {
+            supplies[i].SetCount();
+        }
     }
 }

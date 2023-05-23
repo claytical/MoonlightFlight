@@ -39,7 +39,7 @@ public class Fleet : MonoBehaviour
 
     public void GotoOutpost()
     {
-        DialogueManager.PlaySequence("LoadLevel(Main)");
+        DialogueManager.PlaySequence("LoadLevel(Outpost)");
     }
 
     public void SalvageShip()

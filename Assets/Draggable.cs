@@ -15,6 +15,10 @@ public class Draggable : MonoBehaviour, IPointerClickHandler, IBeginDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if(GetComponent<CargoSupply>())
+        {
+            GetComponent<CargoSupply>().SetCargo();
+        }
         transform.position = eventData.position;
  //       throw new System.NotImplementedException();
     }
@@ -30,7 +34,7 @@ public class Draggable : MonoBehaviour, IPointerClickHandler, IBeginDragHandler,
                 Debug.Log("BUTTON CONTAINS " + slots[i].gameObject.name);
                 if(GetComponent<CargoSupply>())
                 {
-                    slots[i].Fill(GetComponent<CargoSupply>().cargo);
+                    slots[i].Fill(GetComponent<CargoSupply>());
                 }
                 else
                 {

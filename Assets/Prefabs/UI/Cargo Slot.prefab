@@ -199,7 +199,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7538952702187425789}
         m_TargetAssemblyTypeName: CargoSlot, Assembly-CSharp
-        m_MethodName: Fill
+        m_MethodName: Empty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

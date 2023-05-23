@@ -107,6 +107,11 @@ public class Playground : MonoBehaviour {
         if (warping)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, outpostLocation.transform.position, Time.deltaTime);
+            if(Vector2.Distance(Camera.main.transform.position, outpostLocation.transform.position) < 1)
+            {
+                warping = false;
+            }
+
           
         }
 
@@ -154,7 +159,7 @@ public class Playground : MonoBehaviour {
     }
     public void BuildNextSet()
     {
-        music.ChangeTrack();
+//        music.ChangeTrack();
         if (useAnimationForPlatforms)
         {
             ResetPlatforms();

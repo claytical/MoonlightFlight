@@ -2446,6 +2446,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 11665874}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 935860737}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
@@ -7545,6 +7547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 475715340}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 783165249}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
@@ -11114,7 +11118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 767048593}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &686223329
 GameObject:
@@ -12444,8 +12448,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2055385552}
-  - {fileID: 1499295161}
   - {fileID: 1611922580}
   - {fileID: 685678201}
   m_Father: {fileID: 818078300}
@@ -13682,6 +13684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 767048592}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 378601708}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
@@ -16066,6 +16070,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1749177157}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1974607094}
   availableLoot: []
   breakables:
@@ -17015,6 +17021,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 813137098}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 157974490}
   availableLoot: []
   breakables:
@@ -18316,6 +18324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 241696816}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 214035198}
   availableLoot: []
   breakables:
@@ -19986,6 +19996,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1111387139}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 251639816}
   availableLoot: []
   breakables:
@@ -21268,6 +21280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1247355382}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1413795426}
   availableLoot: []
   breakables:
@@ -22232,6 +22246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1355709789}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1750965204}
   availableLoot: []
   breakables:
@@ -22569,6 +22585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 810308823}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1568120046}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
@@ -23886,6 +23904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 2070837479}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1302045739}
   availableLoot: []
   breakables:
@@ -24446,6 +24466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 11665874}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 935860737}
   availableLoot: []
   breakables:
@@ -24916,6 +24938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 2028480001}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1723730062}
   availableLoot: []
   breakables:
@@ -25369,6 +25393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 395873196}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1214648504}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
@@ -26055,6 +26081,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 11665874}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 935860737}
   availableLoot: []
   breakables:
@@ -26359,6 +26387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1009151403}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 803657777}
   availableLoot: []
   breakables:
@@ -27436,6 +27466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1436269810}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1526128542}
   availableLoot: []
   breakables:
@@ -28504,36 +28536,6 @@ Transform:
   m_Father: {fileID: 1081956546}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1499295160
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1499295161}
-  m_Layer: 0
-  m_Name: G (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1499295161
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499295160}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 767048593}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1501767376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4213040972611002, guid: 3907c2899871bd04991844bb31a506a8,
@@ -28796,6 +28798,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 650959718}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 622452997}
   availableLoot: []
   breakables:
@@ -30771,7 +30775,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 767048593}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1613187588
 GameObject:
@@ -31689,6 +31693,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 11665874}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 935860737}
   availableLoot: []
   breakables:
@@ -33561,6 +33567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 281085070}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1548271059}
   availableLoot: []
   breakables:
@@ -34381,6 +34389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1081956545}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 916835111}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
@@ -36378,6 +36388,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 11665874}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 935860737}
   availableLoot: []
   breakables:
@@ -37968,6 +37980,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: {fileID: 1756987339}
+  lootLocation: {fileID: 0}
+  lootLocations: []
   platforms: {fileID: 1436125861}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
@@ -38340,36 +38354,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &2055385551
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2055385552}
-  m_Layer: 0
-  m_Name: G (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2055385552
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2055385551}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 767048593}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2058234124
 GameObject:
   m_ObjectHideFlags: 0

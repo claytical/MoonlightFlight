@@ -53,7 +53,7 @@ public class PowerUp : MonoBehaviour
     public Reward reward;
     public SpriteRenderer icon;
     public SpriteRenderer border;
-    public int timesAround = 15;
+    public int timesAround = 2;
     private int timesAroundCounter = 0;
     private bool spinning = false;
     private float[] spinTime;
@@ -79,7 +79,7 @@ public class PowerUp : MonoBehaviour
         rainbowColorLerp.rainbowColors = new Color[] {
             Color.red, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta
         };
-        rainbowColorLerp.duration = .25f;
+        rainbowColorLerp.duration = .1f;
         rainbowColorLerp.rend = border;
         spinTime = new float[availableItems.Length];
         possibleItems = new Sprite[availableItems.Length];

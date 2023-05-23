@@ -9903,7 +9903,7 @@ MonoBehaviour:
         destinationDialogueID: 21
         isConnector: 0
         priority: 2
-      conditionsString: "\t"
+      conditionsString: (Variable["Nukes"] == 0) and (Variable["Brakes"] == 0)
       userScript: 
       onExecute:
         m_PersistentCalls:

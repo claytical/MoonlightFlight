@@ -138,7 +138,7 @@ public class ProceduralMusic : MonoBehaviour
                     //instantiate particle warp
                     GameObject warp = Instantiate(particles, transform.position, transform.rotation);
                     GetComponent<AudioSource>().Play();
-                    shake = 2f;
+                    shake = 1f;
 
                 }
                 //   Debug.Log("PREVIOUS TRACK STILL PLAYING");

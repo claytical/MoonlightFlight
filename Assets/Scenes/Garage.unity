@@ -727,7 +727,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &169454850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,19 +771,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 169454851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 169454853}
-        m_TargetAssemblyTypeName: CargoSupply, Assembly-CSharp
-        m_MethodName: SetCargo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &169454851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2338,8 +2326,8 @@ RectTransform:
   m_Children:
   - {fileID: 1431006643}
   - {fileID: 755514449}
-  - {fileID: 1590418403}
   - {fileID: 845711291}
+  - {fileID: 1590418403}
   m_Father: {fileID: 48689788}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3710,7 +3698,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &803772736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3754,19 +3742,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 803772737}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 803772739}
-        m_TargetAssemblyTypeName: CargoSupply, Assembly-CSharp
-        m_MethodName: SetCargo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &803772737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4312,7 +4288,7 @@ RectTransform:
   - {fileID: 1508522093}
   - {fileID: 1822615437}
   m_Father: {fileID: 353945920}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -4357,9 +4333,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prototype: {fileID: 0}
   selectedCargo: 0
-  currentSelectedButton: {fileID: 0}
   fleet: {fileID: 1539852117}
   shipName: {fileID: 755514450}
+  supplies:
+  - {fileID: 803772739}
+  - {fileID: 169454853}
 --- !u!1 &850066164
 GameObject:
   m_ObjectHideFlags: 0
@@ -7870,6 +7848,7 @@ GameObject:
   - component: {fileID: 1565871619}
   - component: {fileID: 1565871618}
   - component: {fileID: 1565871617}
+  - component: {fileID: 1565871620}
   m_Layer: 5
   m_Name: Memorial
   m_TagString: Untagged
@@ -8003,6 +7982,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565871615}
   m_CullTransparentMesh: 0
+--- !u!114 &1565871620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565871615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e96c75672480d43b32d923c1979027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Preference: Destroyed Ship Names
 --- !u!1 &1590418402
 GameObject:
   m_ObjectHideFlags: 0
@@ -8034,7 +8026,7 @@ RectTransform:
   - {fileID: 1639588943}
   - {fileID: 1039826316}
   m_Father: {fileID: 353945920}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
