@@ -447,7 +447,7 @@ MonoBehaviour:
   explosion: {fileID: 5756105043270271303}
   lootDropped: 0
   force: 5
-  maxForce: 30
+  maxForce: 35
   touchPoint: {fileID: 8455937364993888704, guid: 08a87ae8892458741b1a98e7dba483ec,
     type: 3}
   type: 1

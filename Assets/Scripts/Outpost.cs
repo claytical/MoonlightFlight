@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using PixelCrushers.DialogueSystem;
 
 public class Outpost : MonoBehaviour
 {
     public List<GameObject> inTheWay;
+    public string conversation;
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public void StartConversation()
+    {
+        DialogueManager.StartConversation(conversation);
+       
     }
     private void OnEnable()
     {

@@ -5369,6 +5369,6 @@ MonoBehaviour:
   maxHP: 7
   glitchAmount: 0.1
   currentHP: 4
-  energyCollectedBeforeLootDrop: 10
+  energyCollectedBeforeLootDrop: 5
   set: {fileID: 0}
   offLimitTouchPoint: {fileID: 0}

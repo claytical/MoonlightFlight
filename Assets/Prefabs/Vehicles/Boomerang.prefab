@@ -5269,8 +5269,8 @@ MonoBehaviour:
   explosion: {fileID: 2567590292593330884, guid: 24a07d73c693a3e44b073e4e6534b58d,
     type: 3}
   lootDropped: 0
-  force: 3
-  maxForce: 5
+  force: 5
+  maxForce: 10
   touchPoint: {fileID: 8455937364993888704, guid: 08a87ae8892458741b1a98e7dba483ec,
     type: 3}
   type: 0
@@ -5279,7 +5279,7 @@ MonoBehaviour:
   maxHP: 20
   glitchAmount: 0.1
   currentHP: 2
-  energyCollectedBeforeLootDrop: 3
+  energyCollectedBeforeLootDrop: 10
   set: {fileID: 0}
   offLimitTouchPoint: {fileID: 0}
 --- !u!60 &3132316157305801126

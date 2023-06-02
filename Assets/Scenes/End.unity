@@ -161,85 +161,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &77991785
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 77991787}
-  - component: {fileID: 77991786}
-  - component: {fileID: 77991788}
-  m_Layer: 0
-  m_Name: New Solar System
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &77991786
+--- !u!114 &77991786 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 753764992633069996}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77991785}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e8e4378aa3ff4b4794ed3f80dcf96b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starColors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.92443705, a: 1}
-  - {r: 1, g: 0.6418863, b: 0, a: 1}
-  - {r: 0.9719956, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0.37193346, g: 0, b: 1, a: 1}
-  starTemplate: {fileID: 6385566628541026382, guid: 535671b8d55b9b443af24f815672fc95,
-    type: 3}
-  planetRequirements:
-  - energyRequired: 5
-    diameter: 10
-    button: {fileID: 378459956}
-  - energyRequired: 20
-    diameter: 30
-    button: {fileID: 1045334407}
-  - energyRequired: 50
-    diameter: 50
-    button: {fileID: 878197308}
-  energyToExpend: {fileID: 914235424}
-  solarFlares: {fileID: 537478236}
-  core: {fileID: 537478237}
-  energyAvailable: 400
-  newStar: {fileID: 0}
-  transitionDuration: 2
-  targetOffset: {x: 0, y: 250, z: -400}
-  admiringNewSystem: 0
-  systemAttributes: {fileID: 4294603377401750252}
---- !u!4 &77991787
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77991785}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &77991788
+--- !u!114 &77991788 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 753764992576319168, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 753764992633069996}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77991785}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9ad7bce66fcf9444a2d9d1dc8a87cf1, type: 3}
@@ -1313,7 +1253,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 859de1e4796b84440934f88d237f3533, type: 3}
 --- !u!1 &665534209
 GameObject:
@@ -2311,79 +2252,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 623838154}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1086533190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086533189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 16
-  condition:
-    luaConditions:
-    - Variable["First_System"] == false
-    questConditions: []
-    acceptedTags: []
-    acceptedGameObjects: []
-    luaWizardIndex: -1
-    lastEvaluationValue: 0
-  setQuestState: 1
-  questName: 
-  questState: 0
-  setQuestEntryState: 0
-  questEntryNumber: 1
-  questEntryState: 0
-  setAnotherQuestEntryState: 0
-  anotherQuestEntryNumber: 1
-  anotherQuestEntryState: 0
-  luaCode: 
-  sequence: 
-  sequenceSpeaker: {fileID: 0}
-  sequenceListener: {fileID: 0}
-  waitOneFrameOnStartOrEnable: 1
-  alertMessage: 
-  textTable: {fileID: 0}
-  alertDuration: 0
-  sendMessages: []
-  barkSource: 0
-  barkConversation: 
-  barkText: 
-  barkTextSequence: 
-  barker: {fileID: 0}
-  barkTarget: {fileID: 0}
-  barkOrder: 0
-  allowBarksDuringConversations: 0
-  skipBarkIfNoValidEntries: 0
-  cacheBarkLines: 0
-  conversation: End of Run/Introduction
-  conversationConversant: {fileID: 0}
-  conversationActor: {fileID: 0}
-  startConversationEntryID: -1
-  exclusive: 0
-  replace: 1
-  skipIfNoValidEntries: 0
-  preventRestartOnSameFrameEnded: 0
-  stopConversationOnTriggerExit: 1
-  stopConversationIfTooFar: 0
-  maxConversationDistance: 5
-  monitorConversationDistanceFrequency: 1
-  showCursorDuringConversation: 0
-  pauseGameDuringConversation: 0
-  setActiveActions: []
-  setEnabledActions: []
-  setAnimatorStateActions: []
-  onExecute:
-    m_PersistentCalls:
-      m_Calls: []
-  useConversationTitlePicker: 1
-  useBarkTitlePicker: 1
-  useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
 --- !u!114 &1086533191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3946,6 +3814,110 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &753764992633069996
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 753764992576319173, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_Name
+      value: New Solar System
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: core
+      value: 
+      objectReference: {fileID: 537478237}
+    - target: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: solarFlares
+      value: 
+      objectReference: {fileID: 537478236}
+    - target: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: energyToExpend
+      value: 
+      objectReference: {fileID: 914235424}
+    - target: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: systemAttributes
+      value: 
+      objectReference: {fileID: 4294603377401750252}
+    - target: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: planetRequirements.Array.data[0].button
+      value: 
+      objectReference: {fileID: 378459956}
+    - target: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: planetRequirements.Array.data[1].button
+      value: 
+      objectReference: {fileID: 1045334407}
+    - target: {fileID: 753764992576319174, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: planetRequirements.Array.data[2].button
+      value: 
+      objectReference: {fileID: 878197308}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753764992576319175, guid: 7ba3b4afb8877fd4a90f54637b8199c5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ba3b4afb8877fd4a90f54637b8199c5, type: 3}
 --- !u!1001 &4294603377401750251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3961,7 +3933,7 @@ PrefabInstance:
     - target: {fileID: 258642258986505895, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_Range
-      value: 250
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 258642258986505895, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
@@ -3996,7 +3968,7 @@ PrefabInstance:
     - target: {fileID: 258642258986505895, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 258642258986505895, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
@@ -4116,17 +4088,17 @@ PrefabInstance:
     - target: {fileID: 7135786487772837918, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7135786487772837918, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7135786487772837918, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7135786487772837918, guid: 3af757e4d5219aa409ed884d753497b3,
         type: 3}
@@ -4170,6 +4142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0860241a0ae61d246870c3d3af2d0ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRange: 20
-  maxRange: 340
+  minRange: 10
+  maxRange: 20
   pulseSpeed: 0.2

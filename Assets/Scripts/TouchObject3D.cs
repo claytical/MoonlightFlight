@@ -103,6 +103,10 @@ public class TouchObject3D : MonoBehaviour
 
         DialogueManager.StopConversation();
         DialogueManager.StartConversation(conversation);
-        DialogueManager.SetDialoguePanel(true);
+        if(DialogueManager.HasInstance)
+        {
+            DialogueManager.SetDialoguePanel(true);
+        }
+
     }
 }

@@ -3324,8 +3324,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 344.5765}
-    canvasZoom: 0.5800005
+    canvasScrollPosition: {x: 40.770462, y: 785.07446}
+    canvasZoom: 0.88000023
   - id: 2
     fields:
     - title: Title
@@ -7426,7 +7426,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 62.660027, y: 76.84721}
+    canvasScrollPosition: {x: 84.51983, y: 79.587234}
     canvasZoom: 0.7
   - id: 6
     fields:
@@ -9837,7 +9837,11 @@ MonoBehaviour:
       - title: Sequence
         value: 'SendMessage(SaveCargo);
 
-          LoadLevel(Garage);'
+          SetActive(Cosmic Entity,false);
+
+          LoadLevel(Garage);
+
+'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 11
@@ -9903,7 +9907,7 @@ MonoBehaviour:
         destinationDialogueID: 21
         isConnector: 0
         priority: 2
-      conditionsString: "\t"
+      conditionsString: (Variable["Nukes"] == 0) and (Variable["Brakes"] == 0)
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -11802,7 +11806,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: None()
+        value: 
         type: 0
         typeString: 
       conversationID: 18
@@ -11874,7 +11878,7 @@ MonoBehaviour:
         destinationDialogueID: 4
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: Variable["Nukes"] > 0
       userScript: 
       onExecute:
         m_PersistentCalls:

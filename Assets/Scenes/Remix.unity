@@ -1808,8 +1808,8 @@ MonoBehaviour:
   platforms: {fileID: 1572031029}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
-    weight: 10
-  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 50
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
     weight: 50
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -2157,11 +2157,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicles:
   - {fileID: 1556315624568502, guid: b15f1692dcd459a4384c9218bb86f898, type: 3}
-  - {fileID: 1556315624568502, guid: 7c18308aad65cdb469809632defc416d, type: 3}
   - {fileID: 1556315624568502, guid: ecd5cfd1776a57247be5ed815df9842a, type: 3}
   - {fileID: 1556315624568502, guid: 529231fc68eb02f4597b88d45ff727e5, type: 3}
-  - {fileID: 1556315624568502, guid: 5609d98a2ad3a2c48956372308103bff, type: 3}
   - {fileID: 1556315624568502, guid: 8bd308394f603ac4c816e6bb1872dcb8, type: 3}
+  - {fileID: 1556315624568502, guid: 5609d98a2ad3a2c48956372308103bff, type: 3}
+  - {fileID: 1556315624568502, guid: 7c18308aad65cdb469809632defc416d, type: 3}
   vehicle: {fileID: 0}
   feedback: {fileID: 446934080}
   energyUI: {fileID: 1310518029}
@@ -5347,17 +5347,11 @@ MonoBehaviour:
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
     weight: 10
-  - item: {fileID: 1316711709889716, guid: 1577dc44bcd37464e98e9ee7d3614a0a, type: 3}
-    weight: 50
-  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
-    weight: 50
-  - item: {fileID: 1316711709889716, guid: ee614d9bb3ca34c47b2a4bc24c3f25f6, type: 3}
-    weight: 50
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
   numberOfObjectsToPlace: 2
-  sets: 20
+  sets: 5
   currentSet: {fileID: 151801132}
   movingSpeed: 0.3
   weight: 10
@@ -6696,7 +6690,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1192246142}
   lootLocations: []
   platforms: {fileID: 1185328513}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -11811,6 +11807,10 @@ MonoBehaviour:
   platforms: {fileID: 567886607}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 25
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 50
+  - item: {fileID: 6229946610785363403, guid: 2fdab9c67353886469455f4cdb1a0e96, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -12116,7 +12116,9 @@ MonoBehaviour:
   lootLocation: {fileID: 23185484}
   lootLocations: []
   platforms: {fileID: 167137589}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 5
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -15785,7 +15787,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1594564328}
   lootLocations: []
   platforms: {fileID: 1833482724}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -16443,7 +16447,9 @@ MonoBehaviour:
   lootLocation: {fileID: 531301175}
   lootLocations: []
   platforms: {fileID: 821955942}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 20
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -21291,7 +21297,7 @@ MonoBehaviour:
   lootLocations: []
   platforms: {fileID: 973050650}
   availableLoot:
-  - item: {fileID: 1316711709889716, guid: 6dead905cb2e52f4099a71a9389332ac, type: 3}
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -22027,6 +22033,10 @@ MonoBehaviour:
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
     weight: 10
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 50
+  - item: {fileID: 6229946610785363403, guid: 2fdab9c67353886469455f4cdb1a0e96, type: 3}
+    weight: 5
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -23698,6 +23708,8 @@ MonoBehaviour:
   platforms: {fileID: 433606613}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 25
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -25334,7 +25346,9 @@ MonoBehaviour:
   lootLocation: {fileID: 711628449}
   lootLocations: []
   platforms: {fileID: 5812500}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: ee614d9bb3ca34c47b2a4bc24c3f25f6, type: 3}
+    weight: 6
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -27467,6 +27481,7 @@ MonoBehaviour:
   originalScale: {x: 0, y: 0, z: 0}
   scaledDown: 0
   scaledUp: 0
+  hazardSound: {fileID: 0}
 --- !u!1 &782289382
 GameObject:
   m_ObjectHideFlags: 0
@@ -30147,7 +30162,13 @@ MonoBehaviour:
   lootLocation: {fileID: 1959785097}
   lootLocations: []
   platforms: {fileID: 1439007654}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 30
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 25
+  - item: {fileID: 1316711709889716, guid: 1577dc44bcd37464e98e9ee7d3614a0a, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -30955,9 +30976,9 @@ MonoBehaviour:
   platforms: {fileID: 1966794465}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
-    weight: 10
-  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
     weight: 50
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 25
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -31219,6 +31240,8 @@ MonoBehaviour:
   platforms: {fileID: 1936123149}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 100
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -33564,7 +33587,9 @@ MonoBehaviour:
   lootLocation: {fileID: 26957667}
   lootLocations: []
   platforms: {fileID: 668363940}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: ee614d9bb3ca34c47b2a4bc24c3f25f6, type: 3}
+    weight: 5
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -35782,7 +35807,9 @@ MonoBehaviour:
   lootLocation: {fileID: 2129793453}
   lootLocations: []
   platforms: {fileID: 163185103}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -36226,6 +36253,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1753969229}
+        m_TargetAssemblyTypeName: Outpost, Assembly-CSharp
+        m_MethodName: StartConversation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &975336031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36558,7 +36597,13 @@ MonoBehaviour:
   lootLocation: {fileID: 835522356}
   lootLocations: []
   platforms: {fileID: 1985175733}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 1577dc44bcd37464e98e9ee7d3614a0a, type: 3}
+    weight: 10
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 10
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 50
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -36940,7 +36985,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1748591390}
   lootLocations: []
   platforms: {fileID: 352094590}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -37350,7 +37397,13 @@ MonoBehaviour:
   platforms: {fileID: 1656665349}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 25
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
     weight: 10
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 15
+  - item: {fileID: 1316711709889716, guid: 1577dc44bcd37464e98e9ee7d3614a0a, type: 3}
+    weight: 20
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -40427,6 +40480,7 @@ MonoBehaviour:
   originalScale: {x: 0, y: 0, z: 0}
   scaledDown: 0
   scaledUp: 0
+  hazardSound: {fileID: 0}
 --- !u!1001 &1101400857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53053,7 +53107,7 @@ MonoBehaviour:
   lootLocations: []
   platforms: {fileID: 205097988}
   availableLoot:
-  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -54086,7 +54140,11 @@ MonoBehaviour:
   lootLocation: {fileID: 1358720177}
   lootLocations: []
   platforms: {fileID: 137296004}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 10
+  - item: {fileID: 1316711709889716, guid: 1577dc44bcd37464e98e9ee7d3614a0a, type: 3}
+    weight: 100
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -54357,6 +54415,7 @@ MonoBehaviour:
   originalScale: {x: 0, y: 0, z: 0}
   scaledDown: 0
   scaledUp: 0
+  hazardSound: {fileID: 0}
 --- !u!1001 &1390438237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57557,7 +57616,11 @@ MonoBehaviour:
   lootLocation: {fileID: 518023537}
   lootLocations: []
   platforms: {fileID: 650369231}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 10
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -59182,7 +59245,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1030534414}
   lootLocations: []
   platforms: {fileID: 1968240347}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: ee614d9bb3ca34c47b2a4bc24c3f25f6, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -62706,7 +62771,9 @@ MonoBehaviour:
   lootLocation: {fileID: 2113957724}
   lootLocations: []
   platforms: {fileID: 1167091144}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 5
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -63393,8 +63460,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1753969228}
     m_Modifications:
     - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: trigger
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
       propertyPath: conversation
       value: Cosmic Entity/In Game/Outpost
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605739906, guid: 859de1e4796b84440934f88d237f3533, type: 3}
+      propertyPath: startConversationEntryID
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3169313119756067865, guid: 859de1e4796b84440934f88d237f3533,
         type: 3}
@@ -63599,7 +63674,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1634672431}
   lootLocations: []
   platforms: {fileID: 12398828}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -68516,6 +68593,10 @@ MonoBehaviour:
   platforms: {fileID: 1795222107}
   availableLoot:
   - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 25
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 15
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
     weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
@@ -68801,6 +68882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inTheWay:
   - {fileID: 751561178}
+  conversation: Cosmic Entity/In Game/Outpost
 --- !u!1001 &1756100865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69356,7 +69438,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1151180035}
   lootLocations: []
   platforms: {fileID: 544928259}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: ee614d9bb3ca34c47b2a4bc24c3f25f6, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -70706,7 +70790,9 @@ MonoBehaviour:
   lootLocation: {fileID: 153145963}
   lootLocations: []
   platforms: {fileID: 1756579969}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 5
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -75052,7 +75138,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1360112791}
   lootLocations: []
   platforms: {fileID: 1243836303}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -75495,6 +75583,7 @@ MonoBehaviour:
   originalScale: {x: 0, y: 0, z: 0}
   scaledDown: 0
   scaledUp: 0
+  hazardSound: {fileID: 0}
 --- !u!1 &1934143379
 GameObject:
   m_ObjectHideFlags: 0
@@ -77250,7 +77339,11 @@ MonoBehaviour:
   lootLocation: {fileID: 298606539}
   lootLocations: []
   platforms: {fileID: 2122662779}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 10
+  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
+    weight: 5
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -78419,7 +78512,11 @@ MonoBehaviour:
   lootLocation: {fileID: 1338962691}
   lootLocations: []
   platforms: {fileID: 1527337822}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: ee614d9bb3ca34c47b2a4bc24c3f25f6, type: 3}
+    weight: 50
+  - item: {fileID: 1316711709889716, guid: 9c07a9a763de92245aab4b8f1e978240, type: 3}
+    weight: 50
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -82393,7 +82490,9 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 1662280943}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 1577dc44bcd37464e98e9ee7d3614a0a, type: 3}
+    weight: 10
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []
@@ -83671,7 +83770,9 @@ MonoBehaviour:
   lootLocation: {fileID: 1588555755}
   lootLocations: []
   platforms: {fileID: 916063418}
-  availableLoot: []
+  availableLoot:
+  - item: {fileID: 1316711709889716, guid: 14b9a344195458949aeeec756da5e75f, type: 3}
+    weight: 5
   breakables:
   - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
   objectsToRespawn: []

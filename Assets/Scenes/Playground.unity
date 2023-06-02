@@ -757,11 +757,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicles:
   - {fileID: 1556315624568502, guid: b15f1692dcd459a4384c9218bb86f898, type: 3}
-  - {fileID: 1556315624568502, guid: 7c18308aad65cdb469809632defc416d, type: 3}
   - {fileID: 1556315624568502, guid: ecd5cfd1776a57247be5ed815df9842a, type: 3}
   - {fileID: 1556315624568502, guid: 529231fc68eb02f4597b88d45ff727e5, type: 3}
-  - {fileID: 1556315624568502, guid: 5609d98a2ad3a2c48956372308103bff, type: 3}
   - {fileID: 1556315624568502, guid: 8bd308394f603ac4c816e6bb1872dcb8, type: 3}
+  - {fileID: 1556315624568502, guid: 5609d98a2ad3a2c48956372308103bff, type: 3}
+  - {fileID: 1556315624568502, guid: 7c18308aad65cdb469809632defc416d, type: 3}
   vehicle: {fileID: 0}
   feedback: {fileID: 446934080}
   energyUI: {fileID: 1310518029}
@@ -3833,36 +3833,6 @@ Transform:
   m_Father: {fileID: 1125232032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &258627322
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 258627323}
-  m_Layer: 0
-  m_Name: G (5)_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &258627323
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258627322}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 395873197}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258707518
 GameObject:
   m_ObjectHideFlags: 0
@@ -6094,7 +6064,6 @@ Transform:
   m_Children:
   - {fileID: 654382803}
   - {fileID: 1293158025}
-  - {fileID: 258627323}
   - {fileID: 1575706453}
   m_Father: {fileID: 1323385432}
   m_RootOrder: 1
@@ -7533,7 +7502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &473201637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7896,84 +7865,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 483686571}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &487893769 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1316711709889716, guid: ee614d9bb3ca34c47b2a4bc24c3f25f6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1279753776}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &487893770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487893769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 64
-  condition:
-    luaConditions: []
-    questConditions: []
-    acceptedTags: []
-    acceptedGameObjects: []
-    luaWizardIndex: -1
-    lastEvaluationValue: 0
-  setQuestState: 1
-  questName: 
-  questState: 0
-  setQuestEntryState: 0
-  questEntryNumber: 1
-  questEntryState: 0
-  setAnotherQuestEntryState: 0
-  anotherQuestEntryNumber: 1
-  anotherQuestEntryState: 0
-  luaCode: 
-  sequence: 
-  sequenceSpeaker: {fileID: 0}
-  sequenceListener: {fileID: 0}
-  waitOneFrameOnStartOrEnable: 1
-  alertMessage: 
-  textTable: {fileID: 0}
-  alertDuration: 0
-  sendMessages: []
-  barkSource: 0
-  barkConversation: 
-  barkText: 
-  barkTextSequence: 
-  barker: {fileID: 0}
-  barkTarget: {fileID: 0}
-  barkOrder: 0
-  allowBarksDuringConversations: 0
-  skipBarkIfNoValidEntries: 0
-  cacheBarkLines: 0
-  conversation: Cosmic Entity/In Game/Tutorial/Warp
-  conversationConversant: {fileID: 0}
-  conversationActor: {fileID: 1416149560}
-  startConversationEntryID: -1
-  exclusive: 0
-  replace: 1
-  skipIfNoValidEntries: 0
-  preventRestartOnSameFrameEnded: 0
-  stopConversationOnTriggerExit: 0
-  stopConversationIfTooFar: 0
-  maxConversationDistance: 5
-  monitorConversationDistanceFrequency: 1
-  showCursorDuringConversation: 0
-  pauseGameDuringConversation: 0
-  setActiveActions: []
-  setEnabledActions: []
-  setAnimatorStateActions: []
-  onExecute:
-    m_PersistentCalls:
-      m_Calls: []
-  useConversationTitlePicker: 1
-  useBarkTitlePicker: 1
-  useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
 --- !u!1 &496029624
 GameObject:
   m_ObjectHideFlags: 0
@@ -11114,7 +11005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685678200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: -2, z: 0}
+  m_LocalPosition: {x: -3, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 767048593}
@@ -11638,7 +11529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4522237307073234, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4522237307073234, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12495,7 +12386,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5833623550140716882, guid: 07985bf4f6d469340930e958ef313c14,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 55eab194f1cdcc04d8fec5fb496030c5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fa0e14374aedea849a4ea2235bf206d5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13373,7 +13264,6 @@ Transform:
   - {fileID: 1688275706}
   - {fileID: 258707519}
   - {fileID: 1309681463}
-  - {fileID: 1022226386}
   m_Father: {fileID: 1242438953}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17730,6 +17620,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1753969229}
+        m_TargetAssemblyTypeName: Outpost, Assembly-CSharp
+        m_MethodName: StartConversation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &975336031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18754,36 +18656,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1296404821}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1022226385
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1022226386}
-  m_Layer: 0
-  m_Name: G (5)_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1022226386
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022226385}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 810308824}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1024247912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4213040972611002, guid: 1ca9b307e41a3b84baf2c4d5b4b41a98,
@@ -29994,7 +29866,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 395873197}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1579868262
 GameObject:
@@ -30771,7 +30643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611922579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 3, z: 0}
+  m_LocalPosition: {x: -3, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 767048593}
@@ -33080,7 +32952,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1753969228}
   - component: {fileID: 1753969229}
-  - component: {fileID: 1753969230}
   m_Layer: 0
   m_Name: Outpost
   m_TagString: Untagged
@@ -33115,78 +32986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inTheWay: []
---- !u!114 &1753969230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753969227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 64
-  condition:
-    luaConditions: []
-    questConditions: []
-    acceptedTags: []
-    acceptedGameObjects: []
-    luaWizardIndex: -1
-    lastEvaluationValue: 0
-  setQuestState: 1
-  questName: 
-  questState: 0
-  setQuestEntryState: 0
-  questEntryNumber: 1
-  questEntryState: 0
-  setAnotherQuestEntryState: 0
-  anotherQuestEntryNumber: 1
-  anotherQuestEntryState: 0
-  luaCode: 
-  sequence: 
-  sequenceSpeaker: {fileID: 0}
-  sequenceListener: {fileID: 0}
-  waitOneFrameOnStartOrEnable: 1
-  alertMessage: 
-  textTable: {fileID: 0}
-  alertDuration: 0
-  sendMessages: []
-  barkSource: 0
-  barkConversation: 
-  barkText: 
-  barkTextSequence: 
-  barker: {fileID: 0}
-  barkTarget: {fileID: 0}
-  barkOrder: 0
-  allowBarksDuringConversations: 0
-  skipBarkIfNoValidEntries: 0
-  cacheBarkLines: 0
   conversation: Cosmic Entity/In Game/Tutorial/Outpost
-  conversationConversant: {fileID: 0}
-  conversationActor: {fileID: 1416149560}
-  startConversationEntryID: -1
-  exclusive: 0
-  replace: 0
-  skipIfNoValidEntries: 0
-  preventRestartOnSameFrameEnded: 0
-  stopConversationOnTriggerExit: 0
-  stopConversationIfTooFar: 0
-  maxConversationDistance: 5
-  monitorConversationDistanceFrequency: 1
-  showCursorDuringConversation: 0
-  pauseGameDuringConversation: 0
-  setActiveActions: []
-  setEnabledActions: []
-  setAnimatorStateActions: []
-  onExecute:
-    m_PersistentCalls:
-      m_Calls: []
-  useConversationTitlePicker: 1
-  useBarkTitlePicker: 1
-  useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 8e01a2e53fc3e0649ad6371399c1d6c9, type: 2}
 --- !u!4 &1755076744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7804733359125089336, guid: 4d5c50ad8b00cdc48a89efbcf2ac1983,

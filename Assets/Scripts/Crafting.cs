@@ -20,7 +20,6 @@ public class Crafting : MonoBehaviour
     {
         int parts = DialogueLua.GetVariable("Parts").asInt;
         partsAvailable.text = parts.ToString("0");
-        partsAvailable.text = "666";
         ShowCraftableVehicle();
 
         

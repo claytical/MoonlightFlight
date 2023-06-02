@@ -32,39 +32,42 @@ public struct Planet
 
 public class CreateSolarSystem : MonoBehaviour
 {
-    private GameState gameState;
+
+    public int energyAvailable;
+    public ParticleSystem solarFlares;
+    public MeshRenderer core;
+
+
+
     public Color[] starColors;
     public GameObject starTemplate;
+    public Transform newStar;
+    public int selectedStarColorIndex = 0;
+
     public PlanetRequirement[] planetRequirements;
+
+    public string firstConversation;
+    public string conversation;
 
     public Text energyToExpend;
 
-    public ParticleSystem solarFlares;
-    public MeshRenderer core;
     private int[] planetAllocations;
-   
-
-    public int energyAvailable;
-    private int selectedStarColorIndex = 0;
     private int numberOfExistingSolarSystems;
-
     private List<Vector3> planetCoordinates;
 
-    public Transform newStar;
     public float transitionDuration = 2.0f;
     public Vector3 targetOffset = new Vector3(0, 5, 0);
-
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float transitionStartTime;
 
     public bool admiringNewSystem = false;
-
     public SolarSystemAttributes systemAttributes;
 
     // Start is called before the first frame update
     void Start()
     {
+        numberOfExistingSolarSystems = PlayerPrefs.GetInt("number of solar systems", 0);
 
         energyAvailable = DialogueLua.GetVariable("Energy Available").asInt;
 
@@ -72,41 +75,31 @@ public class CreateSolarSystem : MonoBehaviour
 
         planetAllocations = new int[planetRequirements.Length];
 
-        for(int i = 0; i < planetRequirements.Length; i++)
+        for (int i = 0; i < planetRequirements.Length; i++)
         {
             planetRequirements[i].button.SetCost(planetRequirements[i].energyRequired);
         }
 
-        numberOfExistingSolarSystems = PlayerPrefs.GetInt("number of solar systems", 0);
 
         selectedStarColorIndex = DialogueLua.GetVariable("Vehicle Type").asInt;
-        /*
-        if (gameState != null)
-        {
-            VehicleType vehicle = gameState.GetVehicle();
-            if (((int)vehicle) < starColors.Length)
-            {
-                //color match exists
-                selectedStarColorIndex = ((int)vehicle);
-            }
-            else
-            {
-                //default galaxy creation
-            }
-        }
-        else
-        {
-            //No game state present, default galaxy creation values
 
-        }
-        */
+        if (PlayerPrefs.GetInt("First Solar System Created", 0) == 0)
+            {
+                DialogueManager.StartConversation(firstConversation);
+            }
+        else
+            {
+                DialogueManager.StartConversation(conversation);
+            }
+
+        
         ParticleSystem.MainModule main = solarFlares.main;
         main.startColor = starColors[selectedStarColorIndex];
         core.material.color = starColors[selectedStarColorIndex];
 
-
         Debug.Log("Number of systems: " + numberOfExistingSolarSystems);
         Debug.Log("Star Color Index: " + selectedStarColorIndex);
+
     }
 
     private void Update()
@@ -150,9 +143,10 @@ public class CreateSolarSystem : MonoBehaviour
 
     public void Create()
     {
-        solarFlares.GetComponent<SolarFlare>().SetScale();
+        solarFlares.GetComponent<SolarFlare>().SetCoreScale();
 
-        //local scale should be 210
+        //local scale should be 10
+
         float starSize = solarFlares.transform.localScale.x;
         Debug.Log("STAR SIZE: " + starSize);
         /*
@@ -180,14 +174,15 @@ public class CreateSolarSystem : MonoBehaviour
         GameObject go = Instantiate(starTemplate, transform);
         go.GetComponent<Renderer>().material.SetColor("_Color", starColors[selectedStarColorIndex]);
         Vector3 starScale = new Vector3(starSize, starSize, starSize);
-        go.transform.localScale = starScale;
+        //scales template up by 10, multiplying for no reason?
+//        go.transform.localScale = starScale;
         Vector2 starInfo = new Vector2(starSize, selectedStarColorIndex);
         Vector3 starCoordinates = new Vector3(0, 0, 0);
         PlayerPrefsX.SetVector3("solar_system_" + numberOfExistingSolarSystems + 1 + "_star_coordinates", starCoordinates);
         PlayerPrefsX.SetVector2("solar_system_" + numberOfExistingSolarSystems + 1 + "_star_info", starInfo);
 
         float distanceToStar = starScale.x;
-        float padding = 5;
+        float padding = 1;
         planetCoordinates = new List<Vector3>();
         int numberOfPlanets = 0;
         //COUNT NUMBER OF PLANETS TO CREATE
@@ -203,9 +198,9 @@ public class CreateSolarSystem : MonoBehaviour
         for (int i = 0; i < numberOfPlanets; i++)
         {
             Vector3 planetDistance = new Vector3(distanceToStar + padding, 0, 0);
-            planetDistance.y = Random.Range(-10, 10);
+            //planetDistance.y = Random.Range(-10, 10);
             planetCoordinates.Add(planetDistance);
-            distanceToStar += padding + starScale.x + Random.Range(30,50);
+            distanceToStar += padding + starScale.x;// + Random.Range(30,50);
         }
         //SHUFFLE UP ORDER COORDINATES FOR PLANET LIST
         planetCoordinates = ShuffleList(planetCoordinates);

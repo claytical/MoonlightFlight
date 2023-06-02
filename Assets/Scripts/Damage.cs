@@ -66,18 +66,13 @@ public class Damage : MonoBehaviour
 
             }
         }
-        if (hpLeft.GetComponentsInChildren<Image>().Length > 1)
+        if (hpLeft.GetComponentsInChildren<Image>().Length >= 1)
         {
-            Destroy(hpLeft.GetComponentsInChildren<Image>()[hpLeft.GetComponentsInChildren<Image>().Length - 1]);
+            Destroy(hpLeft.GetComponentsInChildren<Image>()[hpLeft.GetComponentsInChildren<Image>().Length - 1].gameObject) ;
             return false;
         }
         else
         {
-            if(hpLeft.GetComponentsInChildren<Image>().Length > 0)
-            {
-                Destroy(hpLeft.GetComponentsInChildren<Image>()[hpLeft.GetComponentsInChildren<Image>().Length - 1]);
-
-            }
             return true;
 
         }

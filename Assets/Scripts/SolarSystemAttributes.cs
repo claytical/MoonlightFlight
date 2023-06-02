@@ -5,9 +5,10 @@ using UnityEngine;
 public class SolarSystemAttributes : MonoBehaviour
 {
     public bool LoadAllSystems = false;
-    public bool removeAllSolarSystems = false;
     public int numberOfExistingSolarSystems;
     public float starPadding = 0;
+    public float columnSpacing = 1f;
+    public float rowSpacing = .1f;
     public GameObject starTemplate;
     public Color[] starColors;
     [SerializeField]
@@ -16,28 +17,56 @@ public class SolarSystemAttributes : MonoBehaviour
     void Start()
     {
         //currently static in creation end scene
-        if(removeAllSolarSystems)
-        {
-            PlayerPrefs.DeleteAll();
-        }
         if(LoadAllSystems)
         {
- 
-            numberOfExistingSolarSystems = PlayerPrefs.GetInt("number of solar systems", 0);
-            if(numberOfExistingSolarSystems > 0)
-            {
-                Debug.Log("Loading " + numberOfExistingSolarSystems + " Solar Systems...");
-                for(int i = 0; i < numberOfExistingSolarSystems; i++)
-                {
-                    GameObject star = LoadStar(i);
-//                    LoadSystem(i, star.transform);
-                }
-            }
+            LoadSystems(); 
         }
 
     }
 
 
+    public void LoadSystems()
+    {
+        numberOfExistingSolarSystems = PlayerPrefs.GetInt("number of solar systems", 0);
+        Debug.Log("SOLAR SYSTEMS: " + numberOfExistingSolarSystems);
+        if (numberOfExistingSolarSystems > 0)
+        {
+            if(numberOfExistingSolarSystems > 100)
+            {
+                numberOfExistingSolarSystems = 100;
+            }
+            int objectsPerColumn = 8;
+            int columns = Mathf.CeilToInt(numberOfExistingSolarSystems / objectsPerColumn);
+
+            for (int i = 0; i < columns; i++)
+            {
+                for (int j = 0; j < objectsPerColumn; j++)
+                {
+                    {
+                        int index = j * objectsPerColumn + i;
+                        if(index >= numberOfExistingSolarSystems)
+                        {
+                            break;
+                        }
+                        GameObject star = LoadStar(i);
+
+                        Vector3 coordinates = PlayerPrefsX.GetVector3("solar_system_" + index + "_star_coordinates");
+                        float yPos = j * rowSpacing;
+                        float zPos = i * columnSpacing;
+                        coordinates.y = yPos;
+                        coordinates.z = zPos;
+                        star.transform.localPosition = coordinates;
+                    }
+                }
+
+                //                LoadSystem(i, star.transform);
+
+                //                    LoadSystem(i, star.transform);
+
+            }
+        }
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -46,19 +75,14 @@ public class SolarSystemAttributes : MonoBehaviour
 
     public GameObject LoadStar(int index)
     {
-        Vector3 coordinates = PlayerPrefsX.GetVector3("solar_system_" + index + "_star_coordinates");
-        if(index > 0)
-        {
-            float distanceBetweenSystems = PlayerPrefs.GetFloat("solar_system_" + (index - 1) + "_size", 0) + PlayerPrefs.GetFloat("solar_system_" + index + "_size", 0);
-            coordinates.x += (distanceBetweenSystems *.01f) + starPadding;
-        }
+        //every 5 stars, push z index 
+
         Vector2 info = PlayerPrefsX.GetVector2("solar_system_" + index + "_star_info", new Vector2(1,0));
         GameObject go = Instantiate(starTemplate, transform);
-        go.transform.localPosition = coordinates;
+        go.transform.localScale = new Vector3(.1f, .1f, .1f);
         go.GetComponent<Renderer>().material.SetColor("_Color", starColors[(int)info.y]);
-        go.transform.localScale = new Vector3(info.x * .01f, info.x * .01f, info.x * .01f);
-        Debug.Log(go.transform.name + " NEW SCALE: " + go.transform.localScale);
-        Debug.Log("INFO X: " + info.x);
+//        go.transform.localScale = new Vector3(info.x, info.x, info.x);
+//        Debug.Log(go.transform.name + " NEW SCALE: " + go.transform.localScale);
         if(go.GetComponentInChildren<Core>())
         {
             go.GetComponentInChildren<Core>().SetScale();
@@ -76,7 +100,9 @@ public class SolarSystemAttributes : MonoBehaviour
 
             GameObject planet = Instantiate(planets[(int)solarSystemInfo[i].x].template, parent);
             Debug.Log("PLANET COORDS: " + solarSystemCoordinates[i]);
-            planet.transform.localPosition = solarSystemCoordinates[i];
+            Vector3 scaledPosition = solarSystemCoordinates[i];
+//            scaledPosition = scaledPosition * .001f;
+            planet.transform.localPosition = scaledPosition;
             float planetSize = solarSystemInfo[i].y;
             Vector3 planetScale = new Vector3(planetSize, planetSize, planetSize);
             planet.GetComponent<Orbit>().AssignStartingOrbitPosition();

@@ -18,7 +18,7 @@ public class SolarFlare : MonoBehaviour
                 Debug.Log("Scale not found, defaulting to random size");
                 scale = Random.Range(40, 400);
             }
-            transform.localScale = new Vector3(scale, scale, scale);
+//            transform.localScale = new Vector3(scale, scale, scale);
         }
         if(GetComponentInChildren<Core>())
         {
@@ -26,10 +26,10 @@ public class SolarFlare : MonoBehaviour
         }
     }
 
-    public void SetScale()
+    public void SetCoreScale()
     {
         float scale = DialogueLua.GetVariable("Energy Available").asFloat * 10f;
-        transform.localScale = new Vector3(scale, scale, scale);
+//        transform.localScale = new Vector3(scale, scale, scale);
         if(GetComponentInChildren<Core>())
         {
             GetComponentInChildren<Core>().SetScale();

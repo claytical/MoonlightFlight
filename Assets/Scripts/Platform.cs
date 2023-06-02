@@ -12,6 +12,7 @@ public class Platform : MonoBehaviour
     public Vector3 originalScale;
     public bool scaledDown = false;
     public bool scaledUp = false;
+    public AudioClip hazardSound;
 
     // Start is called before the first frame update
     void Start()
@@ -85,8 +86,15 @@ public class Platform : MonoBehaviour
 
         if (coll.gameObject.GetComponent<Breakable>())
         {
-            GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
-            //energyCollection.Play();
+            if(gameObject.tag.Contains("Avoid"))
+            {
+                //avoid fx
+                GetComponentInParent<AudioSource>().PlayOneShot(hazardSound);
+            }
+            else
+            {
+                GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
+            }
 
 
             if (coll.gameObject.GetComponent<Breakable>().isDead())

@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &753764992576319173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 753764992576319175}
+  - component: {fileID: 753764992576319174}
+  - component: {fileID: 753764992576319168}
+  m_Layer: 0
+  m_Name: New Solar System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &753764992576319175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753764992576319173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &753764992576319174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753764992576319173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8e4378aa3ff4b4794ed3f80dcf96b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstConversation: End of Run/First Time Introduction
+  conversation: End of Run/Introduction
+  starColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.92443705, a: 1}
+  - {r: 1, g: 0.6418863, b: 0, a: 1}
+  - {r: 0.9719956, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.37193346, g: 0, b: 1, a: 1}
+  starTemplate: {fileID: 6385566628541026382, guid: 535671b8d55b9b443af24f815672fc95,
+    type: 3}
+  planetRequirements:
+  - energyRequired: 5
+    diameter: 10
+    button: {fileID: 0}
+  - energyRequired: 20
+    diameter: 30
+    button: {fileID: 0}
+  - energyRequired: 50
+    diameter: 50
+    button: {fileID: 0}
+  energyToExpend: {fileID: 0}
+  solarFlares: {fileID: 0}
+  core: {fileID: 0}
+  energyAvailable: 400
+  newStar: {fileID: 0}
+  transitionDuration: 2
+  targetOffset: {x: 0, y: 250, z: -400}
+  admiringNewSystem: 0
+  systemAttributes: {fileID: 0}
+--- !u!114 &753764992576319168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753764992576319173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ad7bce66fcf9444a2d9d1dc8a87cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

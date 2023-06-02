@@ -12,15 +12,12 @@ public struct BreakableSet
 
 
 public class Breakable : MonoBehaviour {
-	private int timesHit = 0;
-    public bool shrinksIntruder;
-    public bool enlargesIntruder;
-    public GameObject[] layers;
     public GameObject explosion;
-	public AudioClip hit;
-//	private float lightUpTime;
-//	private bool isDying = false;
-    private bool scaleUp = true;
+    public AudioClip hit;
+    public bool scaleUp = true;
+
+    private int timesHit = 0;
+    private GameObject[] layers;
     private Vector3 originalScale;
 
 	// Use this for initialization
@@ -32,26 +29,6 @@ public class Breakable : MonoBehaviour {
         {
             layers[i] = GetComponentsInChildren<Collider2D>()[i].gameObject;
         }
-    }
-
-    void OnDestroy() {
-/*
-        if (transform.parent.gameObject.GetComponent<ProceduralLevel>())
-        {
-            transform.parent.gameObject.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform.parent;
-
-        }
-        else if(transform.parent.parent.gameObject.GetComponent<ProceduralLevel>())
-        {
-            transform.parent.parent.gameObject.GetComponent<ProceduralLevel>().lastEnergyCollectionPosition = transform.parent.parent;
-
-        }
-        else
-        {
-            Debug.Log("Can't find level during energy destruction");
-
-        }
-*/
     }
 	
 	// Update is called once per frame
@@ -74,24 +51,27 @@ public class Breakable : MonoBehaviour {
         GetComponent<AudioSource>().PlayOneShot(hit);
 
         //HIT
-
-        if (layers.Length > 0)
+        if (layers == null)
         {
             if (layers.Length > timesHit)
             {
                 layers[timesHit].SetActive(false);
             }
-        }
-        timesHit++;
+            timesHit++;
 
-        if (timesHit > layers.Length - 1)
-        {
-            Instantiate(explosion, transform.position, Quaternion.identity, transform.parent);
-            return true;
+            if (timesHit > layers.Length - 1 && explosion)
+            {
+                Instantiate(explosion, transform.position, Quaternion.identity, transform.parent);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            return false;
+            return true;
         }
 
 
