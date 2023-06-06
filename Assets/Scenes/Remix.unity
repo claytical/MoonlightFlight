@@ -2157,8 +2157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicles:
   - {fileID: 1556315624568502, guid: b15f1692dcd459a4384c9218bb86f898, type: 3}
-  - {fileID: 1556315624568502, guid: ecd5cfd1776a57247be5ed815df9842a, type: 3}
   - {fileID: 1556315624568502, guid: 529231fc68eb02f4597b88d45ff727e5, type: 3}
+  - {fileID: 1556315624568502, guid: ecd5cfd1776a57247be5ed815df9842a, type: 3}
   - {fileID: 1556315624568502, guid: 8bd308394f603ac4c816e6bb1872dcb8, type: 3}
   - {fileID: 1556315624568502, guid: 5609d98a2ad3a2c48956372308103bff, type: 3}
   - {fileID: 1556315624568502, guid: 7c18308aad65cdb469809632defc416d, type: 3}

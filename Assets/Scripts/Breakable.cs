@@ -53,6 +53,7 @@ public class Breakable : MonoBehaviour {
         //HIT
         if (layers == null)
         {
+            //TODO: Attached to vehicle
             if (layers.Length > timesHit)
             {
                 layers[timesHit].SetActive(false);

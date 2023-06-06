@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2528304295676026262}
   - component: {fileID: 7325458334147578270}
   - component: {fileID: 4039621970352291572}
+  - component: {fileID: 3849038006413396531}
+  - component: {fileID: 209758040701275576}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -144,6 +146,32 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!135 &3849038006413396531
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914928926776319261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.17
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &209758040701275576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914928926776319261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddc79cb577efdd45a7bca83b91956fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTouchObject: {fileID: 0}
 --- !u!1 &6047400941348186467
 GameObject:
   m_ObjectHideFlags: 0

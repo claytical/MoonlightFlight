@@ -11,14 +11,25 @@ public struct MovingEntity
     public Vector3 coordinates;
 }
 
-
-public class TouchObject3D : MonoBehaviour
+public struct FocusPoint
 {
     public Vector3 focusCoordinates;
     public Quaternion focusRotation;
     public MovingEntity[] movingEntities;
     public string conversation;
 
+}
+
+public class TouchObject3D : MonoBehaviour
+{
+
+    FocusPoint[] fPoints;
+    public int focusPointIndex;
+    public enum touchState
+    {
+        PARENT_SELECTED = 0,
+        CHILD_SELECTED = 1
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,81 +39,21 @@ public class TouchObject3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckMouse();
-        CheckTouch();
     }
 
-    private void CheckTouch()
+
+    public void Focus(int index)
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            // get the touch position from the screen touch
-            Vector3 touchPos = Input.GetTouch(0).position;
-
-            // create a ray from the touch position
-            Ray ray = Camera.main.ScreenPointToRay(touchPos);
-
-            // create a RaycastHit object to store information about the collision
-            RaycastHit hit;
-
-            // check if the ray hits a 3D object
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform == transform)
-                {
-
-                    // do something with the object that was hit
-                    Debug.Log("Touched object: " + hit.transform.name);
-                    Focus();
-    
-                }
-
-            }
-        }
-
-    }
-
-    private void CheckMouse()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // get the mouse position
-            Vector3 mousePos = Input.mousePosition;
-
-            // create a ray from the mouse position
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-            // create a RaycastHit object to store information about the collision
-            RaycastHit hit;
-
-            // check if the ray hits a 3D object
-            if (Physics.Raycast(ray, out hit))
-            {
-                // do something with the object that was hit
-                if (hit.transform == transform)
-                {
-                    Debug.Log("Clicked object: " + hit.transform.name);
-                    Focus();
-                }
-            }
-        }
-
-
-    }
-
-    public void Focus()
-    {
-        Debug.Log("FOCUSING ON " + gameObject.name);
         
-        Camera.main.transform.position = focusCoordinates;
-        Camera.main.transform.rotation = focusRotation;
-        for(int i = 0; i < movingEntities.Length; i++)
+        Camera.main.transform.position = fPoints[index].focusCoordinates;
+        Camera.main.transform.rotation = fPoints[index].focusRotation;
+        for(int i = 0; i < fPoints[index].movingEntities.Length; i++)
         {
-            movingEntities[i].gameObject.transform.position = movingEntities[i].coordinates;
+            fPoints[index].movingEntities[i].gameObject.transform.position = fPoints[index].movingEntities[i].coordinates;
         }
 
         DialogueManager.StopConversation();
-        DialogueManager.StartConversation(conversation);
+        DialogueManager.StartConversation(fPoints[index].conversation);
         if(DialogueManager.HasInstance)
         {
             DialogueManager.SetDialoguePanel(true);

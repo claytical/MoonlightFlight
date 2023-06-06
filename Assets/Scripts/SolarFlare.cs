@@ -10,17 +10,17 @@ public class SolarFlare : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(setScaleOnStart)
+        if (setScaleOnStart)
         {
             float scale = DialogueLua.GetVariable("Energy Available").asFloat * 1.5f;
-            if(scale == 0)
+            if (scale == 0)
             {
                 Debug.Log("Scale not found, defaulting to random size");
                 scale = Random.Range(40, 400);
             }
-//            transform.localScale = new Vector3(scale, scale, scale);
+            //            transform.localScale = new Vector3(scale, scale, scale);
         }
-        if(GetComponentInChildren<Core>())
+        if (GetComponentInChildren<Core>())
         {
             GetComponentInChildren<Core>().SetScale();
         }
@@ -29,16 +29,14 @@ public class SolarFlare : MonoBehaviour
     public void SetCoreScale()
     {
         float scale = DialogueLua.GetVariable("Energy Available").asFloat * 10f;
-//        transform.localScale = new Vector3(scale, scale, scale);
-        if(GetComponentInChildren<Core>())
+        //        transform.localScale = new Vector3(scale, scale, scale);
+        if (GetComponentInChildren<Core>())
         {
             GetComponentInChildren<Core>().SetScale();
         }
 
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
 }

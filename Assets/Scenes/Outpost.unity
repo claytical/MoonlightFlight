@@ -650,6 +650,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceSpeed: 1
   scale: 0.1
+--- !u!65 &930702583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930702580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &930702584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930702580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5210a3f8ce473cc40920cc6303a902dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusCoordinates: {x: -2.2, y: -0.3, z: -498}
+  focusRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  movingEntities:
+  - gameObject: {fileID: 197825165}
+    coordinates: {x: 11, y: 0, z: -510}
+  conversation: Solar System/View
 --- !u!1 &939829673
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +793,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976951838}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1509,18 +1540,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4214312698341251103, guid: f809b85827b6a5947b9328d065f87e3d,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214312698341251103, guid: f809b85827b6a5947b9328d065f87e3d,
+        type: 3}
       propertyPath: createStars
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4214312698341251103, guid: f809b85827b6a5947b9328d065f87e3d,
         type: 3}
       propertyPath: numberOfStars
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4214312698341251103, guid: f809b85827b6a5947b9328d065f87e3d,
         type: 3}
       propertyPath: removeAllSolarSystems
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4214312698341251103, guid: f809b85827b6a5947b9328d065f87e3d,
         type: 3}
