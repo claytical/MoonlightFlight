@@ -6,6 +6,7 @@ public class RemixManager : MonoBehaviour
 {
     public Color shipColor;
     public Color[] gradients;
+    public Color primaryColor;
     public Color borderColor;
     public Color itemColor;
     public Color boxColor;

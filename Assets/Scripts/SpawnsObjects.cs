@@ -7,44 +7,52 @@ public class SpawnsObjects : MonoBehaviour
     public bool collisionCausesSpawn = false;
     public float timeBetweenSpawns;
     public GameObject timeCircle;
+    public GameObject spawnPop;
+    public GameObject spawnerPop;
+//    public GameObject timeStick;
     public float spawnedObjectLifetime;
     public int numberOfSpawnsBeforeSelfDestruct;
     public GameObject[] objectsToSpawn;
     public GameObject spawnPoint;
     public Vector2 velocity;
-
-    private Color originalIdentifierColor;
+    
+ //   private Color originalIdentifierColor;
     private List<GameObject> spawnedObjects;
     private float nextSpawnTime;
     private int spawnedObjectIndex = 0;
     private int numberOfObjectsSpawned = 0;
-    private Vector3 spawnTimerSpawnPosition;
+    private SpawnedObject so;
+/*    private Vector3 spawnTimerSpawnPosition;
     private Color flashColor;
     private Color standardColor;
-
+    private bool isDeactivated;
+*/
+    private float rotationSpeed;
     // Start is called before the first frame update
     void Start()
     {
-
-
-        if (!spawnPoint)
+        if(spawnerPop.GetComponent<ParticleSystem>())
         {
-            spawnPoint = this.gameObject;
+            ParticleSystem ps = spawnerPop.GetComponent<ParticleSystem>();
+            ParticleSystem.MainModule mainModule = ps.main;
+            mainModule.duration = timeBetweenSpawns - (timeBetweenSpawns/2);
         }
+
+        if(timeBetweenSpawns > 0)
+        {
+            float rotationDistance = 360f;
+            rotationSpeed = rotationDistance / timeBetweenSpawns;
+        }
+
         spawnedObjects = new List<GameObject>();
         if (objectsToSpawn.Length > 0 && timeBetweenSpawns > 0)
         {
             nextSpawnTime = Time.time + timeBetweenSpawns;
-            SetNextSpawnedItem();
-
         }
-        if (timeCircle)
-        {
-            spawnTimerSpawnPosition = timeCircle.transform.position;
-        }
-
+        Invoke("SpawnPop", timeBetweenSpawns - .5f); 
 
     }
+
     public GameObject NextSpawnedObject()
     {
         return objectsToSpawn[spawnedObjectIndex];
@@ -52,20 +60,19 @@ public class SpawnsObjects : MonoBehaviour
 
     void SetNextSpawnedItem()
     {
-        GetComponent<Remix>().identifier.sprite = objectsToSpawn[spawnedObjectIndex].GetComponent<Standard>().icon;
         if (objectsToSpawn[spawnedObjectIndex].GetComponent<Hazard>())
         {
             Debug.Log("Has hazard component...");
             GetComponent<Remix>().identifier.color = GetComponent<Remix>().GetHazardColor();
         }
-        else 
+        else
         {
             GetComponent<Remix>().identifier.color = GetComponent<Remix>().GetOriginalIdentifierColor();
         }
-        if(GetComponent<Remix>())
+        if (GetComponent<Remix>())
         {
             GetComponent<Remix>().identifier.gameObject.transform.rotation = Quaternion.identity;
-         if(objectsToSpawn.Length < spawnedObjectIndex)
+            if (objectsToSpawn.Length < spawnedObjectIndex)
             {
                 GetComponent<Remix>().identifier.flipY = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipY;
                 GetComponent<Remix>().identifier.flipX = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipX;
@@ -80,21 +87,15 @@ public class SpawnsObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (timeBetweenSpawns > 0)
         {
+
+            float rotationAmount = rotationSpeed * Time.deltaTime;
+            timeStick.transform.Rotate(Vector3.forward, rotationAmount);
             float timeLeft = nextSpawnTime - Time.time;
-
-            Vector3 circlePos = transform.position;
-            float rotatedAngle = Mathf.Deg2Rad * 90;// -Mathf.PI;// * 1.5f;
-            rotatedAngle += Mathf.Deg2Rad * transform.rotation.eulerAngles.z;
-            float scalar = .7f;
-
-            circlePos.y = circlePos.y + ((Mathf.Sin(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (rotatedAngle)) * .7f));
-
-            circlePos.x = circlePos.x + ((Mathf.Cos(2f * Mathf.PI * (timeLeft / timeBetweenSpawns) + (rotatedAngle)) * scalar));
-            timeCircle.transform.position = circlePos;
-
         }
+        */
     }
 
     void FixedUpdate()
@@ -102,8 +103,10 @@ public class SpawnsObjects : MonoBehaviour
         if (timeBetweenSpawns > 0 && nextSpawnTime <= Time.time)
         {
             nextSpawnTime = Time.time + timeBetweenSpawns;
+            Invoke("SpawnPop", timeBetweenSpawns - .5f);
             SpawnObject();
-        }
+        } 
+
 
 
     }
@@ -113,58 +116,72 @@ public class SpawnsObjects : MonoBehaviour
         GetComponent<Platform>().TurnOnCollision();
     }
 
-    public void SpawnObject()
+    void ReactivateObject()
     {
-        if(GetComponent<Animator>())
+        // Deactivate the GameObject
+        gameObject.SetActive(false);
+        Invoke("ActivateObject", .5f);
+    }
+
+    void SpawnerPop()
+    {
+        Invoke("ActivateSpawner", .1f);
+        GameObject go = Instantiate(spawnerPop, transform.parent);
+        go.transform.position = transform.position;
+    }
+
+    void ActivateSpawner()
+    {
+        gameObject.SetActive(true);
+    }
+    void ActivateObject()
+    {
+        if(so)
         {
-            GetComponent<Animator>().SetTrigger("hit");
-        }
-        if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
+
+            CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
+            if (!circleCollider.enabled)
             {
-                if(GetComponent<Platform>())
-            {
-                GetComponent<Platform>().TurnOffCollision();
-                Invoke("turnOnCollision", 1);
-            }
-                GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], spawnPoint.transform.position, objectsToSpawn[spawnedObjectIndex].transform.rotation, transform.parent);
-                go.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.down);
-                spawnedObjects.Add(go);
-                SpawnedObject so = go.AddComponent<SpawnedObject>();
-                so.parentCollider = GetComponent<Collider2D>();
-                if (spawnedObjectLifetime > 0)
+                if (Vector2.Distance(transform.position, so.transform.position) < 1f)
                 {
-                    so.SetLifeTime(spawnedObjectLifetime);
-
-                }
-
-
-            }
-
-
-            if (numberOfObjectsSpawned > numberOfSpawnsBeforeSelfDestruct)
-            {
-                if (GetComponent<Explode>())
-                {
-                    Debug.Log("Blowing up platform...");
-                    GetComponent<Explode>().Go();
+                    Invoke("ActivateObject", .1f);
                 }
                 else
-            {
-                Destroy(gameObject);
-
+                {
+                    SpawnerPop();
+                }
             }
-                
         }
 
+    }
+    public void SpawnPop()
+    {
+        GameObject go = Instantiate(spawnPop, transform.parent);
+        go.transform.position = transform.position;
 
+    }
 
-            spawnedObjectIndex++;
-            numberOfObjectsSpawned++;
-            if (spawnedObjectIndex >= objectsToSpawn.Length)
+    public void SpawnObject()
+    {
+
+        if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
+        {
+            if (GetComponent<CircleCollider2D>())
             {
-                spawnedObjectIndex = 0;
+                GetComponent<CircleCollider2D>().enabled = false;
             }
-            SetNextSpawnedItem();
+            
+            GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], transform.parent);
+            go.transform.position = transform.position;
+            spawnedObjects.Add(go);
+            so = go.AddComponent<SpawnedObject>();
+            
+            if (spawnedObjectLifetime > 0)
+            {
+                so.SetLifeTime(spawnedObjectLifetime);
+            }
+            
+            ReactivateObject();
         }
-
+    }
 }

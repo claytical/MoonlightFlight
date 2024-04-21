@@ -29,8 +29,16 @@ public class ProceduralInfo : MonoBehaviour
 
             Debug.Log("List of sets not available, using first of array");
             //default to assigened next set if array of options isn't filled in
-            nextSet = nextSets[0];
-            return nextSets[0];            
+            if(nextSets.Length > 0)
+            {
+                nextSet = nextSets[0];
+            }
+            else
+            {
+                nextSet = null;
+            }
+
+            return nextSet;           
         }
     }
 
@@ -102,8 +110,11 @@ public class ProceduralInfo : MonoBehaviour
     public void FinishedSet()
     {
         //PLAY TRANSITION EFFECT
-        nextSet.gameObject.SetActive(true);
-        Debug.Log("TURNING ON " + nextSet.name);
+        if(nextSet)
+        {
+            nextSet.gameObject.SetActive(true);
+            Debug.Log("TURNING ON " + nextSet.name);
+        }
 
     }
 

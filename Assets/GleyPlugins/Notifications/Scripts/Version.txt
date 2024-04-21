@@ -1,5 +1,0 @@
-{
-    "folderName": "Notifications",
-    "longVersion": "1.2.1",
-    "shortVersion": 4
-}

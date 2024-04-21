@@ -4,108 +4,200 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
-    public bool randomGravity;
-    public float timeUntilDestroy;
-    private float timeCreated;
-    private Color color;
+    /*    public bool randomGravity;
+        public float timeUntilDestroy;
+    */
+    public enum EnemyType
+    {
+        SIMPLETON = 0,
+        SEEKER = 1,
+        DRIFTER = 2,
+        DRONE = 3,
+        ANOMALY = 4,
+        CHARISMATIC = 5,
+        TIMEBOMB = 6,
+        BOUNDARY = 7
+
+    };
+
+    public EnemyType hazardType;
+    public int damage;
+    public bool drift;
+    private Vector2 driftDirection;
+    /*
+    public bool seekVehicles;
+    */
+    private bool seekingVehicles = false;
+    public float seekerSpeed;
+    private int vehicleIndex = -1;
+        private Color color;
     public float scaleSpeed = .1f;
     private float scaleDirection = -1;
     private bool scaling = false;
     private Vector3 originalScale;
+    private Player[] players;
     // Use this for initialization
     void Start()
     {
-        originalScale = transform.localScale;
-        timeCreated = Time.time;
-        if(randomGravity)
+        switch (hazardType)
         {
-            if(GetComponent<Rigidbody2D>())
-            {
-                GetComponent<Rigidbody2D>().gravityScale = Random.Range(-1, 1);
-//                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if(Time.time >= timeCreated + timeUntilDestroy)
-        {
-        }
-    }
-
-
-    void Update()
-    {
-        if(scaling)
-        {
-            Debug.Log("Scaling: " + scaleDirection);
-            Vector3 newScale = new Vector3();
-
-            newScale.x = transform.localScale.x + (scaleSpeed * scaleDirection);
-            newScale.y = transform.localScale.y + (scaleSpeed * scaleDirection);
-            newScale.z = transform.localScale.z + (scaleSpeed * scaleDirection);
-            transform.localScale = newScale;
-            Debug.Log("Scaling: " + scaleDirection + " SCALE: " + newScale + "T SCALE: " + transform.localScale);
-
-            if (newScale.x <= 0)
-            {
-                scaleDirection *= -1;
-            }
-            if(newScale.x >= originalScale.x)
-            {
-                scaleDirection *= -1;
-                scaling = false;
-                transform.localScale = originalScale;
-            }
+            case EnemyType.SEEKER:
+            case EnemyType.CHARISMATIC:
+                vehicleIndex = FindVehicle();
+                break;
+            case EnemyType.ANOMALY:
+                //Rigidbody gravity scale is 1 or -1
+                break;
+            case EnemyType.DRIFTER:
+                driftDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                break;
+            case EnemyType.DRONE:
+                break;
+            case EnemyType.SIMPLETON:
+                break;
         }
 
     }
 
-    void ResetColor()
+    private int FindVehicle()
     {
-        color.a = 1;
-        GetComponent<SpriteRenderer>().color = color;
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
+        players = new Player[gos.Length];
+
+        for (int i = 0; i < gos.Length; i++)
+        {
+            players[i] = gos[i].GetComponent<Player>();
+        }
+
+        if(players.Length > 0)
+        {
+            int index = Random.Range(0, players.Length);
+            if(players[index].chosenVehicle.GetComponent<Vehicle>().isFlying())
+            {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    private void Seekers()
+    {
+        if (vehicleIndex >= 0)
+        {
+            seekingVehicles = true;
+        }
+
+        if (seekingVehicles)
+        {
+            if (players.Length > 0 && vehicleIndex >= 0)
+            {
+                if(players[vehicleIndex].chosenVehicle)
+                {
+                    Drift(players[vehicleIndex].chosenVehicle.transform.position);
+                }
+                else
+                {
+                    FindVehicle();
+                }
+            }
+            else
+            {
+                Debug.Log("Need new vehicle to track");
+            }
+        }
+
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (vehicleIndex == -1)
+        {
+            vehicleIndex = FindVehicle();
+        }
+
+        switch (hazardType)
+        {
+            case EnemyType.SEEKER:
+                Seekers();
+                break;
+            case EnemyType.ANOMALY:
+                transform.parent.position = transform.position;
+                transform.parent.rotation = transform.rotation;
+                break;
+            case EnemyType.CHARISMATIC:                
+                players[vehicleIndex].chosenVehicle.GetComponent<Vehicle>().Drift(transform.position);
+
+                break;
+            case EnemyType.DRIFTER:
+                GetComponent<Rigidbody2D>().AddForce(driftDirection);
+                break;
+            case EnemyType.DRONE:
+                break;
+            case EnemyType.SIMPLETON:
+                break;
+        }
+
+        if (GetComponentInParent<Platform>())
+        {
+            transform.parent.position = transform.position;
+        }
+    }
+
+    public void Drift(Vector3 position)
+    {
+        if (GetComponent<Rigidbody2D>())
+        {
+            Vector3 direction = (position - transform.position).normalized;
+            GetComponent<Rigidbody2D>().AddForce(direction * seekerSpeed, ForceMode2D.Impulse);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(GetComponent<Animator>())
+        Debug.Log("HAZARD COLLISION! with " + coll.gameObject.name);
+        
+        if(GetComponentInParent<Platform>())
         {
-            GetComponent<Animator>().enabled = false;
-
-        }
-        scaling = true;
-        if(GetComponent<SpriteRenderer>())
-        {
-            /*
-            color = GetComponent<SpriteRenderer>().color;
-            Color newColor = color;
-            newColor.a = color.a * .5f;
-            GetComponent<SpriteRenderer>().color = newColor;
-            Invoke("ResetColor", .1f);
-        */
-            }
-
-        if (coll.gameObject.tag == "Bumpable")
-        {
-            if(transform.parent.GetComponentInChildren<Moving>())
+            if(!GetComponentInParent<Platform>().indestructable)
             {
-                GetComponent<Rigidbody2D>().velocity = transform.parent.GetComponentInChildren<Moving>().GetCurrentDirection();
+                GetComponent<Explode>().UntilNextSet();
+            }
+        }
+        
+        if(coll.gameObject.GetComponent<Vehicle>())
+        {
+            //HAZARD HIT VEHICLE
+            if (coll.gameObject.GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().hp.TakeDamage(damage))
+            {
+                coll.gameObject.GetComponentInParent<Player>().Restart();
+                
+
+
+                //EXPLODE
+                if (coll.gameObject.GetComponent<Explode>())
+                {
+                    coll.gameObject.GetComponent<Explode>().Permanent();
+
+                }
+                else
+                {
+                    coll.gameObject.GetComponent<Rigidbody2D>().AddExplosionForce(10f, transform.position, 10f);
+                }
+            }
+            
+            if (GetComponent<Explode>())
+            {
+                GetComponent<Explode>().Permanent();
             }
         }
 
+        //        scaling = true;
+        if (GetComponent<SpriteRenderer>())
+        {
+            }
+
     }
 
-    public void TurnOffCollider()
-    {
-        GetComponent<PolygonCollider2D>().enabled = false;
-
-    }
-    public void TurnOnCollider()
-    {
-        GetComponent<PolygonCollider2D>().enabled = true;
-    }
 }
 

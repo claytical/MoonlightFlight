@@ -11,7 +11,6 @@ public class Damage : MonoBehaviour
     public Transform gauge;
     public Transform hpLeft;
 
-    public BoundaryPowerUp boundaries;
     public GameObject hull;
 
 //    private float speed = .01f;
@@ -49,15 +48,19 @@ public class Damage : MonoBehaviour
         if(hpLeft.GetComponentsInChildren<Transform>().Length < maxHP)
         {
             GameObject hpUnit = Instantiate(hp, hpLeft);
+            int armor = PlayerPrefs.GetInt("armor", 0);
+            armor++;
+            PlayerPrefs.SetInt("armor", armor);
 
         }
         else
         {
             Debug.Log("Max Armor Hit");
         }
+
     }
 
-    public bool TakeDamage()
+    public bool TakeDamage(int amount)
     {
         if(hull.GetComponent<Animator>()) {
             if(!hull.GetComponent<Animator>().IsInTransition(0))
@@ -66,9 +69,13 @@ public class Damage : MonoBehaviour
 
             }
         }
-        if (hpLeft.GetComponentsInChildren<Image>().Length >= 1)
+        if (hpLeft.GetComponentsInChildren<Image>().Length >= amount)
         {
-            Destroy(hpLeft.GetComponentsInChildren<Image>()[hpLeft.GetComponentsInChildren<Image>().Length - 1].gameObject) ;
+            for(int i = amount; i > 0; i--)
+            {
+                Destroy(hpLeft.GetComponentsInChildren<Image>()[hpLeft.GetComponentsInChildren<Image>().Length - 1].gameObject);
+
+            }
             return false;
         }
         else

@@ -735,7 +735,7 @@ namespace AlmostEngine.Screenshot
                      (resolution.m_Texture.format == TextureFormat.ARGB32 && colorFormat != ColorFormat.RGBA) ||
                      (resolution.m_Texture.format == TextureFormat.RGB24 && colorFormat != ColorFormat.RGB))
             {
-                resolution.m_Texture.Resize(width, height, colorFormat == ColorFormat.RGBA ? TextureFormat.ARGB32 : TextureFormat.RGB24, false);
+                resolution.m_Texture.Reinitialize(width, height, colorFormat == ColorFormat.RGBA ? TextureFormat.ARGB32 : TextureFormat.RGB24, false);
             }
 
             return resolution.m_Texture;

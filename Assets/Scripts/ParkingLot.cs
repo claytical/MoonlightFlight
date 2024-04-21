@@ -1,76 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ParkingLot : MonoBehaviour
 {
 
     public GameObject[] vehicles;
+    public bool[] vehicleInUse;
     public GameObject vehicle;
-    public Feedback feedback;
-    public Text energyUI;
-    public Text partsUI;
     public int energyCollected;
     public float lightYearsTraveled;
-    public AudioClip energyFx;
-    public BoundaryPowerUp boundaries;
     public Damage HP;
     public UsePowerUps PowerUps;
-    public int lightYearIncrement = 10;
-
+    private int players = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        vehicleInUse = new bool[vehicles.Length];
     }
 
-
-    public Vehicle GetVehicle()
+    public void OnJoin(PlayerInput playerInput)
     {
-        return vehicle.GetComponentInChildren<Vehicle>();
-       
+        players++;
     }
 
-    public void SelfDestruct()
+    public int FirstAvailableVehicle()
     {
-        Time.timeScale = 1f;
-        vehicle.GetComponentInChildren<Vehicle>().SelfDestruct();
-
+    for(int i = 0; i < vehicles.Length; i++)
+        {
+            if(!vehicleInUse[i])
+            {
+                vehicleInUse[i] = true;
+                return i;
+            }
+        }
+        return -1;
     }
+
+    public int NextAvailableVehicle(int vehicleId)
+    {
+        vehicleId++;
+        if(vehicleId >= vehicles.Length)
+        {
+            vehicleId = 0;
+        }
+        return vehicleId;
+    }
+
+    public int PreviousAvailableVehicle(int vehicleId)
+    {
+        Debug.Log("VEHICLE ID:  " + vehicle);
+        vehicleId--;
+        if (vehicleId < 0)
+        {
+            vehicleId = vehicles.Length - 1;
+        }
+        return vehicleId;
+    }
+
     public void EnergyCollected()
     {
         energyCollected++;
-        GetComponent<AudioSource>().PlayOneShot(energyFx);
-
     }
 
-    public void GiveFeedback(string message)
-    {
-        feedback.gameObject.SetActive(true);
-        feedback.SetMessage(message);
-    }
-
-    public void SetEnergy()
-    {
-        //SET TOTAL SEEDS COLLECTED 
-        if (Social.localUser.authenticated)
-        {
-            Social.ReportScore(energyCollected, "CgkIm_nTr7sPEAIQAg", (bool success) =>
-            {
-                if (success)
-                {
-                    Debug.Log("Update Score Success");
-
-                }
-                else
-                {
-                    Debug.Log("Update Score Fail");
-                }
-            });
-        }
-    }
 
     public Vehicle DefaultVehicle()
     {
@@ -82,41 +77,5 @@ public class ParkingLot : MonoBehaviour
 
         return vehicle.GetComponentInChildren<Vehicle>();
     }
-    public Vehicle SelectVehicle(VehicleType v)
-    {
-        switch (v)
-        {
-            case VehicleType.Boomerang:
-                vehicle = Instantiate(vehicles[0], transform);
-                break;
-            case VehicleType.Rocket:
-                vehicle = Instantiate(vehicles[1], transform);
-                break;
-
-            case VehicleType.Racer:
-                vehicle = Instantiate(vehicles[2], transform);
-                break;
-
-            case VehicleType.Falcon:
-                vehicle = Instantiate(vehicles[3], transform);
-                break;
-
-            case VehicleType.Fighter:
-                vehicle = Instantiate(vehicles[4], transform);
-                break;
-
-            case VehicleType.UFO:
-                vehicle = Instantiate(vehicles[5], transform);
-
-                break;
-
-        }
-        Vector3 newPosition = vehicle.transform.position;
-        newPosition.z = 10f;
-        vehicle.transform.position = newPosition;
-        HP.SetHP(vehicle.GetComponentInChildren<Vehicle>());
-        return vehicle.GetComponentInChildren<Vehicle>();
-    }
-
 
 }

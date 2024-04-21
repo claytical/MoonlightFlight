@@ -21,8 +21,6 @@ public static class Rigidbody2DExt
             explosionDir.y += upwardsModifier;
             explosionDir.Normalize();
         }
-        Debug.Log("EXPLOSION FORCE: " + explosionForce);
- 
         rb.AddForce(Mathf.Lerp(0, explosionForce, (1 - explosionDistance)) * explosionDir, mode);
     }
 }
@@ -30,79 +28,88 @@ public class PlaysWithOthers : MonoBehaviour
 {
 
     public bool canBeDestroyed = false;
-    public bool canBreakOtherItems = false;
     public bool canSpawnItems = false;
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-
-        if (canBeDestroyed)
+        if(canBeDestroyed)
         {
-            if(gameObject.GetComponent<Explode>())
+            if (coll.gameObject.GetComponent<Hazard>())
             {
-                Debug.Log("Adding lots of force!");
-                Rigidbody2DExt.AddExplosionForce(coll.rigidbody, 1000f, this.transform.position, 20f);
 
-                GetComponent<Explode>().Go();
             }
         }
 
-        if (coll.gameObject.GetComponent<SpawnsObjects>())
-        {
-            if (coll.gameObject.GetComponent<SpawnsObjects>().collisionCausesSpawn)
-            {
-                if(canSpawnItems)
-                {
-                    coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
+        //THE OBJECT COLLIDING EXPLODES
 
+        if (coll.gameObject.GetComponent<Explode>())
+        {
+            //THIS OBJECT ALSO EXPLODES
+
+            if (GetComponent<Explode>())
+            {
+                //THIS OBJECT IS HAZARDOUS
+
+                if (GetComponent<Hazard>())
+                {
+                    //THE COLLIDING OBJECT IS ALSO HAZARDOUS
+                    if (coll.gameObject.GetComponent<Hazard>())
+                    {
+                        //THE COLLIDING OBJECT HAS GREATER OR EQUAL DAMAGE
+                        if (coll.gameObject.GetComponent<Hazard>().damage >= GetComponent<Hazard>().damage)
+                        {
+                            GetComponent<Explode>().UntilNextSet();
+                        }
+                        else
+                        {
+                            Debug.Log("OTHER OBJECT SHOULD ALSO HAVE SAME COLLISION ROUTINE");
+                        }
+                    }
+                    else
+                    {
+                        //COLLIDING OBJECT IS NOT HAZARDOUS, BUT THIS ONE IS
+                        //                        Rigidbody2DExt.AddExplosionForce(coll.rigidbody, 1000f, this.transform.position, 20f);
+                        //                        coll.gameObject.GetComponent<Explode>().Go();
+                        //if this is a platform, it should not explode
+                        //if this is not a platform, it should explode
+                        if (canBeDestroyed)
+                        {
+                            if (GetComponent<Explode>())
+                            {
+                                GetComponent<Explode>().UntilNextSet();
+                            }
+                            else
+                            {
+                                Destroy(this.gameObject);
+                            }
+                        }
+                    }
                 }
 
                 else
                 {
-                    Debug.Log("No spawning...");
 
                 }
             }
-        }
 
-        if (coll.gameObject.GetComponent<Breakable>())
-        {
-            if (canBreakOtherItems)
+            if (coll.gameObject.GetComponent<SpawnsObjects>())
             {
-
-            }
-            else
-            {
-                Vector2 pos = transform.position;
-                Vector2 dir = coll.contacts[0].point - pos;
-                dir = -dir.normalized;
-                // And finally we add force in the direction of dir and multiply it by force. 
-                // This will push back the player
-                GetComponent<Rigidbody2D>().AddForce(dir * 3f, ForceMode2D.Impulse);
-
-
-            }
-        }
-
-        if(gameObject.GetComponentInParent<OneDirection>())
-        {
-            if (gameObject.GetComponent<Rigidbody2D>())
-            {
-                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                if (gameObject.GetComponentInParent<OneDirection>().reverseDirection)
+                if (coll.gameObject.GetComponent<SpawnsObjects>().collisionCausesSpawn)
                 {
-                    gameObject.GetComponentInParent<OneDirection>().direction.x *= -1;
-                    gameObject.GetComponentInParent<OneDirection>().direction.y *= -1;
+                    if (canSpawnItems)
+                    {
+                        coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
+
+                    }
+
+                    else
+                    {
+                        Debug.Log("No spawning...");
+
+                    }
                 }
-                Debug.Log("game object:" + gameObject.name);
-                gameObject.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponentInParent<OneDirection>().direction * 100f, ForceMode2D.Force);
             }
 
         }
-
     }
-
-
-
-
 }

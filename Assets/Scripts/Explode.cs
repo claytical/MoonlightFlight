@@ -22,7 +22,7 @@ public class Explode : MonoBehaviour
         {
             if(Time.time > explosionTimer)
             {
-                Go();
+                Permanent();
                 lifetime = 0;
             }
         }    
@@ -33,47 +33,51 @@ public class Explode : MonoBehaviour
         transform.position = originalPosition;
     }
 
-    public void Temporary(int spawnDelay)
+    public void Reactivate()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void UntilNextSet()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         Instantiate(explosion, transform.position, Quaternion.identity);
-        transform.position = new Vector3(0, 0, 1000);
-        Invoke("BackToPosition", spawnDelay);
+        if(GetComponent<Platform>())
+        {
+            //TODO: save its inactive state for the next set
+        }
+        gameObject.SetActive(false);
+    }
+
+    public void Temporary(int spawnDelay)
+    {
+        Debug.Log("Temporary Spawn Called!");
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        //transform.position = new Vector3(0, 0, 1000);
+        gameObject.SetActive(false);
+        Invoke("Reactivate", spawnDelay);
+    }
+
+    public void Permanent()
+    {
+        if (GetComponent<Platform>())
+        {
+            GetComponent<Platform>().Scale();
+        }
+
+        if (GetComponent<Rigidbody2D>())
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        }
+
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 
     public void Go()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        Instantiate(explosion, transform.position, Quaternion.identity);
-        if(respawnTimer > 0)
-        {
-            GameObject go = Instantiate(this.gameObject, transform.parent);
-            go.SetActive(false);
-            ObjectRespawn respawn = new ObjectRespawn();
-            respawn.respawnedObject = go;
-            respawn.timeUntilActive = respawnTimer + Time.time;
-            Debug.Log("ADDING TO RESPAWN POOL:" + transform.parent.parent.name);
-            if(transform.parent.parent.GetComponent<SetInfo>())
-            {
-                transform.parent.parent.GetComponent<SetInfo>().objectsToRespawn.Add(respawn);
-
-            }
-            if (transform.parent.parent.parent.GetComponent<SetInfo>())
-            {
-                transform.parent.parent.parent.GetComponent<SetInfo>().objectsToRespawn.Add(respawn);
-
-            }
-        }
-
-        if (GetComponent<Moving>())
-        {
-            GetComponent<Moving>().speed = 0;
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
     }
+
+    
 }

@@ -25,7 +25,6 @@ public class ObjectPool : MonoBehaviour
             pooledObjects.Add(tmp);
         }
 
-        GetComponent<ViewGalaxy>().SetupGalaxies();
     }
 
     public GameObject GetPooledObject()

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class RainbowColorLerp : MonoBehaviour
 {
     public Color[] rainbowColors;
@@ -32,7 +31,6 @@ public class RainbowColorLerp : MonoBehaviour
         Color lerpedColor = Color.Lerp(currentColor, nextColor, lerpAmount);
         lerpedColor.a = 1f;
         Debug.Log("COLOR: " + lerpedColor);
-
         // apply the lerped color to the renderer
         rend.material.color = lerpedColor;
     }
@@ -47,13 +45,23 @@ public class PowerUp : MonoBehaviour
         Part,
         Stop,
         Nuke,
-        Warp
+        Warp,
+        Thruster
     };
 
+    //Additional Power Ups
+
+    //Energy/Loot Frequency Modifier?
+    //Part Pack
+
     public Reward reward;
+    public int amount = 1;
+    public string feedbackMessage;
     public SpriteRenderer icon;
     public SpriteRenderer border;
     public int timesAround = 2;
+    public float timeLeft = 5f;
+
     private int timesAroundCounter = 0;
     private bool spinning = false;
     private float[] spinTime;
@@ -66,16 +74,16 @@ public class PowerUp : MonoBehaviour
     private RainbowColorLerp rainbowColorLerp;
     private void Start()
     {
-        Debug.Log("ICON IS " + icon.name);
         item = icon.sprite;
         originalItemColor = icon.color;
         itemBorder = border.color;
+        timeLeft = Time.time + timeLeft;
     }
 
      public void Spin(Sprite[] availableItems, float displayTime, bool easing = false)
     {
         powerUpCollider.enabled = false;
-        rainbowColorLerp = new RainbowColorLerp();
+        rainbowColorLerp = gameObject.AddComponent<RainbowColorLerp>();
         rainbowColorLerp.rainbowColors = new Color[] {
             Color.red, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta
         };
@@ -100,15 +108,57 @@ public class PowerUp : MonoBehaviour
         spindex = 0;
     }
 
+    private void CollectPowerUp(Vehicle vehicle)
+    {
+        switch (reward)
+        {
+
+            case PowerUp.Reward.Shield:
+
+                if (vehicle.GetComponentInParent<ParkingLot>())
+                {
+                    vehicle.GetComponentInParent<ParkingLot>().HP.IncreaseHP();
+                }
+                break;
+
+            case PowerUp.Reward.Part:
+
+                if (vehicle.GetComponentInParent<ParkingLot>())
+                {
+                    vehicle.CollectPart(amount);
+                }
+                break;
+
+            case PowerUp.Reward.Stop:
+                break;
+
+            case PowerUp.Reward.Nuke:
+                break;
+        }
+        Destroy(gameObject);
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       if (collision.gameObject.GetComponent<Vehicle>())
+        {
+            CollectPowerUp(collision.gameObject.GetComponent<Vehicle>());
+            if(GetComponentInChildren<Explode>())
+            {
+               GetComponentInChildren<Explode>().UntilNextSet();
+            }
+        }
+    }
+
     void Update()
     {
+        if(Time.time >= timeLeft)
+        {
+            Destroy(this.gameObject);
+        }
         if(spinning)
         {
-            //            float h, s, v;
-            //            Color.RGBToHSV(border.color, out h, out s, out v);
-
-            // Use HSV values to increase H in HSVToRGB. It looks like putting a value greater than 1 will round % 1 it
-            //            border.material.color = Color.HSVToRGB(h + Time.deltaTime * .25f, s, v);
             rainbowColorLerp.Lerp();
             if (spinTime[spindex] <= Time.time)
             {

@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomGravity: 0
   timeUntilDestroy: 0.1
+  damage: 3
   scaleSpeed: 0.1
 --- !u!50 &6484304613994706768
 Rigidbody2D:
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
+  remix: {fileID: 0}
   border: {fileID: 0}
   identifier: {fileID: 212153469563071436}
   subidentifier: {fileID: 0}

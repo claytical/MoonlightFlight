@@ -9,7 +9,6 @@ public class NumberButton : MonoBehaviour
     public Text displayNumber;
     public int currentAmount = 0;
     private int cost;
-    public CreateSolarSystem solarSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +28,7 @@ public class NumberButton : MonoBehaviour
     }
     public void IncreaseAmount()
     {
-        if(solarSystem.EnergyAvailableToSpend() >= cost)
+        if(0 >= cost)
         {
             currentAmount++;
             SetAmount();
@@ -45,7 +44,6 @@ public class NumberButton : MonoBehaviour
         {
             currentAmount = 0;
         }
-        solarSystem.EnergyAvailableToSpend();
 
         SetAmount();
     }
@@ -53,6 +51,5 @@ public class NumberButton : MonoBehaviour
     private void SetAmount()
     {
         displayNumber.text = currentAmount.ToString("0");
-        solarSystem.SetEnergyText();
     }
 }

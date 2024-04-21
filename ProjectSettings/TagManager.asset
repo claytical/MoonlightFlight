@@ -11,6 +11,7 @@ TagManager:
   - Boundary
   - Power Up
   - Energy
+  - Collect
   layers:
   - Default
   - TransparentFX

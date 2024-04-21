@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4213040972611002}
   - component: {fileID: 212375929196836916}
   - component: {fileID: 50193904785117360}
-  - component: {fileID: 114443874050580884}
   - component: {fileID: 95000926235985850}
   - component: {fileID: 8143086062404273585}
   - component: {fileID: -1978241342131140179}
@@ -19,9 +18,10 @@ GameObject:
   - component: {fileID: 5120994969953167269}
   - component: {fileID: -4763407499782392751}
   - component: {fileID: 4725627676587874216}
+  - component: {fileID: 4982183430488610192}
   m_Layer: 0
   m_Name: Debris - Reverse Gravity
-  m_TagString: Bumpable
+  m_TagString: Avoid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,23 +112,9 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114443874050580884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781116594832268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e110f718713decf43a277e0ec35c08b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundFx:
-  - {fileID: 8300000, guid: d6fba892cc303b043823944dd8b5de0a, type: 3}
 --- !u!95 &95000926235985850
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -141,10 +127,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8143086062404273585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
+  remix: {fileID: 0}
   border: {fileID: 0}
   identifier: {fileID: 0}
   subidentifier: {fileID: 212375929196836916}
@@ -176,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5ee3188eaa9874d9195c450cd16cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 2567590292593330884, guid: 7cfef40c3fd6cc44c87f04196a734800,
+  explosion: {fileID: 2567590292593330884, guid: 5a8e825c2087ded49aa4ecab9c1e0efc,
     type: 3}
   respawnTimer: 0
   lifetime: 0
@@ -259,3 +248,20 @@ MonoBehaviour:
   originalScale: {x: 0, y: 0, z: 0}
   scaledDown: 0
   scaledUp: 0
+  hazardSound: {fileID: 0}
+--- !u!114 &4982183430488610192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781116594832268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da54ebe0e3d12242a50395721f1ffab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomGravity: 0
+  timeUntilDestroy: 0
+  damage: 1
+  scaleSpeed: 0.1

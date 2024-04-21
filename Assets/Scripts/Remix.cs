@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Remix : MonoBehaviour
 {
-    public ProceduralLevel level;
-    public RemixManager remix;
+    public SpriteRenderer primary;
+    public SpriteRenderer hazard;
+   
+
     public SpriteRenderer border;
     public SpriteRenderer identifier;
     public SpriteRenderer subidentifier;
     public SpriteRenderer box;
     public SpriteRenderer energy;
-    public SpriteRenderer ship;
+    //    public SpriteRenderer ship;
+    private ProceduralLevel level;
+    private RemixManager remix;
     private Renderer rend;
     private Color originalIdentifierColor;
     // Start is called before the first frame update
     void Start()
     {
         remix = FindObjectOfType<RemixManager>();
-//        level = FindObjectOfType<ProceduralLevel>();
-
-        SetColors();        
+        level = FindObjectOfType<ProceduralLevel>();
     }
 
     public Color GetHazardColor()
@@ -46,21 +48,21 @@ public class Remix : MonoBehaviour
         {
             remix = GetComponentInParent<RemixManager>();
         }
-
-        if (border)
+        else
         {
-            if (GetComponent<Breakable>())
-            {
-                border.color = remix.energyColor;
-            }
-
-            else
-            {
-                border.color = remix.borderColor;
-
-            }
-
+            Debug.Log("No remix manager found...");
         }
+
+        if(primary)
+        {
+            primary.color = remix.primaryColor;
+        }
+        
+        if(hazard)
+        {
+            hazard.color = remix.hazardColor;
+        }
+
         if(subidentifier)
         {
             subidentifier.color = remix.secondaryColor;
@@ -99,11 +101,7 @@ public class Remix : MonoBehaviour
 
         }
 
-        if (ship)
-        {
-            ship.color = remix.shipColor;
-
-        }
+        
 
     }
 

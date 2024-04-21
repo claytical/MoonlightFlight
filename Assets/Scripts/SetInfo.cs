@@ -11,14 +11,15 @@ public struct ObjectRespawn
 public class SetInfo : MonoBehaviour
 {
 
-    public GameObject spawnLocations;
+    public Transform[] spawnLocations;
+    public bool spawnEverything = false;
     public GameObject lootLocation;
     public Transform[] lootLocations;
     public GameObject platforms;
     public Loot[] availableLoot;
     public GameObject[] breakables;
     public List<ObjectRespawn> objectsToRespawn;
-    public int numberOfObjectsToPlace;
+    private int numberOfObjectsToPlace;
     public int sets = 5;
     public ProceduralInfo currentSet;
     public float movingSpeed = .03f;
@@ -26,6 +27,7 @@ public class SetInfo : MonoBehaviour
     private Transform[] platformsToMove;
     private bool movingOffScreenInProgress = false;
     private bool movingOnScreenInProgress = false;
+    private ProceduralLevel level;
 
     //TODO: Set Weight
 
@@ -43,31 +45,26 @@ public class SetInfo : MonoBehaviour
         {
             lootLocations = lootLocation.GetComponentsInChildren<Transform>();
         }
+
         objectsToRespawn = new List<ObjectRespawn>();
 
-        Vector3 topOfScreen = platforms.transform.position;
-//        topOfScreen.y = 10f;
-//        platforms.transform.position = topOfScreen;
         platforms.SetActive(true);
-        //add platforms to descending objects
-        platformsToMove = platforms.GetComponentsInChildren<Transform>();
+        //SET PLATFORM COLORS
+        Platform[] platformsToAppear = platforms.GetComponentsInChildren<Platform>();
+        level = FindFirstObjectByType<ProceduralLevel>();
 
-
-        for (int i = 0; i < platformsToMove.Length; i++)
+        for (int i = 0; i < platformsToAppear.Length; i++)
         {
-
-            if(platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
-            {
-//                platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            }
-            if (platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>())
-            {
-            }
-
-            movingOnScreenInProgress = true;
-//            platformsToMove[i].transform.localScale = Vector3.zero;          
+            platformsToAppear[i].SetColors(level.remix);
         }
+
+
         currentSet = gameObject.GetComponent<ProceduralInfo>();
+    }
+
+    public ProceduralLevel GetLevel()
+    {
+        return level;
     }
 
     public void SetVehicle(Vehicle v)
@@ -158,11 +155,6 @@ public class SetInfo : MonoBehaviour
             }
 
         }
-        if(GetComponent<OnboardComputer>())
-        {
-            GetComponent<OnboardComputer>().tutorial.SetActive(true);
-        }
-
 
     }
     private void PlatformsFinishedMovingOffScreen()
@@ -187,7 +179,7 @@ public class SetInfo : MonoBehaviour
             {
                 if(platformsToScaleDown[i].GetComponent<Explode>())
                 {
-                    platformsToScaleDown[i].GetComponent<Explode>().Temporary(1);
+                    platformsToScaleDown[i].GetComponent<Explode>().UntilNextSet();
                 }
             }
             PlatformsFinishedMovingOffScreen();
@@ -200,17 +192,21 @@ public class SetInfo : MonoBehaviour
 
                 currentNumberOfPlatformsToScale++;
                 for (int i = 0; i < platformsToScaleUp.Length; i++) {
-                    platformsToScaleUp[i].transform.localScale = Vector3.Lerp(platformsToScaleUp[i].transform.localScale, platformsToScaleUp[i].originalScale, .1f);
-
-                if (platformsToScaleUp[i].transform.localScale == platformsToScaleUp[i].originalScale)
+//                    platformsToScaleUp[i].transform.localScale = Vector3.Lerp(platformsToScaleUp[i].transform.localScale, platformsToScaleUp[i].originalScale, .1f);
+                    platformsToScaleUp[i].ScaleUp();
+                    if(platformsToScaleUp[i].CheckScale())
                     {
-                        //finished scaling up
-                        platformsToScaleUp[i].scaledUp = true;
-                        platformsToScaleUp[i].scaledDown = false;
+                    //finished scaling up
+    //                    platformsToScaleUp[i].scaledUp = true;
+    //                    platformsToScaleUp[i].scaledDown = false;
                         currentNumberOfPlatformsToScale++;
                     }
+ /*               if (platformsToScaleUp[i].transform.localScale == platformsToScaleUp[i].originalScale)
+                    {
+                    }
+ */
                 }
-
+ 
                 if (currentNumberOfPlatformsToScale >= numberOfPlatformsToScaleUp)
                 {
                     Debug.Log("Platforms Finished Moving On Screen");

@@ -25,7 +25,7 @@ public class SpawnedObject : MonoBehaviour
         {
             if(GetComponent<Explode>())
             {
-                GetComponent<Explode>().Go();
+                GetComponent<Explode>().Permanent();
             }
             else
             {

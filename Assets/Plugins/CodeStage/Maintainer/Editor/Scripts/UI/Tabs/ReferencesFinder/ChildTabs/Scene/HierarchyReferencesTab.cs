@@ -15,7 +15,7 @@ namespace CodeStage.Maintainer.UI
 	using UnityEngine.SceneManagement;
 
 #if UNITY_2018_3_OR_NEWER
-	using UnityEditor.Experimental.SceneManagement;
+	
 #endif
 
 	internal class HierarchyReferencesTab : ReferencesChildTab
@@ -43,7 +43,7 @@ namespace CodeStage.Maintainer.UI
 		{
 			var assetPath = SceneManager.GetActiveScene().path;
 #if UNITY_2018_3_OR_NEWER
-			var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+			var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
 			if (prefabStage != null)
 			{
 #if UNITY_2020_1_OR_NEWER

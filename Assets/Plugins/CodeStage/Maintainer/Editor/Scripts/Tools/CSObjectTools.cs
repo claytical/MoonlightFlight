@@ -18,7 +18,7 @@ namespace CodeStage.Maintainer.Tools
 #endif
 	
 #if UNITY_2018_3_OR_NEWER
-	using UnityEditor.Experimental.SceneManagement;
+	
 #endif
 
 	internal static class CSObjectTools
@@ -280,7 +280,7 @@ namespace CodeStage.Maintainer.Tools
 					return null;
 				}
 
-	            var prefabStage = PrefabStageUtility.GetPrefabStage(gameObject);
+	            var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject);
 				if (prefabStage != null)
 				{
 #if UNITY_2020_1_OR_NEWER

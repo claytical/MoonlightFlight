@@ -7,12 +7,24 @@ using UnityEngine.UI;
 
 public enum VehicleType
 {
+    /*
     Boomerang = 0,
     Rocket = 1,
     Racer = 2,
     Falcon = 3,
     Fighter = 4,
-    UFO = 5
+    UFO = 5,
+    Butterfly = 6
+*/
+    A = 0,
+    AA = 1,
+    FF = 2,
+    M = 3,
+    NN = 4,
+    SS = 5,
+    XX = 6,
+    ZZ = 7
+
 };
 
 public class VehicleStats : MonoBehaviour
@@ -43,6 +55,8 @@ public class VehicleStats : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("AM I BEING USED?");
+        /*
         _vehicle = vehicle.GetComponentInChildren<Vehicle>();
         if (!_vehicle)
         {
@@ -68,5 +82,6 @@ public class VehicleStats : MonoBehaviour
                 acceleration[i].color = energyColor;
             }
         }
+        */
     }
 }

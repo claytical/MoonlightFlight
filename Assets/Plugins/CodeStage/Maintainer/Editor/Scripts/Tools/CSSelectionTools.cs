@@ -13,7 +13,7 @@ namespace CodeStage.Maintainer.Tools
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
 #if UNITY_2018_3_OR_NEWER
-	using UnityEditor.Experimental.SceneManagement;
+	
 #else
 	using TreeEditor;
 	using Object = UnityEngine.Object;
@@ -347,7 +347,7 @@ namespace CodeStage.Maintainer.Tools
 			{
 				var prefabNeedsToBeOpened = true;
 
-				var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+				var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
 				if (prefabStage != null)
 				{
 #if UNITY_2020_1_OR_NEWER
@@ -366,7 +366,7 @@ namespace CodeStage.Maintainer.Tools
 					return false;
 				}
 
-				prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+				prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
 				
 				if (prefabStage == null)
 				{
