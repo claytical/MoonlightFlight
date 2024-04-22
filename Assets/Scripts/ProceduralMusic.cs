@@ -136,7 +136,7 @@ public class ProceduralMusic : MonoBehaviour
                     //play transition
 
                     //instantiate particle warp
-                    GameObject warp = Instantiate(particles, transform.position, transform.rotation);
+//                    GameObject warp = Instantiate(particles, transform.position, transform.rotation);
                     GetComponent<AudioSource>().Play();
                     shake = 1f;
 

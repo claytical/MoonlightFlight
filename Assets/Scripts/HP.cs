@@ -5,81 +5,68 @@ using UnityEngine.UI;
 
 public class HP : MonoBehaviour
 {
-    public Transform gauge;
     public GameObject hpUnit;
-
-    public GameObject emptyUnit;
     public Transform hpLeft;
+    private int amount = 0;
+    private int maxAmount = 0;
 
     // Start is called before the first frame update
-
-
-    public void SetHP(int amount, int maxAmount)
-    {
-        Debug.Log("Setting HP to " + amount);
-
-        for (int i = 0; i < maxAmount; i++)
+        public void SetHPUI(int _amount, int _maxAmount)
         {
-            Instantiate(emptyUnit, gauge);
-        }
-
-        for (int i = 0; i < amount; i++)
-        {
-            Instantiate(hpUnit, hpLeft);
-        }
-
+        amount = _amount;
+        maxAmount = _maxAmount;
+        
+            for (int i = 0; i < maxAmount; i++)
+            {
+                GameObject go = Instantiate(hpUnit, hpLeft);
+                Image image = go.GetComponent<Image>();
+                image.color = SetAlpha(image, amount, i);
+            }
     }
 
-    public bool TakeDamage(int amount)
+    public void UpdateHPUI(int amount)
     {
-        if (hpLeft.GetComponentsInChildren<Image>().Length >= amount)
+        for(int i = 0; i < hpLeft.GetComponentsInChildren<Image>().Length; i++)
         {
+            hpLeft.GetComponentsInChildren<Image>()[i].color = SetAlpha(hpLeft.GetComponentsInChildren<Image>()[i], amount, i);
+        }
+    }
 
-            //2; 2 >= 0, 
-            for (int i = amount; i > 0; i--)
-            {
-                Debug.Log("Destroying HP: " + i);
-                if(hpLeft.GetComponentsInChildren<Image>().Length > i)
-                {
-                    GameObject hp = hpLeft.GetComponentsInChildren<Image>()[i].gameObject;
-                    Destroy(hp);
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            return false;
+    private Color SetAlpha(Image img, int amount, int index)
+    {
+        Color color = img.color;
+        if (index < amount)
+        {
+            color.a = 1;
         }
         else
         {
-            return true;
+            color.a = .1f;
+        }
+        return color;
+    }
 
+    public bool TakeDamage(int damage)
+    {
+        amount -= damage;
+        UpdateHPUI(amount);
+        if (amount <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
-    public void IncreaseHP(int amount)
+
+    public void IncreaseHP(int _amount)
     {
-        //20 > 15
-        if (emptyUnit.GetComponentsInChildren<Image>().Length > hpUnit.GetComponentsInChildren<Image>().Length)
+        amount += _amount;
+        UpdateHPUI(amount);
+        if(amount >= maxAmount)
         {
-            int availableHP = emptyUnit.GetComponentsInChildren<Image>().Length - hpUnit.GetComponentsInChildren<Image>().Length;
-            
-            if (availableHP >= amount)
-            {
-                for (int i = 0; i < amount; i++)
-                {
-                    Instantiate(hpUnit, hpLeft);
-                }
-            }
-            else
-            {
-                for(int i = 0; i < availableHP; i++)
-                {
-                    Instantiate(hpUnit, hpLeft);
-                }
-            }
+            amount = maxAmount;
         }
-
-
     }
 }

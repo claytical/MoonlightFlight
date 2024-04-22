@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     public void SetStats(Vehicle vehicle)
     {
         collected.text = 0.ToString();
-        hp.SetHP(vehicle.currentHP, vehicle.maxHP);
+        hp.SetHPUI(vehicle.currentHP, vehicle.maxHP);
 
 
     }

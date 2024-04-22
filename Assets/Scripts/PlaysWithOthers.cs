@@ -94,22 +94,11 @@ public class PlaysWithOthers : MonoBehaviour
 
             if (coll.gameObject.GetComponent<SpawnsObjects>())
             {
-                if (coll.gameObject.GetComponent<SpawnsObjects>().collisionCausesSpawn)
+                if (canSpawnItems)
                 {
-                    if (canSpawnItems)
-                    {
                         coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
-
-                    }
-
-                    else
-                    {
-                        Debug.Log("No spawning...");
-
-                    }
-                }
+                } 
             }
-
         }
     }
 }

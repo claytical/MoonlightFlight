@@ -4,40 +4,23 @@ using UnityEngine;
 
 public class SpawnsObjects : MonoBehaviour
 {
-    public bool collisionCausesSpawn = false;
     public float timeBetweenSpawns;
-    public GameObject timeCircle;
     public GameObject spawnPop;
-    public GameObject spawnerPop;
-//    public GameObject timeStick;
     public float spawnedObjectLifetime;
     public int numberOfSpawnsBeforeSelfDestruct;
     public GameObject[] objectsToSpawn;
     public GameObject spawnPoint;
     public Vector2 velocity;
     
- //   private Color originalIdentifierColor;
     private List<GameObject> spawnedObjects;
     private float nextSpawnTime;
     private int spawnedObjectIndex = 0;
     private int numberOfObjectsSpawned = 0;
     private SpawnedObject so;
-/*    private Vector3 spawnTimerSpawnPosition;
-    private Color flashColor;
-    private Color standardColor;
-    private bool isDeactivated;
-*/
     private float rotationSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        if(spawnerPop.GetComponent<ParticleSystem>())
-        {
-            ParticleSystem ps = spawnerPop.GetComponent<ParticleSystem>();
-            ParticleSystem.MainModule mainModule = ps.main;
-            mainModule.duration = timeBetweenSpawns - (timeBetweenSpawns/2);
-        }
-
         if(timeBetweenSpawns > 0)
         {
             float rotationDistance = 360f;
@@ -45,10 +28,12 @@ public class SpawnsObjects : MonoBehaviour
         }
 
         spawnedObjects = new List<GameObject>();
+
         if (objectsToSpawn.Length > 0 && timeBetweenSpawns > 0)
         {
             nextSpawnTime = Time.time + timeBetweenSpawns;
         }
+
         Invoke("SpawnPop", timeBetweenSpawns - .5f); 
 
     }
@@ -85,23 +70,13 @@ public class SpawnsObjects : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (timeBetweenSpawns > 0)
-        {
-
-            float rotationAmount = rotationSpeed * Time.deltaTime;
-            timeStick.transform.Rotate(Vector3.forward, rotationAmount);
-            float timeLeft = nextSpawnTime - Time.time;
-        }
-        */
-    }
-
+  
     void FixedUpdate()
     {
         if (timeBetweenSpawns > 0 && nextSpawnTime <= Time.time)
         {
+            Debug.Log("Spawn Pop Invoked, Spawning Object");
+
             nextSpawnTime = Time.time + timeBetweenSpawns;
             Invoke("SpawnPop", timeBetweenSpawns - .5f);
             SpawnObject();
@@ -111,23 +86,12 @@ public class SpawnsObjects : MonoBehaviour
 
     }
 
-    private void turnOnCollision()
-    {
-        GetComponent<Platform>().TurnOnCollision();
-    }
-
     void ReactivateObject()
     {
+        Debug.Log("Reactivating Object");
         // Deactivate the GameObject
         gameObject.SetActive(false);
         Invoke("ActivateObject", .5f);
-    }
-
-    void SpawnerPop()
-    {
-        Invoke("ActivateSpawner", .1f);
-        GameObject go = Instantiate(spawnerPop, transform.parent);
-        go.transform.position = transform.position;
     }
 
     void ActivateSpawner()
@@ -136,23 +100,29 @@ public class SpawnsObjects : MonoBehaviour
     }
     void ActivateObject()
     {
+        gameObject.SetActive(true);
+/*
+        Debug.Log("Activating Object");
         if(so)
         {
-
             CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
             if (!circleCollider.enabled)
             {
                 if (Vector2.Distance(transform.position, so.transform.position) < 1f)
                 {
-                    Invoke("ActivateObject", .1f);
+                    Debug.Log("Distance less than 1");
                 }
                 else
                 {
-                    SpawnerPop();
+                    Debug.Log("Distance greater than 1");
                 }
             }
+            else
+            {
+                Debug.Log("Circle Collider Enabled");
+            }
         }
-
+*/
     }
     public void SpawnPop()
     {
@@ -163,7 +133,7 @@ public class SpawnsObjects : MonoBehaviour
 
     public void SpawnObject()
     {
-
+        Debug.Log("Spawning Object");
         if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
         {
             if (GetComponent<CircleCollider2D>())

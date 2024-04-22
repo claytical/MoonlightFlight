@@ -28,6 +28,8 @@ public class Vehicle : MonoBehaviour
     void Start()
     {       
         GetComponent<SpriteRenderer>().color = starColor;
+        GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().vehicleIcon.color = starColor;
+ 
         energyCollected = 0;
     }
 
@@ -135,20 +137,18 @@ public class Vehicle : MonoBehaviour
 
         //POWER UPS
 
-             if (coll.gameObject.GetComponent<PowerUp>())
-             {
-                lootAvailable = false;
+        if (coll.gameObject.GetComponent<PowerUp>())
+         {
+            lootAvailable = false;
          //COLLECTION SOUND?
-//            GetComponentInParent<AudioSource>().PlayOneShot(coll.gameObject.GetComponent<Breakable>().hit);
-                switch (coll.gameObject.GetComponent<PowerUp>().reward)
-                {
-                    case PowerUp.Reward.Shield:
-                        currentHP++;
-                        if(GetComponentInParent<Player>())
-                        {
-                            GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().hp.IncreaseHP(1);
-                        }                            
-                        break;
+              switch (coll.gameObject.GetComponent<PowerUp>().reward)
+              {
+                  case PowerUp.Reward.Shield:
+                    if(GetComponentInParent<Player>())
+                    {
+                        GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().hp.IncreaseHP(1);
+                    }                            
+                    break;
 
                     case PowerUp.Reward.Thruster:
 //                        EngageThrusters();

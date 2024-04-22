@@ -72,9 +72,16 @@ public class Hazard : MonoBehaviour
         if(players.Length > 0)
         {
             int index = Random.Range(0, players.Length);
-            if(players[index].chosenVehicle.GetComponent<Vehicle>().isFlying())
+            if(players[index].chosenVehicle.GetComponent<Vehicle>())
             {
-                return index;
+                if (players[index].chosenVehicle.GetComponent<Vehicle>().isFlying())
+                {
+                    return index;
+                }
+            }
+            else
+            {
+                return -1;
             }
         }
         return -1;
@@ -161,7 +168,8 @@ public class Hazard : MonoBehaviour
         {
             if(!GetComponentInParent<Platform>().indestructable)
             {
-                GetComponent<Explode>().UntilNextSet();
+                Debug.Log("Parent should blow up.");
+                GetComponent<Explode>().Permanent();
             }
         }
         

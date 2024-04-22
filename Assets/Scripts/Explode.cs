@@ -40,7 +40,7 @@ public class Explode : MonoBehaviour
 
     public void UntilNextSet()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+//        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         Instantiate(explosion, transform.position, Quaternion.identity);
         if(GetComponent<Platform>())
         {
@@ -72,7 +72,14 @@ public class Explode : MonoBehaviour
         }
 
         Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        if(GetComponentInParent<Remix>())
+        {
+            Destroy(transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Go()
