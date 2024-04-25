@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4522237307073234}
   - component: {fileID: 50894000096380302}
   - component: {fileID: 82428433568437518}
-  - component: {fileID: 114415122960677814}
   - component: {fileID: -4515002413601841222}
   m_Layer: 0
   m_Name: HP
@@ -160,21 +159,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114415122960677814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316711709889716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac343b325b5c95343947f070c749f22f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hit: {fileID: 8300000, guid: 702903659e2ff804abd837809cbbf067, type: 3}
-  scaleUp: 1
-  layers: []
 --- !u!114 &-4515002413601841222
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class SpawnedObject : MonoBehaviour
     {
         if (GetComponent<Collider2D>())
         {
-            GetComponent<Collider2D>().enabled = false;
+            //GetComponent<Collider2D>().enabled = false;
         }
     }
 

@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
 
     public Image vehicleIcon;
     public HP hp;
+    public Fuel fuel;
     public TextMeshProUGUI collected;
     public GameObject inactivePanel;
     // Start is called before the first frame update
@@ -19,10 +20,18 @@ public class PlayerStats : MonoBehaviour
     public void SetStats(Vehicle vehicle)
     {
         collected.text = 0.ToString();
+        fuel.FillTank(31);
+        Debug.Log("Tank should be at 31");
         hp.SetHPUI(vehicle.currentHP, vehicle.maxHP);
 
 
     }
+
+    public bool TakeDamage(int damage)
+    {
+        return(hp.TakeDamage(damage));
+    }
+
     public void Deactivate()
     {
         inactivePanel.SetActive(true);

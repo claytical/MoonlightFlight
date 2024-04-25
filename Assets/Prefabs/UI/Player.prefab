@@ -177,8 +177,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1845756446659769309}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: ApplyThrusters
-        m_Mode: 1
+        m_MethodName: Thrust
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -190,51 +190,15 @@ MonoBehaviour:
     m_ActionId: f7e61601-7744-4c7c-aa2d-6e067b92a039
     m_ActionName: Play/Thrust[/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1845756446659769309}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: ApplyHyperBrake
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: b83fbf31-e4d1-4467-9bf9-45d9339d830e
     m_ActionName: Play/Brake[/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1556315624568502}
-        m_TargetAssemblyTypeName: Vehicle, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 5b366f64-a70a-49c6-99e6-4932e40dace0
     m_ActionName: Play/Bomb[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1845756446659769309}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: ToggleSlowMotion
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: cb8b53fd-a83a-4c89-a2c2-3ef4e7be77a2
     m_ActionName: Play/Slow Motion[/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
@@ -308,6 +272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 0
   chosenVehicle: {fileID: 0}
-  playerStats: {fileID: 2367632968449217036, guid: 95a0c26560d17b440ad888a70ba50def,
+  playerUI: {fileID: 2367632968449217036, guid: 95a0c26560d17b440ad888a70ba50def,
     type: 3}
   transitionDuration: 1

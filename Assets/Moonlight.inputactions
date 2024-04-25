@@ -142,7 +142,7 @@
                 },
                 {
                     "name": "Choose Vehicle",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "af068420-8c48-4d1b-8c37-b21840a10adc",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -177,7 +177,7 @@
                     "name": "",
                     "id": "7d273e39-804a-473b-8b09-75298a288889",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Choose Vehicle",

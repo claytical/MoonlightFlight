@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
 
 public class Vehicle : MonoBehaviour
@@ -12,6 +9,14 @@ public class Vehicle : MonoBehaviour
     public float force;
     public float terminalVelocity;
     public float boost = 2f;
+    private bool boosting = false;
+    public int fuelEfficiency = 20;
+    private int fuelCounter = 0;
+    public GameObject trail;
+
+    private TrailRenderer trailRenderer;
+    private float initialForce;
+    private float initialTerminalVelocity;
 
     public int energyCollectedBeforeLootDrop;
     public Color starColor;
@@ -26,9 +31,11 @@ public class Vehicle : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {       
+    {
+        initialForce = force;
+        initialTerminalVelocity = terminalVelocity;
         GetComponent<SpriteRenderer>().color = starColor;
-        GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().vehicleIcon.color = starColor;
+        GetComponentInParent<Player>().SetVehicleIconColor(starColor);
  
         energyCollected = 0;
     }
@@ -43,8 +50,23 @@ public class Vehicle : MonoBehaviour
 
         }
     }
+
     private void FixedUpdate()
     {
+        if(boosting)
+        {
+            fuelCounter++;
+            if(fuelCounter >= fuelEfficiency)
+            {
+                Invoke("TurnOffTrails", 1f);
+                TurnOffBoost();
+                ResetSpeed();
+            }
+            if(fuelCounter >= fuelEfficiency/4)
+            {
+                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().scanLineJitter = 0f;
+            }
+        }
 
         Vector2 newForce = Vector2.ClampMagnitude(driftDirection * force, terminalVelocity);
         GetComponent<Rigidbody2D>().AddForce(newForce, ForceMode2D.Impulse);
@@ -58,11 +80,41 @@ public class Vehicle : MonoBehaviour
     }
     public void Fly()
     {
+        GameObject go = Instantiate(trail, transform);
+        trailRenderer = go.GetComponent<TrailRenderer>();
         flying = true;
     }
     public bool isFlying()
     {
         return flying;
+    }
+    public void TurnOnBoost()
+    {
+        fuelCounter = 0;
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().scanLineJitter = .5f;
+        force *= boost;
+        terminalVelocity *= boost;
+        boosting = true;
+        trailRenderer.emitting = true;
+    }
+
+    public void TurnOffBoost()
+    {
+        boosting = false;
+        trailRenderer.emitting = false;
+    }
+
+    public void ResetSpeed()
+    {
+        force = initialForce;
+        terminalVelocity = initialTerminalVelocity;
+        GetComponent<Rigidbody2D>().drag = 0f;
+        boosting = false;
+    }
+
+    public bool isBoosting()
+    {
+        return boosting;
     }
 
     public void Move(Vector2 direction) {
@@ -103,8 +155,7 @@ public class Vehicle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("Collision!");
-
+     
         if(coll.gameObject.GetComponentInParent<Platform>())
         {
             if(!coll.gameObject.GetComponentInParent<Platform>().indestructable)
@@ -136,40 +187,13 @@ public class Vehicle : MonoBehaviour
 
 
         //POWER UPS
-
-        if (coll.gameObject.GetComponent<PowerUp>())
-         {
-            lootAvailable = false;
-         //COLLECTION SOUND?
-              switch (coll.gameObject.GetComponent<PowerUp>().reward)
-              {
-                  case PowerUp.Reward.Shield:
-                    if(GetComponentInParent<Player>())
-                    {
-                        GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().hp.IncreaseHP(1);
-                    }                            
-                    break;
-
-                    case PowerUp.Reward.Thruster:
-//                        EngageThrusters();
-                        break;
-                                           
-                    case PowerUp.Reward.Part:
-
-                        int parts = PlayerPrefs.GetInt("parts", 0);
-                        parts++;
-                        PlayerPrefs.SetInt("parts", parts);
-                        break;
-                }
-                Destroy(coll.gameObject);
-         }
         gameObject.GetComponentInParent<AudioSource>().Play();
     }
 
     public void CollectEnergy()
     {
         energyCollected++;
-        GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().EnergyCollected(energyCollected);
+        GetComponentInParent<Player>().EnergyCollected();
 
     }
 

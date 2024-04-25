@@ -43,23 +43,6 @@ public class Damage : MonoBehaviour
 
     }
 
-    public void IncreaseHP()
-    {
-        if(hpLeft.GetComponentsInChildren<Transform>().Length < maxHP)
-        {
-            GameObject hpUnit = Instantiate(hp, hpLeft);
-            int armor = PlayerPrefs.GetInt("armor", 0);
-            armor++;
-            PlayerPrefs.SetInt("armor", armor);
-
-        }
-        else
-        {
-            Debug.Log("Max Armor Hit");
-        }
-
-    }
-
     public bool TakeDamage(int amount)
     {
         if(hull.GetComponent<Animator>()) {

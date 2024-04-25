@@ -41,12 +41,9 @@ public class PowerUp : MonoBehaviour
     [System.Serializable]
     public enum Reward
     {
-        Shield,
-        Part,
-        Stop,
-        Nuke,
-        Warp,
-        Thruster
+        HP,
+        Fuel,
+        Part
     };
 
     //Additional Power Ups
@@ -56,9 +53,6 @@ public class PowerUp : MonoBehaviour
 
     public Reward reward;
     public int amount = 1;
-    public string feedbackMessage;
-    public SpriteRenderer icon;
-    public SpriteRenderer border;
     public int timesAround = 2;
     public float timeLeft = 5f;
 
@@ -74,9 +68,6 @@ public class PowerUp : MonoBehaviour
     private RainbowColorLerp rainbowColorLerp;
     private void Start()
     {
-        item = icon.sprite;
-        originalItemColor = icon.color;
-        itemBorder = border.color;
         timeLeft = Time.time + timeLeft;
     }
 
@@ -88,7 +79,7 @@ public class PowerUp : MonoBehaviour
             Color.red, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta
         };
         rainbowColorLerp.duration = .1f;
-        rainbowColorLerp.rend = border;
+        rainbowColorLerp.rend = GetComponent<SpriteRenderer>();
         spinTime = new float[availableItems.Length];
         possibleItems = new Sprite[availableItems.Length];
         for (int i = 0; i < availableItems.Length; i++)
@@ -108,47 +99,39 @@ public class PowerUp : MonoBehaviour
         spindex = 0;
     }
 
-    private void CollectPowerUp(Vehicle vehicle)
-    {
-        switch (reward)
-        {
-
-            case PowerUp.Reward.Shield:
-
-                if (vehicle.GetComponentInParent<ParkingLot>())
-                {
-                    vehicle.GetComponentInParent<ParkingLot>().HP.IncreaseHP();
-                }
-                break;
-
-            case PowerUp.Reward.Part:
-
-                if (vehicle.GetComponentInParent<ParkingLot>())
-                {
-                    vehicle.CollectPart(amount);
-                }
-                break;
-
-            case PowerUp.Reward.Stop:
-                break;
-
-            case PowerUp.Reward.Nuke:
-                break;
-        }
-        Destroy(gameObject);
-
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       if (collision.gameObject.GetComponent<Vehicle>())
+
+        if (collision.gameObject.GetComponent<Vehicle>())
         {
-            CollectPowerUp(collision.gameObject.GetComponent<Vehicle>());
-            if(GetComponentInChildren<Explode>())
+            switch (reward)
             {
-               GetComponentInChildren<Explode>().UntilNextSet();
+                case PowerUp.Reward.HP:
+                    if (collision.gameObject.GetComponentInParent<Player>())
+                    {
+                        collision.gameObject.GetComponentInParent<Player>().IncreaseHP();
+                    }
+                    break;
+                case PowerUp.Reward.Fuel:
+                    if (collision.gameObject.GetComponentInParent<Player>())
+                    {
+                        collision.gameObject.GetComponentInParent<Player>().IncreaseFuel();
+                    }
+                    break;
+
+                case PowerUp.Reward.Part:
+//                    collision.gameObject.CollectPart(1);
+                    break;
             }
+
+            if(GetComponent<Explode>())
+            {
+                GetComponent<Explode>().Permanent();
+            }
+
         }
+
     }
 
     void Update()
@@ -162,7 +145,7 @@ public class PowerUp : MonoBehaviour
             rainbowColorLerp.Lerp();
             if (spinTime[spindex] <= Time.time)
             {
-                icon.sprite = possibleItems[spindex];
+//                icon.sprite = possibleItems[spindex];
                 spindex++;
                 if (spindex >= possibleItems.Length)
                 {
@@ -171,10 +154,10 @@ public class PowerUp : MonoBehaviour
                     {
                         powerUpCollider.enabled = true;
                         spinning = false;
-                        icon.sprite = item;
+  /*                      icon.sprite = item;
                         border.enabled = false;
                         icon.color = originalItemColor;
-
+  */
                     }
                     else
                     {

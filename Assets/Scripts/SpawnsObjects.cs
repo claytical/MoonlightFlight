@@ -47,7 +47,6 @@ public class SpawnsObjects : MonoBehaviour
     {
         if (objectsToSpawn[spawnedObjectIndex].GetComponent<Hazard>())
         {
-            Debug.Log("Has hazard component...");
             GetComponent<Remix>().identifier.color = GetComponent<Remix>().GetHazardColor();
         }
         else
@@ -75,8 +74,6 @@ public class SpawnsObjects : MonoBehaviour
     {
         if (timeBetweenSpawns > 0 && nextSpawnTime <= Time.time)
         {
-            Debug.Log("Spawn Pop Invoked, Spawning Object");
-
             nextSpawnTime = Time.time + timeBetweenSpawns;
             Invoke("SpawnPop", timeBetweenSpawns - .5f);
             SpawnObject();
@@ -88,7 +85,6 @@ public class SpawnsObjects : MonoBehaviour
 
     void ReactivateObject()
     {
-        Debug.Log("Reactivating Object");
         // Deactivate the GameObject
         gameObject.SetActive(false);
         Invoke("ActivateObject", .5f);
@@ -101,29 +97,8 @@ public class SpawnsObjects : MonoBehaviour
     void ActivateObject()
     {
         gameObject.SetActive(true);
-/*
-        Debug.Log("Activating Object");
-        if(so)
-        {
-            CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
-            if (!circleCollider.enabled)
-            {
-                if (Vector2.Distance(transform.position, so.transform.position) < 1f)
-                {
-                    Debug.Log("Distance less than 1");
-                }
-                else
-                {
-                    Debug.Log("Distance greater than 1");
-                }
-            }
-            else
-            {
-                Debug.Log("Circle Collider Enabled");
-            }
-        }
-*/
     }
+
     public void SpawnPop()
     {
         GameObject go = Instantiate(spawnPop, transform.parent);
@@ -133,7 +108,6 @@ public class SpawnsObjects : MonoBehaviour
 
     public void SpawnObject()
     {
-        Debug.Log("Spawning Object");
         if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
         {
             if (GetComponent<CircleCollider2D>())

@@ -23,15 +23,14 @@ public class Hazard : MonoBehaviour
     public EnemyType hazardType;
     public int damage;
     public bool drift;
-    private Vector2 driftDirection;
-    /*
-    public bool seekVehicles;
-    */
-    private bool seekingVehicles = false;
     public float seekerSpeed;
-    private int vehicleIndex = -1;
-        private Color color;
     public float scaleSpeed = .1f;
+
+
+    private Vector2 driftDirection;
+    private bool seekingVehicles = false;
+    private int vehicleIndex = -1;
+    private Color color;
     private float scaleDirection = -1;
     private bool scaling = false;
     private Vector3 originalScale;
@@ -72,7 +71,7 @@ public class Hazard : MonoBehaviour
         if(players.Length > 0)
         {
             int index = Random.Range(0, players.Length);
-            if(players[index].chosenVehicle.GetComponent<Vehicle>())
+            if(players[index].chosenVehicle)
             {
                 if (players[index].chosenVehicle.GetComponent<Vehicle>().isFlying())
                 {
@@ -176,7 +175,7 @@ public class Hazard : MonoBehaviour
         if(coll.gameObject.GetComponent<Vehicle>())
         {
             //HAZARD HIT VEHICLE
-            if (coll.gameObject.GetComponentInParent<Player>().playerStats.GetComponent<PlayerStats>().hp.TakeDamage(damage))
+            if (coll.gameObject.GetComponentInParent<Player>().TakeDamage(damage))
             {
                 coll.gameObject.GetComponentInParent<Player>().Restart();
                 

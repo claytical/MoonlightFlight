@@ -100,11 +100,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: a1e5fc4448022ad489823a76a757baf2, type: 2}
+  m_Material: {fileID: 6200000, guid: 21a56d891a7055e41a66d7f4ff4d8470, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -129,11 +129,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 2
   maxHP: 9
-  force: 900
-  maxForce: 1500
-  terminalVelocity: 2500
+  force: 5
+  terminalVelocity: 200
+  boost: 4
+  fuelEfficiency: 100
+  trail: {fileID: 5973205746167519599, guid: a15a7c4ebd7c3f64ea8c2142f4c5618a, type: 3}
   energyCollectedBeforeLootDrop: 20
-  starColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  starColor: {r: 0, g: 0.37537226, b: 0.990566, a: 1}
 --- !u!114 &964252887607637339
 MonoBehaviour:
   m_ObjectHideFlags: 0

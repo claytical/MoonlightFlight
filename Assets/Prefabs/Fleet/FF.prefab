@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6267414685674281640}
   - component: {fileID: 964252887607637339}
   - component: {fileID: 4465289923591195479}
-  - component: {fileID: 1396264651034059414}
   m_Layer: 0
   m_Name: FF
   m_TagString: Untagged
@@ -105,7 +104,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: a1e5fc4448022ad489823a76a757baf2, type: 2}
+  m_Material: {fileID: 6200000, guid: a6996a5fc0da6493ebbc2102a34ffaf4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -130,11 +129,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 2
   maxHP: 9
-  force: 300
-  terminalVelocity: 350
-  boost: 4
+  force: 5
+  terminalVelocity: 200
+  boost: 10
+  fuelEfficiency: 100
+  trail: {fileID: 5973205746167519599, guid: ae1d684c553f50e4da4037ae2b6369fe, type: 3}
   energyCollectedBeforeLootDrop: 20
-  starColor: {r: 0.5058824, g: 0.44705886, b: 0.08627451, a: 1}
+  starColor: {r: 0.171875, g: 1, b: 0, a: 1}
 --- !u!114 &964252887607637339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,21 +205,3 @@ PolygonCollider2D:
       - {x: 0.01, y: 0.005}
       - {x: -0.01, y: 0.005}
   m_UseDelaunayMesh: 0
---- !u!114 &1396264651034059414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5120608187766906454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 5.19
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
