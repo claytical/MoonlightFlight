@@ -23,8 +23,6 @@ public class Vehicle : MonoBehaviour
 
     private bool flying = false;
     private SetInfo set;
-    private float glitchAmount = .1f;
-    private bool lootAvailable = false;
     private int energyCollected;
     private ProceduralLevel level;
     private Vector2 driftDirection;
@@ -62,10 +60,6 @@ public class Vehicle : MonoBehaviour
                 TurnOffBoost();
                 ResetSpeed();
             }
-            if(fuelCounter >= fuelEfficiency/4)
-            {
-                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().scanLineJitter = 0f;
-            }
         }
 
         Vector2 newForce = Vector2.ClampMagnitude(driftDirection * force, terminalVelocity);
@@ -91,7 +85,6 @@ public class Vehicle : MonoBehaviour
     public void TurnOnBoost()
     {
         fuelCounter = 0;
-        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().scanLineJitter = .5f;
         force *= boost;
         terminalVelocity *= boost;
         boosting = true;
@@ -142,17 +135,6 @@ public class Vehicle : MonoBehaviour
         }
     }
 
-    public void Glitch(float amount)
-    {
-        Invoke("ResetGlitch", amount);
-    }
-
-    void ResetGlitch()
-    {
-        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift= 0f;
-        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = 0f;
-    }
-
     void OnCollisionEnter2D(Collision2D coll)
     {
      
@@ -166,25 +148,6 @@ public class Vehicle : MonoBehaviour
                 }
             }
         }
-        
-        if(coll.gameObject.GetComponent<Platform>())
-        {
-            if(coll.gameObject.GetComponent<Hazard>())
-                {
-                    //hazard glitch
-                    Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = glitchAmount * 2f;
-                    Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = glitchAmount;
-                    Invoke("ResetGlitch", .1f);
-                }
-                else
-                {
-                    //standard bump glitch
-                    Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = glitchAmount;
-                    Invoke("ResetGlitch", .05f);
-
-                }
-            }
-
 
         //POWER UPS
         gameObject.GetComponentInParent<AudioSource>().Play();

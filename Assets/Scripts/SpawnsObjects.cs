@@ -4,67 +4,31 @@ using UnityEngine;
 
 public class SpawnsObjects : MonoBehaviour
 {
+    public GameObject objectToSpawn;
     public float timeBetweenSpawns;
-    public GameObject spawnPop;
     public float spawnedObjectLifetime;
-    public int numberOfSpawnsBeforeSelfDestruct;
-    public GameObject[] objectsToSpawn;
-    public GameObject spawnPoint;
-    public Vector2 velocity;
-    
-    private List<GameObject> spawnedObjects;
+    public GameObject spawningParticles;
+
+    private ParticleSystem.MainModule main;
+    private ParticleSystem particles;
     private float nextSpawnTime;
-    private int spawnedObjectIndex = 0;
-    private int numberOfObjectsSpawned = 0;
-    private SpawnedObject so;
+    private GameObject so;
     private float rotationSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(timeBetweenSpawns > 0)
-        {
-            float rotationDistance = 360f;
-            rotationSpeed = rotationDistance / timeBetweenSpawns;
-        }
 
-        spawnedObjects = new List<GameObject>();
+        spawningParticles = Instantiate(spawningParticles, transform);
+        spawningParticles.transform.position = transform.position;
+        particles = spawningParticles.GetComponent<ParticleSystem>();
 
-        if (objectsToSpawn.Length > 0 && timeBetweenSpawns > 0)
+        if (objectToSpawn && timeBetweenSpawns > 0)
         {
+            //SET THE NEXT TIMER FOR AN OBJECT TO APPEAR - 5 SECONDS
             nextSpawnTime = Time.time + timeBetweenSpawns;
-        }
-
-        Invoke("SpawnPop", timeBetweenSpawns - .5f); 
-
-    }
-
-    public GameObject NextSpawnedObject()
-    {
-        return objectsToSpawn[spawnedObjectIndex];
-    }
-
-    void SetNextSpawnedItem()
-    {
-        if (objectsToSpawn[spawnedObjectIndex].GetComponent<Hazard>())
-        {
-            GetComponent<Remix>().identifier.color = GetComponent<Remix>().GetHazardColor();
-        }
-        else
-        {
-            GetComponent<Remix>().identifier.color = GetComponent<Remix>().GetOriginalIdentifierColor();
-        }
-        if (GetComponent<Remix>())
-        {
-            GetComponent<Remix>().identifier.gameObject.transform.rotation = Quaternion.identity;
-            if (objectsToSpawn.Length < spawnedObjectIndex)
-            {
-                GetComponent<Remix>().identifier.flipY = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipY;
-                GetComponent<Remix>().identifier.flipX = objectsToSpawn[spawnedObjectIndex].GetComponent<Remix>().identifier.flipX;
-
-            }
 
         }
-
 
     }
 
@@ -74,58 +38,48 @@ public class SpawnsObjects : MonoBehaviour
     {
         if (timeBetweenSpawns > 0 && nextSpawnTime <= Time.time)
         {
+            particles.Stop();
+            //SPAWN TIME MET, SET NEXT TIME
             nextSpawnTime = Time.time + timeBetweenSpawns;
-            Invoke("SpawnPop", timeBetweenSpawns - .5f);
-            SpawnObject();
+
+            //IS A SPAWNED OBJECT STILL ATTACHED TO THE SPAWNER?
+            if (!so)
+            {
+                //SPAWN A NEW OBJECT
+                SpawnObject();
+            }
         } 
 
 
 
     }
 
-    void ReactivateObject()
+    public void StartParticles()
     {
-        // Deactivate the GameObject
-        gameObject.SetActive(false);
-        Invoke("ActivateObject", .5f);
-    }
-
-    void ActivateSpawner()
-    {
-        gameObject.SetActive(true);
-    }
-    void ActivateObject()
-    {
-        gameObject.SetActive(true);
-    }
-
-    public void SpawnPop()
-    {
-        GameObject go = Instantiate(spawnPop, transform.parent);
-        go.transform.position = transform.position;
-
+        particles.Play();
     }
 
     public void SpawnObject()
     {
-        if (numberOfObjectsSpawned <= numberOfSpawnsBeforeSelfDestruct)
+
+        //TURN OFF PARTICLES
+        particles.Stop();
+
+        //CREATE NEW OBJECT
+        GameObject go = Instantiate(objectToSpawn, transform.parent);
+        go.transform.position = transform.position;
+        go.AddComponent<SpawnedObject>();
+        //won't move away from spawn point, this keeps the object visible until it's collected.
+        go.GetComponent<SpawnedObject>().SetLifeTime(99999, gameObject);
+        so = go;
+
+        if (!go.GetComponentInChildren<Rigidbody2D>())
         {
-            if (GetComponent<CircleCollider2D>())
-            {
-                GetComponent<CircleCollider2D>().enabled = false;
-            }
-            
-            GameObject go = Instantiate(objectsToSpawn[spawnedObjectIndex], transform.parent);
-            go.transform.position = transform.position;
-            spawnedObjects.Add(go);
-            so = go.AddComponent<SpawnedObject>();
-            
-            if (spawnedObjectLifetime > 0)
-            {
-                so.SetLifeTime(spawnedObjectLifetime);
-            }
-            
-            ReactivateObject();
+            //IF SPAWNED OBJECT MOVES FROM SPAWN POINT...
         }
+
+        Debug.Log("NEW OBJECT ASSIGNED TO SO" + so.name);
+    //    ReactivateObject();
     }
+
 }

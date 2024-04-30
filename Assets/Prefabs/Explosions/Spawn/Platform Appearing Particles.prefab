@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2567590292593330886}
   - component: {fileID: -535508463275821101}
   m_Layer: 0
-  m_Name: Energy Transfer
+  m_Name: Platform Appearing Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

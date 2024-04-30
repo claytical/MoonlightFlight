@@ -81,13 +81,14 @@ public class Platform : MonoBehaviour
 
     void Update()
     {
-        if(Time.time >= timeToAppear && GetComponentInChildren<ParticleSystem>())
+        if(Time.time >= timeToAppear)
         {
-            ParticleSystem.MainModule ps = GetComponentInChildren<ParticleSystem>().main;
-            ps.loop = false;
-            Destroy(GetComponentInChildren<ParticleSystem>().gameObject,1);
+//            ParticleSystem.MainModule ps = GetComponentInChildren<ParticleSystem>().main;
+//            ps.loop = false;
+//            Destroy(GetComponentInChildren<ParticleSystem>().gameObject,1);
             ScalePlatformUp();
         }
+
         if(hasSetColors)
         {
             // Calculate the current time since the start of fading
@@ -126,9 +127,8 @@ public class Platform : MonoBehaviour
     void ScalePlatformUp()
     {
         platform.SetActive(true);
-        platform.transform.localScale = Vector3.zero;
+        platform.transform.localScale = originalScale;
         scaling = true;
-
     }
 
     public void Scale()
@@ -152,7 +152,6 @@ public class Platform : MonoBehaviour
             
         }
 
-        //        scaling = true;
     }
 
     public void ScaleUp()

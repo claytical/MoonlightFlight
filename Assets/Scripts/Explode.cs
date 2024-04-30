@@ -63,7 +63,8 @@ public class Explode : MonoBehaviour
     {
         if (GetComponent<Platform>())
         {
-            GetComponent<Platform>().Scale();
+            Debug.Log("Permanent Scale");
+//            GetComponent<Platform>().Scale();
         }
 
         if (GetComponent<Rigidbody2D>())

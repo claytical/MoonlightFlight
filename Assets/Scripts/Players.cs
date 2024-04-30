@@ -5,7 +5,8 @@ using TMPro;
 
 public class Players : MonoBehaviour
 {
-    public TextMeshProUGUI startText;
+    public GameObject intro;
+    //public TextMeshProUGUI startText;
     public GameObject spawnLocations;
     public ProceduralLevel level;
     public Boundaries boundaries;
@@ -16,7 +17,7 @@ public class Players : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startText.gameObject.SetActive(true);
+        intro.SetActive(true);
     }
 
     private void Update()
@@ -24,7 +25,7 @@ public class Players : MonoBehaviour
         if (countdownTimer <= Time.time && countdown)
         {
             countdown = false;
-            startText.gameObject.SetActive(false);
+            intro.SetActive(false);
             gameInProgress = true;
             //queue first set
             level.Play();
@@ -34,6 +35,7 @@ public class Players : MonoBehaviour
         {
             if (countdown)
             {
+      /*
                 if (startText)
                 {
                     startText.text = (countdownTimer - Time.time).ToString("0");
@@ -42,8 +44,9 @@ public class Players : MonoBehaviour
                 {
                     Debug.Log("no start ttext found");
                 }
-            }
-
+      */
+                }
+      
         }
 
     }
@@ -54,7 +57,7 @@ public class Players : MonoBehaviour
 
         if (!gameInProgress)
         {
-            startText.gameObject.SetActive(false);
+            intro.SetActive(false);
             countdown = false;
         }
     }
@@ -62,7 +65,7 @@ public class Players : MonoBehaviour
     {
         if(!gameInProgress)
         {
-            startText.gameObject.SetActive(true);
+            //intro.SetActive(true);
             countdown = true;
             switch (playerId)
             {

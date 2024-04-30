@@ -86,7 +86,7 @@ public class Remix : MonoBehaviour
 
             }
             if (GetComponent<SpawnsObjects>()) {
-                if (GetComponent<SpawnsObjects>().NextSpawnedObject().GetComponent<Hazard>())
+                if (GetComponent<SpawnsObjects>().GetComponentInChildren<Hazard>())
                 {
                     identifier.color = remix.hazardColor;
                 }

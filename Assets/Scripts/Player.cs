@@ -40,6 +40,35 @@ public class Player : MonoBehaviour
         SwitchActionMap("Start");
         
     }
+
+    public void GlitchScanLines()
+    {
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().scanLineJitter = 1f;
+        Invoke("ResetCamera", .1f);
+    }
+
+    public void GlitchColorDrift()
+    {
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = .2f;
+        Invoke("ResetCamera", .2f);
+    }
+
+    public void GlitchVerticalJump()
+    {
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = .05f;
+
+        Invoke("ResetCamera", .2f);
+    }
+
+    public void ResetCamera()
+    {
+        Debug.Log("Resetting Glitch");
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().scanLineJitter = 0f;
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = 0f;
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = 0f;
+
+    }
+
     public bool TakeDamage(int damage)
     {
         return(playerStats.TakeDamage(damage));

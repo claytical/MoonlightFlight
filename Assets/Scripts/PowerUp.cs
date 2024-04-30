@@ -110,6 +110,7 @@ public class PowerUp : MonoBehaviour
                 case PowerUp.Reward.HP:
                     if (collision.gameObject.GetComponentInParent<Player>())
                     {
+                        Debug.Log("Hit HP");
                         collision.gameObject.GetComponentInParent<Player>().IncreaseHP();
                     }
                     break;

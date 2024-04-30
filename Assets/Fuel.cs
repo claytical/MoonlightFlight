@@ -33,14 +33,10 @@ public class Fuel : MonoBehaviour
             Image img = tank.GetComponentsInChildren<Image>()[i];
             if (i >= amount)
             {
-                Debug.Log("UNIT " + i + " SET DARK");
-
                 img.color = SetAlpha(img, .1f);
             }
             else
             {
-                Debug.Log("UNIT " + i + " SET BRIGHT");
-
                 img.color = SetAlpha(img, 1f);
             }
         }

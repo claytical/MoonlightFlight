@@ -96,7 +96,7 @@ public class PlaysWithOthers : MonoBehaviour
             {
                 if (canSpawnItems)
                 {
-                        coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
+//                        coll.gameObject.GetComponent<SpawnsObjects>().SpawnObject();
                 } 
             }
         }

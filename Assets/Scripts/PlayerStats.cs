@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
+
 public class PlayerStats : MonoBehaviour
+
 {
 
     public Image vehicleIcon;
@@ -20,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     public void SetStats(Vehicle vehicle)
     {
         collected.text = 0.ToString();
-        fuel.FillTank(31);
+        fuel.FillTank(5);
         Debug.Log("Tank should be at 31");
         hp.SetHPUI(vehicle.currentHP, vehicle.maxHP);
 

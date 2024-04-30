@@ -11,15 +11,12 @@ public class Boundaries : MonoBehaviour
     {
         
         edges = GetComponentsInChildren<Transform>();
-        if(damage > 0)
-        {
             for(int i = 0; i < edges.Length; i++)
             {
                 Hazard h = edges[i].gameObject.AddComponent<Hazard>();
                 h.damage = damage;
                 h.hazardType = Hazard.EnemyType.BOUNDARY;
             }
-        }
     }
 
     // Update is called once per frame

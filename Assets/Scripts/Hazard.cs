@@ -31,9 +31,6 @@ public class Hazard : MonoBehaviour
     private bool seekingVehicles = false;
     private int vehicleIndex = -1;
     private Color color;
-    private float scaleDirection = -1;
-    private bool scaling = false;
-    private Vector3 originalScale;
     private Player[] players;
     // Use this for initialization
     void Start()
@@ -159,16 +156,33 @@ public class Hazard : MonoBehaviour
         }
     }
 
+    void ResetGlitch()
+    {
+        Debug.Log("Resetting Glitch");
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().scanLineJitter = 0f;
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = 0f;
+        Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().verticalJump = 0f;
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("HAZARD COLLISION! with " + coll.gameObject.name);
-        
-        if(GetComponentInParent<Platform>())
+        if(hazardType == EnemyType.BOUNDARY)
+        {
+            coll.gameObject.GetComponentInParent<Player>().GlitchColorDrift();
+        }
+
+        if (GetComponentInParent<Platform>())
         {
             if(!GetComponentInParent<Platform>().indestructable)
             {
                 Debug.Log("Parent should blow up.");
-                GetComponent<Explode>().Permanent();
+                gameObject.GetComponent<Explode>().Permanent();
+            }
+            else
+            {
+                //hazard glitch
+                Debug.Log("Platform Glitch");
+                coll.gameObject.GetComponentInParent<Player>().GlitchColorDrift();
             }
         }
         
@@ -198,11 +212,6 @@ public class Hazard : MonoBehaviour
                 GetComponent<Explode>().Permanent();
             }
         }
-
-        //        scaling = true;
-        if (GetComponent<SpriteRenderer>())
-        {
-            }
 
     }
 

@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class SpawnedObject : MonoBehaviour
 {
-    public Collider2D parentCollider;
+    public GameObject spawner;
     private float lifeTime = 9999;
     // Start is called before the first frame update
-    void Start()
-    {
-        if (GetComponent<Collider2D>())
-        {
-            //GetComponent<Collider2D>().enabled = false;
-        }
-    }
 
         // Update is called once per frame
-        void Update()
-        {
-
-
-
+    void Update()
+    {
+        /*
         if (Time.time >= lifeTime && lifeTime != 9999)
         {
             if(GetComponent<Explode>())
@@ -32,10 +23,17 @@ public class SpawnedObject : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        */
     }
 
-    public void SetLifeTime(float life)
+    public void OnDestroy()
+    {
+        Debug.Log("Starting Particles before I die.");
+        spawner.GetComponent<SpawnsObjects>().StartParticles();
+    }
+    public void SetLifeTime(float life, GameObject go)
     {
         lifeTime = Time.time + life;
+        spawner = go;
     }
 }
