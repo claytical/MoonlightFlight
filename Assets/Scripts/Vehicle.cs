@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class Vehicle : MonoBehaviour
 {
     public int currentHP;
@@ -8,163 +7,225 @@ public class Vehicle : MonoBehaviour
 
     public float force;
     public float terminalVelocity;
-    public float boost = 2f;
+    public float boostMultiplier = 2f;
     private bool boosting = false;
-    public int fuelEfficiency = 20;
-    private int fuelCounter = 0;
+
     public GameObject trail;
 
     private TrailRenderer trailRenderer;
+    private Rigidbody2D rb;
+    private AudioManager audioManager;
+
+    public AudioClip collisionClip;
+    public AudioClip destroyClip;
+    public AudioClip collectedClip;
+    public AudioClip thrustClip;
+
     private float initialForce;
     private float initialTerminalVelocity;
 
     public int energyCollectedBeforeLootDrop;
-    public Color starColor;
+    public float energyCollected = 5;  // Start with 5 energy units
 
-    private bool flying = false;
-    private SetInfo set;
-    private int energyCollected;
-    private ProceduralLevel level;
     private Vector2 driftDirection;
 
-    // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody2D component is missing from the GameObject.");
+            enabled = false;
+            return;
+        }
+
+        audioManager = GetComponent<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager component is missing from the GameObject.");
+            enabled = false;
+            return;
+        }
+
         initialForce = force;
         initialTerminalVelocity = terminalVelocity;
-        GetComponent<SpriteRenderer>().color = starColor;
-        GetComponentInParent<Player>().SetVehicleIconColor(starColor);
- 
-        energyCollected = 0;
     }
 
-    void ClampAngularVelocity()
+    void FixedUpdate()
     {
-        float maxAngularVelocity = 540f;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb) {
-            if (rb.angularVelocity < -maxAngularVelocity) { rb.angularVelocity = -maxAngularVelocity; }
-            if (rb.angularVelocity > maxAngularVelocity) { rb.angularVelocity = maxAngularVelocity; }
-
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if(boosting)
+        if (boosting)
         {
-            fuelCounter++;
-            if(fuelCounter >= fuelEfficiency)
+            if (energyCollected > 0)
             {
-                Invoke("TurnOffTrails", 1f);
-                TurnOffBoost();
-                ResetSpeed();
+                Vector2 forceDirection = transform.up * force * boostMultiplier;
+                rb.AddForce(forceDirection, ForceMode2D.Force);
+
+                // Clamp velocity to terminal velocity
+                if (rb.velocity.magnitude > terminalVelocity)
+                {
+                    rb.velocity = rb.velocity.normalized * terminalVelocity;
+                }
+
+                // Deplete energy over time
+                energyCollected -= Time.fixedDeltaTime;
+
+                if (energyCollected <= 0)
+                {
+                    energyCollected = 0;
+                    TurnOffBoost(); // Automatically turn off boost when energy depletes
+                }
+            }
+            else
+            {
+                TurnOffBoost(); // Ensure boost is turned off if energy is zero
             }
         }
 
-        Vector2 newForce = Vector2.ClampMagnitude(driftDirection * force, terminalVelocity);
-        GetComponent<Rigidbody2D>().AddForce(newForce, ForceMode2D.Impulse);
-
-        if (GetComponent<Rigidbody2D>().velocity.magnitude > terminalVelocity)
-        {
-            GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity.normalized * terminalVelocity;
-        }
-
         ClampAngularVelocity();
+        audioManager.AdjustPitch(rb.velocity.magnitude * 0.1f); // Adjust pitch based on speed
     }
+
     public void Fly()
     {
-        GameObject go = Instantiate(trail, transform);
-        trailRenderer = go.GetComponent<TrailRenderer>();
-        flying = true;
+        if (trail != null)
+        {
+            GameObject go = Instantiate(trail, transform);
+            trailRenderer = go.GetComponent<TrailRenderer>();
+        }
     }
-    public bool isFlying()
+
+    public bool IsFlying()
     {
-        return flying;
+        return trailRenderer != null && trailRenderer.emitting;
     }
+
     public void TurnOnBoost()
     {
-        fuelCounter = 0;
-        force *= boost;
-        terminalVelocity *= boost;
-        boosting = true;
-        trailRenderer.emitting = true;
+        if (energyCollected > 0 && !boosting)
+        {
+            if (audioManager != null && thrustClip != null)
+            {
+                audioManager.PlayLoopingSound(thrustClip);
+            }
+            boosting = true;
+
+            if (trailRenderer != null)
+            {
+                trailRenderer.emitting = true;
+            }
+        }
     }
 
     public void TurnOffBoost()
     {
+        if (audioManager != null)
+        {
+            audioManager.StopSound();
+        }
         boosting = false;
-        trailRenderer.emitting = false;
+        if (trailRenderer != null)
+        {
+            trailRenderer.emitting = false;
+        }
     }
 
     public void ResetSpeed()
     {
         force = initialForce;
         terminalVelocity = initialTerminalVelocity;
-        GetComponent<Rigidbody2D>().drag = 0f;
         boosting = false;
     }
 
-    public bool isBoosting()
+    public bool IsBoosting()
     {
         return boosting;
     }
 
-    public void Move(Vector2 direction) {
+    public void Move(Vector2 direction)
+    {
         driftDirection = direction;
-        if(GetComponent<Rigidbody2D>())
-        {
-            if(direction != Vector2.zero) {
-                GetComponent<Rigidbody2D>().AddForce(direction * force);
-                // Calculate the angle of the movement direction
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                angle -= 90f;
-                // Rotate the vehicle's sprite to face the movement direction
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            }
+        if (rb != null && direction != Vector2.zero)
+        {
+            // Reset the existing rotational force (angular velocity)
+            rb.angularVelocity = 0f;
+
+            // Calculate the angle of the movement direction
+            float angleRad = Mathf.Atan2(direction.y, direction.x);
+            float angleDeg = angleRad * Mathf.Rad2Deg;
+
+            // Adjust the angle to account for the sprite's initial orientation (facing up)
+            angleDeg -= 90f;
+
+            // Rotate the vehicle to face the movement direction
+            rb.rotation = angleDeg;
         }
     }
-    
-    public void Drift(Vector3 position)
+
+    private void ClampAngularVelocity()
     {
-        if(GetComponent<Rigidbody2D>())
+        float maxAngularVelocity = 540f;
+        if (rb != null)
         {
-            Vector2 direction = (position - transform.position).normalized;
-            GetComponent<Rigidbody2D>().AddForce(direction * 5f, ForceMode2D.Impulse); 
+            rb.angularVelocity = Mathf.Clamp(rb.angularVelocity, -maxAngularVelocity, maxAngularVelocity);
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-     
-        if(coll.gameObject.GetComponentInParent<Platform>())
+        var platform = coll.gameObject.GetComponentInParent<Platform>();
+        if (platform != null && !platform.indestructable)
         {
-            if(!coll.gameObject.GetComponentInParent<Platform>().indestructable)
+            var explode = coll.gameObject.GetComponent<Explode>();
+            if (explode != null)
             {
-                if(coll.gameObject.GetComponent<Explode>())
-                {
-                    coll.gameObject.GetComponent<Explode>().UntilNextSet();
-                }
+                explode.UntilNextSet();
             }
         }
 
-        //POWER UPS
-        gameObject.GetComponentInParent<AudioSource>().Play();
+        if (audioManager != null)
+        {
+            switch (coll.gameObject.tag)
+            {
+                case "Bump":
+                    audioManager.PlaySound(collisionClip);
+                    break;
+                case "Break":
+                    audioManager.PlaySound(destroyClip);
+                    break;
+                case "Collect":
+                    audioManager.PlaySound(collectedClip);
+                    break;
+            }
+        }
+    }
+
+    public void Explode()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(destroyClip);
+        }
     }
 
     public void CollectEnergy()
     {
         energyCollected++;
-        GetComponentInParent<Player>().EnergyCollected();
-
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(collectedClip);
+        }
+        var localPlayer = GetComponentInParent<LocalPlayer>();
+        if (localPlayer != null)
+        {
+            localPlayer.EnergyCollected((int)energyCollected);
+        }
     }
 
     public void CollectPart(int amount)
     {
         int parts = PlayerPrefs.GetInt("parts", 0);
-        parts+=amount;
+        parts += amount;
         PlayerPrefs.SetInt("parts", parts);
-    }   
+    }
 }
-

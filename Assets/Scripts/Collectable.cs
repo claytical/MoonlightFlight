@@ -17,18 +17,14 @@ public class Collectable : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D coll)
     {
-        //DISAPPEARING OBJECTS
-
         if (coll.gameObject.GetComponent<Vehicle>())
         {
             coll.gameObject.GetComponent<Vehicle>().CollectEnergy();
             GetComponent<Explode>().Permanent();
         }
 
-        
-        Debug.Log("Collectable Recovered by " + coll.gameObject.name);
     }
 
     private void OnDestroy()

@@ -61,6 +61,7 @@ public class Explode : MonoBehaviour
 
     public void Permanent()
     {
+
         if (GetComponent<Platform>())
         {
             Debug.Log("Permanent Scale");

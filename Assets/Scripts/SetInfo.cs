@@ -11,8 +11,10 @@ public struct ObjectRespawn
 public class SetInfo : MonoBehaviour
 {
 
-    public Transform[] spawnLocations;
+    public Transform AutoSpawnLocation;
+    public bool autoPopulateSpawnLocations = true;
     public bool spawnEverything = false;
+    public Transform[] spawnLocations;
     public GameObject lootLocation;
     public Transform[] lootLocations;
     public GameObject platforms;
@@ -62,6 +64,12 @@ public class SetInfo : MonoBehaviour
         currentSet = gameObject.GetComponent<ProceduralInfo>();
     }
 
+
+    public void SetAutoSpawnLocations()
+    {
+        spawnLocations = AutoSpawnLocation.GetComponentsInChildren<Transform>(true);
+
+    }
     public ProceduralLevel GetLevel()
     {
         return level;

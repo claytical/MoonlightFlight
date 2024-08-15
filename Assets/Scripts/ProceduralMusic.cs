@@ -13,7 +13,7 @@ public class ProceduralMusic : MonoBehaviour
     private bool transitioning = false;
     private bool playedTransitionSoundEffect = false;
 
-    public GameObject particles;
+    //public GameObject particles;
 
 
     public float shake;

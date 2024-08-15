@@ -4,13 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bumpable
-  - Avoid
-  - Disappearing
-  - Tone
-  - Boundary
-  - Power Up
-  - Energy
+  - Bump
+  - Break
   - Collect
   layers:
   - Default

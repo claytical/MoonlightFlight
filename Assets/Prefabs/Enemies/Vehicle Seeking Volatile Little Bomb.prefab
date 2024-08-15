@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 770442197}
   m_Layer: 0
   m_Name: Vehicle Seeking Volatile Little Bomb
-  m_TagString: Avoid
+  m_TagString: Break
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4915,7 +4915,7 @@ GameObject:
   - component: {fileID: 6648000000794673933}
   - component: {fileID: 1482251796668831637}
   - component: {fileID: 7800429738615201484}
-  - component: {fileID: 910385484014192182}
+  - component: {fileID: 5518543509517127103}
   m_Layer: 0
   m_Name: Object
   m_TagString: Untagged
@@ -4953,7 +4953,7 @@ MonoBehaviour:
   hazardType: 1
   damage: 1
   drift: 0
-  seekerSpeed: 0.1
+  seekerSpeed: 1
   scaleSpeed: 0.1
 --- !u!114 &6648000000794673933
 MonoBehaviour:
@@ -5012,7 +5012,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 9baa8cf2eb80c274295af33d90cf73f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d12eeb223ff4d54586984c0fea2dc72, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5050,7 +5050,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &910385484014192182
+--- !u!60 &5518543509517127103
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5086,7 +5086,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.23, y: 0.29}
+    oldSize: {x: 0.21, y: 0.17}
     newSize: {x: 6.06, y: 6.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5094,25 +5094,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.035, y: 0.145}
-      - {x: -0.044999998, y: 0.145}
-      - {x: -0.114999995, y: -0.035}
-      - {x: -0.114999995, y: -0.145}
-      - {x: -0.074999996, y: -0.13499999}
-      - {x: -0.055, y: -0.114999995}
-      - {x: -0.044999998, y: -0.145}
-      - {x: 0.114999995, y: -0.145}
-      - {x: 0.114999995, y: -0.055}
-      - {x: 0.055, y: 0.125}
-    - - {x: 0.074999996, y: 0.145}
-      - {x: 0.065, y: 0.125}
-      - {x: 0.095, y: 0.095}
-      - {x: 0.114999995, y: 0.105}
-      - {x: 0.114999995, y: 0.13499999}
-      - {x: 0.105, y: 0.145}
-    - - {x: -0.114999995, y: 0.145}
-      - {x: -0.114999995, y: 0.114999995}
-      - {x: -0.105, y: 0.105}
-      - {x: -0.074999996, y: 0.114999995}
-      - {x: -0.074999996, y: 0.145}
+    - - {x: -0.065, y: 0.085}
+      - {x: -0.105, y: 0.035}
+      - {x: -0.105, y: -0.085}
+      - {x: 0.105, y: -0.085}
+      - {x: 0.105, y: 0.035}
+      - {x: 0.065, y: 0.085}
   m_UseDelaunayMesh: 0

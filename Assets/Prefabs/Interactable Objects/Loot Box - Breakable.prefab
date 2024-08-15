@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 4849925379720035411}
   m_Layer: 0
   m_Name: Loot Box - Breakable
-  m_TagString: Bumpable
+  m_TagString: Break
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7361821632501289765}
   m_Layer: 0
   m_Name: Seeker
-  m_TagString: Avoid
+  m_TagString: Break
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

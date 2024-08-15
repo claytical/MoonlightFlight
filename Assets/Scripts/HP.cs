@@ -26,6 +26,7 @@ public class HP : MonoBehaviour
 
     public void UpdateHPUI(int amount)
     {
+        Debug.Log("HP Amount: " + amount);
         for(int i = 0; i < hpLeft.GetComponentsInChildren<Image>().Length; i++)
         {
             hpLeft.GetComponentsInChildren<Image>()[i].color = SetAlpha(hpLeft.GetComponentsInChildren<Image>()[i], amount, i);

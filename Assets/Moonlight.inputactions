@@ -16,39 +16,12 @@
                 },
                 {
                     "name": "Thrust",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "f7e61601-7744-4c7c-aa2d-6e067b92a039",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Brake",
-                    "type": "Button",
-                    "id": "b83fbf31-e4d1-4467-9bf9-45d9339d830e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Bomb",
-                    "type": "Button",
-                    "id": "5b366f64-a70a-49c6-99e6-4932e40dace0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Slow Motion",
-                    "type": "Button",
-                    "id": "cb8b53fd-a83a-4c89-a2c2-3ef4e7be77a2",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -73,39 +46,6 @@
                     "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "22a9aeb4-fe60-4857-b941-6ca501e1f65e",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Brake",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "980d1f8e-077a-4caa-b186-6f72e6f8c2ee",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Bomb",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "eba35d94-57ca-48b7-bd1d-cdd99675b69b",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Slow Motion",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -123,7 +63,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Next Vehicle",
+                    "name": "NextVehicle",
                     "type": "Value",
                     "id": "1abf4dc0-2f1c-4957-b433-053155dcb2f9",
                     "expectedControlType": "Dpad",
@@ -132,7 +72,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Previous Vehicle",
+                    "name": "NextColor",
+                    "type": "Value",
+                    "id": "7e5987d9-6667-4b82-8c9a-ff55697ed190",
+                    "expectedControlType": "Dpad",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PreviousVehicle",
                     "type": "Value",
                     "id": "5b946c89-f459-4d27-acfb-76f2cd8e5c2c",
                     "expectedControlType": "Dpad",
@@ -141,9 +90,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Choose Vehicle",
-                    "type": "Button",
+                    "name": "PreviousColor",
+                    "type": "Value",
+                    "id": "43297345-e770-4d26-bd90-2bc2dd9c6a75",
+                    "expectedControlType": "Dpad",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Choose",
+                    "type": "Value",
                     "id": "af068420-8c48-4d1b-8c37-b21840a10adc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Leave",
+                    "type": "Value",
+                    "id": "1a63e169-d2d1-48f0-84c4-fa3199363f68",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -158,7 +125,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Next Vehicle",
+                    "action": "NextVehicle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -169,18 +136,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Previous Vehicle",
+                    "action": "PreviousVehicle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "7d273e39-804a-473b-8b09-75298a288889",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "",
-                    "action": "Choose Vehicle",
+                    "action": "Choose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -197,34 +164,34 @@
                 },
                 {
                     "name": "",
-                    "id": "34daed3f-8267-4c0c-877f-4ac1b1a488b9",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "ba47cf2c-4c5d-4404-a4f8-97b7a0878a5f",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Game",
-                    "action": "Start",
+                    "action": "Leave",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "223742fc-f3b3-4858-89d6-3f0ab5e664e7",
-                    "path": "<Gamepad>/buttonNorth",
+                    "id": "4b40a9b2-8579-4c3f-83ed-4b72d69497e7",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Game",
-                    "action": "Start",
+                    "action": "NextColor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e6118c8b-5f67-43ec-ba50-5bd8b52d7444",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "231baeb4-2fbb-49cd-8c58-bbe835f74ff1",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Game",
-                    "action": "Start",
+                    "action": "PreviousColor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

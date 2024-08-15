@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TrackSelection.unity
+    guid: 02887f5d3566f4b4fb7d3d7891bf739a
+  - enabled: 1
     path: Assets/Scenes/Track.unity
     guid: b8fc1cded1e52ab47a830e9040ab9a60
+  - enabled: 1
+    path: Assets/Scenes/TrackFinished.unity
+    guid: 7fc17d42338d04148b518359cca9afe2
   - enabled: 0
     path: Assets/Scenes/First.unity
     guid: d4d3e622e0b3ff549ac83a62cf81a372

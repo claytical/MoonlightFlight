@@ -114,12 +114,6 @@ public class PowerUp : MonoBehaviour
                         collision.gameObject.GetComponentInParent<Player>().IncreaseHP();
                     }
                     break;
-                case PowerUp.Reward.Fuel:
-                    if (collision.gameObject.GetComponentInParent<Player>())
-                    {
-                        collision.gameObject.GetComponentInParent<Player>().IncreaseFuel();
-                    }
-                    break;
 
                 case PowerUp.Reward.Part:
 //                    collision.gameObject.CollectPart(1);

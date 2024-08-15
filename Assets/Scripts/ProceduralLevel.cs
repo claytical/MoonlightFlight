@@ -102,15 +102,17 @@ public class ProceduralLevel : MonoBehaviour {
         Debug.Log("Calling Energy Creation");
         if (s.spawnEverything)
         {
+            s.SetAutoSpawnLocations();
+            Debug.Log("Creating " + s.spawnLocations.Length + " breakables.");
             for (int i = 0; i < s.spawnLocations.Length; i++)
             {
                 GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], set.spawnLocations[i].position, Quaternion.identity, transform);
-
+                
             }
         }
         else
         {
-            int numberOfBreakablesToPlace = Random.Range(1, s.spawnLocations.Length);
+            int numberOfBreakablesToPlace = Random.Range(s.spawnLocations.Length/2, s.spawnLocations.Length);
             int[] series = Reservoir(numberOfBreakablesToPlace, s.spawnLocations.Length);
             for (int i = 0; i < series.Length; i++)
             {

@@ -8,7 +8,7 @@ public class ProceduralInfo : MonoBehaviour
 
     public AudioMixerSnapshot start;
     public AudioMixerSnapshot finish;
-    public SetInfo nextSet;
+    private SetInfo nextSet;
     public SetInfo[] nextSets;
 
     private int selectedSetIndex;

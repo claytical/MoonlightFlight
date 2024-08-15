@@ -70,7 +70,7 @@ public class Hazard : MonoBehaviour
             int index = Random.Range(0, players.Length);
             if(players[index].chosenVehicle)
             {
-                if (players[index].chosenVehicle.GetComponent<Vehicle>().isFlying())
+                if (players[index].chosenVehicle.GetComponent<Vehicle>().IsFlying())
                 {
                     return index;
                 }
@@ -129,7 +129,7 @@ public class Hazard : MonoBehaviour
                 transform.parent.rotation = transform.rotation;
                 break;
             case EnemyType.CHARISMATIC:                
-                players[vehicleIndex].chosenVehicle.GetComponent<Vehicle>().Drift(transform.position);
+                //players[vehicleIndex].chosenVehicle.GetComponent<Vehicle>().Drift(transform.position);
 
                 break;
             case EnemyType.DRIFTER:
@@ -168,7 +168,11 @@ public class Hazard : MonoBehaviour
     {
         if(hazardType == EnemyType.BOUNDARY)
         {
-            coll.gameObject.GetComponentInParent<Player>().GlitchColorDrift();
+            if(coll.gameObject.GetComponent<Vehicle>())
+            {
+                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = .2f;
+                Invoke("ResetGlitch", .2f);
+            }
         }
 
         if (GetComponentInParent<Platform>())
@@ -182,22 +186,24 @@ public class Hazard : MonoBehaviour
             {
                 //hazard glitch
                 Debug.Log("Platform Glitch");
-                coll.gameObject.GetComponentInParent<Player>().GlitchColorDrift();
+                Camera.main.gameObject.GetComponent<Kino.AnalogGlitch>().colorDrift = .2f;
+                Invoke("ResetCamera", .2f);
             }
         }
         
         if(coll.gameObject.GetComponent<Vehicle>())
         {
-            //HAZARD HIT VEHICLE
-            if (coll.gameObject.GetComponentInParent<Player>().TakeDamage(damage))
+            //HAZARD HIT VEHICLE, IF TRUE - DEAD
+            if (coll.gameObject.GetComponentInParent<LocalPlayer>().TakeDamage(damage))
             {
-                coll.gameObject.GetComponentInParent<Player>().Restart();
+                coll.gameObject.GetComponentInParent<LocalPlayer>().Restart();
                 
 
 
                 //EXPLODE
                 if (coll.gameObject.GetComponent<Explode>())
                 {
+                    Debug.Log("PLAY EXPLOSION");
                     coll.gameObject.GetComponent<Explode>().Permanent();
 
                 }
