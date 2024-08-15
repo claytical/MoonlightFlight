@@ -17,13 +17,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayLoopingSound(AudioClip clip)
+    public void PlayLoopingSound(AudioClip clip, float volume = 1f)
     {
-        if (clip != null && audioSource != null)
+        AudioSource source = GetComponent<AudioSource>();
+        if (source != null && clip != null)
         {
-            audioSource.clip = clip;
-            audioSource.loop = true;
-            audioSource.Play();
+            source.clip = clip;
+            source.volume = volume;
+            source.loop = true;
+            source.Play();
         }
     }
 

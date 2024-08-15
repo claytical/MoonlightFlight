@@ -1,88 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Fuel : MonoBehaviour
 {
-
     public GameObject fuel;
     public Transform tank;
-    public int amount;
-    public int capacity = 0;
+    private int amount;
+    private int capacity;
 
-    // Start is called before the first frame update
-    public void FillTank(int _amount)
+    // Fill the tank with the specified amount of fuel units
+    public void FillTank(int _capacity)
     {
-        capacity = _amount;
+        capacity = _capacity;
         amount = capacity;
 
+        // Clear existing fuel units
+        foreach (Transform child in tank)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Instantiate new fuel units
         for (int i = 0; i < capacity; i++)
         {
-            GameObject go = Instantiate(fuel, tank);
-            Image image = go.GetComponent<Image>();
-            //image.color = SetAlpha(image, amount, i);
+            Instantiate(fuel, tank);
         }
     }
 
-    public void UpdateUI()
+    // Update the fuel UI to reflect the current amount of energy left
+    public void UpdateFuelUI(int _amount)
     {
-        Debug.Log("FUEL UNITS: " + tank.GetComponentsInChildren<Image>().Length);
-        for(int i = 0; i < tank.GetComponentsInChildren<Image>().Length; i++)
+        amount = _amount;
+
+        // Clear existing fuel units
+        foreach (Transform child in tank)
         {
-            Image img = tank.GetComponentsInChildren<Image>()[i];
-            if (i >= amount)
-            {
-                img.color = SetAlpha(img, .1f);
-            }
-            else
-            {
-                img.color = SetAlpha(img, 1f);
-            }
+            Destroy(child.gameObject);
         }
 
-    }
-
-
-    private Color SetAlpha(Image img, float a)
-    {
-        Color color = img.color;
-        color.a = a;
-        return color;
-    }
-    public void Boost()
-    {
-        amount--;
-
-        if (amount < 0)
+        // Instantiate the remaining fuel units
+        for (int i = 0; i < amount; i++)
         {
-            amount = 0;
+            Instantiate(fuel, tank);
         }
-    }
-
-    
-
-    public bool Drain()
-    {
-        amount--;
-        if (amount <= 0)
-        {
-            amount = 0;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public void Recharge()
-    {
-        amount++;
-        if(amount >= capacity)
-        {
-            amount = capacity;
-        }
-
     }
 }

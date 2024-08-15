@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
 {
     public Image vehicleIcon;
     public HP hp;
+    public Fuel fuel;
     public TextMeshProUGUI collected;
     public GameObject inactivePanel;
 
@@ -30,7 +31,8 @@ public class PlayerStats : MonoBehaviour
         vehicleIcon.sprite = vehicle.GetComponent<SpriteRenderer>().sprite;
         UpdateEnergyDisplay(vehicle.energyCollected);
         Debug.Log("Energy collected should be displayed.");
-        hp.SetHPUI(vehicle.currentHP, vehicle.maxHP);
+        hp.SetHPUI(vehicle.currentHP);
+        fuel.FillTank(50);
     }
 
     public void SetColor(Color color)

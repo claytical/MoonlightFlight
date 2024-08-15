@@ -8,66 +8,65 @@ public class HP : MonoBehaviour
     public GameObject hpUnit;
     public Transform hpLeft;
     private int amount = 0;
-    private int maxAmount = 0;
+    private int maxAmount = 10;
 
-    // Start is called before the first frame update
-        public void SetHPUI(int _amount, int _maxAmount)
+    // Set up the HP UI with the specified amount
+    public void SetHPUI(int _amount)
+    {
+        amount = Mathf.Clamp(_amount, 0, maxAmount);
+
+        // Clear existing HP units
+        foreach (Transform child in hpLeft)
         {
-        amount = _amount;
-        maxAmount = _maxAmount;
-        
-            for (int i = 0; i < maxAmount; i++)
+            Destroy(child.gameObject);
+        }
+
+        // Instantiate new HP units
+        for (int i = 0; i < amount; i++)
+        {
+            Instantiate(hpUnit, hpLeft);
+        }
+    }
+
+    // Update the HP UI to reflect the current amount of HP
+    public void UpdateHPUI(int _amount)
+    {
+        amount = Mathf.Clamp(_amount, 0, maxAmount);
+        Debug.Log("New Amount: " + amount);
+
+        // Decrease HP (remove units)
+        if (amount < hpLeft.childCount)
+        {
+            int unitsToRemove = hpLeft.childCount - amount;
+            for (int i = 0; i < unitsToRemove; i++)
             {
-                GameObject go = Instantiate(hpUnit, hpLeft);
-                Image image = go.GetComponent<Image>();
-                image.color = SetAlpha(image, amount, i);
+                Destroy(hpLeft.GetChild(hpLeft.childCount - 1).gameObject);
             }
-    }
+        }
 
-    public void UpdateHPUI(int amount)
-    {
-        Debug.Log("HP Amount: " + amount);
-        for(int i = 0; i < hpLeft.GetComponentsInChildren<Image>().Length; i++)
+        // Increase HP (add units)
+        if (amount > hpLeft.childCount)
         {
-            hpLeft.GetComponentsInChildren<Image>()[i].color = SetAlpha(hpLeft.GetComponentsInChildren<Image>()[i], amount, i);
+            int unitsToAdd = amount - hpLeft.childCount;
+            for (int i = 0; i < unitsToAdd; i++)
+            {
+                Instantiate(hpUnit, hpLeft);
+            }
         }
     }
 
-    private Color SetAlpha(Image img, int amount, int index)
-    {
-        Color color = img.color;
-        if (index < amount)
-        {
-            color.a = 1;
-        }
-        else
-        {
-            color.a = .1f;
-        }
-        return color;
-    }
-
+    // Apply damage and update the HP UI
     public bool TakeDamage(int damage)
     {
         amount -= damage;
         UpdateHPUI(amount);
-        if (amount <= 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return amount <= 0;
     }
 
+    // Increase HP and update the HP UI
     public void IncreaseHP(int _amount)
     {
-        amount += _amount;
+        amount = Mathf.Clamp(amount + _amount, 0, maxAmount);
         UpdateHPUI(amount);
-        if(amount >= maxAmount)
-        {
-            amount = maxAmount;
-        }
     }
 }

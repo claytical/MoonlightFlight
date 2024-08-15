@@ -48,28 +48,31 @@ public class LocalPlayer : MonoBehaviour
     public void Launch()
     {
         // ADD UI
-
-        // FIND Stats UI
-
         GameStatsUI gameStats = FindAnyObjectByType<GameStatsUI>();
 
         GameObject stats = Instantiate(playerStats, gameStats.transform);
         ui = stats.GetComponent<PlayerStats>();
 
         // ADD PLANE
-
         GameObject vehicle = Instantiate(playerVehicle, transform);
         if (vehicle.GetComponent<Vehicle>())
         {
             plane = vehicle.GetComponent<Vehicle>();
 
+            // Set the plane color
             if (plane.GetComponent<SpriteRenderer>())
             {
                 plane.GetComponent<SpriteRenderer>().color = color;
             }
+
+            // Assign Fuel UI to the vehicle
+            plane.fuelUI = ui.GetComponentInChildren<Fuel>();
+            plane.energyCollected = plane.capacity;
+            plane.playerStats = GetComponent<PlayerStatsTracking>();
             SetStats();
             ui.SetColor(color);
             plane.Fly();
+
             GetComponent<PlayerInput>().SwitchCurrentActionMap("Play");
         }
     }
@@ -109,23 +112,29 @@ public class LocalPlayer : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        plane.Move(value.Get<Vector2>().normalized);
+        if (plane != null)
+        {
+            plane.Move(value.Get<Vector2>().normalized);
+        }
     }
 
     public void OnThrust(InputValue value)
     {
-        if (value.isPressed)
+        if (plane != null)
         {
-            Debug.Log("Thrust Started");
-            if (!plane.IsBoosting() && plane.energyCollected > 0)
+            if (value.isPressed)
             {
-                plane.TurnOnBoost();
+                Debug.Log("Thrust Started");
+                if (!plane.IsBoosting())
+                {
+                    plane.TurnOnBoost();
+                }
             }
-        }
-        else
-        {
-            Debug.Log("Thrust Stopped");
-            plane.TurnOffBoost();
+            else
+            {
+                Debug.Log("Thrust Stopped");
+                plane.TurnOffBoost();
+            }
         }
     }
 
