@@ -16,7 +16,6 @@ public class PlayerStats : MonoBehaviour
     private int vehicleID;  // Store the vehicle ID to recreate the vehicle later
     private Vehicle currentVehicle;
 
-    // Start is called before the first frame update
     void Start()
     {
         // Initialization logic can go here if needed
@@ -32,7 +31,7 @@ public class PlayerStats : MonoBehaviour
         UpdateEnergyDisplay(vehicle.energyCollected);
         Debug.Log("Energy collected should be displayed.");
         hp.SetHPUI(vehicle.currentHP);
-        fuel.FillTank(50);
+        //fuel.FillTank(50); // Assuming the vehicle starts with a full tank
     }
 
     public void SetColor(Color color)
@@ -50,13 +49,13 @@ public class PlayerStats : MonoBehaviour
         inactivePanel.SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Continuously update the energy display if the vehicle is active
         if (currentVehicle != null)
         {
             UpdateEnergyDisplay(currentVehicle.energyCollected);
+            UpdateFuel((int)currentVehicle.energyCollected); // Update the fuel UI based on current energy
         }
     }
 
@@ -68,6 +67,11 @@ public class PlayerStats : MonoBehaviour
     private void UpdateEnergyDisplay(float energy)
     {
         collected.text = Mathf.CeilToInt(energy).ToString();
+    }
+
+    public void UpdateFuel(int fuelAmount)
+    {
+        fuel.UpdateFuelUI(fuelAmount);
     }
 
     // Optional: Method to recreate or reset the vehicle using the stored ID

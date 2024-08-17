@@ -1,153 +1,145 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-public class ProceduralLevel : MonoBehaviour {
+public class ProceduralLevel : MonoBehaviour
+{
     public RemixManager remix;
     public Loot[] availableLoot;
-
-	public GameObject LevelFailPanel;
+    public GameObject LevelFailPanel;
     public GameObject patterns;
     public Text failureMessage;
     public ParkingLot lot;
     public ProceduralMusic music;
-
     public GameObject ProgressPanel;
     public AudioSource effectsAudio;
-
     public SetInfo set;
 
-    private Vector3 originalPosition;
     private SetInfo[] sets;
-    private string selectedScene;
-	private AsyncOperation AO;
     private int setCount;
+    private bool allBreakablesSpawned = false;
 
-    // Use this for initialization
-    static System.Random rnd = new System.Random();
-
-    void Start () {
-        sets = patterns.GetComponentsInChildren<SetInfo>();
-        //EACH GRID PLAYS HAS SETS OF BREAKABLES
+    void Start()
+    {
+//        sets = patterns.GetComponentsInChildren<SetInfo>();
         setCount = 1;
+        allBreakablesSpawned = false;
+
+        // Directly call Play to start the level
+        Play();
     }
 
     public void Play()
     {
-        set.gameObject.SetActive(true);
-        //CREATE BREAKABLES IN GRID
-        CreateRandomSetOfBreakables(set);
+        if (set == null)
+        {
+            Debug.LogError("Set is not assigned in ProceduralLevel.");
+            return;
+        }
 
+        set.gameObject.SetActive(true);
+
+        // Check if SetInfo is initialized
+        StartCoroutine(WaitForSetInitializationAndStartSpawning());
+    }
+    private IEnumerator WaitForSetInitializationAndStartSpawning()
+    {
+        // Wait until the SetInfo component is fully initialized
+        while (!set.IsInitialized())
+        {
+            yield return null;
+        }
+
+        Debug.Log("Set active and initialized, starting to spawn breakables.");
+        StartCoroutine(SpawnBreakables());
+    }
+    private IEnumerator SpawnBreakables()
+    {
+        Debug.Log("Starting SpawnBreakables coroutine...");
+        while (!allBreakablesSpawned)
+        {
+            Debug.Log("Spawning next batch of breakables...");
+            set.SpawnNextBatchOfBreakables();
+
+            if (set.AllBreakablesSpawned())
+            {
+                allBreakablesSpawned = true;
+                Debug.Log("All breakables spawned.");
+            }
+
+            yield return new WaitForSeconds(1f);  // Wait a second before spawning the next batch
+        }
     }
 
-    public void BuildNextSet()
+    public bool AllObjectsCollected()
     {
-        music.ChangeTrack();
+        if (!allBreakablesSpawned)
+        {
+            return false;
+        }
 
-        SetInfo previousSet = set;
-        set = set.currentSet.SetNextSet();
-        setCount = 1;
-
-        //start new music, set procedural set's current next grid active -> NEW GRID SHOWN
-        previousSet.currentSet.FinishedSet();
-
-        //link ship and grid scripts
-//        vehicle.LinkSet(set);
-
-        //populate breakables for current grid
-        CreateRandomSetOfBreakables(set);
-        previousSet.MovePlatformsOffScreen();
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Collect");
+        return gos.Length == 0;
     }
 
     public void RemovePlatforms()
     {
-        Debug.Log("Removing Platforms");
-        int numberOfPlatforms = set.platforms.GetComponentsInChildren<Platform>().Length;
-        for (int i = 0; i < numberOfPlatforms; i++)
-        {
-            if (set.platforms.GetComponentsInChildren<Platform>()[i])
-            {
-                if (set.platforms.GetComponentsInChildren<Platform>()[i].platform.GetComponent<Explode>())
-                    set.platforms.GetComponentsInChildren<Platform>()[i].platform.GetComponent<Explode>().Temporary(2);
-            }
-            }
+        set.ExplodePlatforms();  // Trigger the explosion effect and temporary deactivation
     }
 
-
-    public bool AllObjectsCollected()
+    public void BuildNextSet()
     {
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("Collect");
-        Debug.Log("GAME OBJECTS ON SCREEN: " + gos.Length);
-        Debug.Log("SET COUNT: " + setCount);
-        Debug.Log("NUMBER OF SETS: " + set.sets);
-
-        if (gos.Length == 0 && setCount >= set.sets)
+        if (AllObjectsCollected())
         {
-            Debug.Log("Finished Pattern, Moving to Next Set");
-            return true;
-        }
-        else if(gos.Length == 0)
-        {
+            // Access ProceduralInfo from the current set
+            ProceduralInfo proceduralInfo = set.GetComponent<ProceduralInfo>();
+            music.ChangeTrack();
+            SetInfo previousSet = set;
+            set = proceduralInfo.SetNextSet(); // PickWeightedSet();  // Pick the next set based on weight
+            if (set == null)
+            {
+                Debug.LogWarning("No next set was selected.");
+                return;
+            }
             setCount++;
-            CreateRandomSetOfBreakables(set);
+
+            previousSet.MoveOffScreen(Vector3.zero, 0.5f);  // Move previous platforms off screen
+            StartCoroutine(WaitForPreviousSetToFinish(previousSet));
         }
-            return false;
     }
 
-    public void CreateRandomSetOfBreakables(SetInfo s)
+    private SetInfo PickWeightedSet()
     {
+        int totalWeight = 0;
 
-        Debug.Log("Calling Energy Creation");
-        if (s.spawnEverything)
+        // Calculate the total weight of all sets
+        foreach (var s in sets)
         {
-            s.SetAutoSpawnLocations();
-            Debug.Log("Creating " + s.spawnLocations.Length + " breakables.");
-            for (int i = 0; i < s.spawnLocations.Length; i++)
-            {
-                GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], set.spawnLocations[i].position, Quaternion.identity, transform);
-                
-            }
+            totalWeight += s.weight;
         }
-        else
-        {
-            int numberOfBreakablesToPlace = Random.Range(s.spawnLocations.Length/2, s.spawnLocations.Length);
-            int[] series = Reservoir(numberOfBreakablesToPlace, s.spawnLocations.Length);
-            for (int i = 0; i < series.Length; i++)
-            {
-                GameObject obj = Instantiate(set.breakables[Random.Range(0, set.breakables.Length)], set.spawnLocations[i].position, Quaternion.identity, transform);
 
+        int randomWeight = Random.Range(0, totalWeight);
+
+        // Select a set based on the weighted random value
+        foreach (var s in sets)
+        {
+            if (randomWeight < s.weight)
+            {
+                return s;
             }
+            randomWeight -= s.weight;
         }
+
+        // Fallback in case of any error, though this should never happen
+        return sets[0];
     }
 
-    //Resevoir Sampling
-    //https://visualstudiomagazine.com/articles/2013/07/01/generating-distinct-random-array-indices.aspx
-
-    static int[] Reservoir(int n, int range)
+    private IEnumerator WaitForPreviousSetToFinish(SetInfo previousSet)
     {
-        int[] result = new int[n];
-        for (int i = 0; i < n; ++i)
-            result[i] = i;
+        yield return new WaitForSeconds(2f);  // Wait for the previous platforms to be moved off screen
 
-        for (int t = n; t < range; ++t)
-        {
-            int m = rnd.Next(0, t + 1);
-            if (m < n) result[m] = t;
-        }
-        return result;
+        allBreakablesSpawned = false;
+        set.ResetPlatforms();  // Reset platforms in the next set
+        Play();  // Start the next set
     }
-
-
-	IEnumerator loadScene() {
-		AO = SceneManager.LoadSceneAsync (selectedScene, LoadSceneMode.Single);
-		AO.allowSceneActivation = false;
-		while (AO.progress < 0.9f) {
-			yield return null;
-		}
-		AO.allowSceneActivation = true;
-	}
-
-
 }

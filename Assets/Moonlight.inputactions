@@ -18,7 +18,7 @@
                     "name": "Thrust",
                     "type": "Value",
                     "id": "f7e61601-7744-4c7c-aa2d-6e067b92a039",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": true
@@ -38,8 +38,8 @@
                 },
                 {
                     "name": "",
-                    "id": "0ddd16cb-a433-4529-ba35-885d529ac0d5",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "226ff6af-6b3c-4d40-ac82-387a59536498",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

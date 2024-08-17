@@ -8,13 +8,14 @@ public class LocalPlayer : MonoBehaviour
 {
     public GameObject playerSelect;
     public GameObject playerVehicle;
-    public GameObject playerStats;
+    public GameObject playerStatsUI; // Renamed to clarify that this is the UI
     public AudioClip clickFx;
     public AudioClip confirmFx;
 
     private Vehicle plane;
     private PlayerSelect selection;
-    private PlayerStats ui;
+    private PlayerStatsTracking playerStats; // Responsible for tracking metrics
+    private PlayerStats ui; // Responsible for managing the player's UI
     private Color color;
     private bool isReady = false;
     public bool IsReady => isReady; // Public read-only property
@@ -50,29 +51,26 @@ public class LocalPlayer : MonoBehaviour
         // ADD UI
         GameStatsUI gameStats = FindAnyObjectByType<GameStatsUI>();
 
-        GameObject stats = Instantiate(playerStats, gameStats.transform);
-        ui = stats.GetComponent<PlayerStats>();
+        GameObject statsUI = Instantiate(playerStatsUI, gameStats.transform);
+        ui = statsUI.GetComponent<PlayerStats>(); // Assign PlayerStats (UI)
 
         // ADD PLANE
         GameObject vehicle = Instantiate(playerVehicle, transform);
+        playerStats = GetComponent<PlayerStatsTracking>();
         if (vehicle.GetComponent<Vehicle>())
         {
             plane = vehicle.GetComponent<Vehicle>();
 
-            // Set the plane color
+            // PlayerStatsTracking component is attached to the plane
+            plane.playerStats = playerStats;// = plane.GetComponent<PlayerStatsTracking>();
+            plane.playerStatsUI = ui;
             if (plane.GetComponent<SpriteRenderer>())
             {
                 plane.GetComponent<SpriteRenderer>().color = color;
             }
-
-            // Assign Fuel UI to the vehicle
-            plane.fuelUI = ui.GetComponentInChildren<Fuel>();
-            plane.energyCollected = plane.capacity;
-            plane.playerStats = GetComponent<PlayerStatsTracking>();
             SetStats();
             ui.SetColor(color);
             plane.Fly();
-
             GetComponent<PlayerInput>().SwitchCurrentActionMap("Play");
         }
     }
@@ -101,40 +99,26 @@ public class LocalPlayer : MonoBehaviour
         var gamepad = GetComponent<PlayerInput>().devices[0] as Gamepad;
         if (gamepad != null)
         {
-            Debug.Log("RUMBLE!");
             GamepadManager.Instance.StartRumble(gamepad, lowFrequency, highFrequency, duration);
-        }
-        else
-        {
-            Debug.Log("No gamepad for rumbling");
         }
     }
 
     public void OnMove(InputValue value)
     {
-        if (plane != null)
-        {
-            plane.Move(value.Get<Vector2>().normalized);
-        }
+        plane.Move(value.Get<Vector2>().normalized);
     }
 
     public void OnThrust(InputValue value)
     {
-        if (plane != null)
+        float triggerValue = value.Get<float>(); // Get the right trigger value (0 to 1)
+
+        if (triggerValue > 0)
         {
-            if (value.isPressed)
-            {
-                Debug.Log("Thrust Started");
-                if (!plane.IsBoosting())
-                {
-                    plane.TurnOnBoost();
-                }
-            }
-            else
-            {
-                Debug.Log("Thrust Stopped");
-                plane.TurnOffBoost();
-            }
+            plane.TurnOnBoost(triggerValue); // Pass trigger value to control thrust
+        }
+        else
+        {
+            plane.TurnOffBoost(); // Stop boosting when trigger is released
         }
     }
 

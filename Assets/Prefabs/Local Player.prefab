@@ -189,7 +189,7 @@ MonoBehaviour:
   playerSelect: {fileID: 2367632968449217036, guid: 4c3e7a8d8ed68514ca2c36aa5261d962,
     type: 3}
   playerVehicle: {fileID: 0}
-  playerStats: {fileID: 2367632968449217036, guid: 95a0c26560d17b440ad888a70ba50def,
+  playerStatsUI: {fileID: 2367632968449217036, guid: 95a0c26560d17b440ad888a70ba50def,
     type: 3}
   clickFx: {fileID: 8300000, guid: 53ecfd42442a5de49ab20834c2e97578, type: 3}
   confirmFx: {fileID: 8300000, guid: 8b8f15883716b5e4083a06bb420f9fad, type: 3}
@@ -308,3 +308,4 @@ MonoBehaviour:
   itemsCollected: 0
   damageTaken: 0
   assists: 0
+  fuelUsed: 0

@@ -5,15 +5,19 @@ public class Vehicle : MonoBehaviour
     public int currentHP;
     public int maxHP;
 
-    public float force;
-    public float terminalVelocity;
+    public float force = 10f;
+    public float terminalVelocity = 20f;
     public float boostMultiplier = 2f;
     public float minimalThrustForce = 0.2f;
+
+    public float baseBurnRate = 1f; // Base burn rate per vehicle
+    public float burnRateMultiplier = 1f; // Multiplier for the burn rate based on trigger pressure
+
     private bool boosting = false;
 
-    public GameObject trail;
+    public GameObject trail; // Trail prefab
 
-    private TrailRenderer trailRenderer;
+    private GameObject activeTrail; // Reference to the currently active trail instance
     private Rigidbody2D rb;
     private AudioManager audioManager;
 
@@ -27,13 +31,10 @@ public class Vehicle : MonoBehaviour
 
     public float capacity = 10f;
     public float energyCollected;
-    public float energyConsumptionRate = 1f;
-    private float energyTimer = 0f;
-
     private Vector2 driftDirection;
 
-    public Fuel fuelUI;
-    public PlayerStatsTracking playerStats; // Reference passed from LocalPlayer
+    public PlayerStats playerStatsUI; // Reference to the PlayerStats UI element
+    public PlayerStatsTracking playerStats;
 
     private Vector3 lastPosition;
 
@@ -59,6 +60,14 @@ public class Vehicle : MonoBehaviour
         initialTerminalVelocity = terminalVelocity;
         energyCollected = capacity;
 
+        // Ensure playerStatsUI is assigned
+        if (playerStatsUI == null)
+        {
+            Debug.LogError("PlayerStats UI is not assigned. Please assign it in the Inspector.");
+            enabled = false;
+            return;
+        }
+
         UpdateFuelUI();
 
         if (playerStats == null)
@@ -73,37 +82,21 @@ public class Vehicle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (boosting)
+        if (boosting && energyCollected > 0)
         {
-            if (energyCollected > 0)
+            float appliedForce = force * burnRateMultiplier * boostMultiplier;
+            Vector2 forceDirection = transform.up * appliedForce;
+            rb.AddForce(forceDirection, ForceMode2D.Force);
+
+            if (rb.velocity.magnitude > terminalVelocity)
             {
-                energyTimer += Time.fixedDeltaTime;
-
-                if (energyTimer >= energyConsumptionRate)
-                {
-                    ConsumeEnergy(1);
-                    playerStats.RecordFuelUsed(1);  // Track fuel usage
-                    energyTimer = 0f;
-                }
-
-                Vector2 forceDirection = transform.up * force * boostMultiplier;
-                rb.AddForce(forceDirection, ForceMode2D.Force);
-
-                if (rb.velocity.magnitude > terminalVelocity)
-                {
-                    rb.velocity = rb.velocity.normalized * terminalVelocity;
-                }
+                rb.velocity = rb.velocity.normalized * terminalVelocity;
             }
-            else
-            {
-                Vector2 forceDirection = transform.up * minimalThrustForce;
-                rb.AddForce(forceDirection, ForceMode2D.Force);
 
-                if (rb.velocity.magnitude > terminalVelocity / 4f)
-                {
-                    rb.velocity = rb.velocity.normalized * (terminalVelocity / 4f);
-                }
-            }
+            // Consume fuel based on the pressure applied to the trigger
+            float fuelConsumption = burnRateMultiplier * baseBurnRate * Time.fixedDeltaTime;
+            ConsumeEnergy(fuelConsumption);
+            playerStats.RecordFuelUsed((int)fuelConsumption);
         }
 
         UpdateDistanceCovered(); // Track distance in FixedUpdate
@@ -112,61 +105,72 @@ public class Vehicle : MonoBehaviour
         audioManager.AdjustPitch(rb.velocity.magnitude * 0.1f);
     }
 
+    public void Move(Vector2 direction)
+    {
+        if (rb != null && direction != Vector2.zero)
+        {
+            // Reset the existing rotational force (angular velocity)
+            rb.angularVelocity = 0f;
+
+            // Calculate the angle of the movement direction
+            float angleRad = Mathf.Atan2(direction.y, direction.x);
+            float angleDeg = angleRad * Mathf.Rad2Deg;
+
+            // Adjust the angle to account for the sprite's initial orientation (facing up)
+            angleDeg -= 90f;
+
+            // Rotate the vehicle to face the movement direction
+            rb.rotation = angleDeg;
+
+            // Apply force in the direction of movement
+            Vector2 forceDirection = direction.normalized * force;
+            rb.AddForce(forceDirection, ForceMode2D.Force);
+        }
+    }
+
     private void UpdateDistanceCovered()
     {
-     
         // Calculate the distance covered since the last frame
         float distance = Vector3.Distance(transform.position, lastPosition);
-        playerStats.distanceCovered += distance;
+        playerStats.distanceCovered += (int)distance;
         playerStats.AddScore((int)distance); // Award points for distance
-        
+
         lastPosition = transform.position;
     }
 
     public void Fly()
     {
-        if (trail != null && trailRenderer == null)
+        if (trail != null && activeTrail == null)
         {
-            GameObject go = Instantiate(trail, transform);
-            trailRenderer = go.GetComponent<TrailRenderer>();
+            activeTrail = Instantiate(trail, transform);
+        }
+
+        if (activeTrail != null)
+        {
+            activeTrail.GetComponent<TrailRenderer>().emitting = true; // Enable the trail's emission
         }
     }
 
     public bool IsFlying()
     {
-        return trailRenderer != null && trailRenderer.emitting;
+        return activeTrail != null && activeTrail.GetComponent<TrailRenderer>().emitting; // Returns true if the trail is emitting
     }
 
-    public void TurnOnBoost()
+    public void TurnOnBoost(float triggerValue)
     {
         if (energyCollected > 0 && !boosting)
         {
+            boosting = true;
+
             if (audioManager != null && thrustClip != null)
             {
                 audioManager.PlayLoopingSound(thrustClip);
             }
-            boosting = true;
-            ConsumeEnergy(1);
-            playerStats.RecordFuelUsed(1);  // Track fuel usage
 
-            if (trailRenderer != null)
-            {
-                trailRenderer.emitting = true;
-            }
+            Fly(); // Activate the trail when boosting starts
         }
-        else if (energyCollected <= 0 && !boosting)
-        {
-            if (audioManager != null && thrustClip != null)
-            {
-                audioManager.PlayLoopingSound(thrustClip, 0.5f);
-            }
-            boosting = true;
 
-            if (trailRenderer != null)
-            {
-                trailRenderer.emitting = true;
-            }
-        }
+        burnRateMultiplier = Mathf.Max(0.2f, triggerValue); // Ensure a minimum multiplier for adequate thrust
     }
 
     public void TurnOffBoost()
@@ -176,24 +180,30 @@ public class Vehicle : MonoBehaviour
             audioManager.StopSound();
         }
         boosting = false;
-        energyTimer = 0f;
+        burnRateMultiplier = 0f; // Reset the multiplier when not boosting
 
-        if (trailRenderer != null)
+        // Disable the trail's emission when boosting stops
+        if (activeTrail != null)
         {
-            trailRenderer.emitting = false;
+            activeTrail.GetComponent<TrailRenderer>().emitting = false;
         }
     }
 
-    private void ConsumeEnergy(int amount)
+    private void ConsumeEnergy(float amount)
     {
         energyCollected -= amount;
         if (energyCollected < 0) energyCollected = 0;
         UpdateFuelUI();
+
+        if (energyCollected <= 0)
+        {
+            TurnOffBoost(); // Stop boosting when out of fuel
+        }
     }
 
-    public void CollectEnergy()
+    public void CollectEnergy(int amount)
     {
-        energyCollected++;
+        energyCollected+=amount;
         if (energyCollected > capacity)
         {
             energyCollected = capacity;
@@ -226,30 +236,9 @@ public class Vehicle : MonoBehaviour
 
     private void UpdateFuelUI()
     {
-        if (fuelUI != null)
+        if (playerStatsUI != null)
         {
-            fuelUI.UpdateFuelUI((int)energyCollected);
-        }
-    }
-
-    public bool IsBoosting()
-    {
-        return boosting;
-    }
-
-    public void Move(Vector2 direction)
-    {
-        driftDirection = direction;
-
-        if (rb != null && direction != Vector2.zero)
-        {
-            rb.angularVelocity = 0f;
-
-            float angleRad = Mathf.Atan2(direction.y, direction.x);
-            float angleDeg = angleRad * Mathf.Rad2Deg;
-            angleDeg -= 90f;
-
-            rb.rotation = angleDeg;
+            playerStatsUI.UpdateFuel((int)energyCollected); // Use playerStatsUI to update fuel
         }
     }
 
@@ -289,7 +278,6 @@ public class Vehicle : MonoBehaviour
                     break;
             }
         }
-
     }
 
     public void Explode()

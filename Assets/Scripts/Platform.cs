@@ -4,247 +4,234 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
+    private Vector3 originalLocalPosition;
+    private Quaternion originalLocalRotation;
+    private Vector3 originalScale;
+    private Color originalColor;
 
-    public GameObject platform;
-    public bool indestructable = true;
+    public GameObject platform;  // This should be the object with the SpriteRenderer
+    public bool indestructable = true;  // The indestructable property is reintroduced
     public RigidbodyConstraints2D constraints;
 
-    public float scaleSpeed = .1f;
+    public float scaleSpeed = 0.1f;
     [Range(0.1f, 5f)]
-    public float timeToAppear = .1f;
-    private float gravity = 0;
-    private bool finished = false;
-    private float scaleDirection = 1;
-    private bool scaling = false;
-    private Vector3 originalScale;
+    public float timeToAppear = 0.1f;
+
     [Range(0.1f, 1f)]
-    public float fadeInDuration = .5f;
+    public float fadeInDuration = 0.5f;
 
     private SpriteRenderer spriteRenderer;
     private float startTime;
-    private Color initialColor;
     private bool fadingIn = true;
     private bool hasSetColors = false;
+    private float breathingRate;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //this makes a shortcut to the game object's sprite renderer
+        // Hard-coding original scale to (1,1,1) if the original scale is zero
+        originalLocalPosition = platform.transform.localPosition;
+        originalLocalRotation = platform.transform.localRotation;
+        originalScale = platform.transform.localScale == Vector3.zero ? new Vector3(1f, 1f, 1f) : platform.transform.localScale;
+
         spriteRenderer = platform.GetComponent<SpriteRenderer>();
         if (!spriteRenderer)
         {
-            if (gameObject.GetComponentInChildren<SpriteRenderer>())
-            {
-                spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-            }
+            spriteRenderer = platform.GetComponentInChildren<SpriteRenderer>();
         }
-            originalScale = platform.transform.localScale;
+
+        originalColor = spriteRenderer.color;
+
+
+        // Set the initial scale of the platform to zero (the parent object)
+        platform.transform.localScale = Vector3.zero;
+
         TurnOffCollision();
-        timeToAppear = Random.Range(.1f, .4f) + Time.time;// Time.time + timeToAppear;        
+        timeToAppear = Random.Range(0.1f, 0.4f) + Time.time;
+        breathingRate = Random.Range(0.125f, 0.25f); // Breathing rate adjusted for slower scaling
     }
+
+    private IEnumerator ScaleUpCoroutine()
+    {
+        float time = 0;
+
+        // Scale up from 0 to the original scale over time
+        while (time < scaleSpeed)
+        {
+            time += Time.deltaTime;
+            platform.transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, time / scaleSpeed);
+            yield return null;
+        }
+
+        // Ensure the platform reaches its original scale
+        platform.transform.localScale = originalScale;
+
+
+        // Start the breathing effect
+        StartCoroutine(BreathingEffect());
+
+        // Turn collision back on after scaling up
+        TurnOnCollision();
+    }
+
     public void SetColors(RemixManager remix)
     {
         if (GetComponent<Remix>())
         {
             if (platform.GetComponent<Hazard>())
             {
-                initialColor = remix.hazardColor;
+                originalColor = remix.hazardColor;
             }
             else
             {
-                initialColor = remix.primaryColor;
+                originalColor = remix.primaryColor;
             }
         }
         else
         {
-            initialColor = spriteRenderer.color;
+            originalColor = spriteRenderer.color;
         }
 
         // Set the initial color to transparent
-        Color transparentColor = initialColor;
+        Color transparentColor = originalColor;
         transparentColor.a = 0f;
-        if (spriteRenderer)
-        {
-            spriteRenderer.color = transparentColor;
-        }
-        else if (gameObject.GetComponentInChildren<SpriteRenderer>())
-        {
-            spriteRenderer.color = transparentColor;
+//        spriteRenderer.color = transparentColor;
 
-        }
-        //set for fading
+        // Set for fading
         startTime = Time.time;
         hasSetColors = true;
-
     }
-
 
     void Update()
     {
-        if(Time.time >= timeToAppear)
+        if (Time.time >= timeToAppear)
         {
-//            ParticleSystem.MainModule ps = GetComponentInChildren<ParticleSystem>().main;
-//            ps.loop = false;
-//            Destroy(GetComponentInChildren<ParticleSystem>().gameObject,1);
             ScalePlatformUp();
         }
 
-        if(hasSetColors)
+        if (hasSetColors)
         {
-            // Calculate the current time since the start of fading
-            float elapsedTime = Time.time - startTime;
-
-            // Calculate the interpolation factor
-            float t = Mathf.Clamp01(elapsedTime / fadeInDuration);
-
-            // Interpolate between transparent and the initial color
-            Color currentColor = Color.Lerp(Color.clear, initialColor, t);
-
-            // Apply the current color to the SpriteRenderer
-            spriteRenderer.color = currentColor;
-
-            if (Time.time >= timeToAppear)
-            {
-                if (fadingIn)
-                {
-                    if (currentColor.a >= initialColor.a)
-                    {
-                        currentColor.a = initialColor.a;
-                        fadingIn = false;
-                    }
-                }
-
-            }
-
+            FadeInColor();
         }
+    }
 
-        if (scaling)
+    private void FadeInColor()
+    {
+        // Calculate the current time since the start of fading
+        float elapsedTime = Time.time - startTime;
+
+        // Calculate the interpolation factor
+        float t = Mathf.Clamp01(elapsedTime / fadeInDuration);
+
+        // Interpolate between transparent and the initial color
+        Color currentColor = Color.Lerp(new Color(originalColor.r, originalColor.g, originalColor.b, 0f), originalColor, t);
+
+        // Apply the current color to the SpriteRenderer
+        spriteRenderer.color = currentColor;
+
+        if (currentColor.a >= originalColor.a)
         {
-            Scale();
+            spriteRenderer.color = originalColor;
+            fadingIn = false;
         }
     }
 
     void ScalePlatformUp()
     {
         platform.SetActive(true);
-        platform.transform.localScale = originalScale;
-        scaling = true;
+        StartCoroutine(ScaleUpCoroutine());
     }
 
-    public void Scale()
+    private IEnumerator BreathingEffect()
     {
-        Vector3 newScale = new Vector3();
-
-        newScale.x = platform.transform.localScale.x + (scaleSpeed * scaleDirection);
-        newScale.y = platform.transform.localScale.y + (scaleSpeed * scaleDirection);
-        newScale.z = platform.transform.localScale.z + (scaleSpeed * scaleDirection);
-        platform.transform.localScale = newScale;
-
-        if (newScale.x <= 0)
+        while (true)
         {
-            scaleDirection *= -1;
-        }
-        if (newScale.x >= originalScale.x)
-        { 
-            scaleDirection *= -1;
-            scaling = false;
-            platform.transform.localScale = originalScale;
-            
-        }
+            // Calculate the scale factor using a sine wave
+            float scaleFactor = 0.75f + Mathf.PingPong(Time.time * breathingRate, 0.25f); // Scale from 0.75 to 1
+            platform.transform.localScale = originalScale * scaleFactor;
 
+            // Adjust alpha based on scale factor
+            float alphaFactor = Mathf.Lerp(0.75f, 1f, scaleFactor);
+            Color newColor = spriteRenderer.color;
+            newColor.a = originalColor.a * alphaFactor;
+            spriteRenderer.color = newColor;
+
+            yield return null;
+        }
     }
 
-    public void ScaleUp()
+    public void ResetState()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, originalScale, .1f);
+        // Reset the platform's transform properties to their original local values
+        platform.transform.localPosition = originalLocalPosition;
+        platform.transform.localRotation = originalLocalRotation;
+
+        // Ensure the original scale is correctly restored
+        if (originalScale == Vector3.zero)
+        {
+            Debug.LogWarning("Original scale is zero. Ensuring scale is set correctly.");
+            originalScale = new Vector3(1f, 1f, 1f); // Hard-coded scale if original scale is not set
+        }
+
+
+        // Reset the scale of the platform (not the SpriteRenderer itself)
+        platform.transform.localScale = Vector3.zero;
+
+        // Reset the color and alpha if there's a SpriteRenderer
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);  // Ensure alpha starts as fully transparent
+        }
+
+        TurnOffCollision();  // Disable colliders initially
+        platform.SetActive(true);
     }
 
-    public bool CheckScale()
+    public void MoveOffScreen(Vector3 offScreenPosition, float duration)
     {
-        return transform.localScale == originalScale;
+        StartCoroutine(MoveOffScreenCoroutine(offScreenPosition, duration));
+    }
+
+    private IEnumerator MoveOffScreenCoroutine(Vector3 offScreenPosition, float duration)
+    {
+        Vector3 startPosition = transform.position;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, offScreenPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = offScreenPosition;
+        TurnOffCollision();
+        gameObject.SetActive(false);  // Deactivate the platform after moving it off-screen
     }
 
     public void TurnOffCollision()
     {
-        if (GetComponent<BoxCollider2D>())
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D collider in colliders)
         {
-            GetComponent<BoxCollider2D>().enabled = false;
-
+            collider.enabled = false;
         }
-        if (GetComponent<CircleCollider2D>())
-        {
-            GetComponent<CircleCollider2D>().enabled = false;
-        }
-
-        if (GetComponent<PolygonCollider2D>())
-        {
-            GetComponent<PolygonCollider2D>().enabled = false;
-        }
-
     }
 
     public void TurnOnCollision()
     {
-        if (GetComponent<BoxCollider2D>())
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D collider in colliders)
         {
-            GetComponent<BoxCollider2D>().enabled = true;
-
+            collider.enabled = true;
         }
-
-        if(GetComponent<CircleCollider2D>())
-        {
-            GetComponent<CircleCollider2D>().enabled = true;
-        }
-
-        if (GetComponent<PolygonCollider2D>())
-        {
-            GetComponent<PolygonCollider2D>().enabled = true;
-        }
-
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    public void Finished(bool enableCollision)
     {
-
-        if(!indestructable)
-        {
-            if(GetComponentInChildren<Explode>()) {
-                GetComponentInChildren<Explode>().UntilNextSet();
-            }
-
-            if (GetComponent<Explode>())
-            {
-                GetComponent<Explode>().UntilNextSet();
-            } 
-        }
-
-    }
-  
-    public void SetConstraints()
-    {
-        GetComponent<Rigidbody2D>().constraints = constraints;
-        GetComponent<Rigidbody2D>().gravityScale = gravity;
-    }
-
-
-    //ANIMATION TRIGGERS
-    public void Disappear() {
-            Destroy(this.gameObject);
-    }
-
-    public bool isFinished()
-    {
-        return finished;
-    }
-    public void Finished(bool collision)
-    {
-        //CALLED IN INITIAL ANIMATION
-        finished = true;
-        if(collision)
+        // Optionally enable collision if specified
+        if (enableCollision)
         {
             TurnOnCollision();
         }
-
     }
-
 }

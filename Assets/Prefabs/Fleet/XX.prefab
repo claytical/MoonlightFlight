@@ -135,15 +135,16 @@ MonoBehaviour:
   terminalVelocity: 200
   boostMultiplier: 10
   minimalThrustForce: 3
+  baseBurnRate: 1
+  burnRateMultiplier: 1.5
   trail: {fileID: 5973205746167519599, guid: 953239f7f217f244caa872490dea92e6, type: 3}
   collisionClip: {fileID: 8300000, guid: 8b8f15883716b5e4083a06bb420f9fad, type: 3}
   destroyClip: {fileID: 8300000, guid: cdec88e5cf531a34fa7ffb2147d99e85, type: 3}
   collectedClip: {fileID: 8300000, guid: 8e50562eee3735848878869fea36b8c3, type: 3}
   thrustClip: {fileID: 8300000, guid: babee597526a4d747940af2b291e0c61, type: 3}
-  capacity: 10
+  capacity: 50
   energyCollected: 5
-  energyConsumptionRate: 1
-  fuelUI: {fileID: 0}
+  playerStatsUI: {fileID: 0}
   playerStats: {fileID: 0}
 --- !u!114 &964252887607637339
 MonoBehaviour:

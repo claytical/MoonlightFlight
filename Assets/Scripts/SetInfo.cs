@@ -3,241 +3,157 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct ObjectRespawn
+public struct BreakableInfo
 {
-    public GameObject respawnedObject;
-    public float timeUntilActive;
+    public GameObject breakable;  // The breakable prefab
+    public int weight;  // The weight associated with this breakable
 }
+
 public class SetInfo : MonoBehaviour
 {
-
     public Transform AutoSpawnLocation;
     public bool autoPopulateSpawnLocations = true;
     public bool spawnEverything = false;
     public Transform[] spawnLocations;
     public GameObject lootLocation;
     public Transform[] lootLocations;
-    public GameObject platforms;
-    public Loot[] availableLoot;
-    public GameObject[] breakables;
-    public List<ObjectRespawn> objectsToRespawn;
-    private int numberOfObjectsToPlace;
-    public int sets = 5;
-    public ProceduralInfo currentSet;
+    public GameObject platforms;  // Single GameObject that holds all platform-related objects
+    public BreakableInfo[] breakableInfos;  // Array of BreakableInfo to handle weighted breakable spawning
+    public int timesToRepeat = 5;  // Number of times to repeat spawning breakables
+    public int weight = 1;  // Weight of this set for weighted random selection
+    public ProceduralLevel proceduralLevel;  // Reference to ProceduralLevel
     public float movingSpeed = .03f;
-    private Vehicle vehicle;
-    private Transform[] platformsToMove;
-    private bool movingOffScreenInProgress = false;
-    private bool movingOnScreenInProgress = false;
-    private ProceduralLevel level;
+    private int spawnedBreakablesCount = 0;
+    private int maxBreakablesToSpawn;
+    private bool initialized = false;  // Flag to check if initialization is complete
 
-    //TODO: Set Weight
+    private bool hasBeenCleared = false;  // Used to track if the set has been cleared
 
-    public int weight = 10;
-
-
-    //remaining spaces to populate
-
-    // Start is called before the first frame update
-
+    void Awake()
+    {
+        // Early initialization if necessary
+    }
 
     void Start()
     {
-        if(lootLocation)
+        if (lootLocation)
         {
             lootLocations = lootLocation.GetComponentsInChildren<Transform>();
         }
 
-        objectsToRespawn = new List<ObjectRespawn>();
+        platforms.SetActive(true);  // Make sure platforms are active initially
+        Platform[] platformArray = platforms.GetComponentsInChildren<Platform>();
+        proceduralLevel = FindFirstObjectByType<ProceduralLevel>();
 
-        platforms.SetActive(true);
-        //SET PLATFORM COLORS
-        Platform[] platformsToAppear = platforms.GetComponentsInChildren<Platform>();
-        level = FindFirstObjectByType<ProceduralLevel>();
-
-        for (int i = 0; i < platformsToAppear.Length; i++)
+        for (int i = 0; i < platformArray.Length; i++)
         {
-            platformsToAppear[i].SetColors(level.remix);
+            platformArray[i].SetColors(proceduralLevel.remix);
         }
 
+        // Calculate the maximum number of breakables to spawn
+        maxBreakablesToSpawn = spawnLocations.Length * timesToRepeat;
 
-        currentSet = gameObject.GetComponent<ProceduralInfo>();
+
+        initialized = true;  // Mark initialization as complete
+    }
+    public bool IsInitialized()
+    {
+        return initialized;
     }
 
-
-    public void SetAutoSpawnLocations()
+    public void SpawnNextBatchOfBreakables()
     {
-        spawnLocations = AutoSpawnLocation.GetComponentsInChildren<Transform>(true);
-
-    }
-    public ProceduralLevel GetLevel()
-    {
-        return level;
-    }
-
-    public void SetVehicle(Vehicle v)
-    {
-        vehicle = v;
-    }
-
-    public void PlatformTransparency(bool transparent)
-    {
-        Debug.Log("Setting Transparency to " + transparent);
-        Rigidbody2D [] bumpables = platforms.GetComponentsInChildren<Rigidbody2D>();
-
-            for(int i = 0; i < bumpables.Length; i++)
-            {
-                if(bumpables[i].GetComponent<Animator>()) {
-                    if (transparent)
-                    {
-                        bumpables[i].gameObject.GetComponent<Animator>().SetTrigger("transparent");
-                    }
-                    else
-                    {
-                        bumpables[i].gameObject.GetComponent<Animator>().SetTrigger("solid");
-                        if (bumpables[i].gameObject.GetComponent<Remix>())
-                        {
-                            bumpables[i].gameObject.GetComponent<Remix>().SetColors();
-                            bumpables[i].gameObject.GetComponent<Platform>().SetConstraints();
-                            Debug.Log("Setting constraints and colors");
-                        }
-                        else
-                        {
-                            Debug.Log(bumpables[i].gameObject + " does not have remix script!");
-                        }
-                }
-
-                if (bumpables[i].GetComponent<BoxCollider2D>())
-                {
-                    bumpables[i].GetComponent<BoxCollider2D>().enabled = !transparent;
-                }
-            }
-        }
-    }
-
-    public void MovePlatformsOntoScreen()
-    {
-
-    }
-
-    public void MovePlatformsOffScreen()
-    {
-
-
-        platformsToMove = platforms.GetComponentsInChildren<Transform>();
-        for (int i = 0; i < platformsToMove.Length; i++)
+        if (!initialized)
         {
-            if(platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
-            {
-                platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            }
-
-            if (platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>()) {
-                platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-            }
-
-            if (platformsToMove[i].gameObject.GetComponent<CircleCollider2D>())
-            {
-                platformsToMove[i].gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            }
-
+            Debug.LogWarning("SpawnNextBatchOfBreakables called before initialization was complete.");
+            return;
         }
-        movingOffScreenInProgress = true;
-    }
 
-    private void PlatformsFinishedMovingOnScreen()
-    {
-
-        movingOnScreenInProgress = false;
-        transform.position = Vector3.zero;
-        platformsToMove = platforms.GetComponentsInChildren<Transform>();
-        for (int i = 0; i < platformsToMove.Length; i++)
+        if (spawnedBreakablesCount >= maxBreakablesToSpawn)
         {
-            if (platformsToMove[i].gameObject.GetComponent<BoxCollider2D>())
-            {
-                platformsToMove[i].gameObject.GetComponent<BoxCollider2D>().enabled = true;
-            }
-            if (platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>())
-            {
-                platformsToMove[i].gameObject.GetComponent<PolygonCollider2D>().enabled = true;
-            }
-
+            return;
         }
 
-    }
-    private void PlatformsFinishedMovingOffScreen()
-    {
-        movingOffScreenInProgress = false;
-//shouldn't need this a nymore
-//        transform.position = Vector3.zero;
-        gameObject.SetActive(false);
-
-    }
-
-    void Update()
-    {
-        int currentNumberOfPlatformsToScale = 0;
-        Vector3 velocity = Vector3.one;
-        if (movingOffScreenInProgress)
+        int breakablesInThisBatch = Random.Range(1, 4);  // Spawn 1 to 3 breakables in each batch
+        for (int i = 0; i < breakablesInThisBatch && spawnedBreakablesCount < maxBreakablesToSpawn; i++)
         {
-
-            Platform[] platformsToScaleDown = platforms.GetComponentsInChildren<Platform>();
-//            int numberOfPlatformsToScaleDown = platformsToScaleDown.Length;
-            for (int i = 0; i < platformsToScaleDown.Length; i++)
-            {
-                if(platformsToScaleDown[i].GetComponent<Explode>())
-                {
-                    platformsToScaleDown[i].GetComponent<Explode>().UntilNextSet();
-                }
-            }
-            PlatformsFinishedMovingOffScreen();
-
+            int spawnIndex = spawnedBreakablesCount % spawnLocations.Length;
+            GameObject breakableToSpawn = GetWeightedRandomBreakable();
+            Instantiate(breakableToSpawn, spawnLocations[spawnIndex].position, Quaternion.identity, transform);
+            spawnedBreakablesCount++;
         }
 
-        if (movingOnScreenInProgress) {
-            Platform[] platformsToScaleUp = platforms.GetComponentsInChildren<Platform>();
-                int numberOfPlatformsToScaleUp = platformsToScaleUp.Length;
-
-                currentNumberOfPlatformsToScale++;
-                for (int i = 0; i < platformsToScaleUp.Length; i++) {
-//                    platformsToScaleUp[i].transform.localScale = Vector3.Lerp(platformsToScaleUp[i].transform.localScale, platformsToScaleUp[i].originalScale, .1f);
-                    platformsToScaleUp[i].ScaleUp();
-                    if(platformsToScaleUp[i].CheckScale())
-                    {
-                    //finished scaling up
-    //                    platformsToScaleUp[i].scaledUp = true;
-    //                    platformsToScaleUp[i].scaledDown = false;
-                        currentNumberOfPlatformsToScale++;
-                    }
- /*               if (platformsToScaleUp[i].transform.localScale == platformsToScaleUp[i].originalScale)
-                    {
-                    }
- */
-                }
- 
-                if (currentNumberOfPlatformsToScale >= numberOfPlatformsToScaleUp)
-                {
-                    Debug.Log("Platforms Finished Moving On Screen");
-                    PlatformsFinishedMovingOnScreen();
-                }
-        }
-
-        for (int i = 0; i < objectsToRespawn.Count; i++)
-        {
-            if(objectsToRespawn[i].timeUntilActive <= Time.time)
-            {
-                objectsToRespawn[i].respawnedObject.SetActive(true);
-                objectsToRespawn.RemoveAt(i);
-                break;
-            }
-        }
-
+        Debug.Log($"Spawned {spawnedBreakablesCount}/{maxBreakablesToSpawn} breakables.");
     }
 
-
-    public void BrokeObject()
+    private GameObject GetWeightedRandomBreakable()
     {
-        Debug.Log("BROKE OBJECT!");
+        int totalWeight = 0;
+
+        // Calculate the total weight
+        foreach (var breakableInfo in breakableInfos)
+        {
+            totalWeight += breakableInfo.weight;
+        }
+
+        int randomWeight = Random.Range(0, totalWeight);
+
+        // Select a breakable based on the weighted random value
+        foreach (var breakableInfo in breakableInfos)
+        {
+            if (randomWeight < breakableInfo.weight)
+            {
+                return breakableInfo.breakable;
+            }
+            randomWeight -= breakableInfo.weight;
+        }
+
+        // Fallback in case of any error, though this should never happen
+        return breakableInfos[0].breakable;
     }
 
+    public bool AllBreakablesSpawned()
+    {
+        return spawnedBreakablesCount >= maxBreakablesToSpawn;
+    }
+
+    public bool HasBeenCleared()
+    {
+        return hasBeenCleared;
+    }
+
+    public void SetCleared(bool cleared)
+    {
+        hasBeenCleared = cleared;
+    }
+
+    public void MoveOffScreen(Vector3 offScreenPosition, float duration)
+    {
+        Platform[] platformArray = platforms.GetComponentsInChildren<Platform>();
+        foreach (Platform platform in platformArray)
+        {
+            platform.MoveOffScreen(offScreenPosition, duration);
+        }
+    }
+
+    public void ResetPlatforms()
+    {
+        Platform[] platformArray = platforms.GetComponentsInChildren<Platform>();
+        foreach (Platform platform in platformArray)
+        {
+            platform.ResetState();
+        }
+    }
+
+    public void ExplodePlatforms()
+    {
+        Platform[] platformArray = platforms.GetComponentsInChildren<Platform>();
+        foreach (Platform platform in platformArray)
+        {
+            if (platform.GetComponent<Explode>())
+            {
+                platform.GetComponent<Explode>().Temporary(2);
+            }
+        }
+    }
 }

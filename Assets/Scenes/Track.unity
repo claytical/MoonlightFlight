@@ -922,7 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b204d1cb556c4f4a8e73ba3350b592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoSpawnLocation: {fileID: 0}
+  AutoSpawnLocation: {fileID: 1135695174}
   autoPopulateSpawnLocations: 1
   spawnEverything: 0
   spawnLocations:
@@ -936,14 +936,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 381751473}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 12
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &84582741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,19 +2495,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoSpawnLocation: {fileID: 709372607}
   autoPopulateSpawnLocations: 1
-  spawnEverything: 1
+  spawnEverything: 0
   spawnLocations: []
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 1695528758}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 4
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &251227382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3280,8 +3286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b204d1cb556c4f4a8e73ba3350b592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoSpawnLocation: {fileID: 0}
-  autoPopulateSpawnLocations: 0
+  AutoSpawnLocation: {fileID: 2021420614}
+  autoPopulateSpawnLocations: 1
   spawnEverything: 0
   spawnLocations:
   - {fileID: 1842158360}
@@ -3295,14 +3301,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 6398479}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 12
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &293625922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3763,9 +3772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remix: {fileID: 312963206}
-  availableLoot:
-  - item: {fileID: 1316711709889716, guid: 620bb8301de35c94cb8782dfc919b00e, type: 3}
-    weight: 50
+  availableLoot: []
   LevelFailPanel: {fileID: 0}
   patterns: {fileID: 1641189711}
   failureMessage: {fileID: 0}
@@ -8163,14 +8170,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 168320816}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 4
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &814404006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9520,8 +9530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b204d1cb556c4f4a8e73ba3350b592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoSpawnLocation: {fileID: 0}
-  autoPopulateSpawnLocations: 0
+  AutoSpawnLocation: {fileID: 1510988190}
+  autoPopulateSpawnLocations: 1
   spawnEverything: 0
   spawnLocations:
   - {fileID: 1640299766}
@@ -9535,14 +9545,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 1202882029}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 6
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &955722742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9967,7 +9980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1003758686
 Transform:
   m_ObjectHideFlags: 0
@@ -10012,14 +10025,14 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 1164890363}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 4
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 10
+  timesToRepeat: 2
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &1003758688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10794,8 +10807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b204d1cb556c4f4a8e73ba3350b592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoSpawnLocation: {fileID: 0}
-  autoPopulateSpawnLocations: 0
+  AutoSpawnLocation: {fileID: 68635465}
+  autoPopulateSpawnLocations: 1
   spawnEverything: 0
   spawnLocations:
   - {fileID: 1783044610}
@@ -10809,14 +10822,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 239751360}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 2
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &1089982922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11325,14 +11341,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 591147958}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 2
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &1123990644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17107,8 +17126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b204d1cb556c4f4a8e73ba3350b592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoSpawnLocation: {fileID: 0}
-  autoPopulateSpawnLocations: 0
+  AutoSpawnLocation: {fileID: 633046662}
+  autoPopulateSpawnLocations: 1
   spawnEverything: 0
   spawnLocations:
   - {fileID: 2104854722}
@@ -17122,14 +17141,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 2071444924}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 4
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &1715069572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18511,8 +18533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b204d1cb556c4f4a8e73ba3350b592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoSpawnLocation: {fileID: 0}
-  autoPopulateSpawnLocations: 0
+  AutoSpawnLocation: {fileID: 1391968990}
+  autoPopulateSpawnLocations: 1
   spawnEverything: 0
   spawnLocations:
   - {fileID: 2013832487}
@@ -18526,14 +18548,17 @@ MonoBehaviour:
   lootLocation: {fileID: 0}
   lootLocations: []
   platforms: {fileID: 1130708465}
-  availableLoot: []
-  breakables:
-  - {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5, type: 3}
-  objectsToRespawn: []
-  sets: 4
-  currentSet: {fileID: 0}
-  movingSpeed: 0.03
+  breakableInfos:
+  - breakable: {fileID: 1316711709889716, guid: db4a1d1cf00691e4babb5fd4c76245c5,
+      type: 3}
+    weight: 0
+  - breakable: {fileID: 1316711709889716, guid: c828453352ebb154b89a3d30668886a5,
+      type: 3}
+    weight: 0
+  timesToRepeat: 1
   weight: 10
+  proceduralLevel: {fileID: 0}
+  movingSpeed: 0.03
 --- !u!114 &1860788167
 MonoBehaviour:
   m_ObjectHideFlags: 0

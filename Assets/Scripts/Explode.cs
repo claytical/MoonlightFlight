@@ -9,72 +9,82 @@ public class Explode : MonoBehaviour
     public float lifetime;
     private float explosionTimer;
     private Vector3 originalPosition;
+    private Quaternion originalRotation;
+    private Vector3 originalScale;
 
     void Start()
     {
         explosionTimer = Time.time + lifetime;
         originalPosition = transform.position;
+        originalRotation = transform.rotation;
+        originalScale = transform.localScale;
     }
 
     void Update()
     {
-        if(lifetime > 0)
+        if (lifetime > 0)
         {
-            if(Time.time > explosionTimer)
+            if (Time.time > explosionTimer)
             {
                 Permanent();
                 lifetime = 0;
             }
-        }    
+        }
     }
-    
+
     public void BackToPosition()
     {
         transform.position = originalPosition;
+        transform.rotation = originalRotation;
     }
 
     public void Reactivate()
     {
+        // Reset any other states before reactivating
+        if (GetComponent<Platform>())
+        {
+            GetComponent<Platform>().ResetState();
+        }
+
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+        transform.localScale = originalScale;
         gameObject.SetActive(true);
     }
 
     public void UntilNextSet()
     {
-//        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         Instantiate(explosion, transform.position, Quaternion.identity);
-        if(GetComponent<Platform>())
-        {
-            //TODO: save its inactive state for the next set
-        }
         gameObject.SetActive(false);
     }
 
     public void Temporary(int spawnDelay)
     {
         Debug.Log("Temporary Spawn Called!");
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         Instantiate(explosion, transform.position, Quaternion.identity);
-        //transform.position = new Vector3(0, 0, 1000);
+
+        // Hide the object
         gameObject.SetActive(false);
+
+        // Schedule reactivation
         Invoke("Reactivate", spawnDelay);
     }
 
     public void Permanent()
     {
-
         if (GetComponent<Platform>())
         {
-            Debug.Log("Permanent Scale");
-//            GetComponent<Platform>().Scale();
+            Debug.Log("Permanent explosion triggered");
         }
 
         if (GetComponent<Rigidbody2D>())
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
         Instantiate(explosion, transform.position, Quaternion.identity);
-        if(GetComponentInParent<Remix>())
+
+        if (GetComponentInParent<Remix>())
         {
             Destroy(transform.parent.gameObject);
         }
@@ -83,10 +93,4 @@ public class Explode : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    public void Go()
-    {
-    }
-
-    
 }
