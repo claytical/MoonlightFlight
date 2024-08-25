@@ -25,6 +25,9 @@ public class Platform : MonoBehaviour
     private bool fadingIn = true;
     private bool hasSetColors = false;
     private float breathingRate;
+    private ProceduralLevel level;
+
+    private Collider2D[] colliders;
 
     void Start()
     {
@@ -41,13 +44,70 @@ public class Platform : MonoBehaviour
 
         originalColor = spriteRenderer.color;
 
-
         // Set the initial scale of the platform to zero (the parent object)
         platform.transform.localScale = Vector3.zero;
+        InitializeColliders();
+        if (!IsBeingDestroyed())
+        {
+            TurnOffCollision();
+        }
 
-        TurnOffCollision();
         timeToAppear = Random.Range(0.1f, 0.4f) + Time.time;
         breathingRate = Random.Range(0.125f, 0.25f); // Breathing rate adjusted for slower scaling
+    }
+    private void InitializeColliders()
+    {
+        // Fetch all Collider2D components in this object and its children
+        colliders = GetComponentsInChildren<Collider2D>(true);
+
+        if (colliders == null || colliders.Length == 0)
+        {
+            Debug.LogWarning($"No colliders found on {gameObject.name} or its children.");
+        }
+        else
+        {
+            Debug.Log($"{colliders.Length} colliders found on {gameObject.name}.");
+        }
+    }
+
+    public void AttachLevel(ProceduralLevel _level)
+    {
+        level = _level;
+    }
+
+    void Update()
+    {
+        if (Time.time >= timeToAppear)
+        {
+            ScalePlatformUp();
+        }
+
+        // Handle the breathing effect less frequently (e.g., every 5 frames)
+        if (Time.frameCount % 5 == 0)
+        {
+            ApplyBreathingEffect();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (hasSetColors)
+        {
+            FadeInColor();
+        }
+    }
+
+    private void ApplyBreathingEffect()
+    {
+        // Calculate the scale factor using a sine wave
+        float scaleFactor = 0.75f + Mathf.PingPong(Time.time * breathingRate, 0.25f); // Scale from 0.75 to 1
+        platform.transform.localScale = originalScale * scaleFactor;
+
+        // Adjust alpha based on scale factor
+        float alphaFactor = Mathf.Lerp(0.75f, 1f, scaleFactor);
+        Color newColor = spriteRenderer.color;
+        newColor.a = originalColor.a * alphaFactor;
+        spriteRenderer.color = newColor;
     }
 
     private IEnumerator ScaleUpCoroutine()
@@ -65,53 +125,16 @@ public class Platform : MonoBehaviour
         // Ensure the platform reaches its original scale
         platform.transform.localScale = originalScale;
 
-
         // Start the breathing effect
-        StartCoroutine(BreathingEffect());
-
-        // Turn collision back on after scaling up
+        // ApplyBreathingEffect() is now called periodically in Update()
         TurnOnCollision();
     }
 
     public void SetColors(RemixManager remix)
     {
-        if (GetComponent<Remix>())
-        {
-            if (platform.GetComponent<Hazard>())
-            {
-                originalColor = remix.hazardColor;
-            }
-            else
-            {
-                originalColor = remix.primaryColor;
-            }
-        }
-        else
-        {
-            originalColor = spriteRenderer.color;
-        }
-
-        // Set the initial color to transparent
-        Color transparentColor = originalColor;
-        transparentColor.a = 0f;
-//        spriteRenderer.color = transparentColor;
-
         // Set for fading
         startTime = Time.time;
         hasSetColors = true;
-    }
-
-    void Update()
-    {
-        if (Time.time >= timeToAppear)
-        {
-            ScalePlatformUp();
-        }
-
-        if (hasSetColors)
-        {
-            FadeInColor();
-        }
     }
 
     private void FadeInColor()
@@ -132,6 +155,7 @@ public class Platform : MonoBehaviour
         {
             spriteRenderer.color = originalColor;
             fadingIn = false;
+            hasSetColors = false;  // Stop further updates once fading is complete
         }
     }
 
@@ -139,24 +163,6 @@ public class Platform : MonoBehaviour
     {
         platform.SetActive(true);
         StartCoroutine(ScaleUpCoroutine());
-    }
-
-    private IEnumerator BreathingEffect()
-    {
-        while (true)
-        {
-            // Calculate the scale factor using a sine wave
-            float scaleFactor = 0.75f + Mathf.PingPong(Time.time * breathingRate, 0.25f); // Scale from 0.75 to 1
-            platform.transform.localScale = originalScale * scaleFactor;
-
-            // Adjust alpha based on scale factor
-            float alphaFactor = Mathf.Lerp(0.75f, 1f, scaleFactor);
-            Color newColor = spriteRenderer.color;
-            newColor.a = originalColor.a * alphaFactor;
-            spriteRenderer.color = newColor;
-
-            yield return null;
-        }
     }
 
     public void ResetState()
@@ -168,10 +174,8 @@ public class Platform : MonoBehaviour
         // Ensure the original scale is correctly restored
         if (originalScale == Vector3.zero)
         {
-            Debug.LogWarning("Original scale is zero. Ensuring scale is set correctly.");
             originalScale = new Vector3(1f, 1f, 1f); // Hard-coded scale if original scale is not set
         }
-
 
         // Reset the scale of the platform (not the SpriteRenderer itself)
         platform.transform.localScale = Vector3.zero;
@@ -182,8 +186,9 @@ public class Platform : MonoBehaviour
             spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);  // Ensure alpha starts as fully transparent
         }
 
-        TurnOffCollision();  // Disable colliders initially
         platform.SetActive(true);
+//        TurnOffCollision();  // Disable colliders initially
+
     }
 
     public void MoveOffScreen(Vector3 offScreenPosition, float duration)
@@ -206,26 +211,73 @@ public class Platform : MonoBehaviour
         transform.position = offScreenPosition;
         TurnOffCollision();
         gameObject.SetActive(false);  // Deactivate the platform after moving it off-screen
+
+        if(level != null)
+        {
+//            level.OnPlatformDeactivated()
+        }
+
     }
 
     public void TurnOffCollision()
     {
-        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
-        foreach (Collider2D collider in colliders)
+        if (IsBeingDestroyed()) return;
+
+        if (colliders != null)
         {
-            collider.enabled = false;
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider != null)
+                {
+                    collider.enabled = false;
+                }
+                else
+                {
+                    Debug.LogWarning($"Collider is null on {gameObject.name}.");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError($"Colliders array is null on {gameObject.name}.");
         }
     }
+
 
     public void TurnOnCollision()
     {
-        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
-        foreach (Collider2D collider in colliders)
+        if (IsBeingDestroyed()) return;
+
+        if (colliders != null)
         {
-            collider.enabled = true;
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider != null)
+                {
+                    collider.enabled = true;
+                }
+                else
+                {
+                    Debug.LogWarning($"Collider is null on {gameObject.name}.");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError($"Colliders array is null on {gameObject.name}.");
         }
     }
 
+    private bool IsBeingDestroyed()
+    {
+        return this == null || gameObject == null || gameObject.Equals(null);
+    }
+
+    void OnDestroy()
+    {
+        // Clean up any references or stop any running coroutines if necessary
+        StopAllCoroutines();
+    }
     public void Finished(bool enableCollision)
     {
         // Optionally enable collision if specified

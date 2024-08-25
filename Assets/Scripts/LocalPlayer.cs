@@ -13,13 +13,18 @@ public class LocalPlayer : MonoBehaviour
     public AudioClip confirmFx;
 
     private Vehicle plane;
+    public int astralPlaneIndex = 0;
     private PlayerSelect selection;
     private PlayerStatsTracking playerStats; // Responsible for tracking metrics
     private PlayerStats ui; // Responsible for managing the player's UI
     private Color color;
     private bool isReady = false;
     public bool IsReady => isReady; // Public read-only property
-
+    public float selfDestructDelay = 1f;  // Delay before self-destruct
+    private bool isSelfDestructing = false;
+    private bool leftShoulderPulled;
+    private bool rightShoulderPulled;
+    private bool eastButtonPressed;
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -27,7 +32,61 @@ public class LocalPlayer : MonoBehaviour
         CreatePlayerSelect();
     }
 
-    public void CreatePlayerSelect()
+    private void Update()
+    {
+        /*
+        if (!isSelfDestructing)
+        {
+            CheckForSelfDestructInput();
+        }
+        */
+    }
+    void CheckForSelfDestructInput()
+    {
+        Debug.Log("Checking for Self Destruct");
+        // Access the current gamepad
+        Gamepad gamepad = Gamepad.current;
+        if (gamepad == null)
+        {
+            Debug.Log("No Gamepad");
+
+            return;  // No gamepad connected
+        }
+
+        // Check if both triggers are pulled and the east button is pressed
+        bool leftTriggerPulled = gamepad.leftTrigger.isPressed;
+        bool rightTriggerPulled = gamepad.rightTrigger.isPressed;
+        bool eastButtonPressed = gamepad.buttonEast.wasPressedThisFrame;
+        Debug.Log("LEFT: " + leftTriggerPulled + " RIGHT: " + rightTriggerPulled + " EAST: " + eastButtonPressed);
+        if (leftTriggerPulled && rightTriggerPulled && eastButtonPressed)
+        {
+            StartSelfDestructSequence();
+        }
+    }
+
+    void StartSelfDestructSequence()
+    {
+        Debug.Log("Self-destruct sequence initiated!");
+
+         isSelfDestructing = true;
+        StartCoroutine(SelfDestruct());
+    }
+
+    private IEnumerator SelfDestruct()
+    {
+        // Optionally, add a countdown or warning effect here
+        yield return new WaitForSeconds(selfDestructDelay);
+        
+                // Destroy the vehicle or trigger the explosion
+                if (plane != null)
+                {
+                    TakeDamage(100);
+                    Restart();
+//                    plane.Explode();  // Assuming you have an Explode() method in your Vehicle script
+                }
+        
+    }
+public void CreatePlayerSelect()
     {
         GameObject ps = Instantiate(playerSelect);
         if (ps.GetComponent<PlayerSelect>())
@@ -55,6 +114,8 @@ public class LocalPlayer : MonoBehaviour
         ui = statsUI.GetComponent<PlayerStats>(); // Assign PlayerStats (UI)
 
         // ADD PLANE
+        Debug.Log("ADDING PLANE AT " + transform.position);
+        //TODO: APPEAR IN SAFE SPACE
         GameObject vehicle = Instantiate(playerVehicle, transform);
         playerStats = GetComponent<PlayerStatsTracking>();
         if (vehicle.GetComponent<Vehicle>())
@@ -74,6 +135,13 @@ public class LocalPlayer : MonoBehaviour
             GetComponent<PlayerInput>().SwitchCurrentActionMap("Play");
         }
     }
+
+    public void NextPlane()
+    {
+        astralPlaneIndex++;
+//        GamepadManager.Instance.CheckAllPlayersGone
+    }
+
 
     public void Restart()
     {
@@ -106,6 +174,31 @@ public class LocalPlayer : MonoBehaviour
     public void OnMove(InputValue value)
     {
         plane.Move(value.Get<Vector2>().normalized);
+    }
+
+    public void OnEast(InputValue value)
+    {
+        eastButtonPressed = value.isPressed;
+        CheckSelfDestructCondition();
+    }
+    public void OnRightShoulder(InputValue value)
+    {
+        rightShoulderPulled = value.isPressed;
+        CheckSelfDestructCondition();
+    }
+
+    public void OnLeftShoulder(InputValue value)
+    {
+        leftShoulderPulled = value.isPressed;
+        CheckSelfDestructCondition();
+    }
+
+    private void CheckSelfDestructCondition()
+    {
+        if (leftShoulderPulled && rightShoulderPulled && eastButtonPressed)
+        {
+            StartSelfDestructSequence();
+        }
     }
 
     public void OnThrust(InputValue value)

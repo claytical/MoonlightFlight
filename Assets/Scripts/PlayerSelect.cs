@@ -141,6 +141,7 @@ public class PlayerSelect : MonoBehaviour
     public void Confirm()
     {
         controlsAndStats.SetActive(false);
+        planeIcon.transform.parent.gameObject.SetActive(false);
         border.enabled = false;
     }
 }

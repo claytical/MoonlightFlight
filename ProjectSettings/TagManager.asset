@@ -7,6 +7,7 @@ TagManager:
   - Bump
   - Break
   - Collect
+  - PlayersUI
   layers:
   - Default
   - TransparentFX

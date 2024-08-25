@@ -14,7 +14,7 @@ public class SetInfo : MonoBehaviour
     public Transform AutoSpawnLocation;
     public bool autoPopulateSpawnLocations = true;
     public bool spawnEverything = false;
-    public Transform[] spawnLocations;
+    private Transform[] spawnLocations;
     public GameObject lootLocation;
     public Transform[] lootLocations;
     public GameObject platforms;  // Single GameObject that holds all platform-related objects
@@ -36,6 +36,28 @@ public class SetInfo : MonoBehaviour
 
     void Start()
     {
+        Transform[] spawnFilter = AutoSpawnLocation.GetComponentsInChildren<Transform>();
+        int zeroCount = 0;
+        foreach(Transform T in spawnFilter)
+        {
+            if(T.position != Vector3.zero)
+            {
+                zeroCount++;
+            }
+        }
+
+        spawnLocations = new Transform[zeroCount];
+        int index = 0;
+        foreach(Transform t in spawnFilter)
+        {
+            if(t.position != Vector3.zero)
+            {
+                spawnLocations[index] = t;
+                index++;
+            }
+        }
+//        spawnLocations = AutoSpawnLocation.GetComponentsInChildren<Transform>();
+
         if (lootLocation)
         {
             lootLocations = lootLocation.GetComponentsInChildren<Transform>();
@@ -51,9 +73,8 @@ public class SetInfo : MonoBehaviour
         }
 
         // Calculate the maximum number of breakables to spawn
-        maxBreakablesToSpawn = spawnLocations.Length * timesToRepeat;
-
-
+        maxBreakablesToSpawn = (spawnLocations.Length/4) * timesToRepeat;
+        proceduralLevel.SetBreakables(maxBreakablesToSpawn);
         initialized = true;  // Mark initialization as complete
     }
     public bool IsInitialized()
@@ -74,12 +95,13 @@ public class SetInfo : MonoBehaviour
             return;
         }
 
-        int breakablesInThisBatch = Random.Range(1, 4);  // Spawn 1 to 3 breakables in each batch
+        int breakablesInThisBatch = Random.Range(1, 2);  // Spawn 1 to 2 breakables in each batch
         for (int i = 0; i < breakablesInThisBatch && spawnedBreakablesCount < maxBreakablesToSpawn; i++)
         {
             int spawnIndex = spawnedBreakablesCount % spawnLocations.Length;
             GameObject breakableToSpawn = GetWeightedRandomBreakable();
-            Instantiate(breakableToSpawn, spawnLocations[spawnIndex].position, Quaternion.identity, transform);
+            GameObject go = Instantiate(breakableToSpawn, spawnLocations[spawnIndex].position, Quaternion.identity, transform);
+            Debug.Log(go.name + " created at " + go.transform.position);
             spawnedBreakablesCount++;
         }
 

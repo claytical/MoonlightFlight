@@ -203,7 +203,9 @@ public class Vehicle : MonoBehaviour
 
     public void CollectEnergy(int amount)
     {
-        energyCollected+=amount;
+        GamepadManager.Instance.CollectedBreakable();
+
+        energyCollected += amount;
         if (energyCollected > capacity)
         {
             energyCollected = capacity;

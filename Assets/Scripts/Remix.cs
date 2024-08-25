@@ -4,106 +4,58 @@ using UnityEngine;
 
 public class Remix : MonoBehaviour
 {
-    public SpriteRenderer primary;
-    public SpriteRenderer hazard;
-   
+    private RemixManager remixManager;
+    public SpriteRenderer spriteRenderer;
 
-    public SpriteRenderer border;
-    public SpriteRenderer identifier;
-    public SpriteRenderer subidentifier;
-    public SpriteRenderer box;
-    public SpriteRenderer energy;
-    //    public SpriteRenderer ship;
-    private ProceduralLevel level;
-    private RemixManager remix;
-    private Renderer rend;
-    private Color originalIdentifierColor;
     // Start is called before the first frame update
     void Start()
     {
-        remix = FindObjectOfType<RemixManager>();
-        level = FindObjectOfType<ProceduralLevel>();
     }
 
-    public Color GetHazardColor()
+    public void SetRemixManager(RemixManager rm)
     {
-        if(remix)
-        {
-            return remix.hazardColor;
+        remixManager = rm;
+        SetColorBasedOnScript();
 
-        }
-        else
-        {
-            return Color.red;
-        }
+    }
+    public void AdjustColors()
+    {
+        remixManager.AdjustColors(.01f, false);
     }
 
-    public Color GetOriginalIdentifierColor()
+    private void SetColorBasedOnScript()
     {
-        return originalIdentifierColor;
-    }
-    public void SetColors()
-    {
-        if (!remix)
+        if (GetComponentInChildren<Collectable>())
         {
-            remix = GetComponentInParent<RemixManager>();
+            spriteRenderer.color = remixManager.collectable;
         }
-        else
+        else if (GetComponentInChildren<Hazard>())
         {
-            Debug.Log("No remix manager found...");
-        }
+            spriteRenderer.color = remixManager.hazard;
 
-        if(primary)
-        {
-            primary.color = remix.primaryColor;
         }
-        
-        if(hazard)
+        else if (GetComponent<Platform>())
         {
-            hazard.color = remix.hazardColor;
-        }
+            Platform platformScript = GetComponent<Platform>();
 
-        if(subidentifier)
-        {
-            subidentifier.color = remix.secondaryColor;
-            
-//            level.secondaryColor = subidentifier.color;
-        }
-        if(box)
-        {
-            box.color = remix.boxColor;
-        }
-        if (identifier)
-        {
-
-            if (GetComponent<Hazard>())
+            if (platformScript.indestructable)
             {
-                identifier.color = remix.hazardColor;
-            }
-            else {
-                identifier.color = remix.secondaryColor;
-                originalIdentifierColor = identifier.color;
+                spriteRenderer.color = remixManager.platform;
 
             }
-            if (GetComponent<SpawnsObjects>()) {
-                if (GetComponent<SpawnsObjects>().GetComponentInChildren<Hazard>())
+            else
+            {
+                if(spriteRenderer)
                 {
-                    identifier.color = remix.hazardColor;
+                    spriteRenderer.color = remixManager.breakable;
+
                 }
 
             }
-
         }
-
-        if (energy)
+        else
         {
-            energy.color = remix.energyColor;
-
+            Debug.LogWarning("No relevant script found on this GameObject to determine color.");
         }
-
-        
-
     }
-
-
 }

@@ -17,17 +17,23 @@ public class Collectable : MonoBehaviour
 
     private void OnDestroy()
     {
-        ProceduralLevel proceduralLevel = transform.parent.GetComponentInParent<SetInfo>().proceduralLevel;
-        if (proceduralLevel)
+        if(transform.parent.GetComponentInParent<SetInfo>() == null || transform.parent.parent.gameObject == null || transform.parent.parent.gameObject.Equals(null))
         {
-            if (proceduralLevel.AllObjectsCollected())
+
+        }
+        else
+        {
+            ProceduralLevel proceduralLevel = transform.parent.GetComponentInParent<SetInfo>().proceduralLevel;
+            if (proceduralLevel)
             {
-                proceduralLevel.RemovePlatforms(); // Remove current platforms
-                proceduralLevel.BuildNextSet(); // Build the next set
+                if (proceduralLevel.AllObjectsCollected())
+                {
+                    proceduralLevel.RemovePlatforms(); // Remove current platforms
+                    proceduralLevel.BuildNextSet(); // Build the next set
+                    proceduralLevel.NextPlane(transform);
+                }
             }
-            else
-            {
-            }
+
         }
     }
 }
