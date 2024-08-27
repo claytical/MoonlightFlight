@@ -9,6 +9,10 @@ public class PlayerStatsTracking : MonoBehaviour
     public int damageTaken = 0;
     public int assists = 0;
     public int fuelUsed = 0;
+    public float timeTaken;
+    public int maxEnergy;  // Example value
+    public float maxTime;
+    public float effiencyScore;
 
     private Vector3 lastPosition;
 
@@ -69,4 +73,13 @@ public class PlayerStatsTracking : MonoBehaviour
         fuelUsed += amount;
         AddScore(amount);  // Reward for managing fuel, adjust as needed
     }
+
+    public float CalculateEfficiencyScore()
+    {
+        maxEnergy = GamepadManager.Instance.MaxItemsCollected();
+        if (timeTaken == 0) return 0;  // Avoid division by zero
+        effiencyScore = (itemsCollected / (float)maxEnergy) * (maxTime / timeTaken);
+        return effiencyScore;
+    }
+
 }

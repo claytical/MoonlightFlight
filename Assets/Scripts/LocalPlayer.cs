@@ -41,6 +41,16 @@ public class LocalPlayer : MonoBehaviour
         }
         */
     }
+
+    public void Hide()
+    {
+        plane.gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        plane.gameObject.SetActive(true);
+    }
     void CheckForSelfDestructInput()
     {
         Debug.Log("Checking for Self Destruct");
@@ -145,6 +155,7 @@ public void CreatePlayerSelect()
 
     public void Restart()
     {
+        GetComponent<PlayerStatsTracking>().CalculateEfficiencyScore();
         isReady = false;
         ui.Deactivate();
         GetComponent<PlayerInput>().SwitchCurrentActionMap("Start");

@@ -8,6 +8,8 @@ public class Collectable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
+        Debug.Log($"Collision detected between {gameObject.name} and {coll.gameObject.name}");
+
         if (coll.gameObject.GetComponent<Vehicle>())
         {
             coll.gameObject.GetComponent<Vehicle>().CollectEnergy(amount);
@@ -17,6 +19,7 @@ public class Collectable : MonoBehaviour
 
     private void OnDestroy()
     {
+        Debug.Log("I am being destroyed. " + gameObject.name);
         if(transform.parent.GetComponentInParent<SetInfo>() == null || transform.parent.parent.gameObject == null || transform.parent.parent.gameObject.Equals(null))
         {
 

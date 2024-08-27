@@ -5,7 +5,7 @@ public class PlayerStatsDisplay : MonoBehaviour
 {
     public TextMeshProUGUI distanceText;
     public TextMeshProUGUI itemsCollectedText;
-    public TextMeshProUGUI assistsText;
+    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI fuelUsedText;
     public TextMeshProUGUI comparisonLabel;
 
@@ -14,7 +14,7 @@ public class PlayerStatsDisplay : MonoBehaviour
         // Populate the individual stats
         distanceText.text = $"Distance Traveled: {stats.distanceCovered:F2}m";
         itemsCollectedText.text = $"Items Collected: {stats.itemsCollected}";
-        assistsText.text = $"Assists: {stats.assists}";
+        scoreText.text = $"Assists: {stats.effiencyScore}";
         fuelUsedText.text = $"Fuel Used: {stats.fuelUsed}";
 
         // Generate a funny comparison label

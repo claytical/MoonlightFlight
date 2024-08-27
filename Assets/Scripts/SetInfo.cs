@@ -100,8 +100,18 @@ public class SetInfo : MonoBehaviour
         {
             int spawnIndex = spawnedBreakablesCount % spawnLocations.Length;
             GameObject breakableToSpawn = GetWeightedRandomBreakable();
-            GameObject go = Instantiate(breakableToSpawn, spawnLocations[spawnIndex].position, Quaternion.identity, transform);
-            Debug.Log(go.name + " created at " + go.transform.position);
+            if (IsLocationClear(spawnLocations[spawnIndex].position))
+            {
+                GameObject go = Instantiate(breakableToSpawn, spawnLocations[spawnIndex].position, Quaternion.identity, transform);
+                Debug.Log(go.name + " created at " + go.transform.position);
+                spawnedBreakablesCount++;
+            }
+            else
+            {
+                Debug.Log("Skipped spawning at " + spawnLocations[spawnIndex].position + " due to vehicle presence.");
+            }
+//            GameObject go = Instantiate(breakableToSpawn, spawnLocations[spawnIndex].position, Quaternion.identity, transform);
+  //          Debug.Log(go.name + " created at " + go.transform.position);
             spawnedBreakablesCount++;
         }
 
@@ -148,6 +158,19 @@ public class SetInfo : MonoBehaviour
     {
         hasBeenCleared = cleared;
     }
+    private bool IsLocationClear(Vector3 spawnPosition)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 0.5f); // Adjust the radius as needed
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.GetComponent<Vehicle>())
+            {
+                return false; // Location is not clear, a vehicle is present
+            }
+        }
+        return true; // Location is clear
+    }
+
 
     public void MoveOffScreen(Vector3 offScreenPosition, float duration)
     {

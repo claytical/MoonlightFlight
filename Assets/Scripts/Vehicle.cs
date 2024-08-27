@@ -95,6 +95,7 @@ public class Vehicle : MonoBehaviour
 
             // Consume fuel based on the pressure applied to the trigger
             float fuelConsumption = burnRateMultiplier * baseBurnRate * Time.fixedDeltaTime;
+            Debug.Log("FUEL CONSUMPTION: " + fuelConsumption);
             ConsumeEnergy(fuelConsumption);
             playerStats.RecordFuelUsed((int)fuelConsumption);
         }

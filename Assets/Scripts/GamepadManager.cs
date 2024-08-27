@@ -76,6 +76,22 @@ public class GamepadManager : MonoBehaviour
 
     }
 
+    public void HideAllPlanes()
+    {
+        foreach (LocalPlayer player in localPlayers)
+        {
+            player.Hide();
+        }
+    }
+
+    public void ShowAllPlanes()
+    {
+        foreach (LocalPlayer player in localPlayers)
+        {
+            player.Show();
+        }
+    }
+
     public bool CheckAstralPlaneAlignment()
     {
         for(int i = 0; i < localPlayers.Count; i++)
@@ -102,6 +118,15 @@ public class GamepadManager : MonoBehaviour
         return portalComplete;
     }
 
+    public int MaxItemsCollected()
+    {
+        int count = 0;
+        foreach(LocalPlayer player in localPlayers)
+        {
+            count += player.GetComponent<PlayerStatsTracking>().itemsCollected;
+        }
+        return count;
+    }
     public void CheckAllPlayersGone()
     {
         foreach (LocalPlayer player in localPlayers)

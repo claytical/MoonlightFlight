@@ -17,6 +17,7 @@ public class Portal : MonoBehaviour
     {
         if(ascending)
         {
+/*
             if(!particles.GetComponent<ParticleSystem>().isEmitting)
             {
                 Debug.Log("HIDE PORTAL");
@@ -28,8 +29,18 @@ public class Portal : MonoBehaviour
                 Debug.Log("PORTAL ACTIVE");
 
             }
+*/
+
+
+
+
         }
 
+    }
+
+    public void Complete()
+    {
+        GamepadManager.Instance.HidePortal();
     }
 
     public bool isEmitting()

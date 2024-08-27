@@ -69,18 +69,22 @@ public class ProceduralLevel : MonoBehaviour
         // Spawn the portal
         if (portalPrefab != null)
         {
+            GamepadManager.Instance.HideAllPlanes();
             GameObject portal = Instantiate(portalPrefab, Vector3.zero, Quaternion.identity);
             portal.transform.position = new Vector3(0, 0, 0);  // Set the portal's position, adjust as needed
             Debug.Log("Portal appeared.");
-
             // Wait for the CheckAstralPlaneAlignment() function to return true
-            while (!GamepadManager.Instance.isPortalGone())
+            yield return new WaitForSeconds(8f);
+            /*while (!GamepadManager.Instance.isPortalGone())
             {
                 yield return null;  // Wait until the next frame and check again
             }
+            */
 
             Destroy(portal);
             GamepadManager.Instance.ResetPortal();
+            GamepadManager.Instance.ShowAllPlanes();
+
             Debug.Log("Portal disappeared, continuing to the next set.");
         }
         else
