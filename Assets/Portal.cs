@@ -4,69 +4,43 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    public GameObject particles;
-    bool ascending = false;
+
+    public int portalCount; //increases the thickness of the lines
     // Start is called before the first frame update
     void Start()
     {
-        GamepadManager.Instance.ResetPortal();
+        /*
+         *  check player progress
+         *  line thickness goes from .1 to 1, number of lines goes from 1 to forever
+         * 
+         * 
+         * 
+         * 
+         * 
+         * * 
+         */
+        Debug.Log("PORTAL " + portalCount + " CREATED "); 
+    }
+
+    public void Set(int portalIndex, int loopCount)
+    {
+        //portal count goes from 0 to 
+        float lineThicknesss = Mathf.Lerp(.1f, 1, portalIndex);
+        GetComponent<WavyRainbowLine>().numberOfLines = loopCount;
+        Debug.Log("Portal Setup Complete");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(ascending)
-        {
-/*
-            if(!particles.GetComponent<ParticleSystem>().isEmitting)
-            {
-                Debug.Log("HIDE PORTAL");
-                GamepadManager.Instance.HidePortal();
-           //     Destroy(transform.parent.gameObject);
-            }
-            else
-            {
-                Debug.Log("PORTAL ACTIVE");
 
-            }
-*/
-
-
-
-
-        }
 
     }
 
     public void Complete()
     {
-        GamepadManager.Instance.HidePortal();
+        //GamepadManager.Instance.HidePortal();
     }
 
-    public bool isEmitting()
-    {
-        return particles.GetComponent<ParticleSystem>().isEmitting;
-    }
-
-    private void OnTriggerEnter2D(Collider2D coll)
-    {
-        if(coll.gameObject.GetComponent<Vehicle>())
-        {
-            Debug.Log("Vehicle Passed Through");
-            if(coll.gameObject.GetComponentInParent<LocalPlayer>())
-            {
-                //LOCAL PLAYER PASSED THROUGUH
-                coll.gameObject.GetComponentInParent<LocalPlayer>().NextPlane();
-                if(GamepadManager.Instance.CheckAstralPlaneAlignment())
-                {
-                    GetComponentInParent<RotateConstant>().accelerate = new Vector3(0, 0, 5);
-                    particles.SetActive(true);
-                    GetComponent<SpriteRenderer>().enabled = false;
-                    ascending = true;
-                }
-                
-            }
-        }
-    }
 
 }

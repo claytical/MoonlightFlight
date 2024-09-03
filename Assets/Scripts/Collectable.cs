@@ -13,30 +13,31 @@ public class Collectable : MonoBehaviour
         if (coll.gameObject.GetComponent<Vehicle>())
         {
             coll.gameObject.GetComponent<Vehicle>().CollectEnergy(amount);
-            GetComponent<Explode>().Permanent();  // Destroy the collectable with an effect
+
+            var explode = GetComponent<Explode>();
+            if (explode != null)
+            {
+                explode.Permanent();  // Destroy the collectable with an effect
+            }
         }
     }
 
     private void OnDestroy()
     {
         Debug.Log("I am being destroyed. " + gameObject.name);
-        if(transform.parent.GetComponentInParent<SetInfo>() == null || transform.parent.parent.gameObject == null || transform.parent.parent.gameObject.Equals(null))
+        if (transform.parent == null || transform.parent.GetComponentInParent<SetInfo>() == null)
         {
-
+            return;
         }
         else
         {
             ProceduralLevel proceduralLevel = transform.parent.GetComponentInParent<SetInfo>().proceduralLevel;
-            if (proceduralLevel)
+            if (proceduralLevel != null && proceduralLevel.AllObjectsCollected())
             {
-                if (proceduralLevel.AllObjectsCollected())
-                {
-                    proceduralLevel.RemovePlatforms(); // Remove current platforms
-                    proceduralLevel.BuildNextSet(); // Build the next set
-                    proceduralLevel.NextPlane(transform);
-                }
+                proceduralLevel.RemovePlatforms(); // Remove current platforms
+                proceduralLevel.BuildNextSet(); // Build the next set
+                proceduralLevel.NextPlane(transform);
             }
-
         }
     }
 }

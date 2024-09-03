@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -29,35 +30,12 @@ public class SetInfo : MonoBehaviour
 
     private bool hasBeenCleared = false;  // Used to track if the set has been cleared
 
-    void Awake()
-    {
-        // Early initialization if necessary
-    }
 
     void Start()
     {
         Transform[] spawnFilter = AutoSpawnLocation.GetComponentsInChildren<Transform>();
         int zeroCount = 0;
-        foreach(Transform T in spawnFilter)
-        {
-            if(T.position != Vector3.zero)
-            {
-                zeroCount++;
-            }
-        }
-
-        spawnLocations = new Transform[zeroCount];
-        int index = 0;
-        foreach(Transform t in spawnFilter)
-        {
-            if(t.position != Vector3.zero)
-            {
-                spawnLocations[index] = t;
-                index++;
-            }
-        }
-//        spawnLocations = AutoSpawnLocation.GetComponentsInChildren<Transform>();
-
+        spawnLocations = spawnFilter.Where(t => t.position != Vector3.zero).ToArray();
         if (lootLocation)
         {
             lootLocations = lootLocation.GetComponentsInChildren<Transform>();
@@ -92,6 +70,7 @@ public class SetInfo : MonoBehaviour
 
         if (spawnedBreakablesCount >= maxBreakablesToSpawn)
         {
+            Debug.Log("SPAWNED BREAKABLES COUNT: " + spawnedBreakablesCount + " MAX BREAKABLES: " + maxBreakablesToSpawn);
             return;
         }
 
@@ -110,9 +89,6 @@ public class SetInfo : MonoBehaviour
             {
                 Debug.Log("Skipped spawning at " + spawnLocations[spawnIndex].position + " due to vehicle presence.");
             }
-//            GameObject go = Instantiate(breakableToSpawn, spawnLocations[spawnIndex].position, Quaternion.identity, transform);
-  //          Debug.Log(go.name + " created at " + go.transform.position);
-            spawnedBreakablesCount++;
         }
 
         Debug.Log($"Spawned {spawnedBreakablesCount}/{maxBreakablesToSpawn} breakables.");
@@ -175,9 +151,15 @@ public class SetInfo : MonoBehaviour
     public void MoveOffScreen(Vector3 offScreenPosition, float duration)
     {
         Platform[] platformArray = platforms.GetComponentsInChildren<Platform>();
+
         foreach (Platform platform in platformArray)
         {
-            platform.MoveOffScreen(offScreenPosition, duration);
+            if (platform != null)
+            {
+                // Perform operations on myObject
+                platform.MoveOffScreen(offScreenPosition, duration);
+            }
+
         }
     }
 

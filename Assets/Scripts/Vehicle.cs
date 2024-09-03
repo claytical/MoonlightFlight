@@ -1,7 +1,21 @@
 ﻿using UnityEngine;
+using MidiPlayerTK;
+
+
 
 public class Vehicle : MonoBehaviour
 {
+    [System.Serializable]
+
+    public class MoodArrangement
+    {
+        public string moodName;
+        public GameObject moodObject; // Reference to the child object with MidiListPlayer
+    }
+
+
+    public MoodArrangement[] moodArrangements; // Array of moods and their corresponding child objects
+
     public int currentHP;
     public int maxHP;
 
@@ -28,7 +42,7 @@ public class Vehicle : MonoBehaviour
 
     private float initialForce;
     private float initialTerminalVelocity;
-
+    
     public float capacity = 10f;
     public float energyCollected;
     private Vector2 driftDirection;
@@ -37,9 +51,20 @@ public class Vehicle : MonoBehaviour
     public PlayerStatsTracking playerStats;
 
     private Vector3 lastPosition;
+ 
 
     void Start()
     {
+        // Ensure each moodObject has a MidiListPlayer attached
+        foreach (var moodArrangement in moodArrangements)
+        {
+            if (moodArrangement.moodObject != null && moodArrangement.moodObject.GetComponent<MidiListPlayer>() == null)
+            {
+                Debug.LogError("MoodObject does not have a MidiListPlayer component: " + moodArrangement.moodObject.name);
+                enabled = false;
+                return;
+            }
+        }
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
         {
@@ -78,6 +103,47 @@ public class Vehicle : MonoBehaviour
         }
 
         lastPosition = transform.position; // Initialize last position for distance tracking
+    }
+
+    // Function to set the mood
+    public void SetMood(string mood)
+    {
+        // Stop all currently playing arrangements
+        StopAllArrangements();
+
+        // Find the mood arrangement by name
+        foreach (var moodArrangement in moodArrangements)
+        {
+            if (moodArrangement.moodName == mood)
+            {
+                var midiListPlayer = moodArrangement.moodObject.GetComponent<MidiListPlayer>();
+                if (midiListPlayer != null && midiListPlayer.MPTK_PlayList.Count > 0)
+                {
+                    // Pick a random MIDI file from the PlayList
+                    int randomIndex = Random.Range(0, midiListPlayer.MPTK_PlayList.Count);
+                    midiListPlayer.MPTK_PlayIndex = randomIndex;
+
+                    // Play the selected MIDI
+                    midiListPlayer.MPTK_Play();
+                }
+                break; // Exit the loop once the mood is found and played
+            }
+        }
+    }
+    // Function to stop all arrangements
+    private void StopAllArrangements()
+    {
+        foreach (var moodArrangement in moodArrangements)
+        {
+            if (moodArrangement.moodObject != null)
+            {
+                var midiListPlayer = moodArrangement.moodObject.GetComponent<MidiListPlayer>();
+                if (midiListPlayer != null)
+                {
+                    midiListPlayer.MPTK_Stop();
+                }
+            }
+        }
     }
 
     void FixedUpdate()
@@ -199,6 +265,11 @@ public class Vehicle : MonoBehaviour
         if (energyCollected <= 0)
         {
             TurnOffBoost(); // Stop boosting when out of fuel
+            SetMood("Tense");
+        }
+        else if(energyCollected < 5)
+        {
+            SetMood("Unease");
         }
     }
 
@@ -279,10 +350,12 @@ public class Vehicle : MonoBehaviour
                 case "Collect":
                     audioManager.PlaySound(collectedClip);
                     break;
+                default:
+                    Debug.LogWarning("Unhandled collision tag: " + coll.gameObject.tag);
+                    break;
             }
         }
     }
-
     public void Explode()
     {
         if (audioManager != null)

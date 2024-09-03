@@ -29,6 +29,7 @@ public class ProceduralLevel : MonoBehaviour
     private bool allBreakablesSpawned;
     private float currentSpawnWaitTime;
     private int completedSets = 0;
+    private int loops = 1;
     void Start()
     {
         setCount = 1;
@@ -66,26 +67,32 @@ public class ProceduralLevel : MonoBehaviour
     }
     private IEnumerator HandlePortalAppearance()
     {
-        // Spawn the portal
         if (portalPrefab != null)
         {
-            GamepadManager.Instance.HideAllPlanes();
             GameObject portal = Instantiate(portalPrefab, Vector3.zero, Quaternion.identity);
-            portal.transform.position = new Vector3(0, 0, 0);  // Set the portal's position, adjust as needed
+            portal.transform.position = new Vector3(0, 0, 0);
+
             Debug.Log("Portal appeared.");
-            // Wait for the CheckAstralPlaneAlignment() function to return true
-            yield return new WaitForSeconds(8f);
-            /*while (!GamepadManager.Instance.isPortalGone())
+
+            // Optionally wait a frame to ensure initialization
+            yield return null;
+
+            // Ensure the portal still exists before continuing
+            if (portal != null && !portal.Equals(null))
             {
-                yield return null;  // Wait until the next frame and check again
+                yield return new WaitForSeconds(3f);
+
+                // Safe to destroy the portal
+//                Destroy(portal);
+//                yield return null;  // Ensure destruction is processed before continuing
+
+                BuildNextSet();
+                Debug.Log("Portal clear, continuing to the next set.");
             }
-            */
-
-            Destroy(portal);
-            GamepadManager.Instance.ResetPortal();
-            GamepadManager.Instance.ShowAllPlanes();
-
-            Debug.Log("Portal disappeared, continuing to the next set.");
+            else
+            {
+                Debug.LogWarning("Portal was destroyed before further processing.");
+            }
         }
         else
         {
@@ -118,11 +125,14 @@ public class ProceduralLevel : MonoBehaviour
     {
         while (!allBreakablesSpawned)
         {
+            Debug.Log("Not all breakables have spawned.");
             set.SpawnNextBatchOfBreakables();
 
             if (set.AllBreakablesSpawned())
             {
                 allBreakablesSpawned = true;
+                Debug.Log("All breakables have spawned.");
+
             }
 
             yield return new WaitForSeconds(currentSpawnWaitTime);
@@ -135,11 +145,6 @@ public class ProceduralLevel : MonoBehaviour
     }
     public bool AllObjectsCollected()
     {
-        if (!allBreakablesSpawned)
-        {
-            return false;
-        }
-
         GameObject[] collectables = GameObject.FindGameObjectsWithTag("Collect");
         return collectables.Length == 0;
     }
@@ -151,10 +156,9 @@ public class ProceduralLevel : MonoBehaviour
 
     public void BuildNextSet()
     {
-        if (AllObjectsCollected())
-        {
             ProceduralInfo proceduralInfo = set.GetComponent<ProceduralInfo>();
-            music.ChangeTrack();
+        //MAKING MIDI CHANGES    
+        //music.ChangeTrack();
 
             SetInfo previousSet = set;
             set = proceduralInfo.SetNextSet();
@@ -165,11 +169,10 @@ public class ProceduralLevel : MonoBehaviour
             }
             setCount++;
 
-            previousSet.MoveOffScreen(Vector3.zero, 0.5f);
+            //previousSet.MoveOffScreen(Vector3.zero, 0.5f);
             StartCoroutine(WaitForPreviousSetToFinish(previousSet));
 
             currentSpawnWaitTime += waitTimeIncrement;
-        }
     }
     public bool AllBreakablesCollected()
     {
@@ -193,6 +196,10 @@ public class ProceduralLevel : MonoBehaviour
         if (completedSets % setsBeforePortal == 0)
         {
             yield return StartCoroutine(HandlePortalAppearance());
+        }
+        else
+        {
+            Debug.Log("Waiting for next portal: " + completedSets + " sets, " + setsBeforePortal + " sets before portal appearance");
         }
 
 

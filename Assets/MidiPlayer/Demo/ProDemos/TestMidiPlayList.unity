@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -105,7 +105,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -118,7 +118,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -157,7 +157,6 @@ RectTransform:
   m_Children:
   - {fileID: 996383684}
   m_Father: {fileID: 1681043725}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -291,7 +290,6 @@ RectTransform:
   m_Children:
   - {fileID: 616199735}
   m_Father: {fileID: 1164072757}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -427,7 +425,6 @@ RectTransform:
   - {fileID: 1692578723}
   - {fileID: 1930931551}
   m_Father: {fileID: 1384402611}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -529,7 +526,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2119026859}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -664,13 +660,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396594381}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 7.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &615857689
 GameObject:
@@ -703,7 +699,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 632516915}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -783,7 +778,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 48982829}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -865,7 +859,6 @@ RectTransform:
   m_Children:
   - {fileID: 615857690}
   m_Father: {fileID: 1681043725}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -997,7 +990,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1136338123}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1079,7 +1071,6 @@ RectTransform:
   m_Children:
   - {fileID: 2119026859}
   m_Father: {fileID: 1384402611}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1181,7 +1172,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3163795}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1235,6 +1225,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
@@ -1269,7 +1260,365 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playIndex
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Index
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Index
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Index
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Index
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Index
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[9].Index
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].EndFrom
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].EndFrom
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].EndFrom
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].EndFrom
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[9].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].MidiName
+      value: Bass - Tension - 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].MidiName
+      value: Bass - Tension - 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].LastTick
+      value: 21504
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].MidiName
+      value: Bass - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].LastTick
+      value: 21504
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].MidiName
+      value: Bass - Unease - 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].LastTick
+      value: 21504
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].MidiName
+      value: Bass - Unease - 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].LastTick
+      value: 21504
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].MidiName
+      value: Bass - Unease - 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].MidiName
+      value: Bass - Relief - 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].MidiName
+      value: Bass - Triumph - 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].MidiName
+      value: Bass - Triumph - 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[9].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[9].MidiName
+      value: Bass - Triumph - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[9].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[9].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].RealDurationMs
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].RealDurationMs
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].RealDurationMs
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].RealDurationMs
+      value: 128000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[9].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
 --- !u!1 &1108141228
 GameObject:
@@ -1320,9 +1669,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1356,13 +1713,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108141228}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1109009529
 GameObject:
@@ -1454,7 +1811,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1473,7 +1832,6 @@ RectTransform:
   - {fileID: 1681043725}
   - {fileID: 1384402611}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1527,7 +1885,6 @@ RectTransform:
   m_Children:
   - {fileID: 921448535}
   m_Father: {fileID: 1164072757}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1653,13 +2010,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139334658}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1139334660
 MonoBehaviour:
@@ -1732,7 +2089,6 @@ RectTransform:
   - {fileID: 48982829}
   - {fileID: 1368063497}
   m_Father: {fileID: 1384402611}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1834,7 +2190,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2007146343}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1916,7 +2271,6 @@ RectTransform:
   m_Children:
   - {fileID: 1607104579}
   m_Father: {fileID: 1164072757}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2050,7 +2404,6 @@ RectTransform:
   m_Children:
   - {fileID: 1857515314}
   m_Father: {fileID: 1164072757}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2186,7 +2539,6 @@ RectTransform:
   - {fileID: 1164072757}
   - {fileID: 983898480}
   m_Father: {fileID: 1109009534}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2288,7 +2640,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1336255886}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2383,7 +2734,6 @@ RectTransform:
   - {fileID: 632516915}
   - {fileID: 3163795}
   m_Father: {fileID: 1109009534}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2461,7 +2811,6 @@ RectTransform:
   m_Children:
   - {fileID: 2042451521}
   m_Father: {fileID: 120115578}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2593,7 +2942,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1368063497}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2673,7 +3021,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1681043725}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2758,7 +3105,6 @@ RectTransform:
   m_Children:
   - {fileID: 2140449796}
   m_Father: {fileID: 120115578}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2892,7 +3238,6 @@ RectTransform:
   m_Children:
   - {fileID: 1178844777}
   m_Father: {fileID: 120115578}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3024,7 +3369,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1692578723}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3106,7 +3450,6 @@ RectTransform:
   m_Children:
   - {fileID: 283860705}
   m_Father: {fileID: 983898480}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3238,7 +3581,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1930931551}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3287,3 +3629,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140449795}
   m_CullTransparentMesh: 0
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 1108141233}
+  - {fileID: 396594383}
+  - {fileID: 1139334659}
+  - {fileID: 1109009534}
+  - {fileID: 1069844961}

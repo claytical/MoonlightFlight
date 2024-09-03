@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<MidiSet xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SoundFonts>
+    <SoundFontInfo>
+      <Name>ElectroSF</Name>
+      <PatchCount>2</PatchCount>
+      <WaveCount>56</WaveCount>
+      <WaveSize>32613228</WaveSize>
+      <SF2Path>C:/Users/imfaculty/AppData/LocalLow/NERDLab/Moonlight Flight\SoundFont\ElectroSF.sf2</SF2Path>
+    </SoundFontInfo>
+  </SoundFonts>
+  <IndexSelectedSF>0</IndexSelectedSF>
+  <MidiFiles>
+    <string>Keys - Relief - 1</string>
+    <string>Keys - Relief - 2</string>
+    <string>Keys - Relief - 3</string>
+    <string>Keys - Tension - 1</string>
+    <string>Keys - Tension - 2</string>
+    <string>Keys - Tension - 3</string>
+    <string>Keys - Unease - 1</string>
+    <string>Keys - Unease - 2</string>
+    <string>Keys - Unease - 3</string>
+  </MidiFiles>
+</MidiSet>

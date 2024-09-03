@@ -109,12 +109,10 @@ public class Platform : MonoBehaviour
         newColor.a = originalColor.a * alphaFactor;
         spriteRenderer.color = newColor;
     }
-
     private IEnumerator ScaleUpCoroutine()
     {
         float time = 0;
 
-        // Scale up from 0 to the original scale over time
         while (time < scaleSpeed)
         {
             time += Time.deltaTime;
@@ -122,11 +120,8 @@ public class Platform : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the platform reaches its original scale
         platform.transform.localScale = originalScale;
 
-        // Start the breathing effect
-        // ApplyBreathingEffect() is now called periodically in Update()
         TurnOnCollision();
     }
 

@@ -35,7 +35,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4776618912942169009}
+  - {fileID: 642359575314137896}
+  - {fileID: 3466938127576041100}
+  - {fileID: 4959847880105937560}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1970310610805977373
@@ -129,6 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc3f778eb7936e43bbe5a524e758f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moodArrangements:
+  - moodName: Unease
+    moodObject: {fileID: 4782363841135038717}
+  - moodName: Tense
+    moodObject: {fileID: 647873645115983972}
   currentHP: 10
   maxHP: 10
   force: 10
@@ -138,10 +147,10 @@ MonoBehaviour:
   baseBurnRate: 5
   burnRateMultiplier: 2
   trail: {fileID: 5973205746167519599, guid: b8208b79aa374604699ea6099e1fbff6, type: 3}
-  collisionClip: {fileID: 0}
-  destroyClip: {fileID: 0}
-  collectedClip: {fileID: 0}
-  thrustClip: {fileID: 0}
+  collisionClip: {fileID: 8300000, guid: 8b8f15883716b5e4083a06bb420f9fad, type: 3}
+  destroyClip: {fileID: 8300000, guid: cdec88e5cf531a34fa7ffb2147d99e85, type: 3}
+  collectedClip: {fileID: 8300000, guid: c1fd969aa4df59b4ca3b6c7a4a5aaff1, type: 3}
+  thrustClip: {fileID: 8300000, guid: babee597526a4d747940af2b291e0c61, type: 3}
   capacity: 50
   energyCollected: 5
   playerStatsUI: {fileID: 0}
@@ -330,3 +339,1587 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eade318f31ba248b72c13c52f1c81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &647168841320959750
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2614095863033673403}
+    m_Modifications:
+    - target: {fileID: 1830704792651618, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_Name
+      value: Tension
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Index
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Index
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Index
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Index
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Index
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].MidiName
+      value: Keys - Tension - 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].MidiName
+      value: Keys - Tension - 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].MidiName
+      value: Keys - Tension - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+--- !u!4 &642359575314137896 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 647168841320959750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &647873645115983972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1830704792651618, guid: 7c80411356e4efa4ba90ae1624e311a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 647168841320959750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3462181638126242466
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2614095863033673403}
+    m_Modifications:
+    - target: {fileID: 1830704792651618, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_Name
+      value: Relief
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Index
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Index
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Index
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Index
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Index
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].EndFrom
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].EndFrom
+      value: 16000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].MidiName
+      value: Keys - Relief - 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].LastTick
+      value: 4992
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].MidiName
+      value: Keys - Relief - 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].LastTick
+      value: 2688
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].MidiName
+      value: Keys - Relief - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].RealDurationMs
+      value: 26625
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].RealDurationMs
+      value: 16000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+--- !u!4 &3466938127576041100 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3462181638126242466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4780816846190024607
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2614095863033673403}
+    m_Modifications:
+    - target: {fileID: 1830704792651618, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_Name
+      value: Unease
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Index
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Index
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Index
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Index
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Index
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].EndFrom
+      value: 16000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].EndFrom
+      value: 8000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].MidiName
+      value: Keys - Unease - 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].LastTick
+      value: 1536
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].MidiName
+      value: Keys - Unease - 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].RealDurationMs
+      value: 16000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].RealDurationMs
+      value: 8000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+--- !u!4 &4776618912942169009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4780816846190024607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4782363841135038717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1830704792651618, guid: 7c80411356e4efa4ba90ae1624e311a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4780816846190024607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4955579578114950838
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2614095863033673403}
+    m_Modifications:
+    - target: {fileID: 1830704792651618, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_Name
+      value: Triumph
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: playOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Index
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Index
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Index
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Index
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Index
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].EndFrom
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].LastTick
+      value: 2976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].MidiName
+      value: Keys - Unease - 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].Selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].TickLengthMs
+      value: 5.208333333333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[0].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[1].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[2].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[3].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[4].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[5].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[6].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[7].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736807736466070, guid: 7c80411356e4efa4ba90ae1624e311a6,
+        type: 3}
+      propertyPath: MPTK_PlayList.Array.data[8].RealDurationMs
+      value: 16500
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c80411356e4efa4ba90ae1624e311a6, type: 3}
+--- !u!4 &4959847880105937560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4831256240491566, guid: 7c80411356e4efa4ba90ae1624e311a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4955579578114950838}
+  m_PrefabAsset: {fileID: 0}

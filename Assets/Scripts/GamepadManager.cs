@@ -22,7 +22,6 @@ public class GamepadManager : MonoBehaviour
     public ProceduralLevel level;
 
     private bool gameInProgress = false;
-    private bool portalComplete = false;
 
     private void Awake()
     {
@@ -103,7 +102,7 @@ public class GamepadManager : MonoBehaviour
         }
         return true;
     }
-
+    /*
     public void ResetPortal()
     {
         portalComplete = false;
@@ -113,11 +112,7 @@ public class GamepadManager : MonoBehaviour
     {
         portalComplete = true;
     }
-    public bool isPortalGone()
-    {
-        return portalComplete;
-    }
-
+    */
     public int MaxItemsCollected()
     {
         int count = 0;
